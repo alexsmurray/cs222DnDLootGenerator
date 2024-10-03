@@ -21,6 +21,7 @@ dependencies {
     implementation("com.jayway.jsonpath", "json-path", "2.9.0")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
     testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine:5.10.1")
+
 }
 
 tasks.test {
@@ -29,7 +30,7 @@ tasks.test {
 
 javafx {
     version = "22-ea+16"
-    modules("javafx.controls")
+    modules("javafx.controls", "javafx.fxml")
 }
 
 application {
