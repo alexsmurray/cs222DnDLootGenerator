@@ -8,4 +8,4 @@ James Ramsey
 
 Alex Murray
 
-Summary: BlahYadada
+Summary: Generates loot from a D&D fifth edition API
