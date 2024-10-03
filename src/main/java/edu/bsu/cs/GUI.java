@@ -1,22 +1,24 @@
 package edu.bsu.cs;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.util.Objects;
 
 
 public class GUI extends Application {
-    @Override
-    public void start(Stage stage){
-        stage.setTitle("D&D Loot Generator");
-        stage.setScene(new Scene(createRoot()));
-        stage.sizeToScene();
-        stage.show();
+    public static void main(String[] args) {
+        launch(args);
     }
 
-    private Pane createRoot() {
-        return new VBox();
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxmlSample.fxml")));
+        primaryStage.setTitle("D&D Loot Generator");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 }
