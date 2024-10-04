@@ -34,23 +34,10 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<VBox prefHeight="533.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.GUI">
   <children>
-      <Accordion />
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="426.0" prefWidth="686.0" VBox.vgrow="ALWAYS">
-      <children>
-        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
-          <font>
-            <Font size="18.0" />
-          </font>
-        </Label>
-            <Button layoutX="334.0" layoutY="385.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="103.0" text="Button" />
-            <TextArea layoutX="21.0" layoutY="134.0" prefHeight="212.0" prefWidth="727.0" />
-            <TextField layoutX="310.0" layoutY="78.0" />
-      </children>
-    </AnchorPane>
-      <TextArea prefHeight="0.0" prefWidth="730.0" />
+      <TextArea fx:id="textArea" prefHeight="0.0" prefWidth="730.0" />
+      <Button fx:id="button" mnemonicParsing="false" onAction="#setText" text="Button" />
   </children>
 </VBox>
