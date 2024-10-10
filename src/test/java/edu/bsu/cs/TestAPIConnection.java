@@ -22,7 +22,6 @@ public class TestAPIConnection {
     public void TestConnectionReturnsJson() throws URISyntaxException, IOException {
         URLConnection urlConnection = APIConnection.connectToAPI("");
         String stringifiedJson = readJsonSampleAsString(urlConnection);
-        getJsonSample(stringifiedJson);
         Assertions.assertInstanceOf(JSONArray.class, getJsonSample(stringifiedJson));
     }
 
