@@ -1,8 +1,5 @@
 package edu.bsu.cs;
 
-import net.minidev.json.JSONArray;
-
-import java.util.Random;
 
 public class InputFormatter {
     public static String formatRarity(String rarity) {
@@ -29,16 +26,5 @@ public class InputFormatter {
 
 
     //Choose random index instead of shuffling method
-    public static JSONArray shuffleJsonArray (JSONArray array){
-        Random rnd = new Random();
-        for (int index = array.size() - 1; index >= 0; index--)
-        {
-            int j = rnd.nextInt(index + 1);
 
-            Object object = array.get(j);
-            array.set(j, array.get(index));
-            array.set(index, object);
-        }
-        return array;
-    }
 }
