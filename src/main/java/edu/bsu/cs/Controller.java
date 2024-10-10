@@ -9,4 +9,15 @@ public class Controller {
         URLConnection connection= APIConnection.connectToAPI(input);
         return JsonToString.readJsonAsString(connection.getInputStream());
     }
+
+    protected void updateAPIFiles() throws IOException, URISyntaxException {
+        JsonFileMaker jsonFileMaker = new JsonFileMaker();
+        boolean updated = false;
+        while (!updated) {
+            jsonFileMaker.writeArmorJsonToFile();
+            jsonFileMaker.writeMagicItemsJsonToFile();
+            jsonFileMaker.writeWeaponsJsonToFile();
+            updated = true;
+        }
+    }
 }

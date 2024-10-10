@@ -4,10 +4,11 @@ import net.minidev.json.JSONArray;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-
-
+import java.net.URISyntaxException;
 
 public class TestParseJson {
     @Test
@@ -46,10 +47,24 @@ public class TestParseJson {
         Assertions.assertArrayEquals(expected,result);
     }
 
+    @Test
+    public void testMagicItemsTextFile() throws IOException, URISyntaxException {
+        JsonFileMaker jsonFileMaker = new JsonFileMaker();
+        jsonFileMaker.writeMagicItemsJsonToFile();
+        FileInputStream magicItemInputStream = getMagicItemsFile();
+        String stringifiedJson = JsonToString.readJsonAsString(magicItemInputStream);
+        System.out.println(stringifiedJson);
+        JSONArray sampleJsonArray = JsonParser.parseName(stringifiedJson);
+        Assertions.assertNotEquals(sampleJsonArray.size(), 0);
+    }
+
     private InputStream getJsonFile(){
         InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("SampleMagicItemPage1.json");
         assert inputStream != null;
         return inputStream;
+    }
+    private FileInputStream getMagicItemsFile() throws FileNotFoundException {
+        return new FileInputStream("src/main/resources/magicitems.txt");
     }
 
 }
