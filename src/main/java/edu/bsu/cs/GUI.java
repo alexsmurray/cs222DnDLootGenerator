@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Objects;
 
 
@@ -33,8 +35,10 @@ public class GUI extends Application {
     public Button button;
 
     @FXML
-    public void setText(ActionEvent actionEvent) {
+    public void setText(ActionEvent actionEvent) throws URISyntaxException, IOException {
         textArea.setText("Hello");
+        /*Weapon weapon = new Weapon();
+        textArea.setText(weapon.getName("v2/weapons/"));*/
     }
 
 }

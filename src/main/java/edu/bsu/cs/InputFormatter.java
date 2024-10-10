@@ -18,7 +18,7 @@ public class InputFormatter {
     }
 
     //Change the output to whatever we want it to say
-    public static String formatAttunment(String Attunement) {
+    public static String formatAttunement(String Attunement) {
         if (Attunement.isEmpty()) {
             Attunement = "False";
         } else {

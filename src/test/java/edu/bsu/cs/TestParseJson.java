@@ -41,7 +41,7 @@ public class TestParseJson {
         String[] expected = {"False","False","True","False","True"};
         String [] result = new String[5];
         for (int i = 0; i < 5; i++) {
-            result[i] =InputFormatter.formatAttunment(sampleJsonArray.get(i).toString());
+            result[i] =InputFormatter.formatAttunement(sampleJsonArray.get(i).toString());
         }
         Assertions.assertArrayEquals(expected,result);
     }
