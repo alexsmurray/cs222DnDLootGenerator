@@ -13,7 +13,7 @@ public class TestParseJson {
     @Test
     public void testGetNameFromSampleJson() throws IOException {
         InputStream testInputStream = getJsonFile();
-        JSONArray sampleJsonArray = JsonParser.getNameFromJsonSample(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = JsonParser.parseName(JsonToString.readJsonAsString(testInputStream));
         String[] expected = {"Aberrant Agreement","Absurdist Web","Accursed Idol","Adamantine Armor","Aegis of the Eternal Moon"};
         String[] result = new String[5];
         for (int i = 0; i < 5; i++) {
@@ -25,7 +25,7 @@ public class TestParseJson {
     @Test
     public void testGetRarityFromSampleJson() throws IOException {
         InputStream testInputStream = getJsonFile();
-        JSONArray sampleJsonArray = JsonParser.getRarityFromJsonSample(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = JsonParser.parseRarity(JsonToString.readJsonAsString(testInputStream));
         String[] expected = {"Rare","Very Rare","Uncommon","Uncommon","Very Rare"};
         String[] result = new String[5];
         for (int i = 0; i < 5; i++) {
@@ -37,7 +37,7 @@ public class TestParseJson {
     @Test
     public void testGetAttunementFromSampleJson() throws IOException {
         InputStream testInputStream = getJsonFile();
-        JSONArray sampleJsonArray = JsonParser.getAttunementFromJsonSample(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = JsonParser.parseAttunement(JsonToString.readJsonAsString(testInputStream));
         String[] expected = {"False","False","True","False","True"};
         String [] result = new String[5];
         for (int i = 0; i < 5; i++) {

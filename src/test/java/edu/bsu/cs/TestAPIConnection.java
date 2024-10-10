@@ -33,6 +33,4 @@ public class TestAPIConnection {
         return JsonPath.read(stringifiedJson, "$..*");
     }
 
-
-
 }
