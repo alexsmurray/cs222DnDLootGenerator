@@ -6,6 +6,5 @@ import java.net.URISyntaxException;
 
 
 public abstract class Item {
-    public abstract String getName(String input) throws URISyntaxException, IOException;
-
+    public abstract String getName();
 }

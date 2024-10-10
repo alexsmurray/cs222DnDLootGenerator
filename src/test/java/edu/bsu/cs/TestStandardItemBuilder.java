@@ -8,12 +8,10 @@ public class TestStandardItemBuilder {
     @Test
     public void testSelectRandomItemGeneratesIndexInRange() {
         JSONArray testJsonArray = createJsonArray();
-        int testIndex = StandardItemBuilder.selectRandomItem(testJsonArray);
+        int testIndex = StandardItemBuilder.selectRandomItemIndex(testJsonArray);
         Assertions.assertTrue(testIndex >= 0 && testIndex < testJsonArray.size());
     }
 
-//    JSONArray nameJsonArray =  JsonParser.parseName(Controller.fetchStringifiedJson(input));
-//        return ItemBuilder.selectRandomItem(nameJsonArray);
 
     private JSONArray createJsonArray(){
         JSONArray array = new JSONArray();
