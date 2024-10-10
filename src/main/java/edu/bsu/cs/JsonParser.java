@@ -16,4 +16,7 @@ public class JsonParser {
     public static JSONArray parseAttunement(String stringifiedJson) {
         return JsonPath.read(stringifiedJson, "$..requires_attunement");
     }
+    public static String parseNext(String stringifiedJson) {
+        return JsonPath.read(stringifiedJson, "$..next").toString();
+    }
 }
