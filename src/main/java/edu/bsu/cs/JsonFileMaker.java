@@ -16,7 +16,7 @@ public class JsonFileMaker {
 
         String next = JsonParser.parseNext(inputStreamString);
         while (!next.equals("[null]")) {
-            magicItemsString.append(inputStreamString);
+            magicItemsString.append(inputStreamString).append("\n");
             pageNum ++;
             inputStream = APIConnection.connectToAPI("v1/magicitems/?format=json&page=" + pageNum).getInputStream();
             inputStreamString = JsonToString.readJsonAsString(inputStream);
