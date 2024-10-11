@@ -20,14 +20,14 @@ public class TestJsonToString {
     }
 
     @Test
-    public void testForItemRequiresAttunment(){
+    public void testForItemRequiresAttunement(){
         String expected = "True";
         String result = InputFormatter.formatAttunement("requires attunement");
         Assertions.assertEquals(expected,result);
     }
 
     @Test
-    public void testForItemDoesNotRequiresAttunement(){
+    public void testForItemDoesNotRequireAttunement(){
         String expected = "False";
         String result = InputFormatter.formatAttunement("");
         Assertions.assertEquals(expected,result);
