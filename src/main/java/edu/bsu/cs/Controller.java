@@ -6,7 +6,7 @@ import java.net.URLConnection;
 
 public class Controller {
     protected static String fetchStringifiedJson(String input) throws IOException, URISyntaxException {
-        URLConnection connection= APIConnection.connectToAPI(input);
+        URLConnection connection= APIConnection.fetchConnectionPath(input);
         return JsonToString.readJsonAsString(connection.getInputStream());
     }
 

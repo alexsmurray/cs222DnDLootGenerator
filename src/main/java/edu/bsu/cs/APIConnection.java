@@ -5,7 +5,7 @@ import java.net.*;
 
 public class APIConnection {
 
-    public static URLConnection connectToAPI(String userInput) throws URISyntaxException, IOException {
+    public static URLConnection fetchConnectionPath(String userInput) throws URISyntaxException, IOException {
         URL url = new URI("https://api.open5e.com/" + userInput).toURL();
         return url.openConnection();
     }
