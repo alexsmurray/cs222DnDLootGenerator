@@ -1,6 +1,8 @@
 package edu.bsu.cs;
 
 import net.minidev.json.JSONArray;
+
+import java.io.IOException;
 import java.util.Random;
 
 public class ItemBuilder {
@@ -8,8 +10,8 @@ public class ItemBuilder {
         return new Random().nextInt(array.size());
     }
 
-//    protected Item generateWeapon() throws IOException, URISyntaxException {
-//        JSONArray nameJsonArray =  JsonParser.parseName(Controller.fetchStringifiedJson("v2/weapons"));
-//        return new Weapon(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString());
-//    }
+    protected Weapon generateWeapon() throws IOException {
+        JSONArray nameJsonArray =  JsonParser.parseName(JsonFileReader.readFileToString("src/main/resources/weapons.txt"));
+        return new Weapon(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard");
+    }
 }
