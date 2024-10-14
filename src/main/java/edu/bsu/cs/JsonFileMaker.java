@@ -8,9 +8,11 @@ import java.net.URISyntaxException;
 public class JsonFileMaker {
 
     protected void writeMagicItemsJsonToFile() throws IOException, URISyntaxException {
+        if (ErrorHandler.verifyNetworkConnection().equals("Network Error")) {return;}
+
         int pageNum = 1;
         FileWriter magicItemsApi = new FileWriter("src/main/resources/magicitems.txt");
-        InputStream inputStream = APIConnection.connectToAPI("v1/magicitems/?format=json&page=" + pageNum).getInputStream();
+        InputStream inputStream = APIConnection.fetchConnectionPath("v1/magicitems/?format=json&page=" + pageNum).getInputStream();
         StringBuilder magicItemsString = new StringBuilder();
         String inputStreamString = JsonToString.readJsonAsString(inputStream);
 
@@ -18,7 +20,7 @@ public class JsonFileMaker {
         while (!next.equals("[null]")) {
             magicItemsString.append(inputStreamString).append("\n");
             pageNum ++;
-            inputStream = APIConnection.connectToAPI("v1/magicitems/?format=json&page=" + pageNum).getInputStream();
+            inputStream = APIConnection.fetchConnectionPath("v1/magicitems/?format=json&page="+pageNum).getInputStream();
             inputStreamString = JsonToString.readJsonAsString(inputStream);
             next = JsonParser.parseNext(inputStreamString);
 
@@ -28,13 +30,18 @@ public class JsonFileMaker {
         magicItemsApi.close();
     }
     protected void writeArmorJsonToFile() throws IOException, URISyntaxException {
+        if (ErrorHandler.verifyNetworkConnection().equals("Network Error")) {return;}
+
         FileWriter armorApi = new FileWriter("src/main/resources/armor.txt");
-        armorApi.write(JsonToString.readJsonAsString(APIConnection.connectToAPI("v2/armor/").getInputStream()));
+        armorApi.write(JsonToString.readJsonAsString(APIConnection.fetchConnectionPath("v2/armor/").getInputStream()));
         armorApi.close();
     }
     protected void writeWeaponsJsonToFile() throws IOException, URISyntaxException {
+        if (ErrorHandler.verifyNetworkConnection().equals("Network Error")) {return;}
+
         FileWriter weaponsApi = new FileWriter("src/main/resources/weapons.txt");
-        weaponsApi.write(JsonToString.readJsonAsString(APIConnection.connectToAPI("v2/weapons/").getInputStream()));
+        weaponsApi.write(JsonToString.readJsonAsString(APIConnection.fetchConnectionPath("v2/weapons/").getInputStream()));
         weaponsApi.close();
     }
+
 }
