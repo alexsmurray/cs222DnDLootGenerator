@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 public class TestItemBuilder {
     @Test
@@ -17,8 +18,8 @@ public class TestItemBuilder {
     @Test
     public void testGenerateWeapon() throws IOException {
         ItemBuilder itemBuilder = new ItemBuilder();
-        Weapon testWeapon = itemBuilder.generateWeapon();
-        Assertions.assertNotNull(testWeapon);
+            Weapon testWeapon = itemBuilder.generateWeapon();
+            Assertions.assertTrue(List.of(SampleWeaponsList.SAMPLE).contains(testWeapon.getName()));
     }
 
 
