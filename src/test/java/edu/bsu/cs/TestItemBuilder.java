@@ -4,11 +4,11 @@ import net.minidev.json.JSONArray;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class TestStandardItemBuilder {
+public class TestItemBuilder {
     @Test
     public void testSelectRandomItemGeneratesIndexInRange() {
         JSONArray testJsonArray = createJsonArray();
-        int testIndex = StandardItemBuilder.selectRandomItemIndex(testJsonArray);
+        int testIndex = ItemBuilder.selectRandomItemIndex(testJsonArray);
         Assertions.assertTrue(testIndex >= 0 && testIndex < testJsonArray.size());
     }
 

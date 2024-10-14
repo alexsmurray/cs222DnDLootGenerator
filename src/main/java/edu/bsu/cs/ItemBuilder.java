@@ -3,7 +3,7 @@ package edu.bsu.cs;
 import net.minidev.json.JSONArray;
 import java.util.Random;
 
-public class StandardItemBuilder {
+public class ItemBuilder {
     protected static int selectRandomItemIndex(JSONArray array){
         return new Random().nextInt(array.size());
     }
