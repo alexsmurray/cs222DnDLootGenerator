@@ -1,5 +1,14 @@
 package edu.bsu.cs;
 
 public class Configuration {
-    int numOfItems = 1;
+    private static int numItemsRequested;
+
+    protected static void setNumItemsRequested(int numberOfItems) {
+        numItemsRequested = numberOfItems;
+    }
+
+    protected static int getNumItemsRequested() {
+        return numItemsRequested;
+    }
+
 }
