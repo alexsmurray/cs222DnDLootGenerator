@@ -12,6 +12,10 @@ public class JsonParser {
         return JsonPath.read(stringifiedJson, "$..name");
     }
 
+    protected static JSONArray parseType(String stringifiedJson) {
+        return JsonPath.read(stringifiedJson, "$..type");
+    }
+
     //Could be boolean instead up to team
     public static JSONArray parseAttunement(String stringifiedJson) {
         return JsonPath.read(stringifiedJson, "$..requires_attunement");
