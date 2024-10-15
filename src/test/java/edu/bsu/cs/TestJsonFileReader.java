@@ -14,7 +14,7 @@ public class TestJsonFileReader {
         InputStreamReader inputStreamReader = new InputStreamReader(testFileInputStream, StandardCharsets.UTF_8);
         inputStreamReader.transferTo(stringWriter);
         String result = stringWriter.toString().replaceAll("\\r\\n?", "\n");
-        Assertions.assertEquals(result, SampleMagicString.SAMPLE);
+        Assertions.assertEquals(result, MagicItemsListString.SAMPLE);
     }
 
     @Test

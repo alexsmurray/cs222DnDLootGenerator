@@ -16,14 +16,22 @@ public class TestItemBuilder {
     }
 
     @Test
-    public void testGenerateWeapon() throws IOException {
+    public void testGenerateItem() throws IOException {
         if(ErrorHandler.verifyFileExists("src/main/resources/weapons.txt")) {
             ItemBuilder itemBuilder = new ItemBuilder();
-            Weapon testWeapon = itemBuilder.generateWeapon();
-            Assertions.assertTrue(List.of(SampleWeaponsList.SAMPLE).contains(testWeapon.getName()));
+            Item testItem = itemBuilder.generateItem("Any");
+            Assertions.assertFalse(testItem.getName().isBlank());
         }
     }
 
+    @Test
+    public void testGenerateWeapon() throws IOException {
+        if(ErrorHandler.verifyFileExists("src/main/resources/weapons.txt")) {
+            ItemBuilder itemBuilder = new ItemBuilder();
+            Item testWeapon = itemBuilder.generateItem("Weapon");
+            Assertions.assertTrue(List.of(WeaponsListString.SAMPLE).contains(testWeapon.getName()));
+        }
+    }
 
     private JSONArray createJsonArray(){
         JSONArray array = new JSONArray();

@@ -1,6 +1,6 @@
 package edu.bsu.cs;
 
-public class SampleMagicString {
+public class MagicItemsListString {
     static final String SAMPLE = """
             {
               "count": 1618,
