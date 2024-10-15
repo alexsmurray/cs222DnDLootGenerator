@@ -51,7 +51,7 @@ public class TestParseJson {
     public void testMagicItemsTextFile() throws IOException, URISyntaxException {
         JsonFileMaker jsonFileMaker = new JsonFileMaker();
         jsonFileMaker.writeMagicItemsJsonToFile();
-        FileInputStream magicItemInputStream = getMagicItemsFile("magicitems");
+        FileInputStream magicItemInputStream = getItemsFile("magicitems");
         String stringifiedJson = JsonToString.readJsonAsString(magicItemInputStream);
         JSONArray sampleJsonArray = JsonParser.parseName(stringifiedJson);
         Assertions.assertNotEquals(sampleJsonArray.size(), 0);
@@ -60,7 +60,7 @@ public class TestParseJson {
     public void testArmorTextFile() throws IOException, URISyntaxException {
         JsonFileMaker jsonFileMaker = new JsonFileMaker();
         jsonFileMaker.writeArmorJsonToFile();
-        FileInputStream armorInputStream = getMagicItemsFile("armor");
+        FileInputStream armorInputStream = getItemsFile("armor");
         String stringifiedJson = JsonToString.readJsonAsString(armorInputStream);
         JSONArray sampleJsonArray = JsonParser.parseName(stringifiedJson);
         Assertions.assertNotEquals(sampleJsonArray.size(), 0);
@@ -69,7 +69,7 @@ public class TestParseJson {
     public void testWeaponsTextFile() throws IOException, URISyntaxException {
         JsonFileMaker jsonFileMaker = new JsonFileMaker();
         jsonFileMaker.writeWeaponsJsonToFile();
-        FileInputStream weaponsInputStream = getMagicItemsFile("weapons");
+        FileInputStream weaponsInputStream = getItemsFile("weapons");
         String stringifiedJson = JsonToString.readJsonAsString(weaponsInputStream);
         JSONArray sampleJsonArray = JsonParser.parseName(stringifiedJson);
         Assertions.assertNotEquals(sampleJsonArray.size(), 0);
@@ -80,7 +80,7 @@ public class TestParseJson {
         assert inputStream != null;
         return inputStream;
     }
-    private FileInputStream getMagicItemsFile(String fileName) throws FileNotFoundException {
+    private FileInputStream getItemsFile(String fileName) throws FileNotFoundException {
         return new FileInputStream("src/main/resources/" + fileName + ".txt");
     }
 
