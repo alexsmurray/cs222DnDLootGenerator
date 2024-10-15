@@ -9,13 +9,17 @@ public class ItemBuilder {
     protected static int selectRandomItemIndex(JSONArray array){
         return new Random().nextInt(array.size());
     }
+    protected static Item nullItem;
 
     protected Item generateItem(String itemCategory) throws IOException {
-        switch (itemCategory){
-            case "Weapon":
-                return generateWeapon();
-            default:
-                return generateAny();
+        if(ErrorHandler.verifyAllItemFilesExist()) {
+            return switch (itemCategory) {
+                case "Weapon" -> generateWeapon();
+                case "Armor" -> generateArmor();
+                default -> generateAny();
+            };
+        } else {
+            return nullItem;
         }
     }
 
@@ -24,13 +28,17 @@ public class ItemBuilder {
         return new Weapon(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Weapon", false);
     }
 
+    private Armor generateArmor() throws IOException {
+        JSONArray nameJsonArray =  JsonParser.parseName(JsonFileReader.readFileToString("src/main/resources/armor.txt"));
+        return new Armor(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Weapon", false);
+    }
+
     private Item generateAny() throws IOException {
-        switch (new Random().nextInt(3)){
-            case 0:
-                return generateWeapon();
-            default:
-                return new Weapon("","","", false);
-        }
+        return switch (new Random().nextInt(3)) {
+            case 0 -> generateWeapon();
+            case 1 -> generateArmor();
+            default -> nullItem;
+        };
     }
 
 }

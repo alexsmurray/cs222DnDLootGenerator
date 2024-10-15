@@ -3,11 +3,6 @@ package edu.bsu.cs;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-
 public class TestErrorHandler {
 
     @Test
@@ -17,13 +12,13 @@ public class TestErrorHandler {
     }
 
     @Test
-    public void testVerifyFileExists() throws IOException {
+    public void testVerifyFileExists(){
         String filePath = "src/main/resources/fxmlSample.fxml";
         Assertions.assertTrue(ErrorHandler.verifyFileExists(filePath));
     }
 
     @Test
-    public void testVerifyAllItemFilesExist() throws IOException {
+    public void testVerifyAllItemFilesExist(){
         Assertions.assertTrue(ErrorHandler.verifyAllItemFilesExist());
     }
 }

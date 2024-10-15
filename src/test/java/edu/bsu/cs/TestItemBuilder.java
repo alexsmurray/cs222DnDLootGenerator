@@ -33,6 +33,15 @@ public class TestItemBuilder {
         }
     }
 
+    @Test
+    public void testGenerateArmor() throws IOException {
+        if(ErrorHandler.verifyFileExists("src/main/resources/armor.txt")) {
+            ItemBuilder itemBuilder = new ItemBuilder();
+            Item testArmor = itemBuilder.generateItem("Armor");
+            Assertions.assertTrue(List.of(ArmorListString.SAMPLE).contains(testArmor.getName()));
+        }
+    }
+
     private JSONArray createJsonArray(){
         JSONArray array = new JSONArray();
         array.add("A");

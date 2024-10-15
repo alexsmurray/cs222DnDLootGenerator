@@ -28,8 +28,8 @@ public class ErrorHandler {
         filePathList.add("src/main/resources/weapons.txt");
         filePathList.add("src/main/resources/magicitems.txt");
 
-        for (int iteration = 0; iteration < filePathList.size(); iteration++) {
-            if (!ErrorHandler.verifyFileExists(filePathList.get(iteration))) {
+        for (String filePath : filePathList) {
+            if (!ErrorHandler.verifyFileExists(filePath)) {
                 return false;
             }
         }
