@@ -10,4 +10,13 @@ public class ErrorHandler {
         }
         return "Connected";
     }
+
+    public static boolean verifyFileExists(String filePath) {
+        try {
+            JsonFileReader.readFileToString(filePath);
+        } catch (Exception ReadFileException) {
+            return false;
+        }
+        return true;
+    }
 }

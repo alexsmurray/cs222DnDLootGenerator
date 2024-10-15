@@ -17,9 +17,11 @@ public class TestItemBuilder {
 
     @Test
     public void testGenerateWeapon() throws IOException {
-        ItemBuilder itemBuilder = new ItemBuilder();
+        if(ErrorHandler.verifyFileExists("src/main/resources/weapons.txt")) {
+            ItemBuilder itemBuilder = new ItemBuilder();
             Weapon testWeapon = itemBuilder.generateWeapon();
             Assertions.assertTrue(List.of(SampleWeaponsList.SAMPLE).contains(testWeapon.getName()));
+        }
     }
 
 

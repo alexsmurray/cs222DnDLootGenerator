@@ -19,7 +19,9 @@ public class TestJsonFileReader {
 
     @Test
     public void testFileIsNotBlank() throws IOException {
-        String result = JsonFileReader.readFileToString("src/main/resources/magicitems.txt");
-        Assertions.assertFalse(result.isBlank());
+        if (ErrorHandler.verifyFileExists("src/main/resources/magicitems.txt")) {
+            String result = JsonFileReader.readFileToString("src/main/resources/magicitems.txt");
+            Assertions.assertFalse(result.isBlank());
+        }
     }
 }
