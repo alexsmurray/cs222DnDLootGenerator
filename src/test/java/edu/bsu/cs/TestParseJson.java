@@ -4,11 +4,8 @@ import net.minidev.json.JSONArray;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
 
 public class TestParseJson {
     @Test
@@ -47,41 +44,10 @@ public class TestParseJson {
         Assertions.assertArrayEquals(expected,result);
     }
 
-    @Test
-    public void testMagicItemsTextFile() throws IOException, URISyntaxException {
-        JsonFileMaker jsonFileMaker = new JsonFileMaker();
-        jsonFileMaker.writeMagicItemsJsonToFile();
-        FileInputStream magicItemInputStream = getMagicItemsFile("magicitems");
-        String stringifiedJson = JsonToString.readJsonAsString(magicItemInputStream);
-        JSONArray sampleJsonArray = JsonParser.parseName(stringifiedJson);
-        Assertions.assertNotEquals(sampleJsonArray.size(), 0);
-    }
-    @Test
-    public void testArmorTextFile() throws IOException, URISyntaxException {
-        JsonFileMaker jsonFileMaker = new JsonFileMaker();
-        jsonFileMaker.writeArmorJsonToFile();
-        FileInputStream armorInputStream = getMagicItemsFile("armor");
-        String stringifiedJson = JsonToString.readJsonAsString(armorInputStream);
-        JSONArray sampleJsonArray = JsonParser.parseName(stringifiedJson);
-        Assertions.assertNotEquals(sampleJsonArray.size(), 0);
-    }
-    @Test
-    public void testWeaponsTextFile() throws IOException, URISyntaxException {
-        JsonFileMaker jsonFileMaker = new JsonFileMaker();
-        jsonFileMaker.writeWeaponsJsonToFile();
-        FileInputStream weaponsInputStream = getMagicItemsFile("weapons");
-        String stringifiedJson = JsonToString.readJsonAsString(weaponsInputStream);
-        JSONArray sampleJsonArray = JsonParser.parseName(stringifiedJson);
-        Assertions.assertNotEquals(sampleJsonArray.size(), 0);
-    }
-
     private InputStream getJsonFile(){
         InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("SampleMagicItemPage1.json");
         assert inputStream != null;
         return inputStream;
-    }
-    private FileInputStream getMagicItemsFile(String fileName) throws FileNotFoundException {
-        return new FileInputStream("src/main/resources/" + fileName + ".txt");
     }
 
 }

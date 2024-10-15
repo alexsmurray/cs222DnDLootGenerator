@@ -7,41 +7,29 @@ import java.net.URISyntaxException;
 
 public class JsonFileMaker {
 
-    protected void writeMagicItemsJsonToFile() throws IOException, URISyntaxException {
+    protected void writeItemsJsonToFile(String categoryName) throws  IOException, URISyntaxException {
         if (ErrorHandler.verifyNetworkConnection().equals("Network Error")) {return;}
 
+        String version = "v2";
+        if (categoryName.equals("magicitems")) {version = "v1";}
+
         int pageNum = 1;
-        FileWriter magicItemsApi = new FileWriter("src/main/resources/magicitems.txt");
-        InputStream inputStream = APIConnection.fetchConnectionPath("v1/magicitems/?format=json&page=" + pageNum).getInputStream();
-        StringBuilder magicItemsString = new StringBuilder();
+        FileWriter itemsApi = new FileWriter("src/main/resources/" + categoryName + ".txt");
+        InputStream inputStream = APIConnection.fetchConnectionPath(version + "/" + categoryName + "/?format=json&page=" + pageNum).getInputStream();
         String inputStreamString = JsonToString.readJsonAsString(inputStream);
 
-        String next = JsonParser.parseNext(inputStreamString);
-        while (!next.equals("[null]")) {
-            magicItemsString.append(inputStreamString).append("\n");
+        String nextPage = JsonParser.parseNext(inputStreamString);
+        StringBuilder itemsString = new StringBuilder();
+        while (!nextPage.equals("[null]")) {
+            itemsString.append(inputStreamString).append("\n");
             pageNum ++;
             inputStream = APIConnection.fetchConnectionPath("v1/magicitems/?format=json&page="+pageNum).getInputStream();
             inputStreamString = JsonToString.readJsonAsString(inputStream);
-            next = JsonParser.parseNext(inputStreamString);
-
+            nextPage = JsonParser.parseNext(inputStreamString);
         }
-        magicItemsString.append(inputStreamString);
-        magicItemsApi.write(String.valueOf(magicItemsString));
-        magicItemsApi.close();
-    }
-    protected void writeArmorJsonToFile() throws IOException, URISyntaxException {
-        if (ErrorHandler.verifyNetworkConnection().equals("Network Error")) {return;}
-
-        FileWriter armorApi = new FileWriter("src/main/resources/armor.txt");
-        armorApi.write(JsonToString.readJsonAsString(APIConnection.fetchConnectionPath("v2/armor/").getInputStream()));
-        armorApi.close();
-    }
-    protected void writeWeaponsJsonToFile() throws IOException, URISyntaxException {
-        if (ErrorHandler.verifyNetworkConnection().equals("Network Error")) {return;}
-
-        FileWriter weaponsApi = new FileWriter("src/main/resources/weapons.txt");
-        weaponsApi.write(JsonToString.readJsonAsString(APIConnection.fetchConnectionPath("v2/weapons/").getInputStream()));
-        weaponsApi.close();
+        itemsString.append(inputStreamString);
+        itemsApi.write(itemsString.toString());
+        itemsApi.close();
     }
 
 }
