@@ -16,7 +16,7 @@ public class TestItemBuilder {
     }
 
     @Test
-    public void testGenerateItem() throws IOException {
+    public void testGenerateItem() throws Exception {
         if(ErrorHandler.verifyFileExists("src/main/resources/weapons.txt")) {
             ItemBuilder itemBuilder = new ItemBuilder();
             Item testItem = itemBuilder.generateItem("Any");
@@ -39,6 +39,15 @@ public class TestItemBuilder {
             ItemBuilder itemBuilder = new ItemBuilder();
             Item testArmor = itemBuilder.generateItem("Armor");
             Assertions.assertTrue(List.of(ArmorListString.SAMPLE).contains(testArmor.getName()));
+        }
+    }
+
+    @Test
+    public void testGenerateMagicItem() throws IOException {
+        if(ErrorHandler.verifyFileExists("src/main/resources/magicitems.txt")) {
+            ItemBuilder itemBuilder = new ItemBuilder();
+            Item testMagicItem = itemBuilder.generateItem("Magic");
+            Assertions.assertNotNull(testMagicItem.getName());
         }
     }
 

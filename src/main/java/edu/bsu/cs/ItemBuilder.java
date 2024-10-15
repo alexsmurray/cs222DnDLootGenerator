@@ -9,18 +9,17 @@ public class ItemBuilder {
     protected static int selectRandomItemIndex(JSONArray array){
         return new Random().nextInt(array.size());
     }
-    protected static Item nullItem;
 
     protected Item generateItem(String itemCategory) throws IOException {
         if(ErrorHandler.verifyAllItemFilesExist()) {
             return switch (itemCategory) {
                 case "Weapon" -> generateWeapon();
                 case "Armor" -> generateArmor();
+                case "Magic" -> generateMagicItem();
                 default -> generateAny();
             };
-        } else {
-            return nullItem;
         }
+        throw new AssertionError("You shouldn't be here.");
     }
 
     private Weapon generateWeapon() throws IOException {
@@ -30,14 +29,20 @@ public class ItemBuilder {
 
     private Armor generateArmor() throws IOException {
         JSONArray nameJsonArray =  JsonParser.parseName(JsonFileReader.readFileToString("src/main/resources/armor.txt"));
-        return new Armor(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Weapon", false);
+        return new Armor(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Armor", false);
+    }
+
+    private Item generateMagicItem() throws IOException {
+        JSONArray nameJsonArray =  JsonParser.parseName(JsonFileReader.readFileToString("src/main/resources/magicitems.txt"));
+        return new MagicItem(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Magic", "Magic", false);
     }
 
     private Item generateAny() throws IOException {
         return switch (new Random().nextInt(3)) {
             case 0 -> generateWeapon();
             case 1 -> generateArmor();
-            default -> nullItem;
+            case 2 -> generateMagicItem();
+            default -> throw new IllegalStateException("Unexpected value: " + 3);
         };
     }
 
