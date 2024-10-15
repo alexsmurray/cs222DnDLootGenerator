@@ -28,8 +28,8 @@ public class TestErrorHandler {
 
     private void createMissingFiles() throws IOException, URISyntaxException {
         JsonFileMaker jsonFileMaker = new JsonFileMaker();
-        if (!ErrorHandler.verifyFileExists("src/main/resources/armor.txt")) {jsonFileMaker.writeArmorJsonToFile();}
-        if (!ErrorHandler.verifyFileExists("src/main/resources/weapons.txt")) {jsonFileMaker.writeWeaponsJsonToFile();}
-        if (!ErrorHandler.verifyFileExists("src/main/resources/magicitems.txt")) {jsonFileMaker.writeMagicItemsJsonToFile();}
+        if (!ErrorHandler.verifyFileExists("src/main/resources/armor.txt")) {jsonFileMaker.writeItemsJsonToFile("armor");}
+        if (!ErrorHandler.verifyFileExists("src/main/resources/weapons.txt")) {jsonFileMaker.writeItemsJsonToFile("weapons");}
+        if (!ErrorHandler.verifyFileExists("src/main/resources/magicitems.txt")) {jsonFileMaker.writeItemsJsonToFile("magicitems");}
     }
 }
