@@ -1,5 +1,7 @@
 package edu.bsu.cs;
 
+import java.util.LinkedList;
+
 public class ErrorHandler {
 
     protected static String verifyNetworkConnection() {
@@ -16,6 +18,20 @@ public class ErrorHandler {
             JsonFileReader.readFileToString(filePath);
         } catch (Exception ReadFileException) {
             return false;
+        }
+        return true;
+    }
+
+    public static boolean verifyAllItemFilesExist() {
+        LinkedList<String> filePathList  = new LinkedList<>();
+        filePathList.add("src/main/resources/armor.txt");
+        filePathList.add("src/main/resources/weapons.txt");
+        filePathList.add("src/main/resources/magicitems.txt");
+
+        for (int iteration = 0; iteration < filePathList.size(); iteration++) {
+            if (!ErrorHandler.verifyFileExists(filePathList.get(iteration))) {
+                return false;
+            }
         }
         return true;
     }
