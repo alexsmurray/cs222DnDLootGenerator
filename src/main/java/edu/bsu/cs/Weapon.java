@@ -4,10 +4,10 @@ public class Weapon extends Item {
     private final String name;
     private final String rarity;
     private final String type;
-    private final boolean attunement;
+    private final String attunement;
 
 
-    public Weapon(String name, String rarity, String type, boolean attunement){
+    public Weapon(String name, String rarity, String type, String attunement){
         this.name = name;
         this.rarity = rarity;
         this.type = type;
@@ -29,7 +29,7 @@ public class Weapon extends Item {
     }
 
     @Override
-    public boolean getAttunement() {
+    public String getAttunement() {
         return attunement;
     }
 }

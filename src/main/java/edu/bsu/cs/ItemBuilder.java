@@ -24,17 +24,27 @@ public class ItemBuilder {
 
     private Weapon generateWeapon() throws IOException {
         JSONArray nameJsonArray =  JsonParser.parseName(JsonFileReader.readFileToString("src/main/resources/weapons.txt"));
-        return new Weapon(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Weapon", false);
+        return new Weapon(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Weapon", "False");
     }
 
     private Armor generateArmor() throws IOException {
         JSONArray nameJsonArray =  JsonParser.parseName(JsonFileReader.readFileToString("src/main/resources/armor.txt"));
-        return new Armor(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Armor", false);
+        return new Armor(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Armor", "False");
     }
 
     private Item generateMagicItem() throws IOException {
-        JSONArray nameJsonArray =  JsonParser.parseName(JsonFileReader.readFileToString("src/main/resources/magicitems.txt"));
-        return new MagicItem(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Magic", "Magic", false);
+        String fileContents = JsonFileReader.readFileToString("src/main/resources/magicitems.txt");
+        JSONArray nameJsonArray =  JsonParser.parseName(fileContents);
+        JSONArray rarityJsonArray =  JsonParser.parseRarity(fileContents);
+        JSONArray typeJsonArray =  JsonParser.parseType(fileContents);
+        JSONArray attunementJsonArray =  JsonParser.parseAttunement(fileContents);
+
+        int selectedIndex = selectRandomItemIndex(nameJsonArray);
+        return new MagicItem(
+                nameJsonArray.get(selectedIndex).toString(),
+                rarityJsonArray.get(selectedIndex).toString(),
+                typeJsonArray.get(selectedIndex).toString(),
+                InputFormatter.formatAttunement(attunementJsonArray.get(selectedIndex).toString()));
     }
 
     private Item generateAny() throws IOException {

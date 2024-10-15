@@ -4,9 +4,9 @@ public class Armor extends Item {
     private final String name;
     private final String rarity;
     private final String type;
-    private final boolean attunement;
+    private final String attunement;
 
-    public Armor(String name, String rarity, String type, boolean attunement) {
+    public Armor(String name, String rarity, String type, String attunement) {
         this.name = name;
         this.rarity = rarity;
         this.type = type;
@@ -29,7 +29,7 @@ public class Armor extends Item {
     }
 
     @Override
-    public boolean getAttunement() {
+    public String getAttunement() {
         return attunement;
     }
 }

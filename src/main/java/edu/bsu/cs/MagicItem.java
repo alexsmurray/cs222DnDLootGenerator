@@ -5,9 +5,9 @@ public class MagicItem extends Item {
     private final String name;
     private final String rarity;
     private final String type;
-    private final boolean attunement;
+    private final String attunement;
 
-    public MagicItem(String name, String rarity, String type, boolean attunement) {
+    public MagicItem(String name, String rarity, String type, String attunement) {
         this.name = name;
         this.rarity = rarity;
         this.type = type;
@@ -30,7 +30,7 @@ public class MagicItem extends Item {
     }
 
     @Override
-    public boolean getAttunement() {
+    public String getAttunement() {
         return attunement;
     }
 }
