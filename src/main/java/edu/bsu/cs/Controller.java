@@ -9,9 +9,9 @@ public class Controller {
         JsonFileMaker jsonFileMaker = new JsonFileMaker();
         boolean updated = false;
         while (!updated) {
-            jsonFileMaker.writeArmorJsonToFile();
-            jsonFileMaker.writeMagicItemsJsonToFile();
-            jsonFileMaker.writeWeaponsJsonToFile();
+            jsonFileMaker.writeItemsJsonToFile("magicitems");
+            jsonFileMaker.writeItemsJsonToFile("armor");
+            jsonFileMaker.writeItemsJsonToFile("weapons");
             updated = true;
         }
     }
