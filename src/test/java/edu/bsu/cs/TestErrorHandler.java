@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class TestErrorHandler {
 
@@ -14,8 +15,21 @@ public class TestErrorHandler {
     }
 
     @Test
-    public void testVerifyFileExists() throws IOException {
+    public void testVerifyFileExists(){
         String filePath = "src/main/resources/fxmlSample.fxml";
-        Assertions.assertNotNull(JsonFileReader.readFileToString(filePath));
+        Assertions.assertTrue(ErrorHandler.verifyFileExists(filePath));
+    }
+
+    @Test
+    public void testVerifyAllItemFilesExist() throws IOException, URISyntaxException {
+        createMissingFiles();
+        Assertions.assertTrue(ErrorHandler.verifyAllItemFilesExist());
+    }
+
+    private void createMissingFiles() throws IOException, URISyntaxException {
+        JsonFileMaker jsonFileMaker = new JsonFileMaker();
+        if (!ErrorHandler.verifyFileExists("src/main/resources/armor.txt")) {jsonFileMaker.writeItemsJsonToFile("armor");}
+        if (!ErrorHandler.verifyFileExists("src/main/resources/weapons.txt")) {jsonFileMaker.writeItemsJsonToFile("weapons");}
+        if (!ErrorHandler.verifyFileExists("src/main/resources/magicitems.txt")) {jsonFileMaker.writeItemsJsonToFile("magicitems");}
     }
 }

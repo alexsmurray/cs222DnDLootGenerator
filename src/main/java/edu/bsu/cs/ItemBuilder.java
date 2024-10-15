@@ -10,10 +10,40 @@ public class ItemBuilder {
         return new Random().nextInt(array.size());
     }
 
-    protected Weapon generateWeapon() throws IOException {
+    protected Item generateItem(String itemCategory) throws IOException {
+        if(ErrorHandler.verifyAllItemFilesExist()) {
+            return switch (itemCategory) {
+                case "Weapon" -> generateWeapon();
+                case "Armor" -> generateArmor();
+                case "Magic" -> generateMagicItem();
+                default -> generateAny();
+            };
+        }
+        throw new AssertionError("You shouldn't be here.");
+    }
+
+    private Weapon generateWeapon() throws IOException {
         JSONArray nameJsonArray =  JsonParser.parseName(JsonFileReader.readFileToString("src/main/resources/weapons.txt"));
         return new Weapon(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Weapon", false);
     }
 
+    private Armor generateArmor() throws IOException {
+        JSONArray nameJsonArray =  JsonParser.parseName(JsonFileReader.readFileToString("src/main/resources/armor.txt"));
+        return new Armor(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Armor", false);
+    }
+
+    private Item generateMagicItem() throws IOException {
+        JSONArray nameJsonArray =  JsonParser.parseName(JsonFileReader.readFileToString("src/main/resources/magicitems.txt"));
+        return new MagicItem(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Magic", "Magic", false);
+    }
+
+    private Item generateAny() throws IOException {
+        return switch (new Random().nextInt(3)) {
+            case 0 -> generateWeapon();
+            case 1 -> generateArmor();
+            case 2 -> generateMagicItem();
+            default -> throw new IllegalStateException("Unexpected value: " + 3);
+        };
+    }
 
 }

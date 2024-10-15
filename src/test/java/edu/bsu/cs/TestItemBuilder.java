@@ -16,14 +16,40 @@ public class TestItemBuilder {
     }
 
     @Test
-    public void testGenerateWeapon() throws IOException {
+    public void testGenerateItem() throws Exception {
         if(ErrorHandler.verifyFileExists("src/main/resources/weapons.txt")) {
             ItemBuilder itemBuilder = new ItemBuilder();
-            Weapon testWeapon = itemBuilder.generateWeapon();
-            Assertions.assertTrue(List.of(SampleWeaponsList.SAMPLE).contains(testWeapon.getName()));
+            Item testItem = itemBuilder.generateItem("Any");
+            Assertions.assertFalse(testItem.getName().isBlank());
         }
     }
 
+    @Test
+    public void testGenerateWeapon() throws IOException {
+        if(ErrorHandler.verifyFileExists("src/main/resources/weapons.txt")) {
+            ItemBuilder itemBuilder = new ItemBuilder();
+            Item testWeapon = itemBuilder.generateItem("Weapon");
+            Assertions.assertTrue(List.of(WeaponsListString.SAMPLE).contains(testWeapon.getName()));
+        }
+    }
+
+    @Test
+    public void testGenerateArmor() throws IOException {
+        if(ErrorHandler.verifyFileExists("src/main/resources/armor.txt")) {
+            ItemBuilder itemBuilder = new ItemBuilder();
+            Item testArmor = itemBuilder.generateItem("Armor");
+            Assertions.assertTrue(List.of(ArmorListString.SAMPLE).contains(testArmor.getName()));
+        }
+    }
+
+    @Test
+    public void testGenerateMagicItem() throws IOException {
+        if(ErrorHandler.verifyFileExists("src/main/resources/magicitems.txt")) {
+            ItemBuilder itemBuilder = new ItemBuilder();
+            Item testMagicItem = itemBuilder.generateItem("Magic");
+            Assertions.assertNotNull(testMagicItem.getName());
+        }
+    }
 
     private JSONArray createJsonArray(){
         JSONArray array = new JSONArray();
