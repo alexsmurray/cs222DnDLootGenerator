@@ -3,6 +3,8 @@ package edu.bsu.cs;
 import net.minidev.json.JSONArray;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ItemBuilder {
@@ -12,12 +14,12 @@ public class ItemBuilder {
 
     protected Item generateItem(String itemCategory) throws IOException {
         if(ErrorHandler.verifyAllItemFilesExist()) {
-            return switch (itemCategory) {
-                case "Weapon" -> generateWeapon();
-                case "Armor" -> generateArmor();
-                case "Magic" -> generateMagicItem();
-                default -> generateAny();
-            };
+                return switch (itemCategory) {
+                    case "Weapon" -> generateWeapon();
+                    case "Armor" -> generateArmor();
+                    case "Magic" -> generateMagicItem();
+                    default -> generateAny();
+                };
         }
         throw new AssertionError("You shouldn't be here.");
     }
@@ -44,7 +46,7 @@ public class ItemBuilder {
                 nameJsonArray.get(selectedIndex).toString(),
                 rarityJsonArray.get(selectedIndex).toString(),
                 typeJsonArray.get(selectedIndex).toString(),
-                InputFormatter.formatAttunement(attunementJsonArray.get(selectedIndex).toString()));
+                OutputFormatter.formatAttunement(attunementJsonArray.get(selectedIndex).toString()));
     }
 
     private Item generateAny() throws IOException {
@@ -56,4 +58,11 @@ public class ItemBuilder {
         };
     }
 
+    protected List<Item> generateAmountOfItems() throws IOException {
+        List<Item> itemsList = new ArrayList<>();
+        for (int i = 0; i < Configuration.getNumItemsRequested(); i++) {
+            itemsList.add(generateItem("Any"));
+        }
+        return itemsList;
+    }
 }
