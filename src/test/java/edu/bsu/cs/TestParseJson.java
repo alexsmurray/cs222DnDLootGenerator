@@ -27,7 +27,7 @@ public class TestParseJson {
         String[] expected = {"Rare","Very Rare","Uncommon","Uncommon","Very Rare"};
         String[] result = new String[5];
         for (int i = 0; i < 5; i++) {
-            result[i] = InputFormatter.formatRarity(sampleJsonArray.get(i).toString());
+            result[i] = OutputFormatter.formatRarity(sampleJsonArray.get(i).toString());
         }
         Assertions.assertArrayEquals(expected,result);
     }
@@ -39,7 +39,7 @@ public class TestParseJson {
         String[] expected = {"False","False","True","False","True"};
         String [] result = new String[5];
         for (int i = 0; i < 5; i++) {
-            result[i] =InputFormatter.formatAttunement(sampleJsonArray.get(i).toString());
+            result[i] = OutputFormatter.formatAttunement(sampleJsonArray.get(i).toString());
         }
         Assertions.assertArrayEquals(expected,result);
     }

@@ -1,7 +1,7 @@
 package edu.bsu.cs;
 
 
-public class InputFormatter {
+public class OutputFormatter {
     public static String formatRarity(String rarity) {
         String[] words = rarity.split("\\s");
 
@@ -25,6 +25,16 @@ public class InputFormatter {
     }
 
 
-    //Choose random index instead of shuffling method
+    protected static String formatItemForList(Item item) {
+        String formattedLine = "";
+        formattedLine += item.getName().substring(0,1).toUpperCase() + item.getName().substring(1).toLowerCase() + "     ";
+        formattedLine += item.getRarity().substring(0,1).toUpperCase() + item.getRarity().substring(1).toLowerCase() + "     ";
+        formattedLine += item.getType().substring(0,1).toUpperCase() + item.getType().substring(1).toLowerCase();
+        if (item.getAttunement().equals("True")) {
+            formattedLine += "      *";
+        }
+        return formattedLine;
+
+    }
 
 }

@@ -46,7 +46,7 @@ public class ItemBuilder {
                 nameJsonArray.get(selectedIndex).toString(),
                 rarityJsonArray.get(selectedIndex).toString(),
                 typeJsonArray.get(selectedIndex).toString(),
-                InputFormatter.formatAttunement(attunementJsonArray.get(selectedIndex).toString()));
+                OutputFormatter.formatAttunement(attunementJsonArray.get(selectedIndex).toString()));
     }
 
     private Item generateAny() throws IOException {
