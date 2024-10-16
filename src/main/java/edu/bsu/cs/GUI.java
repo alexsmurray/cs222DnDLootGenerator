@@ -1,21 +1,27 @@
 package edu.bsu.cs;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 
-public class GUI extends Application {
+public class GUI extends Application implements Initializable {
+
+
 
 
     public static void main(String[] args) {
@@ -31,14 +37,24 @@ public class GUI extends Application {
     }
 
     @FXML
-    public TextArea textArea;
-    public Button button;
+    public TextField userInputField;
+    public ListView<String> generatedList;
+    public Button generateButton;
+    public ObservableList<String> itemsForList = FXCollections.observableArrayList();
 
     @FXML
-    public void setText(ActionEvent actionEvent) throws URISyntaxException, IOException {
-        textArea.setText("Hello");
-        /*Weapon weapon = new Weapon();
-        textArea.setText(weapon.getName("v2/weapons/"));*/
+    public void generateItems(ActionEvent ignoredEvent) throws IOException {
+        int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
+        Configuration.setNumItemsRequested(numberOfItemsToGenerate);
+        ItemBuilder itemBuilder = new ItemBuilder();
+        generatedList.setItems(itemsForList);
+        for (Item item : itemBuilder.generateAmountOfItems()) {
+            itemsForList.add(item.getName() + " " + item.getRarity() + " " + item.getType());
+        }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        generatedList.getItems().addAll(itemsForList);
+    }
 }
