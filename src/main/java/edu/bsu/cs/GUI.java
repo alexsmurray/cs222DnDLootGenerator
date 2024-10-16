@@ -47,6 +47,7 @@ public class GUI extends Application implements Initializable {
         int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
         Configuration.setNumItemsRequested(numberOfItemsToGenerate);
         ItemBuilder itemBuilder = new ItemBuilder();
+        itemsForList.clear();
         generatedList.setItems(itemsForList);
         for (Item item : itemBuilder.generateAmountOfItems()) {
             String formattedLine = OutputFormatter.formatItemForList(item);
