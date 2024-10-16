@@ -9,9 +9,9 @@ import java.io.InputStream;
 
 public class TestJsonParser {
     @Test
-    public void testGetNameFromSampleJson() throws IOException {
+    public void testGetMagicItemNameFromSampleJson() throws IOException {
         InputStream testInputStream = getJsonFile();
-        JSONArray sampleJsonArray = JsonParser.parseName(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = JsonParser.parseMagicItemName(JsonToString.readJsonAsString(testInputStream));
         String[] expected = {"Aberrant Agreement","Absurdist Web","Accursed Idol","Adamantine Armor","Aegis of the Eternal Moon"};
         String[] result = new String[5];
         for (int i = 0; i < 5; i++) {
@@ -23,7 +23,7 @@ public class TestJsonParser {
     @Test
     public void testGetRarityFromSampleJson() throws IOException {
         InputStream testInputStream = getJsonFile();
-        JSONArray sampleJsonArray = JsonParser.parseRarity(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = JsonParser.parseMagicItemRarity(JsonToString.readJsonAsString(testInputStream));
         String[] expected = {"Rare","Very Rare","Uncommon","Uncommon","Very Rare"};
         String[] result = new String[5];
         for (int i = 0; i < 5; i++) {
@@ -35,7 +35,7 @@ public class TestJsonParser {
     @Test
     public void testGetAttunementFromSampleJson() throws IOException {
         InputStream testInputStream = getJsonFile();
-        JSONArray sampleJsonArray = JsonParser.parseAttunement(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = JsonParser.parseMagicItemAttunement(JsonToString.readJsonAsString(testInputStream));
         String[] expected = {"False","False","True","False","True"};
         String [] result = new String[5];
         for (int i = 0; i < 5; i++) {

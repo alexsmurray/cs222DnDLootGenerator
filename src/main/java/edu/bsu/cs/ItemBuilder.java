@@ -25,23 +25,30 @@ public class ItemBuilder {
     }
 
     private Weapon generateWeapon() throws IOException {
-        JSONArray nameJsonArray =  JsonParser.parseName(JsonFileReader.readFileToString("src/main/resources/weapons.txt"));
+        JSONArray nameJsonArray =  JsonParser.parseStandardItemName(JsonFileReader.readFileToString("src/main/resources/weapons.txt"));
         return new Weapon(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Weapon", "False");
     }
 
     private Armor generateArmor() throws IOException {
-        JSONArray nameJsonArray =  JsonParser.parseName(JsonFileReader.readFileToString("src/main/resources/armor.txt"));
+        JSONArray nameJsonArray =  JsonParser.parseStandardItemName(JsonFileReader.readFileToString("src/main/resources/armor.txt"));
         return new Armor(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Armor", "False");
     }
 
     private MagicItem generateMagicItem() throws IOException {
         String fileContents = JsonFileReader.readFileToString("src/main/resources/magicitems.txt");
-        JSONArray nameJsonArray =  JsonParser.parseName(fileContents);
-        JSONArray rarityJsonArray =  JsonParser.parseRarity(fileContents);
-        JSONArray typeJsonArray =  JsonParser.parseType(fileContents);
-        JSONArray attunementJsonArray =  JsonParser.parseAttunement(fileContents);
+        ArrayList<JSONArray> jsonArrayArrayList = new ArrayList<>();
+
+        JSONArray nameJsonArray =  JsonParser.parseMagicItemName(fileContents);
+        JSONArray rarityJsonArray =  JsonParser.parseMagicItemRarity(fileContents);
+        JSONArray typeJsonArray =  JsonParser.parseMagicItemType(fileContents);
+        JSONArray attunementJsonArray =  JsonParser.parseMagicItemAttunement(fileContents);
 
         int selectedIndex = selectRandomItemIndex(nameJsonArray);
+
+        System.out.println("Name: " + nameJsonArray.getFirst());
+        System.out.println("Rarity: " + rarityJsonArray.getFirst());
+        System.out.println("Type: " + typeJsonArray.getFirst());
+        System.out.println("Attunement: " + attunementJsonArray.getFirst());
         return new MagicItem(
                 nameJsonArray.get(selectedIndex).toString(),
                 rarityJsonArray.get(selectedIndex).toString(),
