@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class TestParseJson {
+public class TestJsonParser {
     @Test
     public void testGetNameFromSampleJson() throws IOException {
         InputStream testInputStream = getJsonFile();

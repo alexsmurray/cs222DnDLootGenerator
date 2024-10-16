@@ -18,7 +18,6 @@ public class JsonParser {
     private static JSONArray buildJsonArrayFromJsonString(String stringifiedJson){
         JSONArray jsonArray = new JSONArray();
         String[] magicItemJsonArray = stringifiedJson.split("\n");
-
         for (String magicItemPage : magicItemJsonArray) {
             jsonArray.add(JsonPath.read(magicItemPage, "$..name"));
         }

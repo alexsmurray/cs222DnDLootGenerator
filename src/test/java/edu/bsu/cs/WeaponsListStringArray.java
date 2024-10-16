@@ -1,6 +1,6 @@
 package edu.bsu.cs;
 
-public class WeaponsListString {
+public class WeaponsListStringArray {
     static final String[] SAMPLE = {
             "Battleaxe","Blowgun","Club","Crossbow, hand","Crossbow, heavy",
             "Crossbow, light","Dagger","Dart","Flail","Glaive",

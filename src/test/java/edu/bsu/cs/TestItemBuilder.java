@@ -29,7 +29,7 @@ public class TestItemBuilder {
         if(ErrorHandler.verifyFileExists("src/main/resources/weapons.txt")) {
             ItemBuilder itemBuilder = new ItemBuilder();
             Item testWeapon = itemBuilder.generateItem("Weapon");
-            Assertions.assertTrue(List.of(WeaponsListString.SAMPLE).contains(testWeapon.getName()));
+            Assertions.assertTrue(List.of(WeaponsListStringArray.SAMPLE).contains(testWeapon.getName()));
         }
     }
 
@@ -38,7 +38,7 @@ public class TestItemBuilder {
         if(ErrorHandler.verifyFileExists("src/main/resources/armor.txt")) {
             ItemBuilder itemBuilder = new ItemBuilder();
             Item testArmor = itemBuilder.generateItem("Armor");
-            Assertions.assertTrue(List.of(ArmorListString.SAMPLE).contains(testArmor.getName()));
+            Assertions.assertTrue(List.of(ArmorListStringArray.SAMPLE).contains(testArmor.getName()));
         }
     }
 
