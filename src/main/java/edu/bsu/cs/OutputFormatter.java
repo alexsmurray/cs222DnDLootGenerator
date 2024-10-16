@@ -29,7 +29,7 @@ public class OutputFormatter {
         String formattedLine = "";
         formattedLine += String.format("%s    ",capitalize(item, "Name"));
         formattedLine += String.format("    %s    ",capitalize(item, "Rarity"));
-        formattedLine += String.format("%s    ",capitalize(item, "Type"));
+        formattedLine += String.format("    %s    ",capitalize(item, "Type"));
         if (item.getAttunement().equals("True")) {
             formattedLine += "*";
         }
