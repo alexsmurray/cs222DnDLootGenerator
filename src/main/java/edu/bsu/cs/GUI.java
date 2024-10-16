@@ -49,8 +49,21 @@ public class GUI extends Application implements Initializable {
         ItemBuilder itemBuilder = new ItemBuilder();
         generatedList.setItems(itemsForList);
         for (Item item : itemBuilder.generateAmountOfItems()) {
-            itemsForList.add(item.getName() + " " + item.getRarity() + " " + item.getType());
+            String formattedLine = formatItemForList(item);
+            itemsForList.add(formattedLine);
         }
+    }
+
+    private String formatItemForList(Item item) {
+        String formattedLine = "";
+        formattedLine += item.getName().substring(0,1).toUpperCase() + item.getName().substring(1).toLowerCase() + "     ";
+        formattedLine += item.getRarity().substring(0,1).toUpperCase() + item.getRarity().substring(1).toLowerCase() + "     ";
+        formattedLine += item.getType().substring(0,1).toUpperCase() + item.getType().substring(1).toLowerCase();
+        if (item.getAttunement().equals("True")) {
+            formattedLine += "      *";
+        }
+        return formattedLine;
+
     }
 
     @Override

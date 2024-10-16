@@ -61,7 +61,7 @@ public class ItemBuilder {
     protected List<Item> generateAmountOfItems() throws IOException {
         List<Item> itemsList = new ArrayList<>();
         for (int i = 0; i < Configuration.getNumItemsRequested(); i++) {
-            itemsList.add(generateItem("Weapon"));
+            itemsList.add(generateItem("Any"));
         }
         return itemsList;
     }
