@@ -1,18 +1,19 @@
 package edu.bsu.cs;
 
-public class Weapon extends Item {
+public class MagicItem extends Item {
+
     private final String name;
     private final String rarity;
     private final String type;
     private final String attunement;
 
-
-    public Weapon(String name, String rarity, String type, String attunement){
+    public MagicItem(String name, String rarity, String type, String attunement) {
         this.name = name;
         this.rarity = rarity;
         this.type = type;
         this.attunement = attunement;
     }
+
     @Override
     public String getName() {
         return name;
@@ -33,4 +34,3 @@ public class Weapon extends Item {
         return attunement;
     }
 }
-

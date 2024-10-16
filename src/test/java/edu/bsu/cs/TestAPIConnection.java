@@ -13,13 +13,13 @@ import java.nio.charset.Charset;
 public class TestAPIConnection {
 
     @Test
-    public void TestFetchConnectionPath() throws URISyntaxException, IOException {
+    public void testFetchConnectionPath() throws URISyntaxException, IOException {
         URLConnection urlConnection = APIConnection.fetchConnectionPath("");
         Assertions.assertNotNull(urlConnection);
     }
 
     @Test
-    public void TestConnectionReturnsJson() throws URISyntaxException, IOException {
+    public void testConnectionReturnsJson() throws URISyntaxException, IOException {
         URLConnection urlConnection = APIConnection.fetchConnectionPath("");
         String stringifiedJson = readJsonSampleAsString(urlConnection);
         Assertions.assertInstanceOf(JSONArray.class, getJsonSample(stringifiedJson));
