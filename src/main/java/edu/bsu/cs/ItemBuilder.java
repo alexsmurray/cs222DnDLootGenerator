@@ -32,7 +32,7 @@ public class ItemBuilder {
         return new Armor(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Armor", "False");
     }
 
-    private Item generateMagicItem() throws IOException {
+    private MagicItem generateMagicItem() throws IOException {
         String fileContents = JsonFileReader.readFileToString("src/main/resources/magicitems.txt");
         JSONArray nameJsonArray =  JsonParser.parseName(fileContents);
         JSONArray rarityJsonArray =  JsonParser.parseRarity(fileContents);
