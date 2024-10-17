@@ -1,15 +1,13 @@
 package edu.bsu.cs;
 
 import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.LinkedList;
 
 public class ErrorHandler {
 
     protected static String verifyNetworkConnection() {
         try {
-            URLConnection url = new URI("https://api.open5e.com/").toURL().openConnection();
+            new URI("https://api.open5e.com/").toURL().openConnection();
         } catch (Exception NetworkError) {
             return "Network Error";
         }
