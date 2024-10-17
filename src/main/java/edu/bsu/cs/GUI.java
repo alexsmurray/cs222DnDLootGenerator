@@ -33,7 +33,7 @@ public class GUI extends Application implements Initializable {
     }
 
     @FXML
-    public static TextField userInputField;
+    public TextField userInputField;
     public TableView<Item> itemTableView;
     public TableColumn<Item, String> nameTableColumn;
     public TableColumn<Item, String> rarityTableColumn;
@@ -44,13 +44,17 @@ public class GUI extends Application implements Initializable {
 
     @FXML
     public void generateItems(ActionEvent ignoredEvent) throws IOException {
-        int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
-        Configuration.setNumItemsRequested(numberOfItemsToGenerate);
-        ItemBuilder itemBuilder = new ItemBuilder();
-        itemsForList.removeAll();
-        itemTableView.getItems().clear();
-        itemTableView.setItems(itemsForList);
-        itemsForList.addAll(itemBuilder.generateAmountOfItems());
+        if (ErrorHandler.verifyInputIsValid(userInputField.getText())) {
+            int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
+            Configuration.setNumItemsRequested(numberOfItemsToGenerate);
+            ItemBuilder itemBuilder = new ItemBuilder();
+            itemsForList.removeAll();
+            itemTableView.getItems().clear();
+            itemTableView.setItems(itemsForList);
+            itemsForList.addAll(itemBuilder.generateAmountOfItems());
+        } else {
+            displayInputAlert();
+        }
     }
 
     @Override
@@ -60,6 +64,13 @@ public class GUI extends Application implements Initializable {
         rarityTableColumn.setCellValueFactory(new PropertyValueFactory<>("rarity"));
         typeTableColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         attunementTableColumn.setCellValueFactory(new PropertyValueFactory<>("attunement"));
+    }
+
+    public void displayInputAlert() {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Input is not an integer");
+            alert.setHeaderText("Please enter an integer in the text field.");
+            alert.show();
     }
 
 }
