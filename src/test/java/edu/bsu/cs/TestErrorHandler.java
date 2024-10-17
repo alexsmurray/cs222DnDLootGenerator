@@ -32,4 +32,17 @@ public class TestErrorHandler {
         if (!ErrorHandler.verifyFileExists("src/main/resources/weapons.txt")) {jsonFileMaker.writeItemsJsonToFile("weapons");}
         if (!ErrorHandler.verifyFileExists("src/main/resources/magicitems.txt")) {jsonFileMaker.writeItemsJsonToFile("magicitems");}
     }
+    @Test
+    public void testVerifyInputIsBlank() {
+        String userInput = "";
+        boolean result = ErrorHandler.verifyInputIsValid(userInput);
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    public void testVerifyInputIsAnInteger() {
+        String userInput = "10";
+        boolean result = ErrorHandler.verifyInputIsValid(userInput);
+        Assertions.assertTrue(result);
+    }
 }

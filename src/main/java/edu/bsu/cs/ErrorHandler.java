@@ -35,4 +35,16 @@ public class ErrorHandler {
         }
         return true;
     }
+
+    public static boolean verifyInputIsValid(String userInput) {
+        try {
+            int userInputNumber = Integer.parseInt(userInput);
+            if (userInputNumber <= 0) {
+                throw new Exception();
+            }
+        } catch (Exception InputException) {
+            return false;
+        }
+        return true;
+    }
 }

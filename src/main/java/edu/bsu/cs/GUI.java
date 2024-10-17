@@ -33,7 +33,7 @@ public class GUI extends Application implements Initializable {
     }
 
     @FXML
-    public TextField userInputField;
+    public static TextField userInputField;
     public TableView<Item> itemTableView;
     public TableColumn<Item, String> nameTableColumn;
     public TableColumn<Item, String> rarityTableColumn;
@@ -61,4 +61,5 @@ public class GUI extends Application implements Initializable {
         typeTableColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         attunementTableColumn.setCellValueFactory(new PropertyValueFactory<>("attunement"));
     }
+
 }
