@@ -46,10 +46,6 @@ public class ItemBuilder {
 
         int selectedIndex = selectRandomItemIndex(nameJsonArray);
 
-        System.out.println("Name: " + nameJsonArray.getFirst());
-        System.out.println("Rarity: " + rarityJsonArray.getFirst());
-        System.out.println("Type: " + typeJsonArray.getFirst());
-        System.out.println("Attunement: " + attunementJsonArray.getFirst());
         return new MagicItem(
                 nameJsonArray.get(selectedIndex).toString(),
                 rarityJsonArray.get(selectedIndex).toString(),
