@@ -73,4 +73,11 @@ public class GUI extends Application implements Initializable {
             alert.show();
     }
 
+    public static void displayNetworkAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Network Error");
+        alert.setHeaderText("Could connect to server.\nUnable to update files.");
+        alert.show();
+    }
+
 }

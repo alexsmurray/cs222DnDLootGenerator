@@ -6,8 +6,13 @@ import java.net.*;
 public class APIConnection {
 
     public static URLConnection fetchConnectionPath(String userInput) throws URISyntaxException, IOException {
-        URL url = new URI("https://api.open5e.com/" + userInput).toURL();
-        return url.openConnection();
+        if (ErrorHandler.verifyNetworkConnection().equals("Connected")){
+            URL url = new URI("https://api.open5e.com/" + userInput).toURL();
+            return url.openConnection();
+        }else {
+            GUI.displayNetworkAlert();
+        }
+       return null;
     }
 
 
