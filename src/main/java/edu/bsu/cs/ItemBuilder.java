@@ -36,12 +36,13 @@ public class ItemBuilder {
 
     private MagicItem generateMagicItem() throws IOException {
         String fileContents = JsonFileReader.readFileToString("src/main/resources/magicitems.txt");
-        ArrayList<JSONArray> jsonArrayArrayList = new ArrayList<>();
+        String[] pageLines = fileContents.split("\n");
+        int pageIndex = new Random().nextInt(pageLines.length);
 
-        JSONArray nameJsonArray =  JsonParser.parseMagicItemName(fileContents);
-        JSONArray rarityJsonArray =  JsonParser.parseMagicItemRarity(fileContents);
-        JSONArray typeJsonArray =  JsonParser.parseMagicItemType(fileContents);
-        JSONArray attunementJsonArray =  JsonParser.parseMagicItemAttunement(fileContents);
+        JSONArray nameJsonArray =  JsonParser.parseMagicItemName(fileContents, pageIndex);
+        JSONArray rarityJsonArray =  JsonParser.parseMagicItemRarity(fileContents, pageIndex);
+        JSONArray typeJsonArray =  JsonParser.parseMagicItemType(fileContents, pageIndex);
+        JSONArray attunementJsonArray =  JsonParser.parseMagicItemAttunement(fileContents, pageIndex);
 
         int selectedIndex = selectRandomItemIndex(nameJsonArray);
 

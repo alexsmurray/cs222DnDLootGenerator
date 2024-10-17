@@ -3,35 +3,29 @@ package edu.bsu.cs;
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
 
-import java.util.ArrayList;
-
 public class JsonParser {
     protected static JSONArray parseStandardItemName(String stringifiedJson){
         return JsonPath.read(stringifiedJson, "$..name");
     }
 
-    protected static void parseMagicItem(ArrayList<JSONArray> jsonArrayArrayList, String stringifiedJson){
-        jsonArrayArrayList.add(parseMagicItemName(stringifiedJson));
-    }
-
-    protected static JSONArray parseMagicItemName(String stringifiedJson) {
+    protected static JSONArray parseMagicItemName(String stringifiedJson, int pageIndex) {
         JSONArray jsonArray = buildJsonArray(stringifiedJson, "name");
-        return (JSONArray) jsonArray.get(ItemBuilder.selectRandomItemIndex(jsonArray));
+        return (JSONArray) jsonArray.get(pageIndex);
     }
 
-    protected static JSONArray parseMagicItemRarity(String stringifiedJson) {
+    protected static JSONArray parseMagicItemRarity(String stringifiedJson, int pageIndex) {
         JSONArray jsonArray = buildJsonArray(stringifiedJson, "rarity");
-        return (JSONArray) jsonArray.get(ItemBuilder.selectRandomItemIndex(jsonArray));
+        return (JSONArray) jsonArray.get(pageIndex);
     }
 
-    protected static JSONArray parseMagicItemType(String stringifiedJson) {
+    protected static JSONArray parseMagicItemType(String stringifiedJson, int pageIndex) {
         JSONArray jsonArray = buildJsonArray(stringifiedJson, "type");
-        return (JSONArray) jsonArray.get(ItemBuilder.selectRandomItemIndex(jsonArray));
+        return (JSONArray) jsonArray.get(pageIndex);
     }
 
-    protected static JSONArray parseMagicItemAttunement(String stringifiedJson) {
+    protected static JSONArray parseMagicItemAttunement(String stringifiedJson, int pageIndex) {
         JSONArray jsonArray = buildJsonArray(stringifiedJson, "requires_attunement");
-        return (JSONArray) jsonArray.get(ItemBuilder.selectRandomItemIndex(jsonArray));
+        return (JSONArray) jsonArray.get(pageIndex);
     }
 
     protected static String parseNext(String stringifiedJson) {
