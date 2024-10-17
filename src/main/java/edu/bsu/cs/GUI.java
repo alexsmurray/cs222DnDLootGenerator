@@ -50,8 +50,8 @@ public class GUI extends Application implements Initializable {
             ItemBuilder itemBuilder = new ItemBuilder();
             itemsForList.removeAll();
             itemTableView.getItems().clear();
-            itemTableView.setItems(itemsForList);
             itemsForList.addAll(itemBuilder.generateAmountOfItems());
+            itemTableView.setItems(itemsForList);
         } else {
             displayInputAlert();
         }
