@@ -48,7 +48,7 @@ public class ItemBuilder {
 
         return new MagicItem(
                 nameJsonArray.get(selectedIndex).toString(),
-                rarityJsonArray.get(selectedIndex).toString(),
+                OutputFormatter.formatRarity(rarityJsonArray.get(selectedIndex).toString()),
                 typeJsonArray.get(selectedIndex).toString(),
                 OutputFormatter.formatAttunement(attunementJsonArray.get(selectedIndex).toString()));
     }
