@@ -16,7 +16,7 @@ public class TestErrorHandler {
 
     @Test
     public void testVerifyFileExists(){
-        String filePath = "src/main/resources/fxmlSample.fxml";
+        String filePath = "src/main/resources/mainApp.fxml";
         Assertions.assertTrue(ErrorHandler.verifyFileExists(filePath));
     }
 
