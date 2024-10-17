@@ -8,7 +8,7 @@ import java.net.URISyntaxException;
 public class JsonFileMaker {
 
     protected void writeItemsJsonToFile(String categoryName) throws  IOException, URISyntaxException {
-        if (ErrorHandler.verifyNetworkConnection().equals("Network Error")) {return;}
+        //if (ErrorHandler.verifyNetworkConnection().equals("Network Error")) {return;}
 
         String version = "v2";
         if (categoryName.equals("magicitems")) {version = "v1";}
