@@ -44,7 +44,7 @@ public class ErrorHandler {
     public static boolean verifyInputIsValid(String userInput) {
         try {
             int userInputNumber = Integer.parseInt(userInput);
-            if (userInputNumber <= 0) {
+            if (userInputNumber <= 0 || userInputNumber > 100) {
                 throw new Exception();
             }
         } catch (Exception InputException) {
