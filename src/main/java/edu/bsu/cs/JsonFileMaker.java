@@ -31,10 +31,10 @@ public class JsonFileMaker {
     }
 
     public static String checkForFileUpdate(){
-        Controller controller = new Controller();
+        EventHandler eventHandler = new EventHandler();
         if (!ErrorHandler.verifyNetworkConnection().equals("Network Error")){
             try {
-                controller.updateAPIFiles();
+                eventHandler.updateAPIFiles();
             } catch (IOException | URISyntaxException e) {
                 throw new RuntimeException(e);
             }
