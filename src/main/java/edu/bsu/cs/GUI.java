@@ -13,7 +13,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -30,7 +29,7 @@ public class GUI extends Application implements Initializable {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("mainApp.fxml")));
             primaryStage.setTitle("D&D Loot Generator");
             primaryStage.setScene(new Scene(root));
-            String networkCheck = checkForFileUpdate();
+            String networkCheck = JsonFileMaker.checkForFileUpdate();
             primaryStage.show();
             displayNetworkAlert(networkCheck);
     }
@@ -67,21 +66,6 @@ public class GUI extends Application implements Initializable {
         rarityTableColumn.setCellValueFactory(new PropertyValueFactory<>("rarity"));
         typeTableColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         attunementTableColumn.setCellValueFactory(new PropertyValueFactory<>("attunement"));
-    }
-
-    //Change name as you see fit, best I could think of at the time
-    public String checkForFileUpdate(){
-        Controller controller = new Controller();
-        if (!ErrorHandler.verifyNetworkConnection().equals("Network Error")){
-            try {
-                controller.updateAPIFiles();
-            } catch (IOException | URISyntaxException e) {
-                throw new RuntimeException(e);
-            }
-            return "";
-        }else {
-            return "Network Error";
-        }
     }
 
     public void displayInputAlert() {
