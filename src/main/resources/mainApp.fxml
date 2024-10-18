@@ -38,13 +38,13 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #adadad;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.GUI">
    <Button fx:id="refreshItemDataButton" layoutX="799.0" layoutY="41.0" mnemonicParsing="false" onAction="#refreshItemData" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 10 10 10 10;" text="Refresh Item Data" />
       <Button fx:id="generateButton" layoutX="434.0" layoutY="40.0" mnemonicParsing="false" onAction="#generateItems" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 10 10 10 10;" text="Generate" />
-      <TextField fx:id="userInputField" layoutX="259.0" layoutY="40.0" onKeyPressed="#executeOnEnter" promptText="# of items to generate" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-prompt-text-fill: #000000;" />
+      <TextField fx:id="userInputField" layoutX="259.0" layoutY="40.0" onKeyPressed="#executeOnEnter" promptText="# of items to generate" style="-fx-border-color: #000000;" />
    <TableView fx:id="itemTableView" layoutX="14.0" layoutY="104.0" prefHeight="420.0" prefWidth="700.0">
      <columns>
-       <TableColumn fx:id="nameTableColumn" prefWidth="75.0" style="-fx-background-color: #adadad; -fx-border-color: #000000;" text="Name" />
-       <TableColumn fx:id="rarityTableColumn" prefWidth="75.0" style="-fx-alignment: center; -fx-background-color: #adadad; -fx-border-color: #000000;" text="Rarity" />
-         <TableColumn fx:id="typeTableColumn" prefWidth="75.0" style="-fx-alignment: center; -fx-background-color: #adadad; -fx-border-color: #000000;" text="Type" />
-         <TableColumn fx:id="attunementTableColumn" prefWidth="75.0" style="-fx-alignment: center; -fx-background-color: #adadad; -fx-border-color: #000000;" text="Requires Attunement" />
+       <TableColumn fx:id="nameTableColumn" prefWidth="75.0" text="Name" />
+       <TableColumn fx:id="rarityTableColumn" prefWidth="75.0" style="-fx-alignment: center;" text="Rarity" />
+         <TableColumn fx:id="typeTableColumn" prefWidth="75.0" style="-fx-alignment: center;" text="Type" />
+         <TableColumn fx:id="attunementTableColumn" prefWidth="75.0" style="-fx-alignment: center;" text="Requires Attunement" />
      </columns>
       <columnResizePolicy>
          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
