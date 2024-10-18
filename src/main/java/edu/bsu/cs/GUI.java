@@ -3,7 +3,6 @@ package edu.bsu.cs;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -19,6 +20,8 @@ import java.util.ResourceBundle;
 
 
 public class GUI extends Application implements Initializable {
+
+
 
     public static void main(String[] args) {
         launch(args);
@@ -29,9 +32,7 @@ public class GUI extends Application implements Initializable {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("mainApp.fxml")));
             primaryStage.setTitle("D&D Loot Generator");
             primaryStage.setScene(new Scene(root));
-            String networkCheck = JsonFileMaker.checkForFileUpdate();
             primaryStage.show();
-            displayNetworkAlert(networkCheck);
     }
 
     @FXML
@@ -42,10 +43,12 @@ public class GUI extends Application implements Initializable {
     public TableColumn<Item, String> typeTableColumn;
     public TableColumn<Item, String> attunementTableColumn;
     public Button generateButton;
+    public Button refreshItemDataButton;
     public ObservableList<Item> itemsForList = FXCollections.observableArrayList();
 
+
     @FXML
-    public void generateItems(ActionEvent ignoredEvent) throws IOException {
+    public void generateItems() throws IOException {
         if (ErrorHandler.verifyInputIsValid(userInputField.getText())) {
             int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
             Configuration.setNumItemsRequested(numberOfItemsToGenerate);
@@ -84,4 +87,14 @@ public class GUI extends Application implements Initializable {
         }
     }
 
+    public void executeOnEnter(KeyEvent keyEvent) throws IOException {
+        if (keyEvent.getCode() == KeyCode.ENTER){
+            generateItems();
+        }
+    }
+
+    public void refreshItemData()  {
+        String networkCheck = JsonFileMaker.checkForFileUpdate();
+        displayNetworkAlert(networkCheck);
+    }
 }
