@@ -11,7 +11,7 @@ public class TestErrorHandler {
     @Test
     public void testVerifyNetworkConnection() {
         String connectionStatus = ErrorHandler.verifyNetworkConnection();
-        Assertions.assertEquals("Connected", connectionStatus);
+        Assertions.assertEquals("https://api.open5e.com/", connectionStatus);
     }
 
     @Test

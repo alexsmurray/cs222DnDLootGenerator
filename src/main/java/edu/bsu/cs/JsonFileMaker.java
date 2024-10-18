@@ -8,8 +8,6 @@ import java.net.URISyntaxException;
 public class JsonFileMaker {
 
     protected void writeItemsJsonToFile(String categoryName) throws  IOException, URISyntaxException {
-        if (ErrorHandler.verifyNetworkConnection().equals("Network Error")) {return;}
-
         String version = "v2";
         if (categoryName.equals("magicitems")) {version = "v1";}
 
@@ -32,4 +30,17 @@ public class JsonFileMaker {
         itemsApi.close();
     }
 
+    public static String checkForFileUpdate(){
+        Controller controller = new Controller();
+        if (!ErrorHandler.verifyNetworkConnection().equals("Network Error")){
+            try {
+                controller.updateAPIFiles();
+            } catch (IOException | URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
+            return "";
+        }else {
+            return "Network Error";
+        }
+    }
 }

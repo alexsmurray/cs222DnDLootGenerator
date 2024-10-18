@@ -29,7 +29,9 @@ public class GUI extends Application implements Initializable {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("mainApp.fxml")));
             primaryStage.setTitle("D&D Loot Generator");
             primaryStage.setScene(new Scene(root));
+            String networkCheck = JsonFileMaker.checkForFileUpdate();
             primaryStage.show();
+            displayNetworkAlert(networkCheck);
     }
 
     @FXML
@@ -58,7 +60,7 @@ public class GUI extends Application implements Initializable {
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle)  {
         itemTableView.setPlaceholder(new Label("Enter above how many items you would like to generate and then press the generate button! :)"));
         nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         rarityTableColumn.setCellValueFactory(new PropertyValueFactory<>("rarity"));
@@ -67,17 +69,19 @@ public class GUI extends Application implements Initializable {
     }
 
     public void displayInputAlert() {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Input is not an integer");
-            alert.setHeaderText("Please enter an integer in the text field.");
-            alert.show();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Input is not an integer");
+        alert.setHeaderText("Please enter an integer in the text field.");
+        alert.show();
     }
 
-    public static void displayNetworkAlert() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Network Error");
-        alert.setHeaderText("Could connect to server.\nUnable to update files.");
-        alert.show();
+    public static void displayNetworkAlert(String check) {
+        if (!check.isBlank()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Network Error");
+            alert.setHeaderText("Could connect to server.\nUnable to update files.");
+            alert.show();
+        }
     }
 
 }
