@@ -45,4 +45,5 @@ public class TestErrorHandler {
         boolean result = ErrorHandler.verifyInputIsValid(userInput);
         Assertions.assertTrue(result);
     }
+
 }

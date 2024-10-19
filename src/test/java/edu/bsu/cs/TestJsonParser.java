@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class TestJsonParser {
+
     @Test
     public void testGetMagicItemNameFromSampleJson() throws IOException {
         InputStream testInputStream = getJsonFile();

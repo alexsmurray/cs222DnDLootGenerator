@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class TestItemBuilder {
+
     @Test
     public void testSelectRandomItemGeneratesIndexInRange() {
         JSONArray testJsonArray = createJsonArray();
@@ -60,4 +61,5 @@ public class TestItemBuilder {
         array.add("E");
         return array;
     }
+
 }

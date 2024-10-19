@@ -7,6 +7,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class TestJsonFileReader {
+
     @Test
     public void testSampleFileRead() throws IOException {
         StringWriter stringWriter = new StringWriter();
@@ -24,4 +25,5 @@ public class TestJsonFileReader {
             Assertions.assertFalse(result.isBlank());
         }
     }
+
 }
