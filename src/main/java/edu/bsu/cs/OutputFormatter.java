@@ -2,7 +2,8 @@ package edu.bsu.cs;
 
 
 public class OutputFormatter {
-    public static String formatRarity(String rarity) {
+
+    protected static String formatRarity(String rarity) {
         String[] words = rarity.split("\\s");
 
         StringBuilder output = new StringBuilder();
@@ -14,8 +15,7 @@ public class OutputFormatter {
         return output.toString().trim();
     }
 
-    //Change the output to whatever we want it to say
-    public static String formatAttunement(String Attunement) {
+    protected static String formatAttunement(String Attunement) {
         if (Attunement.isEmpty()) {
             Attunement = "False";
         } else {

@@ -33,4 +33,5 @@ public class MagicItem extends Item {
     public String getAttunement() {
         return attunement;
     }
+
 }

@@ -32,14 +32,14 @@ public class GUI extends Application implements Initializable{
         eventHandler.initialize();
     }
 
-    public static void displayInputAlert() {
+    protected static void displayInputAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Input is not an integer");
         alert.setHeaderText("Please enter an integer in the text field.");
         alert.show();
     }
 
-    public static void displayNetworkAlert(String check) {
+    protected static void displayNetworkAlert(String check) {
         if (!check.isBlank()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Network Error");
@@ -48,17 +48,18 @@ public class GUI extends Application implements Initializable{
         }
     }
 
-    public static void displayRefreshStarting() {
+    protected static void displayRefreshStarting() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Refresh In Progress");
         alert.setHeaderText("We're updating your data from the server.\nThis may take a minute.");
         alert.show();
     }
 
-    public static void displayRefreshDone() {
+    protected static void displayRefreshDone() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Refresh Complete");
         alert.setHeaderText("Your files are up to date.");
         alert.show();
     }
+
 }

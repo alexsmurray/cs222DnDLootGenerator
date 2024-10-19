@@ -1,6 +1,7 @@
 package edu.bsu.cs;
 
 public class Weapon extends Item {
+
     private final String name;
     private final String rarity;
     private final String type;
@@ -32,5 +33,6 @@ public class Weapon extends Item {
     public String getAttunement() {
         return attunement;
     }
+
 }
 

@@ -30,7 +30,7 @@ public class JsonFileMaker {
         itemsApi.close();
     }
 
-    public static String checkForFileUpdate(){
+    protected static String checkForFileUpdate(){
         EventHandler eventHandler = new EventHandler();
         if (!ErrorHandler.verifyNetworkConnection().equals("Network Error")){
             try {
@@ -43,4 +43,5 @@ public class JsonFileMaker {
             return "Network Error";
         }
     }
+
 }

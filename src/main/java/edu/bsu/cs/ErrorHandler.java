@@ -18,7 +18,7 @@ public class ErrorHandler {
         return urlName;
     }
 
-    public static boolean verifyFileExists(String filePath) {
+    protected static boolean verifyFileExists(String filePath) {
         try {
             JsonFileReader.readFileToString(filePath);
         } catch (Exception ReadFileException) {
@@ -27,7 +27,7 @@ public class ErrorHandler {
         return true;
     }
 
-    public static boolean verifyAllItemFilesExist() {
+    protected static boolean verifyAllItemFilesExist() {
         LinkedList<String> filePathList  = new LinkedList<>();
         filePathList.add("src/main/resources/armor.txt");
         filePathList.add("src/main/resources/weapons.txt");
@@ -41,7 +41,7 @@ public class ErrorHandler {
         return true;
     }
 
-    public static boolean verifyInputIsValid(String userInput) {
+    protected static boolean verifyInputIsValid(String userInput) {
         try {
             int userInputNumber = Integer.parseInt(userInput);
             if (userInputNumber <= 0 || userInputNumber > 100) {
@@ -52,4 +52,5 @@ public class ErrorHandler {
         }
         return true;
     }
+
 }

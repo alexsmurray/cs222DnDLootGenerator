@@ -8,9 +8,6 @@ import java.util.List;
 import java.util.Random;
 
 public class ItemBuilder {
-    protected static int selectRandomItemIndex(JSONArray array){
-        return new Random().nextInt(array.size());
-    }
 
     protected Item generateItem(String itemCategory) throws IOException {
         if(ErrorHandler.verifyAllItemFilesExist()) {
@@ -62,6 +59,10 @@ public class ItemBuilder {
         };
     }
 
+    protected static int selectRandomItemIndex(JSONArray array){
+        return new Random().nextInt(array.size());
+    }
+
     protected List<Item> generateAmountOfItems() throws IOException {
         List<Item> itemsList = new ArrayList<>();
         for (int i = 0; i < Configuration.getNumItemsRequested(); i++) {
@@ -69,4 +70,5 @@ public class ItemBuilder {
         }
         return itemsList;
     }
+
 }

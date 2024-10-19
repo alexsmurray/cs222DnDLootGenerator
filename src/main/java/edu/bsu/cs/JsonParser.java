@@ -4,6 +4,7 @@ import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
 
 public class JsonParser {
+
     protected static JSONArray parseStandardItemName(String stringifiedJson){
         return JsonPath.read(stringifiedJson, "$..name");
     }
