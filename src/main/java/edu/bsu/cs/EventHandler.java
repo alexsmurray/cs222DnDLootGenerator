@@ -33,13 +33,15 @@ public class EventHandler {
     @FXML
     public void generateItems() throws IOException {
         if (ErrorHandler.verifyInputIsValid(userInputField.getText())) {
-            if (!ErrorHandler.verifyAllItemFilesExist()) {refreshItemData();}
+            if (!ErrorHandler.verifyAllItemFilesExist()) {
+                refreshItemData();
+                return;
+            }
             int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
             Configuration.setNumItemsRequested(numberOfItemsToGenerate);
             GUI.displayGeneratedItems(itemTableView);
         } else {
             GUI.displayInputAlert();
-
         }
     }
 
