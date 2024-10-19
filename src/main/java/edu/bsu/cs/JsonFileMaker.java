@@ -31,16 +31,26 @@ public class JsonFileMaker {
     }
 
     protected static String checkForFileUpdate(){
-        EventHandler eventHandler = new EventHandler();
         if (!ErrorHandler.verifyNetworkConnection().equals("Network Error")){
             try {
-                eventHandler.updateAPIFiles();
+                updateAPIFiles();
             } catch (IOException | URISyntaxException e) {
                 throw new RuntimeException(e);
             }
             return "";
         }else {
             return "Network Error";
+        }
+    }
+
+    protected static void updateAPIFiles() throws IOException, URISyntaxException {
+        JsonFileMaker jsonFileMaker = new JsonFileMaker();
+        boolean updated = false;
+        while (!updated) {
+            jsonFileMaker.writeItemsJsonToFile("magicitems");
+            jsonFileMaker.writeItemsJsonToFile("armor");
+            jsonFileMaker.writeItemsJsonToFile("weapons");
+            updated = true;
         }
     }
 

@@ -6,7 +6,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 public class EventHandler {
 
@@ -52,17 +51,6 @@ public class EventHandler {
         String networkCheck = JsonFileMaker.checkForFileUpdate();
         GUI.displayNetworkAlert(networkCheck);
         GUI.displayRefreshDone();
-    }
-
-    protected void updateAPIFiles() throws IOException, URISyntaxException {
-        JsonFileMaker jsonFileMaker = new JsonFileMaker();
-        boolean updated = false;
-        while (!updated) {
-            jsonFileMaker.writeItemsJsonToFile("magicitems");
-            jsonFileMaker.writeItemsJsonToFile("armor");
-            jsonFileMaker.writeItemsJsonToFile("weapons");
-            updated = true;
-        }
     }
 
 }
