@@ -52,8 +52,8 @@ public class GUI extends Application implements Initializable{
 
     protected static void displayInputAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Input is not an integer");
-        alert.setHeaderText("Please enter an integer in the text field.");
+        alert.setTitle("Input is not valid");
+        alert.setHeaderText("Please enter an integer in the range of 1 to 100.");
         alert.show();
     }
 

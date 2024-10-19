@@ -8,7 +8,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import java.io.IOException;
 
-public class EventHandler extends Thread {
+public class EventHandler {
 
     @FXML
     public TextField userInputField;
