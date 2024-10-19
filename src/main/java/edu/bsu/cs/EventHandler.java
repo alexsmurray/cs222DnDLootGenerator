@@ -1,5 +1,6 @@
 package edu.bsu.cs;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -7,7 +8,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import java.io.IOException;
 
-public class EventHandler {
+public class EventHandler extends Thread {
 
     @FXML
     public TextField userInputField;
@@ -48,9 +49,41 @@ public class EventHandler {
 
     public void refreshItemData()  {
         GUI.displayRefreshStarting();
-        String networkCheck = JsonFileMaker.checkForFileUpdate();
-        GUI.displayNetworkAlert(networkCheck);
-        GUI.displayRefreshDone();
+        new Thread(attemptToRefreshItemFiles()).start();
+    }
+
+    private Task<Void> attemptToRefreshItemFiles(){
+        return new Task<>() {
+            @Override
+            protected Void call() {
+                disableInput();
+                String networkCheck = JsonFileMaker.checkForFileUpdate();
+                GUI.displayNetworkAlert(networkCheck);
+                return null;
+            }
+            @Override
+            protected void succeeded(){
+                GUI.displayRefreshDone();
+                enableInput();
+            }
+            @Override
+            protected void failed(){
+                GUI.displayRefreshErrorAlert();
+                enableInput();
+            }
+        };
+    }
+
+    private void disableInput() {
+        userInputField.setDisable(true);
+        generateButton.setDisable(true);
+        refreshItemDataButton.setDisable(true);
+    }
+
+    private void enableInput(){
+        userInputField.setDisable(false);
+        generateButton.setDisable(false);
+        refreshItemDataButton.setDisable(false);
     }
 
 }

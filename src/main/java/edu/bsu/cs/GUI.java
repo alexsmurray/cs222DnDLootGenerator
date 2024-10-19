@@ -80,4 +80,11 @@ public class GUI extends Application implements Initializable{
         alert.show();
     }
 
+    protected static void displayRefreshErrorAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Refresh Error");
+        alert.setHeaderText("Your files could not be updated.");
+        alert.show();
+    }
+
 }
