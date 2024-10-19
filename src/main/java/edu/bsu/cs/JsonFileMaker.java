@@ -30,19 +30,6 @@ public class JsonFileMaker {
         itemsApi.close();
     }
 
-    protected static String checkForFileUpdate(){
-        if (!ErrorHandler.verifyNetworkConnection().equals("Network Error")){
-            try {
-                updateAPIFiles();
-            } catch (IOException | URISyntaxException e) {
-                throw new RuntimeException(e);
-            }
-            return "";
-        }else {
-            return "Network Error";
-        }
-    }
-
     protected static void updateAPIFiles() throws IOException, URISyntaxException {
         JsonFileMaker jsonFileMaker = new JsonFileMaker();
         boolean updated = false;
