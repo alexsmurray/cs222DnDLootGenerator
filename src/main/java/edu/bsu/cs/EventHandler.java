@@ -1,7 +1,5 @@
 package edu.bsu.cs;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -21,7 +19,6 @@ public class EventHandler {
     public TableColumn<Item, String> attunementTableColumn;
     public Button generateButton;
     public Button refreshItemDataButton;
-    public ObservableList<Item> itemsForList = FXCollections.observableArrayList();
 
 
     public void initialize()  {
@@ -37,19 +34,11 @@ public class EventHandler {
         if (ErrorHandler.verifyInputIsValid(userInputField.getText())) {
             int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
             Configuration.setNumItemsRequested(numberOfItemsToGenerate);
-            ItemBuilder itemBuilder = new ItemBuilder();
-            clearItems();
-            itemsForList.addAll(itemBuilder.generateAmountOfItems());
-            itemTableView.setItems(itemsForList);
+            GUI.displayGeneratedItems(itemTableView);
         } else {
             GUI.displayInputAlert();
 
         }
-    }
-
-    private void clearItems(){
-        itemsForList.removeAll();
-        itemTableView.getItems().clear();
     }
 
     public void executeOnEnter(KeyEvent keyEvent) throws IOException {

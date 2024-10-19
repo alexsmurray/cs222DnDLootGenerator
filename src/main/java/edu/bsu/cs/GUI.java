@@ -1,18 +1,24 @@
 package edu.bsu.cs;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 
 public class GUI extends Application implements Initializable{
+
+    public static ObservableList<Item> itemsForList = FXCollections.observableArrayList();
     EventHandler eventHandler = new EventHandler();
 
     public static void main(String[] args) {
@@ -30,6 +36,18 @@ public class GUI extends Application implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         eventHandler.initialize();
+    }
+
+    public static void displayGeneratedItems(TableView<Item> itemTableView) throws IOException {
+        ItemBuilder itemBuilder = new ItemBuilder();
+        clearItems(itemTableView);
+        itemsForList.addAll(itemBuilder.generateAmountOfItems());
+        itemTableView.setItems(itemsForList);
+    }
+
+    private static void clearItems(TableView<Item> itemTableView){
+        itemsForList.removeAll();
+        itemTableView.getItems().clear();
     }
 
     protected static void displayInputAlert() {
