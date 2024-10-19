@@ -85,4 +85,12 @@ public class GUI extends Application implements Initializable{
         alert.show();
     }
 
+    protected static void displayMissingFilesAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Missing Files");
+        alert.setHeaderText("You are missing necessary data files.\nThis will be the case the first time the program runs.");
+        alert.setContentText("Missing data files will be built now.\nThis may take a minute.");
+        alert.show();
+    }
+
 }

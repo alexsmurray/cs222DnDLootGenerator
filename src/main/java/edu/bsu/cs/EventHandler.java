@@ -34,7 +34,8 @@ public class EventHandler {
     public void generateItems() throws IOException {
         if (ErrorHandler.verifyInputIsValid(userInputField.getText())) {
             if (!ErrorHandler.verifyAllItemFilesExist()) {
-                refreshItemData();
+                GUI.displayMissingFilesAlert();
+                new Thread(attemptToRefreshItemFiles()).start();
                 return;
             }
             int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
