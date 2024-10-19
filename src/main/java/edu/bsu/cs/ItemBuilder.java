@@ -18,7 +18,7 @@ public class ItemBuilder {
                     default -> generateAny();
                 };
         }
-        throw new AssertionError("You shouldn't be here.");
+        return null;
     }
 
     private Weapon generateWeapon() throws IOException {

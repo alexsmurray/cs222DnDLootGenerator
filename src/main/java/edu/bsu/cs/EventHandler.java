@@ -7,6 +7,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class EventHandler {
 
@@ -32,6 +33,7 @@ public class EventHandler {
     @FXML
     public void generateItems() throws IOException {
         if (ErrorHandler.verifyInputIsValid(userInputField.getText())) {
+            if (!ErrorHandler.verifyAllItemFilesExist()) {refreshItemData();}
             int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
             Configuration.setNumItemsRequested(numberOfItemsToGenerate);
             GUI.displayGeneratedItems(itemTableView);
@@ -55,10 +57,9 @@ public class EventHandler {
     private Task<Void> attemptToRefreshItemFiles(){
         return new Task<>() {
             @Override
-            protected Void call() {
+            protected Void call() throws IOException, URISyntaxException {
                 disableInput();
-                String networkCheck = JsonFileMaker.checkForFileUpdate();
-                GUI.displayNetworkAlert(networkCheck);
+                JsonFileMaker.updateAPIFiles();
                 return null;
             }
             @Override
