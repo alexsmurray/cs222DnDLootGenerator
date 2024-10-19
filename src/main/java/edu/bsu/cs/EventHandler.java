@@ -68,7 +68,11 @@ public class EventHandler {
             }
             @Override
             protected void failed(){
-                GUI.displayRefreshErrorAlert();
+                if (ErrorHandler.verifyNetworkConnection().equals("Network Error")) {
+                    GUI.displayNetworkAlert("Error");
+                } else {
+                    GUI.displayRefreshErrorAlert();
+                }
                 enableInput();
             }
         };
