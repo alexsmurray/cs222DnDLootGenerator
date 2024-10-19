@@ -72,7 +72,7 @@ public class EventHandler {
             @Override
             protected void failed(){
                 if (ErrorHandler.verifyNetworkConnection().equals("Network Error")) {
-                    GUI.displayNetworkAlert("Error");
+                    GUI.displayNetworkAlert();
                 } else {
                     GUI.displayRefreshErrorAlert();
                 }
