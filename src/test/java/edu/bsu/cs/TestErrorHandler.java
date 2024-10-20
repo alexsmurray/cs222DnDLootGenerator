@@ -21,6 +21,12 @@ public class TestErrorHandler {
     }
 
     @Test
+    public void testVerifyFileHasContents() throws IOException {
+        String filePath = "src/test/resources/SampleMagicItemPage1.json";
+        Assertions.assertTrue(ErrorHandler.verifyFileHasContents(filePath));
+    }
+
+    @Test
     public void testVerifyAllItemFilesExist() throws IOException, URISyntaxException {
         createMissingFiles();
         Assertions.assertTrue(ErrorHandler.verifyAllItemFilesExist());

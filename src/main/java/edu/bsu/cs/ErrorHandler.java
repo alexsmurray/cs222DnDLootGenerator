@@ -1,5 +1,6 @@
 package edu.bsu.cs;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URLConnection;
 import java.util.LinkedList;
@@ -27,7 +28,12 @@ public class ErrorHandler {
         return true;
     }
 
-    protected static boolean verifyAllItemFilesExist() {
+    public static boolean verifyFileHasContents(String filePath) throws IOException {
+        String fileString = JsonFileReader.readFileToString(filePath);
+        return fileString.startsWith("{");
+    }
+
+    protected static boolean verifyAllItemFilesExist() throws IOException {
         LinkedList<String> filePathList  = new LinkedList<>();
         filePathList.add("src/main/resources/armor.txt");
         filePathList.add("src/main/resources/weapons.txt");
@@ -35,6 +41,9 @@ public class ErrorHandler {
 
         for (String filePath : filePathList) {
             if (!ErrorHandler.verifyFileExists(filePath)) {
+                return false;
+            }
+            if (!ErrorHandler.verifyFileHasContents(filePath)){
                 return false;
             }
         }
