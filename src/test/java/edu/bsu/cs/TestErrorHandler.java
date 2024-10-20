@@ -29,7 +29,7 @@ public class TestErrorHandler {
     @Test
     public void testVerifyAllItemFilesExist() throws IOException, URISyntaxException {
         createMissingFiles();
-        Assertions.assertTrue(ErrorHandler.verifyAllItemFilesExist());
+        Assertions.assertTrue(ErrorHandler.verifyItemDataFilesValid());
     }
 
     private void createMissingFiles() throws IOException, URISyntaxException {

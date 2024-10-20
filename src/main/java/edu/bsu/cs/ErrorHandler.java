@@ -33,7 +33,7 @@ public class ErrorHandler {
         return fileString.startsWith("{");
     }
 
-    protected static boolean verifyAllItemFilesExist() throws IOException {
+    protected static boolean verifyItemDataFilesValid() throws IOException {
         LinkedList<String> filePathList  = new LinkedList<>();
         filePathList.add("src/main/resources/armor.txt");
         filePathList.add("src/main/resources/weapons.txt");

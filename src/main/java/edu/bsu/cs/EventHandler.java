@@ -34,7 +34,7 @@ public class EventHandler {
     @FXML
     protected void generateItems() throws IOException {
         if (ErrorHandler.verifyInputIsValid(userInputField.getText())) {
-            if (!ErrorHandler.verifyAllItemFilesExist()) {
+            if (!ErrorHandler.verifyItemDataFilesValid()) {
                 GUI.displayMissingFilesAlert();
                 setTableViewToLoading();
                 new Thread(attemptToRefreshItemFiles()).start();

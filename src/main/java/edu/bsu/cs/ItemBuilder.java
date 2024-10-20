@@ -10,7 +10,7 @@ import java.util.Random;
 public class ItemBuilder {
 
     protected Item generateItem(String itemCategory) throws IOException {
-        if(ErrorHandler.verifyAllItemFilesExist()) {
+        if(ErrorHandler.verifyItemDataFilesValid()) {
                 return switch (itemCategory) {
                     case "Weapon" -> generateWeapon();
                     case "Armor" -> generateArmor();
