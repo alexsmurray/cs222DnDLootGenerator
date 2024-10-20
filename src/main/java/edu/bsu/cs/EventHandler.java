@@ -23,7 +23,7 @@ public class EventHandler {
 
 
     public void initialize()  {
-        itemTableView.setPlaceholder(new Label("Enter above how many items you would like to generate and then press the generate button! :)"));
+        setTableViewToDefault();
         nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         rarityTableColumn.setCellValueFactory(new PropertyValueFactory<>("rarity"));
         typeTableColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
@@ -35,6 +35,7 @@ public class EventHandler {
         if (ErrorHandler.verifyInputIsValid(userInputField.getText())) {
             if (!ErrorHandler.verifyAllItemFilesExist()) {
                 GUI.displayMissingFilesAlert();
+                setTableViewToLoading();
                 new Thread(attemptToRefreshItemFiles()).start();
                 return;
             }
@@ -46,14 +47,16 @@ public class EventHandler {
         }
     }
 
-    public void executeOnEnter(KeyEvent keyEvent) throws IOException {
+    public void executeGenerateItemsOnEnter(KeyEvent keyEvent) throws IOException {
         if (keyEvent.getCode() == KeyCode.ENTER){
             generateItems();
         }
     }
 
+    @FXML
     public void refreshItemData()  {
         GUI.displayRefreshStarting();
+        setTableViewToLoading();
         new Thread(attemptToRefreshItemFiles()).start();
     }
 
@@ -68,6 +71,7 @@ public class EventHandler {
             @Override
             protected void succeeded(){
                 GUI.displayRefreshDone();
+                setTableViewToDefault();
                 enableInput();
             }
             @Override
@@ -77,9 +81,19 @@ public class EventHandler {
                 } else {
                     GUI.displayRefreshErrorAlert();
                 }
+                setTableViewToDefault();
                 enableInput();
             }
         };
+    }
+
+    private void setTableViewToLoading() {
+        GUI.clearItems(itemTableView);
+        itemTableView.setPlaceholder(new Label("Downloading items from the internet.\nPlease wait until finished."));
+    }
+
+    private void setTableViewToDefault() {
+        itemTableView.setPlaceholder(new Label("Enter above how many items you would like to generate and then press the generate button! :)"));
     }
 
     private void disableInput() {

@@ -45,7 +45,7 @@ public class GUI extends Application implements Initializable{
         itemTableView.setItems(itemsForList);
     }
 
-    private static void clearItems(TableView<Item> itemTableView){
+    protected static void clearItems(TableView<Item> itemTableView){
         itemsForList.removeAll();
         itemTableView.getItems().clear();
     }
