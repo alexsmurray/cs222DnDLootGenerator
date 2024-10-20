@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -31,7 +32,7 @@ public class EventHandler {
     }
 
     @FXML
-    public void generateItems() throws IOException {
+    protected void generateItems() throws IOException {
         if (ErrorHandler.verifyInputIsValid(userInputField.getText())) {
             if (!ErrorHandler.verifyAllItemFilesExist()) {
                 GUI.displayMissingFilesAlert();
@@ -47,14 +48,16 @@ public class EventHandler {
         }
     }
 
-    public void executeGenerateItemsOnEnter(KeyEvent keyEvent) throws IOException {
+    @FXML
+    protected void executeGenerateItemsOnEnter(KeyEvent keyEvent) throws IOException {
         if (keyEvent.getCode() == KeyCode.ENTER){
             generateItems();
         }
     }
 
+
     @FXML
-    public void refreshItemData()  {
+    protected void refreshItemData()  {
         GUI.displayRefreshStarting();
         setTableViewToLoading();
         new Thread(attemptToRefreshItemFiles()).start();
@@ -108,4 +111,14 @@ public class EventHandler {
         refreshItemDataButton.setDisable(false);
     }
 
+    @FXML
+    protected void displayItemDetailsOnMouseClick() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if (itemTableView.getSelectionModel().getSelectedItem() != null) {
+            alert.setTitle("Item Details");
+            alert.setHeaderText("You clicked on " + itemTableView.getSelectionModel().getSelectedItem().getName());
+            itemTableView.getSelectionModel().select(null);
+            alert.show();
+        }
+    }
 }
