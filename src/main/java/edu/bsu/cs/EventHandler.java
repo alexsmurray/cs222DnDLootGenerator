@@ -21,6 +21,7 @@ public class EventHandler {
     public TableColumn<Item, String> attunementTableColumn;
     public Button generateButton;
     public Button refreshItemDataButton;
+    public Label RefreshDate;
 
 
     public void initialize()  {
@@ -29,6 +30,8 @@ public class EventHandler {
         rarityTableColumn.setCellValueFactory(new PropertyValueFactory<>("rarity"));
         typeTableColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         attunementTableColumn.setCellValueFactory(new PropertyValueFactory<>("attunement"));
+
+        updateRefreshDate();
     }
 
     @FXML
@@ -74,6 +77,8 @@ public class EventHandler {
             @Override
             protected void succeeded(){
                 GUI.displayRefreshDone();
+                RefreshTracker.saveCurrentTime("src/main/resources/lastRefreshDate.txt");
+                updateRefreshDate();
                 setTableViewToDefault();
                 enableInput();
             }
@@ -111,13 +116,12 @@ public class EventHandler {
         refreshItemDataButton.setDisable(false);
     }
 
-    protected void displayItemDetails() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        if (itemTableView.getSelectionModel().getSelectedItem() != null) {
-            alert.setTitle("Item Details");
-            alert.setHeaderText("You clicked on " + itemTableView.getSelectionModel().getSelectedItem().getName());
-            itemTableView.getSelectionModel().select(null);
-            alert.show();
+    private void updateRefreshDate(){
+        String filePath = "src/main/resources/lastRefreshDate.txt";
+        try{
+            displayLastRefreshDate(filePath);
+        }catch (Exception IOException){
+            RefreshDate.setText("No Recent Refresh");
         }
     }
 
@@ -128,5 +132,20 @@ public class EventHandler {
                 displayItemDetails();
             }
         });
+    }
+
+    protected void displayItemDetails() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if (itemTableView.getSelectionModel().getSelectedItem() != null) {
+            alert.setTitle("Item Details");
+            alert.setHeaderText("You clicked on " + itemTableView.getSelectionModel().getSelectedItem().getName());
+            itemTableView.getSelectionModel().select(null);
+            alert.show();
+        }
+    }
+
+    protected void displayLastRefreshDate(String filePath) throws IOException {
+        String output = OutputFormatter.formatDateTime(RefreshTracker.readTimeFile(filePath));
+        RefreshDate.setText("Last Refresh was " + output);
     }
 }

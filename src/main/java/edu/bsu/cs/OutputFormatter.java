@@ -37,6 +37,14 @@ public class OutputFormatter {
 
     }
 
+    protected static String formatDateTime(String dateTime){
+        String[] words = dateTime.split("T");
+
+        String output = words[0] + " at " + words[1];
+
+        return output.trim();
+    }
+
     private static String capitalize(Item item, String category) {
         return switch (category) {
             case "Name" -> item.getName().substring(0, 1).toUpperCase() + item.getName().substring(1).toLowerCase();
@@ -46,5 +54,6 @@ public class OutputFormatter {
         };
 
     }
+
 
 }

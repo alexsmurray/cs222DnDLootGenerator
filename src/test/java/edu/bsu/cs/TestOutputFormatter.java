@@ -40,4 +40,11 @@ public class TestOutputFormatter {
         Assertions.assertEquals(expectedString, result);
     }
 
+    @Test
+    public void testFormatDateTime(){
+        String expected = "test at home";
+        String output = OutputFormatter.formatDateTime("testThome");
+        Assertions.assertEquals(expected,output);
+    }
+
 }
