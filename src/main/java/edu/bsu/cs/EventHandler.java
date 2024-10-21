@@ -111,8 +111,7 @@ public class EventHandler {
         refreshItemDataButton.setDisable(false);
     }
 
-    @FXML
-    protected void displayItemDetailsOnMouseClick() {
+    protected void displayItemDetails() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         if (itemTableView.getSelectionModel().getSelectedItem() != null) {
             alert.setTitle("Item Details");
@@ -120,5 +119,14 @@ public class EventHandler {
             itemTableView.getSelectionModel().select(null);
             alert.show();
         }
+    }
+
+    @FXML
+    protected void displayItemDetailsOnDoubleClick() {
+        itemTableView.setOnMouseClicked(mouseEvent -> {
+            if (mouseEvent.getClickCount() == 2) {
+                displayItemDetails();
+            }
+        });
     }
 }
