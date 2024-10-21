@@ -21,17 +21,17 @@ public class ItemBuilder {
         return null;
     }
 
-    private Weapon generateWeapon() throws IOException {
+    private Item generateWeapon() throws IOException {
         JSONArray nameJsonArray =  JsonParser.parseStandardItemName(JsonFileReader.readFileToString("src/main/resources/weapons.txt"));
-        return new Weapon(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Weapon", "False");
+        return new Item(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Weapon", "False");
     }
 
-    private Armor generateArmor() throws IOException {
+    private Item generateArmor() throws IOException {
         JSONArray nameJsonArray =  JsonParser.parseStandardItemName(JsonFileReader.readFileToString("src/main/resources/armor.txt"));
-        return new Armor(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Armor", "False");
+        return new Item(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Armor", "False");
     }
 
-    private MagicItem generateMagicItem() throws IOException {
+    private Item generateMagicItem() throws IOException {
         String fileContents = JsonFileReader.readFileToString("src/main/resources/magicitems.txt");
         String[] pageLines = fileContents.split("\n");
         int pageIndex = new Random().nextInt(pageLines.length);
@@ -43,7 +43,7 @@ public class ItemBuilder {
 
         int selectedIndex = selectRandomItemIndex(nameJsonArray);
 
-        return new MagicItem(
+        return new Item(
                 nameJsonArray.get(selectedIndex).toString(),
                 OutputFormatter.formatRarity(rarityJsonArray.get(selectedIndex).toString()),
                 typeJsonArray.get(selectedIndex).toString(),
