@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,10 +28,11 @@ public class GUI extends Application implements Initializable{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("mainApp.fxml")));
-            primaryStage.setTitle("D&D Loot Generator");
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("mainApp.fxml")));
+        primaryStage.setTitle("D&D Loot Generator");
+        primaryStage.getIcons().add(new Image(("/toolbar_icon.png")));
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 
     @Override
