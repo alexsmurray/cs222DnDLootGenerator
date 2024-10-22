@@ -32,14 +32,22 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #adadad;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.EventHandler">
-   <Button fx:id="refreshItemDataButton" layoutX="799.0" layoutY="41.0" mnemonicParsing="false" onAction="#refreshItemData" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 10 10 10 10;" text="Refresh Item Data" />
-      <Button fx:id="generateButton" layoutX="434.0" layoutY="40.0" mnemonicParsing="false" onAction="#generateItems" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 10 10 10 10;" text="Generate" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #adadad; -fx-border-color: red;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.EventHandler">
+    <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true">
+        <Image url="@backgroundImage.jpg"/>
+    </ImageView>
+    <ImageView fitHeight="72.0" fitWidth="229.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true">
+        <Image url="@wordLogo.png"/>
+    </ImageView>
+   <Button fx:id="refreshItemDataButton" layoutX="799.0" layoutY="41.0" mnemonicParsing="false" onAction="#refreshItemData" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Refresh Item Data" />
+      <Button fx:id="generateButton" layoutX="434.0" layoutY="40.0" mnemonicParsing="false" onAction="#generateItems" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Generate" />
       <TextField fx:id="userInputField" layoutX="259.0" layoutY="40.0" onKeyPressed="#executeGenerateItemsOnEnter" promptText="# of items to generate" style="-fx-border-color: #000000;" />
-   <TableView fx:id="itemTableView" layoutX="14.0" layoutY="98.0" onMouseClicked="#displayItemDetailsOnDoubleClick" prefHeight="414.0" prefWidth="701.0">
+   <TableView fx:id="itemTableView" layoutX="14.0" layoutY="98.0" onMouseClicked="#displayItemDetailsOnDoubleClick" prefHeight="414.0" prefWidth="701.0" style="-fx-border-color: #000000;">
      <columns>
        <TableColumn fx:id="nameTableColumn" prefWidth="75.0" text="Name" />
        <TableColumn fx:id="rarityTableColumn" prefWidth="75.0" style="-fx-alignment: center;" text="Rarity" />
@@ -50,7 +58,10 @@
          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
       </columnResizePolicy>
    </TableView>
-   <Label layoutX="281.0" layoutY="517.0" text="Double-click an item to expand" />
+   <Label layoutX="281.0" layoutY="517.0" text="Double-click an item to expand" textFill="WHITE">
+      <padding>
+         <Insets left="5.0" right="5.0" />
+      </padding></Label>
    <Label layoutX="841.0" layoutY="81.0" />
-   <Label fx:id="RefreshDate" alignment="CENTER" contentDisplay="RIGHT" layoutX="744.0" layoutY="80.0" prefHeight="18.0" prefWidth="216.0" text="No Recent Refresh" wrapText="true" />
+   <Label fx:id="RefreshDate" alignment="CENTER" contentDisplay="RIGHT" layoutX="749.0" layoutY="80.0" prefHeight="18.0" prefWidth="210.0" text="No Recent Refresh" textFill="WHITE" wrapText="true" />
 </AnchorPane>

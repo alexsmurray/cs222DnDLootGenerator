@@ -32,6 +32,7 @@ public class GUI extends Application implements Initializable{
         primaryStage.setTitle("D&D Loot Generator");
         primaryStage.getIcons().add(new Image(("/toolbar_icon.png")));
         primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
