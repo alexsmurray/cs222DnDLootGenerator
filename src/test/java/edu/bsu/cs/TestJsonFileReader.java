@@ -20,10 +20,8 @@ public class TestJsonFileReader {
 
     @Test
     public void testFileIsNotBlank() throws IOException {
-        if (ErrorHandler.verifyFileExists("src/main/resources/magicitems.txt")) {
-            String result = JsonFileReader.readFileToString("src/main/resources/weapons.txt");
+            String result = JsonFileReader.readFileToString("src/main/resources/mainApp.fxml");
             Assertions.assertFalse(result.isBlank());
-        }
     }
 
 }
