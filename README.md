@@ -1,6 +1,6 @@
 Contributors:
 
-Alec Burch-DeWitt
+Alec Burch-DeWitt 
 
 Timothy Smith
 
@@ -8,10 +8,14 @@ James Ramsey
 
 Alex Murray
 
-Summary: Pulls information from API and puts them into a file, then the program reads from the file. 
+Summary: This is a Dungeons and Dragons Loot Generation Program that allows users to type in how many items they would like to generate.
+The program then pulls items from the 5th edition API and displays the information of the items generated to the user.
+The user can generate again which will clear the current contents of the table and display all new items.
+The user can also refresh the API to update it to the most current version of the API if needed. :)
 
 Test Build Instructions:
-Run tests twice so the files can generate.
+No special build instructions.
 
 Build Instructions:
-Run GUI from gradle.
+Navigate to Gradle's task directory and find the "run" task under the "application" subdirectory.
+Double-click to run this task.
