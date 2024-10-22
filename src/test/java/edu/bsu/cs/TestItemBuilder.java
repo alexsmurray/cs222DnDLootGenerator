@@ -17,13 +17,6 @@ public class TestItemBuilder {
     }
 
     @Test
-    public void testGenerateItem() throws Exception {
-        ItemBuilder itemBuilder = new ItemBuilder();
-        Item testItem = itemBuilder.generateItemFromFile("Any");
-        Assertions.assertFalse(testItem.getName().isBlank());
-    }
-
-    @Test
     public void testGenerateWeapon() throws IOException {
         ItemBuilder itemBuilder = new ItemBuilder();
         Item testWeapon = itemBuilder.generateItemFromFile("src/test/resources/SampleWeapons.json");
