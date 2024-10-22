@@ -19,21 +19,21 @@ public class TestItemBuilder {
     @Test
     public void testGenerateWeapon() throws IOException {
         ItemBuilder itemBuilder = new ItemBuilder();
-        Item testWeapon = itemBuilder.generateItemFromFile("src/test/resources/SampleWeapons.json");
+        Item testWeapon = itemBuilder.generateWeapon("src/test/resources/SampleWeapons.json");
         Assertions.assertTrue(List.of(WeaponsListStringArray.SAMPLE).contains(testWeapon.getName()));
     }
 
     @Test
     public void testGenerateArmor() throws IOException {
         ItemBuilder itemBuilder = new ItemBuilder();
-        Item testArmor = itemBuilder.generateItemFromFile("src/test/resources/SampleArmor.json");
+        Item testArmor = itemBuilder.generateArmor("src/test/resources/SampleArmor.json");
         Assertions.assertTrue(List.of(ArmorListStringArray.SAMPLE).contains(testArmor.getName()));
     }
 
     @Test
     public void testGenerateMagicItem() throws IOException {
         ItemBuilder itemBuilder = new ItemBuilder();
-        Item testMagicItem = itemBuilder.generateItemFromFile("src/test/resources/SampleMagicItem.json");
+        Item testMagicItem = itemBuilder.generateMagicItem("src/test/resources/SampleMagicItem.json");
         Assertions.assertNotNull(testMagicItem.getName());
     }
 

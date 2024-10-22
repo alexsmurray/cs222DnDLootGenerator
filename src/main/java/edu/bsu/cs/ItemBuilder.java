@@ -9,29 +9,17 @@ import java.util.Random;
 
 public class ItemBuilder {
 
-    protected Item generateItemFromFile(String filePath) throws IOException {
-
-        if(filePath.toLowerCase().contains("weapon")){
-            return generateWeapon(filePath);
-        } else if(filePath.toLowerCase().contains("armor")){
-            return generateArmor(filePath);
-        } else if(filePath.toLowerCase().contains("magicitem")){
-            return generateMagicItem(filePath);
-        }
-        else return generateAny();
-    }
-
-    private Item generateWeapon(String filePath) throws IOException {
+    protected Item generateWeapon(String filePath) throws IOException {
         JSONArray nameJsonArray =  JsonParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
         return new Item(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Weapon", "False");
     }
 
-    private Item generateArmor(String filePath) throws IOException {
+    protected Item generateArmor(String filePath) throws IOException {
         JSONArray nameJsonArray =  JsonParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
         return new Item(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Armor", "False");
     }
 
-    private Item generateMagicItem(String filePath) throws IOException {
+    protected Item generateMagicItem(String filePath) throws IOException {
         String fileContents = JsonFileReader.readFileToString(filePath);
         String[] pageLines = fileContents.split("\n");
         int pageIndex = new Random().nextInt(pageLines.length);
