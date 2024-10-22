@@ -6,7 +6,7 @@ Timothy Smith
 
 James Ramsey
 
-Alex Murray
+Alexander Murray
 
 Summary: This is a Dungeons and Dragons Loot Generation Program that allows users to type in how many items they would like to generate.
 The program then pulls items from the [5th edition API](https://api.open5e.com/)  and displays the information of the items generated to the user.
