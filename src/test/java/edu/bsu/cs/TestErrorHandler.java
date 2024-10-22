@@ -22,7 +22,7 @@ public class TestErrorHandler {
 
     @Test
     public void testVerifyFileHasContents() throws IOException {
-        String filePath = "src/test/resources/SampleMagicItemPage1.json";
+        String filePath = "src/test/resources/SampleMagicItem.json";
         Assertions.assertTrue(ErrorHandler.verifyFileHasContents(filePath));
     }
 

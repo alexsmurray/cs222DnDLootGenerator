@@ -24,7 +24,6 @@ public class OutputFormatter {
         return Attunement;
     }
 
-
     protected static String formatItemForList(Item item) {
         String formattedLine = "";
         formattedLine += String.format("%s    ",capitalize(item, "Name"));

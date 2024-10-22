@@ -46,7 +46,7 @@ public class TestJsonParser {
     }
 
     private InputStream getJsonFile(){
-        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("SampleMagicItemPage1.json");
+        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("SampleMagicItem.json");
         assert inputStream != null;
         return inputStream;
     }

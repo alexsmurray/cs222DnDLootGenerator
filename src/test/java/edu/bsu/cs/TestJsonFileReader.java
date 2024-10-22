@@ -11,7 +11,7 @@ public class TestJsonFileReader {
     @Test
     public void testSampleFileRead() throws IOException {
         StringWriter stringWriter = new StringWriter();
-        FileInputStream testFileInputStream = new FileInputStream("src/test/resources/SampleMagicItemPage1.json");
+        FileInputStream testFileInputStream = new FileInputStream("src/test/resources/SampleMagicItem.json");
         InputStreamReader inputStreamReader = new InputStreamReader(testFileInputStream, StandardCharsets.UTF_8);
         inputStreamReader.transferTo(stringWriter);
         String result = stringWriter.toString().substring(0, 95);
