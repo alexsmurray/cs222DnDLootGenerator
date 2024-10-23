@@ -7,6 +7,8 @@ import java.net.URISyntaxException;
 
 public class JsonFileMaker {
 
+    JsonParser nextPageParser = new JsonParser();
+
     protected static void updateAPIFiles() throws IOException, URISyntaxException {
         JsonFileMaker jsonFileMaker = new JsonFileMaker();
         boolean updated = false;
@@ -27,14 +29,14 @@ public class JsonFileMaker {
         InputStream inputStream = APIConnection.fetchConnectionPath(version + "/" + categoryName + "/?format=json&page=" + pageNum).getInputStream();
         String inputStreamString = JsonToString.readJsonAsString(inputStream);
 
-        String nextPage = JsonParser.parseNext(inputStreamString);
+        String nextPage = nextPageParser.parseNext(inputStreamString);
         StringBuilder itemsString = new StringBuilder();
         while (!nextPage.equals("[null]")) {
             itemsString.append(inputStreamString).append("\n");
             pageNum ++;
             inputStream = APIConnection.fetchConnectionPath("v1/magicitems/?format=json&page="+pageNum).getInputStream();
             inputStreamString = JsonToString.readJsonAsString(inputStream);
-            nextPage = JsonParser.parseNext(inputStreamString);
+            nextPage = nextPageParser.parseNext(inputStreamString);
         }
         itemsString.append(inputStreamString);
         itemsApi.write(itemsString.toString());

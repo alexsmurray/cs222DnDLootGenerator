@@ -9,6 +9,8 @@ import java.util.Random;
 
 public class ItemBuilder {
 
+    JsonParser attributeParser = new JsonParser();
+
     protected List<Item> generateAmountOfItems() throws IOException {
         List<Item> itemsList = new ArrayList<>();
         for (int i = 0; i < Configuration.getNumItemsRequested(); i++) {
@@ -27,12 +29,12 @@ public class ItemBuilder {
     }
 
     protected Item generateWeapon(String filePath) throws IOException {
-        JSONArray nameJsonArray =  JsonParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
+        JSONArray nameJsonArray =  attributeParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
         return new Item(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Weapon", "False");
     }
 
     protected Item generateArmor(String filePath) throws IOException {
-        JSONArray nameJsonArray =  JsonParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
+        JSONArray nameJsonArray =  attributeParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
         return new Item(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Armor", "False");
     }
 
@@ -41,10 +43,10 @@ public class ItemBuilder {
         String[] pageLines = fileContents.split("\n");
         int pageIndex = new Random().nextInt(pageLines.length);
 
-        JSONArray nameJsonArray =  JsonParser.parseMagicItemName(fileContents, pageIndex);
-        JSONArray rarityJsonArray =  JsonParser.parseMagicItemRarity(fileContents, pageIndex);
-        JSONArray typeJsonArray =  JsonParser.parseMagicItemType(fileContents, pageIndex);
-        JSONArray attunementJsonArray =  JsonParser.parseMagicItemAttunement(fileContents, pageIndex);
+        JSONArray nameJsonArray =  attributeParser.parseMagicItemName(fileContents, pageIndex);
+        JSONArray rarityJsonArray =  attributeParser.parseMagicItemRarity(fileContents, pageIndex);
+        JSONArray typeJsonArray =  attributeParser.parseMagicItemType(fileContents, pageIndex);
+        JSONArray attunementJsonArray =  attributeParser.parseMagicItemAttunement(fileContents, pageIndex);
 
         int selectedIndex = selectRandomItemIndex(nameJsonArray);
 
