@@ -34,6 +34,18 @@ public class TestJsonParser {
     }
 
     @Test
+    public void testGetTypeFromSampleJson() throws IOException {
+        InputStream testInputStream = getJsonFile();
+        JSONArray sampleJsonArray = JsonParser.parseMagicItemType(JsonToString.readJsonAsString(testInputStream), 0);
+        String[] expected = {"Scroll","Wondrous Item","Wondrous item","Armor (medium or heavy)","Armor"};
+        String[] result = new String[5];
+        for (int i = 0; i < 5; i++) {
+            result[i] = sampleJsonArray.get(i).toString();
+        }
+        Assertions.assertArrayEquals(expected,result);
+    }
+
+    @Test
     public void testGetAttunementFromSampleJson() throws IOException {
         InputStream testInputStream = getJsonFile();
         JSONArray sampleJsonArray = JsonParser.parseMagicItemAttunement(JsonToString.readJsonAsString(testInputStream), 0);

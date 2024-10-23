@@ -9,6 +9,23 @@ import java.util.Random;
 
 public class ItemBuilder {
 
+    protected List<Item> generateAmountOfItems() throws IOException {
+        List<Item> itemsList = new ArrayList<>();
+        for (int i = 0; i < Configuration.getNumItemsRequested(); i++) {
+            itemsList.add(generateAny());
+        }
+        return itemsList;
+    }
+
+    private Item generateAny() throws IOException {
+        return switch (new Random().nextInt(3)) {
+            case 0 -> generateWeapon("src/main/resources/weapons.txt");
+            case 1 -> generateArmor("src/main/resources/armor.txt");
+            case 2 -> generateMagicItem("src/main/resources/magicitems.txt");
+            default -> throw new IllegalStateException("Unexpected value: " + 3);
+        };
+    }
+
     protected Item generateWeapon(String filePath) throws IOException {
         JSONArray nameJsonArray =  JsonParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
         return new Item(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Weapon", "False");
@@ -38,25 +55,8 @@ public class ItemBuilder {
                 OutputFormatter.formatAttunement(attunementJsonArray.get(selectedIndex).toString()));
     }
 
-    private Item generateAny() throws IOException {
-        return switch (new Random().nextInt(3)) {
-            case 0 -> generateWeapon("src/main/resources/weapons.txt");
-            case 1 -> generateArmor("src/main/resources/armor.txt");
-            case 2 -> generateMagicItem("src/main/resources/magicitems.txt");
-            default -> throw new IllegalStateException("Unexpected value: " + 3);
-        };
-    }
-
     protected static int selectRandomItemIndex(JSONArray array){
         return new Random().nextInt(array.size());
-    }
-
-    protected List<Item> generateAmountOfItems() throws IOException {
-        List<Item> itemsList = new ArrayList<>();
-        for (int i = 0; i < Configuration.getNumItemsRequested(); i++) {
-            itemsList.add(generateAny());
-        }
-        return itemsList;
     }
 
 }//

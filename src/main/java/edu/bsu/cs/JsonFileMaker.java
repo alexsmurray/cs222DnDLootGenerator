@@ -7,6 +7,17 @@ import java.net.URISyntaxException;
 
 public class JsonFileMaker {
 
+    protected static void updateAPIFiles() throws IOException, URISyntaxException {
+        JsonFileMaker jsonFileMaker = new JsonFileMaker();
+        boolean updated = false;
+        while (!updated) {
+            jsonFileMaker.writeItemsJsonToFile("magicitems");
+            jsonFileMaker.writeItemsJsonToFile("armor");
+            jsonFileMaker.writeItemsJsonToFile("weapons");
+            updated = true;
+        }
+    }
+
     protected void writeItemsJsonToFile(String categoryName) throws  IOException, URISyntaxException {
         String version = "v2";
         if (categoryName.equals("magicitems")) {version = "v1";}
@@ -28,17 +39,6 @@ public class JsonFileMaker {
         itemsString.append(inputStreamString);
         itemsApi.write(itemsString.toString());
         itemsApi.close();
-    }
-
-    protected static void updateAPIFiles() throws IOException, URISyntaxException {
-        JsonFileMaker jsonFileMaker = new JsonFileMaker();
-        boolean updated = false;
-        while (!updated) {
-            jsonFileMaker.writeItemsJsonToFile("magicitems");
-            jsonFileMaker.writeItemsJsonToFile("armor");
-            jsonFileMaker.writeItemsJsonToFile("weapons");
-            updated = true;
-        }
     }
 
 }
