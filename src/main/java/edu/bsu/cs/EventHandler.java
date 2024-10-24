@@ -71,6 +71,9 @@ public class EventHandler {
             @Override
             protected Void call() throws IOException, URISyntaxException {
                 disableInput();
+                if(ErrorHandler.verifyNetworkConnection().equals("Network Error")){
+                    throw new IOException();
+                }
                 JsonFileMaker.updateAPIFiles();
                 return null;
             }
