@@ -31,8 +31,14 @@ public class JsonParser {
         return (JSONArray) jsonArray.get(pageIndex);
     }
 
+    public JSONArray parseMagicItemDescription(String stringifiedJson, int pageIndex) {
+        JSONArray jsonArray = jsonArrayBuilder.buildJsonArrayOfMagicItemPages(stringifiedJson, "desc");
+        return (JSONArray) jsonArray.get(pageIndex);
+    }
+
     protected String parseNext(String stringifiedJson) {
         return JsonPath.read(stringifiedJson, "$..next").toString();
     }
+
 
 }

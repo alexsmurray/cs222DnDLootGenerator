@@ -47,6 +47,7 @@ public class ItemBuilder {
         JSONArray rarityJsonArray =  attributeParser.parseMagicItemRarity(fileContents, pageIndex);
         JSONArray typeJsonArray =  attributeParser.parseMagicItemType(fileContents, pageIndex);
         JSONArray attunementJsonArray =  attributeParser.parseMagicItemAttunement(fileContents, pageIndex);
+        JSONArray descriptionJsonArray = attributeParser.parseMagicItemDescription(fileContents,pageIndex);
 
         int selectedIndex = selectRandomItemIndex(nameJsonArray);
 
@@ -55,7 +56,7 @@ public class ItemBuilder {
                 OutputFormatter.formatRarity(rarityJsonArray.get(selectedIndex).toString()),
                 typeJsonArray.get(selectedIndex).toString(),
                 OutputFormatter.formatAttunement(attunementJsonArray.get(selectedIndex).toString()),
-                "Description",
+                descriptionJsonArray.get(selectedIndex).toString(),
                 "Stats");
     }
 
@@ -63,4 +64,4 @@ public class ItemBuilder {
         return new Random().nextInt(array.size());
     }
 
-}//
+}
