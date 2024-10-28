@@ -30,12 +30,16 @@ public class ItemBuilder {
 
     protected Item generateWeapon(String filePath) throws IOException {
         JSONArray nameJsonArray =  attributeParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
-        return new Item(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Weapon", "False", "Desc", "Stats");
+        JSONArray statsJsonArray = attributeParser.parseStandardItemResults(JsonFileReader.readFileToString(filePath));
+        int randomIndex = selectRandomItemIndex(nameJsonArray);
+        return new Item(nameJsonArray.get(randomIndex).toString(), "Standard", "Weapon", "False", "Desc", statsJsonArray.get(randomIndex).toString());
     }
 
     protected Item generateArmor(String filePath) throws IOException {
         JSONArray nameJsonArray =  attributeParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
-        return new Item(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Armor", "False", "Desc", "Stats");
+        JSONArray statsJsonArray = attributeParser.parseStandardItemResults(JsonFileReader.readFileToString(filePath));
+        int randomIndex = selectRandomItemIndex(nameJsonArray);
+        return new Item(nameJsonArray.get(randomIndex).toString(), "Standard", "Armor", "False", "Desc", statsJsonArray.get(randomIndex).toString());
     }
 
     protected Item generateMagicItem(String filePath) throws IOException {

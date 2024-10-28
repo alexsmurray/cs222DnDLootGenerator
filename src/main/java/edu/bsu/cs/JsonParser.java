@@ -11,6 +11,10 @@ public class JsonParser {
         return JsonPath.read(stringifiedJson, "$..name");
     }
 
+    protected JSONArray parseStandardItemResults(String stringifiedJson) {
+        return JsonPath.read(stringifiedJson, "$.results");
+    }
+
     protected JSONArray parseMagicItemName(String stringifiedJson, int pageIndex) {
         JSONArray jsonArray = jsonArrayBuilder.buildJsonArrayOfMagicItemPages(stringifiedJson, "name");
         return (JSONArray) jsonArray.get(pageIndex);
@@ -31,7 +35,7 @@ public class JsonParser {
         return (JSONArray) jsonArray.get(pageIndex);
     }
 
-    public JSONArray parseMagicItemDescription(String stringifiedJson, int pageIndex) {
+    protected JSONArray parseMagicItemDescription(String stringifiedJson, int pageIndex) {
         JSONArray jsonArray = jsonArrayBuilder.buildJsonArrayOfMagicItemPages(stringifiedJson, "desc");
         return (JSONArray) jsonArray.get(pageIndex);
     }
