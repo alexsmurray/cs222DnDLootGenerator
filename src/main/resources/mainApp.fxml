@@ -39,12 +39,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #adadad; -fx-border-color: red;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.EventHandler">
     <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true">
-        <Image url="@backgroundImage.jpg"/>
+        <Image url="@backgroundImage.jpg" />
     </ImageView>
     <ImageView fitHeight="72.0" fitWidth="229.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true">
-        <Image url="@wordLogo.png"/>
+        <Image url="@wordLogo.png" />
     </ImageView>
-   <Button fx:id="refreshItemDataButton" layoutX="799.0" layoutY="41.0" mnemonicParsing="false" onAction="#refreshItemData" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Refresh Item Data" />
+   <Button fx:id="refreshItemDataButton" layoutX="798.0" layoutY="105.0" mnemonicParsing="false" onAction="#refreshItemData" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Refresh Item Data" />
       <Button fx:id="generateButton" layoutX="434.0" layoutY="40.0" mnemonicParsing="false" onAction="#generateItems" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Generate" />
       <TextField fx:id="userInputField" layoutX="259.0" layoutY="40.0" onKeyPressed="#executeGenerateItemsOnEnter" promptText="# of items to generate" style="-fx-border-color: #000000;" />
    <TableView fx:id="itemTableView" layoutX="14.0" layoutY="98.0" onMouseClicked="#displayItemDetailsOnDoubleClick" prefHeight="414.0" prefWidth="701.0" style="-fx-border-color: #000000;">
@@ -64,4 +64,11 @@
       </padding></Label>
    <Label layoutX="841.0" layoutY="81.0" />
    <Label fx:id="RefreshDate" alignment="CENTER" contentDisplay="RIGHT" layoutX="749.0" layoutY="80.0" prefHeight="18.0" prefWidth="210.0" text="No Recent Refresh" textFill="WHITE" wrapText="true" />
+   <MenuButton layoutX="798.0" layoutY="40.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" text="MenuButton">
+     <items>
+       <MenuItem mnemonicParsing="false" text="Action 1" />
+       <MenuItem mnemonicParsing="false" text="Action 2" />
+         <MenuItem mnemonicParsing="false" text="Action 1" />
+     </items>
+   </MenuButton>
 </AnchorPane>

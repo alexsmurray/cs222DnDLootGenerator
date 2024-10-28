@@ -30,12 +30,12 @@ public class ItemBuilder {
 
     protected Item generateWeapon(String filePath) throws IOException {
         JSONArray nameJsonArray =  attributeParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
-        return new Item(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Weapon", "False");
+        return new Item(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Weapon", "False", "Desc", "Stats");
     }
 
     protected Item generateArmor(String filePath) throws IOException {
         JSONArray nameJsonArray =  attributeParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
-        return new Item(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Armor", "False");
+        return new Item(nameJsonArray.get(selectRandomItemIndex(nameJsonArray)).toString(), "Standard", "Armor", "False", "Desc", "Stats");
     }
 
     protected Item generateMagicItem(String filePath) throws IOException {
@@ -54,7 +54,9 @@ public class ItemBuilder {
                 nameJsonArray.get(selectedIndex).toString(),
                 OutputFormatter.formatRarity(rarityJsonArray.get(selectedIndex).toString()),
                 typeJsonArray.get(selectedIndex).toString(),
-                OutputFormatter.formatAttunement(attunementJsonArray.get(selectedIndex).toString()));
+                OutputFormatter.formatAttunement(attunementJsonArray.get(selectedIndex).toString()),
+                "Description",
+                "Stats");
     }
 
     protected static int selectRandomItemIndex(JSONArray array){

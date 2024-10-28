@@ -36,7 +36,7 @@ public class TestOutputFormatter {
     @Test
     public void testFormatItemForList(){
         String expectedString = "Name        Rarity        Type    *";
-        String result = OutputFormatter.formatItemForList(new Item("Name", "Rarity", "Type", "True"));
+        String result = OutputFormatter.formatItemForList(new Item("Name", "Rarity", "Type", "True", "Desc", "Stats"));
         Assertions.assertEquals(expectedString, result);
     }
 
