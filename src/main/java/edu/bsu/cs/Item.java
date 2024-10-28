@@ -2,12 +2,12 @@ package edu.bsu.cs;
 
 public class Item {
 
-    private final String name;
-    private final String rarity;
-    private final String type;
-    private final String attunement;
-    private final String description;
-    private final String stats;
+    private String name = "Item";
+    private String rarity = "None";
+    private String type = "Standard Item";
+    private String attunement = "None";
+    private String description = "No Description";
+    private String stats = "No Stats";
 
 
     public Item(String name, String rarity, String type, String attunement, String description, String stats){
@@ -18,6 +18,21 @@ public class Item {
         this.description = description;
         this.stats = stats;
     }
+
+    public Item(String name, String stats){
+
+        this.name = name;
+        this.stats = stats;
+    }
+
+    public Item(String name, String rarity, String type, String attunement, String description) {
+        this.name = name;
+        this.rarity = rarity;
+        this.type = type;
+        this.attunement = attunement;
+        this.description = description;
+    }
+
     public String getName() {
         return name;
     }
