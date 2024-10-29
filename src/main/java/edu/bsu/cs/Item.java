@@ -2,35 +2,25 @@ package edu.bsu.cs;
 
 public class Item {
 
-    private String name = "Item";
+    private final String name;
     private String rarity = "None";
     private String type = "Standard Item";
     private String attunement = "None";
-    private String description = "No Description";
-    private String stats = "No Stats";
+    private final String details;
 
 
-    public Item(String name, String rarity, String type, String attunement, String description, String stats){
+    public Item(String name, String rarity, String type, String attunement, String details) {
         this.name = name;
         this.rarity = rarity;
         this.type = type;
         this.attunement = attunement;
-        this.description = description;
-        this.stats = stats;
+        this.details = details;
     }
 
-    public Item(String name, String stats){
+    public Item(String name, String details) {
 
         this.name = name;
-        this.stats = stats;
-    }
-
-    public Item(String name, String rarity, String type, String attunement, String description) {
-        this.name = name;
-        this.rarity = rarity;
-        this.type = type;
-        this.attunement = attunement;
-        this.description = description;
+        this.details = details;
     }
 
     public String getName() {
@@ -49,7 +39,8 @@ public class Item {
         return attunement;
     }
 
-    public String getDescriptions() { return description; }
+    public String getDetails() {
+        return details;
+    }
 
-    public String getStats() { return stats; }
 }
