@@ -3,7 +3,7 @@ package edu.bsu.cs;
 public class Item {
 
     private final String name;
-    private String rarity = "None";
+    private String rarity = "Mundane";
     private String type = "Standard Item";
     private String attunement = "None";
     private final String details;
@@ -43,4 +43,7 @@ public class Item {
         return details;
     }
 
+    protected void setType(String newType){
+        this.type = newType;
+    }
 }
