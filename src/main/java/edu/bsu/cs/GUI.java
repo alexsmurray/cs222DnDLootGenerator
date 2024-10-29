@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 public class GUI extends Application implements Initializable{
 
     protected static Stage stage;
-    protected static WebView webView = new WebView();
+
 
     public static ObservableList<Item> itemsForList = FXCollections.observableArrayList();
     EventHandler eventHandler = new EventHandler();
@@ -101,14 +101,14 @@ public class GUI extends Application implements Initializable{
         alert.show();
     }
 
-    public void showWebView() {
+    public static void showWebView(WebView webView) {
         webView.getEngine().load("https://www.youtube.com/embed/s8MDNFaGfT4?autoplay=1");
-        Scene scene = new Scene(webView,960,600);
+        Scene scene = new Scene(webView, 960, 600);
         stage.setScene(scene);
         stage.show();
     }
 
-    public static void showMainStage() throws IOException {
+    public static void showMainStage(WebView webView) throws IOException {
         webView.getEngine().load(null);
         Parent root = FXMLLoader.load(Objects.requireNonNull(GUI.class.getClassLoader().getResource("mainApp.fxml")));
         stage.setTitle("D&D Loot Generator");

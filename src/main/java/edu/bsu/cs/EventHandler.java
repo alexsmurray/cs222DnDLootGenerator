@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.web.WebView;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -27,6 +28,7 @@ public class EventHandler {
     public Label RefreshDate;
     public Button homebrewButton;
 
+    public WebView webView = new WebView();
 
     public void initialize()  {
         setTableViewToDefault();
@@ -67,7 +69,7 @@ public class EventHandler {
     protected void refreshItemData()  {
         GUI.displayRefreshStarting();
         setTableViewToLoading();
-        setToWebView();
+        GUI.showWebView(webView);
         new Thread(attemptToRefreshItemFiles()).start();
     }
 
@@ -92,7 +94,7 @@ public class EventHandler {
                 setTableViewToDefault();
                 enableInput();
                 try {
-                    GUI.showMainStage();
+                    GUI.showMainStage(webView);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -117,10 +119,6 @@ public class EventHandler {
 
     private void setTableViewToDefault() {
         itemTableView.setPlaceholder(new Label("Enter above how many items you would like to generate and then press the generate button! :)"));
-    }
-
-    private void setToWebView() {
-        new GUI().showWebView();
     }
 
     private void disableInput() {
