@@ -8,6 +8,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
+import javafx.scene.web.WebView;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -27,7 +29,7 @@ public class EventHandler {
     public Label RefreshDate;
     public Button homebrewButton;
 
-
+    public WebView webView = new WebView();
     public void initialize()  {
         setTableViewToDefault();
         nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -67,8 +69,11 @@ public class EventHandler {
     protected void refreshItemData()  {
         GUI.displayRefreshStarting();
         setTableViewToLoading();
+        GUI.showWebView(webView);
         new Thread(attemptToRefreshItemFiles()).start();
     }
+
+
 
     private Task<Void> attemptToRefreshItemFiles(){
         return new Task<>() {
@@ -88,6 +93,11 @@ public class EventHandler {
                 updateRefreshDate();
                 setTableViewToDefault();
                 enableInput();
+                try {
+                    GUI.showMainStage(webView);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
             @Override
             protected void failed(){
@@ -148,6 +158,8 @@ public class EventHandler {
             alert.setHeaderText("You clicked on " + itemTableView.getSelectionModel().getSelectedItem().getName());
             alert.setContentText(itemTableView.getSelectionModel().getSelectedItem().getDetails());
             itemTableView.getSelectionModel().select(null);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.getDialogPane().setMinWidth(800);
             alert.show();
         }
     }
