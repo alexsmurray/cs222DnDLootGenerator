@@ -67,8 +67,11 @@ public class EventHandler {
     protected void refreshItemData()  {
         GUI.displayRefreshStarting();
         setTableViewToLoading();
+        setToWebView();
         new Thread(attemptToRefreshItemFiles()).start();
     }
+
+
 
     private Task<Void> attemptToRefreshItemFiles(){
         return new Task<>() {
@@ -88,6 +91,11 @@ public class EventHandler {
                 updateRefreshDate();
                 setTableViewToDefault();
                 enableInput();
+                try {
+                    GUI.showMainStage();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
             @Override
             protected void failed(){
@@ -109,6 +117,10 @@ public class EventHandler {
 
     private void setTableViewToDefault() {
         itemTableView.setPlaceholder(new Label("Enter above how many items you would like to generate and then press the generate button! :)"));
+    }
+
+    private void setToWebView() {
+        new GUI().showWebView();
     }
 
     private void disableInput() {

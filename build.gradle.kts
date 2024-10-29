@@ -30,7 +30,7 @@ tasks.test {
 
 javafx {
     version = "22-ea+16"
-    modules("javafx.controls", "javafx.fxml")
+    modules("javafx.controls", "javafx.fxml", "javafx.web")
 }
 
 application {

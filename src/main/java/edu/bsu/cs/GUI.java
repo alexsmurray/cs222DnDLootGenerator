@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,6 +21,7 @@ import java.util.ResourceBundle;
 public class GUI extends Application implements Initializable{
 
     protected static Stage stage;
+    protected static WebView webView = new WebView();
 
     public static ObservableList<Item> itemsForList = FXCollections.observableArrayList();
     EventHandler eventHandler = new EventHandler();
@@ -97,6 +99,23 @@ public class GUI extends Application implements Initializable{
         alert.setHeaderText("You are missing necessary data files.\nThis will be the case the first time the program runs.");
         alert.setContentText("Missing data files will be built now.\nThis may take a minute.");
         alert.show();
+    }
+
+    public void showWebView() {
+        webView.getEngine().load("https://www.youtube.com/embed/s8MDNFaGfT4?autoplay=1");
+        Scene scene = new Scene(webView,960,600);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void showMainStage() throws IOException {
+        webView.getEngine().load(null);
+        Parent root = FXMLLoader.load(Objects.requireNonNull(GUI.class.getClassLoader().getResource("mainApp.fxml")));
+        stage.setTitle("D&D Loot Generator");
+        stage.getIcons().add(new Image(("/toolbar_icon.png")));
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.show();
     }
 
 }
