@@ -60,7 +60,7 @@ public class ItemBuilder {
                 OutputFormatter.formatRarity(rarityJsonArray.get(selectedIndex).toString()),
                 typeJsonArray.get(selectedIndex).toString(),
                 OutputFormatter.formatAttunement(attunementJsonArray.get(selectedIndex).toString()),
-                OutputFormatter.formatMagicItemDetails(descriptionJsonArray.get(selectedIndex).toString())
+                descriptionJsonArray.get(selectedIndex).toString()
                 );
     }
 

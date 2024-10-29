@@ -54,26 +54,4 @@ public class OutputFormatter {
 
     }
 
-    protected static String formatMagicItemDetails(String details) {
-        StringBuilder detailsStringBuilder = new StringBuilder();
-        int lineIncrement = 100;
-        int lineWidth = 100;
-        int lineStart = 0;
-
-        for (int i = 0; i < details.length(); i++) {
-            if (i == lineWidth) {
-                while (details.charAt(i) != ' ') {
-                    i--;
-                }
-                detailsStringBuilder.append(details, lineStart, i);
-                detailsStringBuilder.append("\n");
-                lineStart = i;
-                lineWidth += lineIncrement;
-            }
-        }
-        detailsStringBuilder.append(details, lineStart, details.length());
-        return detailsStringBuilder.toString();
-    }
-
-
 }
