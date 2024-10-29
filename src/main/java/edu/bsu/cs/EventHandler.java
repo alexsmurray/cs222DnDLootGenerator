@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.web.WebView;
 
 import java.io.IOException;
@@ -29,7 +30,6 @@ public class EventHandler {
     public Button homebrewButton;
 
     public WebView webView = new WebView();
-
     public void initialize()  {
         setTableViewToDefault();
         nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -158,6 +158,8 @@ public class EventHandler {
             alert.setHeaderText("You clicked on " + itemTableView.getSelectionModel().getSelectedItem().getName());
             alert.setContentText(itemTableView.getSelectionModel().getSelectedItem().getDetails());
             itemTableView.getSelectionModel().select(null);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.getDialogPane().setMinWidth(800);
             alert.show();
         }
     }
