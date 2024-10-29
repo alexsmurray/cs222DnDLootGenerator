@@ -2,6 +2,8 @@ package edu.bsu.cs;
 
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
@@ -9,6 +11,7 @@ import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Objects;
 
 public class EventHandler {
 
@@ -22,6 +25,7 @@ public class EventHandler {
     public Button generateButton;
     public Button refreshItemDataButton;
     public Label RefreshDate;
+    public Button homebrewButton;
 
 
     public void initialize()  {
@@ -150,5 +154,10 @@ public class EventHandler {
     protected void displayLastRefreshDate(String filePath) throws IOException {
         String output = OutputFormatter.formatDateTime(RefreshTracker.readTimeFile(filePath));
         RefreshDate.setText("Last Refresh was " + output);
+    }
+
+    public void switchToHomeBrew() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/homebrew.fxml")));
+        GUI.stage.getScene().setRoot(root);
     }
 }

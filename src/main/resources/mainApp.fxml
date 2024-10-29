@@ -71,4 +71,5 @@
          <MenuItem mnemonicParsing="false" text="Action 1" />
      </items>
    </MenuButton>
+   <Button fx:id="homebrewButton" layoutX="746.0" layoutY="245.0" mnemonicParsing="false" onAction="#switchToHomeBrew" text="Button" />
 </AnchorPane>

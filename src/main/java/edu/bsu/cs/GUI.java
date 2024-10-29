@@ -19,6 +19,8 @@ import java.util.ResourceBundle;
 
 public class GUI extends Application implements Initializable{
 
+    protected static Stage stage;
+
     public static ObservableList<Item> itemsForList = FXCollections.observableArrayList();
     EventHandler eventHandler = new EventHandler();
 
@@ -28,6 +30,7 @@ public class GUI extends Application implements Initializable{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        stage = primaryStage;
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("mainApp.fxml")));
         primaryStage.setTitle("D&D Loot Generator");
         primaryStage.getIcons().add(new Image(("/toolbar_icon.png")));
