@@ -146,6 +146,7 @@ public class EventHandler {
         if (itemTableView.getSelectionModel().getSelectedItem() != null) {
             alert.setTitle("Item Details");
             alert.setHeaderText("You clicked on " + itemTableView.getSelectionModel().getSelectedItem().getName());
+            alert.setContentText(itemTableView.getSelectionModel().getSelectedItem().getDetails());
             itemTableView.getSelectionModel().select(null);
             alert.show();
         }
