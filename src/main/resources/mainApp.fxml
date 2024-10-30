@@ -64,11 +64,10 @@
       </padding></Label>
    <Label layoutX="841.0" layoutY="81.0" />
    <Label fx:id="RefreshDate" alignment="CENTER" contentDisplay="RIGHT" layoutX="749.0" layoutY="80.0" prefHeight="18.0" prefWidth="210.0" text="No Recent Refresh" textFill="WHITE" wrapText="true" />
-   <MenuButton layoutX="798.0" layoutY="40.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" text="MenuButton" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;">
+   <MenuButton layoutX="798.0" layoutY="40.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="MenuButton">
      <items>
-       <MenuItem mnemonicParsing="false" text="Homebrew" onAction="#switchToHomeBrew"/>
-       <MenuItem mnemonicParsing="false" text="Action 2" />
-         <MenuItem mnemonicParsing="false" text="Action 3" />
+       <MenuItem mnemonicParsing="false" onAction="#switchToHomeBrew" text="Homebrew" />
+       <MenuItem mnemonicParsing="false" text="Filtering Options" />
      </items>
    </MenuButton>
 </AnchorPane>
