@@ -101,7 +101,6 @@ public class GUI extends Application implements Initializable{
         alert.show();
         showWebView(new EventHandler().webView);
     }
-
     public static void showWebView(WebView webView) {
         webView.getEngine().load("https://www.youtube.com/embed/s8MDNFaGfT4?autoplay=1");
         Scene scene = new Scene(webView);
