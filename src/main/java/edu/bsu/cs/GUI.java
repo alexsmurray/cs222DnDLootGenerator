@@ -99,11 +99,12 @@ public class GUI extends Application implements Initializable{
         alert.setHeaderText("You are missing necessary data files.\nThis will be the case the first time the program runs.");
         alert.setContentText("Missing data files will be built now.\nThis may take a minute.");
         alert.show();
+        showWebView(new EventHandler().webView);
     }
 
     public static void showWebView(WebView webView) {
         webView.getEngine().load("https://www.youtube.com/embed/s8MDNFaGfT4?autoplay=1");
-        Scene scene = new Scene(webView, 960, 600);
+        Scene scene = new Scene(webView);
         stage.setScene(scene);
         stage.show();
     }
