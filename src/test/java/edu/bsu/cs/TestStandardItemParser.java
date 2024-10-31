@@ -81,6 +81,34 @@ public class TestStandardItemParser {
         Assertions.assertArrayEquals(expected, result);
     }
 
+    @Test
+    public void testParseWeaponProperties() throws IOException {
+        InputStream testInputStream = getWeaponItemJsonFile();
+        JSONArray sampleJsonArray = testStandardParser.parseWeaponProperties(JsonToString.readJsonAsString(testInputStream));
+        String[] expected = {"[\"versatile (1d10)\"]","[\"ammuntion (range 25.0\\/100.0)\",\"loading\"]","[\"light\"]"};
+        String[] result = new String[3];
+        for (int i = 0; i < 3; i++) {
+            if (sampleJsonArray.get(i)!=null){
+                result[i] = sampleJsonArray.get(i).toString();
+            }
+        }
+        Assertions.assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void testParseDamageDice() throws IOException {
+        InputStream testInputStream = getWeaponItemJsonFile();
+        JSONArray sampleJsonArray = testStandardParser.parseDamageDice(JsonToString.readJsonAsString(testInputStream));
+        String[] expected = {"1d8","1","1d4","1d6","1d10"};
+        String[] result = new String[5];
+        for (int i = 0; i < 5; i++) {
+            if (sampleJsonArray.get(i)!=null){
+                result[i] = sampleJsonArray.get(i).toString();
+            }
+        }
+        Assertions.assertArrayEquals(expected, result);
+    }
+
     private InputStream getWeaponItemJsonFile() {
         InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("SampleWeapons.json");
         assert inputStream != null;

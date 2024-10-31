@@ -29,4 +29,16 @@ public class StandardItemsParser {
     protected JSONArray parseStrengthScoreRequirement(String stringifiedJson){
         return JsonPath.read(stringifiedJson, "$..strength_score_required");
     }
+
+    protected JSONArray parseWeaponProperties(String stringifiedJson){
+        return JsonPath.read(stringifiedJson, "$..properties");
+
+    }
+
+    protected JSONArray parseDamageDice(String stringifiedJson){
+        return JsonPath.read(stringifiedJson, "$..damage_dice");
+
+    }
+
+
 }
