@@ -35,7 +35,7 @@ public class GUI extends Application implements Initializable{
         stage = primaryStage;
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("mainApp.fxml")));
         primaryStage.setTitle("D&D Loot Generator");
-        primaryStage.getIcons().add(new Image(("/toolbar_icon.png")));
+        primaryStage.getIcons().add(new Image(("/toolbarIcon.png")));
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.show();
@@ -112,7 +112,7 @@ public class GUI extends Application implements Initializable{
         webView.getEngine().load(null);
         Parent root = FXMLLoader.load(Objects.requireNonNull(GUI.class.getClassLoader().getResource("mainApp.fxml")));
         stage.setTitle("D&D Loot Generator");
-        stage.getIcons().add(new Image(("/toolbar_icon.png")));
+        stage.getIcons().add(new Image(("/toolbarIcon.png")));
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         stage.show();
