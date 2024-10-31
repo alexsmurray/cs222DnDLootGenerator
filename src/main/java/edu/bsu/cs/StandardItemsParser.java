@@ -32,13 +32,14 @@ public class StandardItemsParser {
 
     protected JSONArray parseWeaponProperties(String stringifiedJson){
         return JsonPath.read(stringifiedJson, "$..properties");
-
     }
 
     protected JSONArray parseDamageDice(String stringifiedJson){
         return JsonPath.read(stringifiedJson, "$..damage_dice");
-
     }
 
+    protected JSONArray parseWeaponReach(String stringifiedJson){
+        return JsonPath.read(stringifiedJson, "$..reach");
+    }
 
 }
