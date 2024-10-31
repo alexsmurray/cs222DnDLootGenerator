@@ -8,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Region;
 import javafx.scene.web.WebView;
 
 import java.io.IOException;
@@ -27,16 +26,14 @@ public class EventHandler {
     public Button generateButton;
     public Button refreshItemDataButton;
     public Label RefreshDate;
-    public Button homebrewButton;
 
     public WebView webView = new WebView();
     public void initialize()  {
-        setTableViewToDefault();
+        new GUI().displayTableViewDefault(itemTableView);
         nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         rarityTableColumn.setCellValueFactory(new PropertyValueFactory<>("rarity"));
         typeTableColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         attunementTableColumn.setCellValueFactory(new PropertyValueFactory<>("attunement"));
-
         updateRefreshDate();
     }
 
@@ -45,7 +42,7 @@ public class EventHandler {
         if (ErrorHandler.verifyInputIsValid(userInputField.getText())) {
             if (!ErrorHandler.verifyItemDataFilesValid()) {
                 GUI.displayMissingFilesAlert();
-                setTableViewToLoading();
+                new GUI().displayTableViewLoading(itemTableView);
                 new Thread(attemptToRefreshItemFiles()).start();
                 return;
             }
@@ -68,8 +65,8 @@ public class EventHandler {
     @FXML
     protected void refreshItemData()  {
         GUI.displayRefreshStarting();
-        setTableViewToLoading();
-        GUI.showWebView(webView);
+        new GUI().displayTableViewLoading(itemTableView);
+        GUI.displayLoadingVideo(webView);
         new Thread(attemptToRefreshItemFiles()).start();
     }
 
@@ -91,10 +88,10 @@ public class EventHandler {
                 GUI.displayRefreshDone();
                 RefreshTracker.saveCurrentTime("src/main/resources/lastRefreshDate.txt");
                 updateRefreshDate();
-                setTableViewToDefault();
+                new GUI().displayTableViewDefault(itemTableView);
                 enableInput();
                 try {
-                    GUI.showMainStage(webView);
+                    GUI.displayMainScreen(webView);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -106,19 +103,10 @@ public class EventHandler {
                 } else {
                     GUI.displayRefreshErrorAlert();
                 }
-                setTableViewToDefault();
+                new GUI().displayTableViewDefault(itemTableView);
                 enableInput();
             }
         };
-    }
-
-    private void setTableViewToLoading() {
-        GUI.clearItems(itemTableView);
-        itemTableView.setPlaceholder(new Label("Downloading items from the internet.\nPlease wait until finished."));
-    }
-
-    private void setTableViewToDefault() {
-        itemTableView.setPlaceholder(new Label("Enter above how many items you would like to generate and then press the generate button! :)"));
     }
 
     private void disableInput() {
@@ -136,9 +124,9 @@ public class EventHandler {
     private void updateRefreshDate(){
         String filePath = "src/main/resources/lastRefreshDate.txt";
         try{
-            displayLastRefreshDate(filePath);
+            GUI.displayLastRefreshDate(RefreshDate, filePath);
         }catch (Exception IOException){
-            RefreshDate.setText("No Recent Refresh");
+            GUI.displayNoRecentRefresh(RefreshDate);
         }
     }
 
@@ -146,27 +134,9 @@ public class EventHandler {
     protected void displayItemDetailsOnDoubleClick() {
         itemTableView.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getClickCount() == 2) {
-                displayItemDetails();
+                GUI.displayItemDetails(itemTableView);
             }
         });
-    }
-
-    protected void displayItemDetails() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        if (itemTableView.getSelectionModel().getSelectedItem() != null) {
-            alert.setTitle("Item Details");
-            alert.setHeaderText("You clicked on " + itemTableView.getSelectionModel().getSelectedItem().getName());
-            alert.setContentText(itemTableView.getSelectionModel().getSelectedItem().getDetails());
-            itemTableView.getSelectionModel().select(null);
-            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-            alert.getDialogPane().setMinWidth(800);
-            alert.show();
-        }
-    }
-
-    protected void displayLastRefreshDate(String filePath) throws IOException {
-        String output = OutputFormatter.formatDateTime(RefreshTracker.readTimeFile(filePath));
-        RefreshDate.setText("Last Refresh was " + output);
     }
 
     public void switchToHomeBrew() throws IOException {

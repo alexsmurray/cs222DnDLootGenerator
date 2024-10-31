@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Region;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
@@ -21,10 +22,8 @@ import java.util.ResourceBundle;
 public class GUI extends Application implements Initializable{
 
     protected static Stage stage;
-
-
-    public static ObservableList<Item> itemsForList = FXCollections.observableArrayList();
-    EventHandler eventHandler = new EventHandler();
+    protected static ObservableList<Item> itemsForList = FXCollections.observableArrayList();
+    protected EventHandler eventHandler = new EventHandler();
 
     public static void main(String[] args) {
         launch(args);
@@ -56,6 +55,37 @@ public class GUI extends Application implements Initializable{
     protected static void clearItems(TableView<Item> itemTableView){
         itemsForList.removeAll();
         itemTableView.getItems().clear();
+    }
+
+    protected static void displayItemDetails(TableView<Item> itemTableView) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if (itemTableView.getSelectionModel().getSelectedItem() != null) {
+            alert.setTitle("Item Details");
+            alert.setHeaderText("You clicked on " + itemTableView.getSelectionModel().getSelectedItem().getName());
+            alert.setContentText(itemTableView.getSelectionModel().getSelectedItem().getDetails());
+            itemTableView.getSelectionModel().select(null);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.getDialogPane().setMinWidth(800);
+            alert.show();
+        }
+    }
+
+    protected void displayTableViewLoading(TableView<Item> itemTableView) {
+        GUI.clearItems(itemTableView);
+        itemTableView.setPlaceholder(new Label("Downloading items from the internet.\nPlease wait until finished."));
+    }
+
+    protected void displayTableViewDefault(TableView<Item> itemTableView) {
+        itemTableView.setPlaceholder(new Label("Enter above how many items you would like to generate and then press the generate button! :)"));
+    }
+
+    protected static void displayLastRefreshDate(Label RefreshDate, String filePath) throws IOException {
+        String output = OutputFormatter.formatDateTime(RefreshTracker.readTimeFile(filePath));
+        RefreshDate.setText("Last Refresh was " + output);
+    }
+
+    public static void displayNoRecentRefresh(Label RefreshDate) {
+        RefreshDate.setText("No Recent Refresh");
     }
 
     protected static void displayInputAlert() {
@@ -99,16 +129,17 @@ public class GUI extends Application implements Initializable{
         alert.setHeaderText("You are missing necessary data files.\nThis will be the case the first time the program runs.");
         alert.setContentText("Missing data files will be built now.\nThis may take a minute.");
         alert.show();
-        showWebView(new EventHandler().webView);
+        displayLoadingVideo(new EventHandler().webView);
     }
-    public static void showWebView(WebView webView) {
+
+    public static void displayLoadingVideo(WebView webView) {
         webView.getEngine().load("https://www.youtube.com/embed/s8MDNFaGfT4?autoplay=1");
         Scene scene = new Scene(webView);
         stage.setScene(scene);
         stage.show();
     }
 
-    public static void showMainStage(WebView webView) throws IOException {
+    public static void displayMainScreen(WebView webView) throws IOException {
         webView.getEngine().load(null);
         Parent root = FXMLLoader.load(Objects.requireNonNull(GUI.class.getClassLoader().getResource("mainApp.fxml")));
         stage.setTitle("D&D Loot Generator");
