@@ -80,6 +80,21 @@ public class ItemBuilder {
         return statDictionary;
     }
 
+    public Dictionary<Integer, String> getWeaponStats(String filePath, int randomIndex) {
+        Dictionary<Integer, String> statDictionary = new Hashtable<>();
+
+        statDictionary.put(1, standardItemParser.parseWeaponIsMartial(filePath).get(randomIndex).toString());
+        statDictionary.put(2, standardItemParser.parseWeaponProperties(filePath).get(randomIndex).toString());
+        statDictionary.put(3, standardItemParser.parseDamageDice(filePath).get(randomIndex).toString());
+        statDictionary.put(4, standardItemParser.parseWeaponReach(filePath).get(randomIndex).toString());
+        statDictionary.put(5, standardItemParser.parseWeaponRange(filePath).get(randomIndex).toString());
+        statDictionary.put(6, standardItemParser.parseWeaponLongRange(filePath).get(randomIndex).toString());
+        statDictionary.put(7, standardItemParser.parseWeaponIsLance(filePath).get(randomIndex).toString());
+        statDictionary.put(8, standardItemParser.parseWeaponIsNet(filePath).get(randomIndex).toString());
+        statDictionary.put(9, standardItemParser.parseWeaponIsSimple(filePath).get(randomIndex).toString());
+        return statDictionary;
+    }
+
     private Object checkForNullStat(Object parsedItem) {
         return Objects.requireNonNullElse(parsedItem, "None");
     }
