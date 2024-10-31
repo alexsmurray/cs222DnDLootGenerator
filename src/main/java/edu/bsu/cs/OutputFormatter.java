@@ -1,6 +1,5 @@
 package edu.bsu.cs;
 
-
 import java.util.Dictionary;
 
 public class OutputFormatter {
@@ -63,4 +62,18 @@ public class OutputFormatter {
                 "Strength Score Required:  " + statDictionary.get(4);
     }
 
+    public static String formatWeaponStats(Dictionary<Integer, String> statDictionary) {
+        StringBuilder weaponStats = new StringBuilder();
+        String[] statNames = {"Is Martial:  ", "Is Simple:  ", "Damage Dice:  ", "Reach:  ", "Range:  ", "Long Range:  ", "Damage Type:  ", "Properties:  ", "Is Lance:  ", "Is Net:  "};
+        for (int i = 0; i < statDictionary.size(); i++){
+            if (!statDictionary.get(i+1).equals("false")){
+                weaponStats.append(statNames[i]).append(statDictionary.get(i+1)).append("\n");
+            }
+        }
+        return weaponStats.toString();
+    }
+
+    public static Object formatWeaponDamageType(Object weapon){
+        return weapon.toString().substring(38, weapon.toString().length() - 13);
+    }
 }

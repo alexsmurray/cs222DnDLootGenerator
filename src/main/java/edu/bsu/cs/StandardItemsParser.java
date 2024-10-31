@@ -66,4 +66,8 @@ public class StandardItemsParser {
         return JsonPath.read(stringifiedJson, "$..is_simple");
     }
 
+    protected JSONArray parseWeaponDamageType(String stringifiedJson){
+        return JsonPath.read(stringifiedJson, "$..damage_type");
+    }
+
 }

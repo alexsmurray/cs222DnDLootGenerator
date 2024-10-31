@@ -207,6 +207,15 @@ public class TestStandardItemParser {
         Assertions.assertArrayEquals(expected, result);
     }
 
+    @Test
+    public void testParseWeaponDamageType() throws IOException {
+        InputStream testInputStream = getWeaponItemJsonFile();
+        JSONArray sampleJsonArray = testStandardParser.parseWeaponDamageType(JsonToString.readJsonAsString(testInputStream));
+        String expected = OutputFormatter.formatWeaponDamageType(sampleJsonArray.getFirst()).toString();
+        String result = "slashing";
+        Assertions.assertEquals(expected, result);
+    }
+
     private InputStream getWeaponItemJsonFile() {
         InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("SampleWeapons.json");
         assert inputStream != null;
