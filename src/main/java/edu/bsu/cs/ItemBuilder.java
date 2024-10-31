@@ -29,9 +29,8 @@ public class ItemBuilder {
 
     protected Item generateWeapon(String filePath) throws IOException {
         JSONArray nameJsonArray =  standardItemParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
-        JSONArray statsJsonArray = standardItemParser.parseStandardItemResults(JsonFileReader.readFileToString(filePath));
         int randomIndex = selectRandomItemIndex(nameJsonArray);
-        Item item = new Item(nameJsonArray.get(randomIndex).toString(), statsJsonArray.get(randomIndex).toString());
+        Item item = new Item(nameJsonArray.get(randomIndex).toString(), OutputFormatter.formatWeaponStats(getWeaponStats(JsonFileReader.readFileToString(filePath), randomIndex)));
         item.setType("Weapon");
         return item;
     }
