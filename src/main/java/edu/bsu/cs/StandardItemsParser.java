@@ -58,4 +58,8 @@ public class StandardItemsParser {
         return JsonPath.read(stringifiedJson, "$..is_lance");
     }
 
+    protected JSONArray parseWeaponIsNet(String stringifiedJson){
+        return JsonPath.read(stringifiedJson, "$..is_net");
+    }
+
 }

@@ -179,6 +179,20 @@ public class TestStandardItemParser {
         Assertions.assertArrayEquals(expected, result);
     }
 
+    @Test
+    public void testParseWeaponIsNet() throws IOException {
+        InputStream testInputStream = getWeaponItemJsonFile();
+        JSONArray sampleJsonArray = testStandardParser.parseWeaponIsNet(JsonToString.readJsonAsString(testInputStream));
+        String[] expected = {"false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","true"};
+        String[] result = new String[24];
+        for (int i = 0; i < 24; i++) {
+            if (sampleJsonArray.get(i)!=null){
+                result[i] = sampleJsonArray.get(i).toString();
+            }
+        }
+        Assertions.assertArrayEquals(expected, result);
+    }
+
     private InputStream getWeaponItemJsonFile() {
         InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("SampleWeapons.json");
         assert inputStream != null;
