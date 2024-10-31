@@ -42,4 +42,8 @@ public class StandardItemsParser {
         return JsonPath.read(stringifiedJson, "$..reach");
     }
 
+    protected JSONArray parseWeaponRange(String stringifiedJson){
+        return JsonPath.read(stringifiedJson, "$..range");
+    }
+
 }

@@ -123,6 +123,20 @@ public class TestStandardItemParser {
         Assertions.assertArrayEquals(expected, result);
     }
 
+    @Test
+    public void testParseWeaponRange() throws IOException {
+        InputStream testInputStream = getWeaponItemJsonFile();
+        JSONArray sampleJsonArray = testStandardParser.parseWeaponRange(JsonToString.readJsonAsString(testInputStream));
+        String[] expected = {"0.0","25.0","0.0","30.0","100.0"};
+        String[] result = new String[5];
+        for (int i = 0; i < 5; i++) {
+            if (sampleJsonArray.get(i)!=null){
+                result[i] = sampleJsonArray.get(i).toString();
+            }
+        }
+        Assertions.assertArrayEquals(expected, result);
+    }
+
     private InputStream getWeaponItemJsonFile() {
         InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("SampleWeapons.json");
         assert inputStream != null;
