@@ -1,6 +1,8 @@
 package edu.bsu.cs;
 
 
+import java.util.Dictionary;
+
 public class OutputFormatter {
 
     protected static String formatRarity(String rarity) {
@@ -52,6 +54,13 @@ public class OutputFormatter {
             default -> throw new IllegalStateException("Unexpected value: " + category);
         };
 
+    }
+
+    public static String formatArmorStats(Dictionary<Integer, String> statDictionary) {
+        return "AC:  " + statDictionary.get(1) + "\n" +
+                "Category:  "+statDictionary.get(2) +"\n" +
+                "Stealth Disadvantage:  " + statDictionary.get(3) + "\n" +
+                "Strength Score Required:  " + statDictionary.get(4);
     }
 
 }

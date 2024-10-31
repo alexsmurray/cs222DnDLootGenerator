@@ -5,7 +5,7 @@ public class Item {
     private final String name;
     private String rarity = "Mundane";
     private String type = "Standard Item";
-    private String attunement = "None";
+    private String attunement = "False";
     private final String details;
 
 
@@ -18,7 +18,6 @@ public class Item {
     }
 
     public Item(String name, String details) {
-
         this.name = name;
         this.details = details;
     }

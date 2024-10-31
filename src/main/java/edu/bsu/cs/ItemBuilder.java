@@ -3,9 +3,7 @@ package edu.bsu.cs;
 import net.minidev.json.JSONArray;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class ItemBuilder {
 
@@ -40,9 +38,8 @@ public class ItemBuilder {
 
     protected Item generateArmor(String filePath) throws IOException {
         JSONArray nameJsonArray =  standardItemParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
-        JSONArray statsJsonArray = standardItemParser.parseStandardItemResults(JsonFileReader.readFileToString(filePath));
         int randomIndex = selectRandomItemIndex(nameJsonArray);
-        Item item = new Item(nameJsonArray.get(randomIndex).toString(), statsJsonArray.get(randomIndex).toString());
+        Item item = new Item(nameJsonArray.get(randomIndex).toString(), OutputFormatter.formatArmorStats(getArmorStats(JsonFileReader.readFileToString(filePath), randomIndex)));
         item.setType("Armor");
         return item;
     }
@@ -73,4 +70,17 @@ public class ItemBuilder {
         return new Random().nextInt(array.size());
     }
 
+    public Dictionary<Integer, String> getArmorStats(String filePath, int randomIndex) {
+        Dictionary<Integer, String> statDictionary = new Hashtable<>();
+
+        statDictionary.put(1, standardItemParser.parseArmorClassDisplay(filePath).get(randomIndex).toString());
+        statDictionary.put(2, standardItemParser.parseArmorCategory(filePath).get(randomIndex).toString());
+        statDictionary.put(3, standardItemParser.parseStealthDisadvantage(filePath).get(randomIndex).toString());
+        statDictionary.put(4, checkForNullStat(standardItemParser.parseStrengthScoreRequirement(filePath).get(randomIndex)).toString());
+        return statDictionary;
+    }
+
+    private Object checkForNullStat(Object parsedItem) {
+        return Objects.requireNonNullElse(parsedItem, "None");
+    }
 }
