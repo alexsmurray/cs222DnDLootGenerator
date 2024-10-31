@@ -54,4 +54,8 @@ public class StandardItemsParser {
         return JsonPath.read(stringifiedJson, "$..long_range");
     }
 
+    protected JSONArray parseWeaponIsLance(String stringifiedJson){
+        return JsonPath.read(stringifiedJson, "$..is_lance");
+    }
+
 }
