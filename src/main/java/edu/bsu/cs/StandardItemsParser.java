@@ -26,4 +26,7 @@ public class StandardItemsParser {
         return JsonPath.read(stringifiedJson, "$..grants_stealth_disadvantage");
     }
 
+    protected JSONArray parseStrengthScoreRequirement(String stringifiedJson){
+        return JsonPath.read(stringifiedJson, "$..strength_score_required");
+    }
 }
