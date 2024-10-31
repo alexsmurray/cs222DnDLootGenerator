@@ -7,14 +7,6 @@ public class JsonParser {
 
     JsonArrayBuilder jsonArrayBuilder = new JsonArrayBuilder();
 
-    protected JSONArray parseStandardItemName(String stringifiedJson){
-        return JsonPath.read(stringifiedJson, "$..name");
-    }
-
-    protected JSONArray parseStandardItemResults(String stringifiedJson) {
-        return JsonPath.read(stringifiedJson, "$.results");
-    }
-
     protected JSONArray parseMagicItemName(String stringifiedJson, int pageIndex) {
         JSONArray jsonArray = jsonArrayBuilder.buildJsonArrayOfMagicItemPages(stringifiedJson, "name");
         return (JSONArray) jsonArray.get(pageIndex);

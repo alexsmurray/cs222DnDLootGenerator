@@ -10,6 +10,7 @@ import java.util.Random;
 public class ItemBuilder {
 
     JsonParser attributeParser = new JsonParser();
+    StandardItemsParser standardItemParser = new StandardItemsParser();
 
     protected List<Item> generateAmountOfItems() throws IOException {
         List<Item> itemsList = new ArrayList<>();
@@ -29,8 +30,8 @@ public class ItemBuilder {
     }
 
     protected Item generateWeapon(String filePath) throws IOException {
-        JSONArray nameJsonArray =  attributeParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
-        JSONArray statsJsonArray = attributeParser.parseStandardItemResults(JsonFileReader.readFileToString(filePath));
+        JSONArray nameJsonArray =  standardItemParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
+        JSONArray statsJsonArray = standardItemParser.parseStandardItemResults(JsonFileReader.readFileToString(filePath));
         int randomIndex = selectRandomItemIndex(nameJsonArray);
         Item item = new Item(nameJsonArray.get(randomIndex).toString(), statsJsonArray.get(randomIndex).toString());
         item.setType("Weapon");
@@ -38,8 +39,8 @@ public class ItemBuilder {
     }
 
     protected Item generateArmor(String filePath) throws IOException {
-        JSONArray nameJsonArray =  attributeParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
-        JSONArray statsJsonArray = attributeParser.parseStandardItemResults(JsonFileReader.readFileToString(filePath));
+        JSONArray nameJsonArray =  standardItemParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
+        JSONArray statsJsonArray = standardItemParser.parseStandardItemResults(JsonFileReader.readFileToString(filePath));
         int randomIndex = selectRandomItemIndex(nameJsonArray);
         Item item = new Item(nameJsonArray.get(randomIndex).toString(), statsJsonArray.get(randomIndex).toString());
         item.setType("Armor");
