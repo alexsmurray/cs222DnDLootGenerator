@@ -82,6 +82,20 @@ public class TestStandardItemParser {
     }
 
     @Test
+    public void testParseWeaponIsMartial() throws IOException {
+        InputStream testInputStream = getWeaponItemJsonFile();
+        JSONArray sampleJsonArray = testStandardParser.parseWeaponIsMartial(JsonToString.readJsonAsString(testInputStream));
+        String[] expected = {"true","true","false","true","true"};
+        String[] result = new String[5];
+        for (int i = 0; i < 5; i++) {
+            if (sampleJsonArray.get(i)!=null){
+                result[i] = sampleJsonArray.get(i).toString();
+            }
+        }
+        Assertions.assertArrayEquals(expected, result);
+    }
+
+    @Test
     public void testParseWeaponProperties() throws IOException {
         InputStream testInputStream = getWeaponItemJsonFile();
         JSONArray sampleJsonArray = testStandardParser.parseWeaponProperties(JsonToString.readJsonAsString(testInputStream));
