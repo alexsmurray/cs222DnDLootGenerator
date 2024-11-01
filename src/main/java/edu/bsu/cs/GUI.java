@@ -134,7 +134,7 @@ public class GUI extends Application implements Initializable{
 
     public static void displayLoadingVideo(WebView webView) {
         webView.getEngine().load("https://www.youtube.com/embed/s8MDNFaGfT4?autoplay=1");
-        Scene scene = new Scene(webView);
+        Scene scene = new Scene(webView, 960, 540);
         stage.setScene(scene);
         stage.show();
     }
