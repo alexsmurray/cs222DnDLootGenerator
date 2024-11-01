@@ -56,10 +56,12 @@ public class OutputFormatter {
     }
 
     public static String formatArmorStats(Dictionary<Integer, String> statDictionary) {
-        return "AC:  " + statDictionary.get(1) + "\n" +
-                "Category:  "+statDictionary.get(2) +"\n" +
-                "Stealth Disadvantage:  " + statDictionary.get(3) + "\n" +
-                "Strength Score Required:  " + statDictionary.get(4);
+        StringBuilder armorStats = new StringBuilder();
+        String[] statNames = {"AC:  ","Category:  ","Stealth Disadvantage:  ","Strength Score Required:  "};
+        for (int i = 0; i < statDictionary.size(); i++) {
+            armorStats.append(statNames[i]).append(statDictionary.get(i+1)).append("\n");
+        }
+        return  armorStats.toString();
     }
 
     public static String formatWeaponStats(Dictionary<Integer, String> statDictionary) {
