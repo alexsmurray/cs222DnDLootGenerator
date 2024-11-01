@@ -26,8 +26,8 @@ public class EventHandler {
     public Button generateButton;
     public Button refreshItemDataButton;
     public Label RefreshDate;
-
     public WebView webView = new WebView();
+
     public void initialize()  {
         new GUI().displayTableViewDefault(itemTableView);
         nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -90,7 +90,7 @@ public class EventHandler {
                 updateRefreshDate();
                 new GUI().displayTableViewDefault(itemTableView);
                 enableInput();
-                attemptToDisplayMainScreen();
+                attemptToDisplayMainScreen(webView);
             }
             @Override
             protected void failed(){
@@ -101,7 +101,7 @@ public class EventHandler {
                 }
                 new GUI().displayTableViewDefault(itemTableView);
                 enableInput();
-                attemptToDisplayMainScreen();
+                attemptToDisplayMainScreen(webView);
             }
         };
     }
@@ -128,7 +128,7 @@ public class EventHandler {
         }
     }
 
-    private void attemptToDisplayMainScreen() {
+    private void attemptToDisplayMainScreen(WebView webView) {
         try {
             GUI.displayMainScreen(webView);
         } catch (IOException DisplayMainScreenException) {
