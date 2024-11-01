@@ -89,7 +89,7 @@ public class ItemBuilder {
         statDictionary.put(5, standardItemParser.parseWeaponRange(filePath).get(randomIndex).toString());
         statDictionary.put(6, standardItemParser.parseWeaponLongRange(filePath).get(randomIndex).toString());
         statDictionary.put(7, OutputFormatter.formatWeaponDamageType(standardItemParser.parseWeaponDamageType(filePath).get(randomIndex)).toString());
-        statDictionary.put(8, standardItemParser.parseWeaponProperties(filePath).get(randomIndex).toString());
+        statDictionary.put(8, standardItemParser.parseWeaponProperties(filePath).get(randomIndex).toString().replace("\\",""));
         statDictionary.put(9, standardItemParser.parseWeaponIsLance(filePath).get(randomIndex).toString());
         statDictionary.put(10, standardItemParser.parseWeaponIsNet(filePath).get(randomIndex).toString());
         return statDictionary;
