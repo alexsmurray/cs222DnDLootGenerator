@@ -65,21 +65,21 @@ public class ItemBuilder {
                 );
     }
 
-    protected static int selectRandomItemIndex(JSONArray array){
-        return new Random().nextInt(array.size());
-    }
-
-    public Dictionary<Integer, String> getArmorStats(String filePath, int randomIndex) {
+    private Dictionary<Integer, String> getArmorStats(String filePath, int randomIndex) {
         Dictionary<Integer, String> statDictionary = new Hashtable<>();
 
         statDictionary.put(1, standardItemParser.parseArmorClassDisplay(filePath).get(randomIndex).toString());
         statDictionary.put(2, standardItemParser.parseArmorCategory(filePath).get(randomIndex).toString());
         statDictionary.put(3, standardItemParser.parseStealthDisadvantage(filePath).get(randomIndex).toString());
-        statDictionary.put(4, checkForNullStat(standardItemParser.parseStrengthScoreRequirement(filePath).get(randomIndex)).toString());
+        statDictionary.put(4, verifyStrengthRequirement(standardItemParser.parseStrengthScoreRequirement(filePath).get(randomIndex)).toString());
         return statDictionary;
     }
 
-    public Dictionary<Integer, String> getWeaponStats(String filePath, int randomIndex) {
+    private Object verifyStrengthRequirement(Object parsedItem) {
+        return Objects.requireNonNullElse(parsedItem, "None");
+    }
+
+    private Dictionary<Integer, String> getWeaponStats(String filePath, int randomIndex) {
         Dictionary<Integer, String> statDictionary = new Hashtable<>();
 
         statDictionary.put(1, standardItemParser.parseWeaponIsMartial(filePath).get(randomIndex).toString());
@@ -95,7 +95,8 @@ public class ItemBuilder {
         return statDictionary;
     }
 
-    private Object checkForNullStat(Object parsedItem) {
-        return Objects.requireNonNullElse(parsedItem, "None");
+    protected static int selectRandomItemIndex(JSONArray array){
+        return new Random().nextInt(array.size());
     }
+
 }
