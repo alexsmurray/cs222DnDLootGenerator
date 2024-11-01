@@ -9,11 +9,12 @@ import java.io.InputStream;
 
 public class TestStandardItemParser {
     private final StandardItemsParser testStandardParser = new StandardItemsParser();
-    private final InputStream testInputStream = getWeaponItemJsonFile();
+    private final InputStream weaponInputStream = getWeaponItemJsonFile();
+    private final InputStream armorInputStream = getArmorItemJsonFile();
 
     @Test
     public void testGetStandardItemNameFromSampleJson() throws IOException {
-        JSONArray sampleJsonArray = testStandardParser.parseStandardItemName(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = testStandardParser.parseStandardItemName(JsonToString.readJsonAsString(weaponInputStream));
         String[] expected = {"Battleaxe", "Blowgun", "Club", "Crossbow, hand", "Crossbow, heavy"};
         String[] result = new String[5];
         for (int i = 0; i < 5; i++) {
@@ -24,7 +25,7 @@ public class TestStandardItemParser {
 
     @Test
     public void testGetStatsFromSampleJson() throws IOException {
-        JSONArray sampleJsonArray = testStandardParser.parseStandardItemResults(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = testStandardParser.parseStandardItemResults(JsonToString.readJsonAsString(weaponInputStream));
         String expected = "url=https://api.open5e.com/v2/weapons/srd_battleaxe/";
         String result = sampleJsonArray.getFirst().toString().substring(1, 53);
         Assertions.assertEquals(expected, result);
@@ -32,7 +33,7 @@ public class TestStandardItemParser {
 
     @Test
     public void testParseArmorClassDisplay() throws IOException {
-        JSONArray sampleJsonArray = testStandardParser.parseArmorClassDisplay(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = testStandardParser.parseArmorClassDisplay(JsonToString.readJsonAsString(armorInputStream));
         String[] expected = listOfArmorClassDisplay();
         String[] result = new String[12];
         for (int i = 0; i < 12; i++) {
@@ -43,7 +44,7 @@ public class TestStandardItemParser {
 
     @Test
     public void testParseArmorCategory() throws IOException {
-        JSONArray sampleJsonArray = testStandardParser.parseArmorCategory(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = testStandardParser.parseArmorCategory(JsonToString.readJsonAsString(armorInputStream));
         String[] expected = {"medium", "heavy", "medium", "medium", "medium", "light", "light", "heavy", "heavy", "medium", "heavy", "light"};
         String[] result = new String[12];
         for (int i = 0; i < 12; i++) {
@@ -54,7 +55,7 @@ public class TestStandardItemParser {
 
     @Test
     public void testParseStrengthScoreRequirement() throws IOException {
-        JSONArray sampleJsonArray = testStandardParser.parseStrengthScoreRequirement(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = testStandardParser.parseStrengthScoreRequirement(JsonToString.readJsonAsString(armorInputStream));
         String[] expected = {null,"13",null,null,null,null,null,"15",null,null,"15",null};
         String[] result = new String[12];
         for (int i = 0; i < 12; i++) {
@@ -67,7 +68,7 @@ public class TestStandardItemParser {
 
     @Test
     public void testParseWeaponIsMartial() throws IOException {
-        JSONArray sampleJsonArray = testStandardParser.parseWeaponIsMartial(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = testStandardParser.parseWeaponIsMartial(JsonToString.readJsonAsString(weaponInputStream));
         String[] expected = {"true","true","false","true","true"};
         String[] result = new String[5];
         for (int i = 0; i < 5; i++) {
@@ -80,7 +81,7 @@ public class TestStandardItemParser {
 
     @Test
     public void testParseWeaponProperties() throws IOException {
-        JSONArray sampleJsonArray = testStandardParser.parseWeaponProperties(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = testStandardParser.parseWeaponProperties(JsonToString.readJsonAsString(weaponInputStream));
         String[] expected = {"[\"versatile (1d10)\"]","[\"ammuntion (range 25.0\\/100.0)\",\"loading\"]","[\"light\"]"};
         String[] result = new String[3];
         for (int i = 0; i < 3; i++) {
@@ -121,7 +122,7 @@ public class TestStandardItemParser {
 
     @Test
     public void testParseWeaponRange() throws IOException {
-        JSONArray sampleJsonArray = testStandardParser.parseWeaponRange(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = testStandardParser.parseWeaponRange(JsonToString.readJsonAsString(weaponInputStream));
         String[] expected = {"0.0","25.0","0.0","30.0","100.0"};
         String[] result = new String[5];
         for (int i = 0; i < 5; i++) {
@@ -148,7 +149,7 @@ public class TestStandardItemParser {
 
     @Test
     public void testParseWeaponIsLance() throws IOException {
-        JSONArray sampleJsonArray = testStandardParser.parseWeaponIsLance(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = testStandardParser.parseWeaponIsLance(JsonToString.readJsonAsString(weaponInputStream));
         String[] expected = {"false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","true"};
         String[] result = new String[17];
         for (int i = 0; i < 17; i++) {
@@ -161,7 +162,7 @@ public class TestStandardItemParser {
 
     @Test
     public void testParseWeaponIsNet() throws IOException {
-        JSONArray sampleJsonArray = testStandardParser.parseWeaponIsNet(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = testStandardParser.parseWeaponIsNet(JsonToString.readJsonAsString(weaponInputStream));
         String[] expected = {"false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","true"};
         String[] result = new String[24];
         for (int i = 0; i < 24; i++) {
@@ -188,7 +189,7 @@ public class TestStandardItemParser {
 
     @Test
     public void testParseWeaponDamageType() throws IOException {
-        JSONArray sampleJsonArray = testStandardParser.parseWeaponDamageType(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = testStandardParser.parseWeaponDamageType(JsonToString.readJsonAsString(weaponInputStream));
         String expected = OutputFormatter.formatWeaponDamageType(sampleJsonArray.getFirst()).toString();
         String result = "slashing";
         Assertions.assertEquals(expected, result);
