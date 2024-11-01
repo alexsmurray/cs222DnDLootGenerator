@@ -38,29 +38,32 @@ public class EventHandler {
     }
 
     @FXML
-    protected void generateItems() throws IOException {
-        if (ErrorHandler.verifyInputIsValid(userInputField.getText())) {
-            if (!ErrorHandler.verifyItemDataFilesValid()) {
-                GUI.displayMissingFilesAlert();
-                new GUI().displayTableViewLoading(itemTableView);
-                new Thread(attemptToRefreshItemFiles()).start();
-                return;
-            }
-            int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
-            Configuration.setNumItemsRequested(numberOfItemsToGenerate);
-            GUI.displayGeneratedItems(itemTableView);
-        } else {
-            GUI.displayInputAlert();
-        }
-    }
-
-    @FXML
     protected void executeGenerateItemsOnEnter(KeyEvent keyEvent) throws IOException {
         if (keyEvent.getCode() == KeyCode.ENTER){
             generateItems();
         }
     }
 
+    @FXML
+    protected void generateItems() throws IOException {
+        if (ErrorHandler.verifyInputIsValid(userInputField.getText())) {
+            attemptToPopulateItemTableView();
+        } else {
+            GUI.displayInputAlert();
+        }
+    }
+
+    private void attemptToPopulateItemTableView() throws IOException {
+        if (!ErrorHandler.verifyItemDataFilesValid()) {
+            GUI.displayMissingFilesAlert();
+            new GUI().displayTableViewLoading(itemTableView);
+            new Thread(attemptToRefreshItemFiles()).start();
+        } else {
+            int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
+            Configuration.setNumItemsRequested(numberOfItemsToGenerate);
+            GUI.displayGeneratedItems(itemTableView);
+        }
+    }
 
     @FXML
     protected void refreshItemData() {
@@ -69,8 +72,6 @@ public class EventHandler {
         GUI.displayLoadingVideo(webView);
         new Thread(attemptToRefreshItemFiles()).start();
     }
-
-
 
     private Task<Void> attemptToRefreshItemFiles(){
         return new Task<>() {
@@ -105,7 +106,6 @@ public class EventHandler {
             }
         };
     }
-
 
     private void disableInput() {
         userInputField.setDisable(true);
@@ -153,4 +153,5 @@ public class EventHandler {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/filters.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
+
 }
