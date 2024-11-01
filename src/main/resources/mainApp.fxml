@@ -44,7 +44,7 @@
     <ImageView fitHeight="72.0" fitWidth="229.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true">
         <Image url="@wordLogo.png" />
     </ImageView>
-   <Button fx:id="refreshItemDataButton" layoutX="798.0" layoutY="105.0" mnemonicParsing="false" onAction="#refreshItemData" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Refresh Item Data" />
+   <Button fx:id="refreshItemDataButton" layoutX="777.0" layoutY="485.0" mnemonicParsing="false" onAction="#refreshItemData" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Refresh Item Data" />
       <Button fx:id="generateButton" layoutX="434.0" layoutY="40.0" mnemonicParsing="false" onAction="#generateItems" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Generate" />
       <TextField fx:id="userInputField" layoutX="259.0" layoutY="40.0" onKeyPressed="#executeGenerateItemsOnEnter" promptText="# of items to generate" style="-fx-border-color: #000000;" />
    <TableView fx:id="itemTableView" layoutX="14.0" layoutY="98.0" onMouseClicked="#displayItemDetailsOnDoubleClick" prefHeight="414.0" prefWidth="701.0" style="-fx-border-color: #000000;">
@@ -63,8 +63,8 @@
          <Insets left="5.0" right="5.0" />
       </padding></Label>
    <Label layoutX="841.0" layoutY="81.0" />
-   <Label fx:id="RefreshDate" alignment="CENTER" contentDisplay="RIGHT" layoutX="749.0" layoutY="80.0" prefHeight="18.0" prefWidth="210.0" text="No Recent Refresh" textFill="WHITE" wrapText="true" />
-   <MenuButton layoutX="798.0" layoutY="40.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Navigate to...">
+   <Label fx:id="RefreshDate" alignment="CENTER" contentDisplay="RIGHT" layoutX="727.0" layoutY="459.0" prefHeight="18.0" prefWidth="210.0" text="No Recent Refresh" textFill="WHITE" wrapText="true" />
+   <MenuButton layoutX="777.0" layoutY="99.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Navigate to...">
      <items>
        <MenuItem mnemonicParsing="false" onAction="#switchToHomeBrew" text="Homebrew" />
        <MenuItem mnemonicParsing="false" text="Filtering Options" />
