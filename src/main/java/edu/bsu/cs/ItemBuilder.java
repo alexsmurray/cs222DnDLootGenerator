@@ -7,7 +7,7 @@ import java.util.*;
 
 public class ItemBuilder {
 
-    JsonParser attributeParser = new JsonParser();
+    MagicItemsParser attributeParser = new MagicItemsParser();
     StandardItemsParser standardItemParser = new StandardItemsParser();
 
     protected List<Item> generateAmountOfItems() throws IOException {

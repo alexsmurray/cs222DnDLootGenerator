@@ -7,7 +7,7 @@ import java.net.URISyntaxException;
 
 public class JsonFileMaker {
 
-    JsonParser nextPageParser = new JsonParser();
+    NextPageParser nextPageParser = new NextPageParser();
 
     protected static void updateAPIFiles() throws IOException, URISyntaxException {
         JsonFileMaker jsonFileMaker = new JsonFileMaker();

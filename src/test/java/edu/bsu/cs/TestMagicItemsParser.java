@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class TestJsonParser {
+public class TestMagicItemsParser {
 
-    JsonParser testMagicParser = new JsonParser();
+    MagicItemsParser testMagicParser = new MagicItemsParser();
 
     @Test
     public void testGetMagicItemNameFromSampleJson() throws IOException {

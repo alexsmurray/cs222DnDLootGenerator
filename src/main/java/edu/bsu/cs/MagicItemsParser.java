@@ -1,9 +1,8 @@
 package edu.bsu.cs;
 
-import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
 
-public class JsonParser {
+public class MagicItemsParser {
 
     JsonArrayBuilder jsonArrayBuilder = new JsonArrayBuilder();
 
@@ -31,10 +30,5 @@ public class JsonParser {
         JSONArray jsonArray = jsonArrayBuilder.buildJsonArrayOfMagicItemPages(stringifiedJson, "desc");
         return (JSONArray) jsonArray.get(pageIndex);
     }
-
-    protected String parseNext(String stringifiedJson) {
-        return JsonPath.read(stringifiedJson, "$..next").toString();
-    }
-
 
 }
