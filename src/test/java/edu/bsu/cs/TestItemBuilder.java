@@ -9,6 +9,8 @@ import java.util.List;
 
 public class TestItemBuilder {
 
+    private final ItemBuilder itemBuilder = new ItemBuilder();
+
     @Test
     public void testSelectRandomItemGeneratesIndexInRange() {
         JSONArray testJsonArray = createJsonArray();
@@ -18,21 +20,18 @@ public class TestItemBuilder {
 
     @Test
     public void testGenerateWeapon() throws IOException {
-        ItemBuilder itemBuilder = new ItemBuilder();
         Item testWeapon = itemBuilder.generateWeapon("src/test/resources/SampleWeapons.json");
         Assertions.assertTrue(List.of(WeaponsListStringArray.SAMPLE).contains(testWeapon.getName()));
     }
 
     @Test
     public void testGenerateArmor() throws IOException {
-        ItemBuilder itemBuilder = new ItemBuilder();
         Item testArmor = itemBuilder.generateArmor("src/test/resources/SampleArmor.json");
         Assertions.assertTrue(List.of(ArmorListStringArray.SAMPLE).contains(testArmor.getName()));
     }
 
     @Test
     public void testGenerateMagicItem() throws IOException {
-        ItemBuilder itemBuilder = new ItemBuilder();
         Item testMagicItem = itemBuilder.generateMagicItem("src/test/resources/SampleMagicItem.json");
         Assertions.assertNotNull(testMagicItem.getName());
     }
