@@ -6,15 +6,14 @@ import javafx.scene.Parent;
 import java.io.IOException;
 import java.util.Objects;
 
-public class Homebrew {
+public class Filters {
 
     public void goBackToMain() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/mainApp.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
-
-    public void goToFilters() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/filters.fxml")));
+    public void goToHomebrew() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/homebrew.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
 }

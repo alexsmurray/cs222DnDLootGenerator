@@ -67,7 +67,7 @@
    <MenuButton layoutX="777.0" layoutY="99.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Navigate to...">
      <items>
        <MenuItem mnemonicParsing="false" onAction="#switchToHomeBrew" text="Homebrew" />
-       <MenuItem mnemonicParsing="false" text="Filtering Options" />
+       <MenuItem mnemonicParsing="false" onAction="#switchToFilters" text="Filtering Options" />
      </items>
    </MenuButton>
 </AnchorPane>
