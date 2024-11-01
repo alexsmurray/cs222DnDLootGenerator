@@ -63,7 +63,7 @@ public class EventHandler {
 
 
     @FXML
-    protected void refreshItemData()  {
+    protected void refreshItemData() {
         GUI.displayRefreshStarting();
         new GUI().displayTableViewLoading(itemTableView);
         GUI.displayLoadingVideo(webView);
@@ -90,11 +90,7 @@ public class EventHandler {
                 updateRefreshDate();
                 new GUI().displayTableViewDefault(itemTableView);
                 enableInput();
-                try {
-                    GUI.displayMainScreen(webView);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                attemptToDisplayMainScreen();
             }
             @Override
             protected void failed(){
@@ -105,9 +101,11 @@ public class EventHandler {
                 }
                 new GUI().displayTableViewDefault(itemTableView);
                 enableInput();
+                attemptToDisplayMainScreen();
             }
         };
     }
+
 
     private void disableInput() {
         userInputField.setDisable(true);
@@ -127,6 +125,14 @@ public class EventHandler {
             GUI.displayLastRefreshDate(RefreshDate, filePath);
         }catch (Exception IOException){
             GUI.displayNoRecentRefresh(RefreshDate);
+        }
+    }
+
+    private void attemptToDisplayMainScreen() {
+        try {
+            GUI.displayMainScreen(webView);
+        } catch (IOException DisplayMainScreenException) {
+            throw new RuntimeException(DisplayMainScreenException);
         }
     }
 

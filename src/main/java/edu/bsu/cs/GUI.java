@@ -141,13 +141,13 @@ public class GUI extends Application implements Initializable{
     }
 
     public static void displayMainScreen(WebView webView) throws IOException {
-        webView.getEngine().load(null);
-        Parent root = FXMLLoader.load(Objects.requireNonNull(GUI.class.getClassLoader().getResource("mainApp.fxml")));
-        stage.setTitle("D&D Loot Generator");
-        stage.getIcons().add(new Image(("/toolbarIcon.png")));
-        stage.setScene(new Scene(root));
-        stage.setResizable(false);
-        stage.show();
+            webView.getEngine().load(null);
+            Parent root = FXMLLoader.load(Objects.requireNonNull(GUI.class.getClassLoader().getResource("mainApp.fxml")));
+            stage.setTitle("D&D Loot Generator");
+            stage.getIcons().add(new Image(("/toolbarIcon.png")));
+            stage.setScene(new Scene(root));
+            stage.setResizable(false);
+            stage.show();
     }
 
 }
