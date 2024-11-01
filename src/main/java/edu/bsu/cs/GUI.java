@@ -129,7 +129,6 @@ public class GUI extends Application implements Initializable{
         alert.setHeaderText("You are missing necessary data files.\nThis will be the case the first time the program runs.");
         alert.setContentText("Missing data files will be built now.\nThis may take a minute.");
         alert.show();
-        displayLoadingVideo(new EventHandler().webView);
     }
 
     public static void displayLoadingVideo(WebView webView) {
@@ -141,13 +140,13 @@ public class GUI extends Application implements Initializable{
     }
 
     public static void displayMainScreen(WebView webView) throws IOException {
-            webView.getEngine().load(null);
-            Parent root = FXMLLoader.load(Objects.requireNonNull(GUI.class.getClassLoader().getResource("mainApp.fxml")));
-            stage.setTitle("D&D Loot Generator");
-            stage.getIcons().add(new Image(("/toolbarIcon.png")));
-            stage.setScene(new Scene(root));
-            stage.setResizable(false);
-            stage.show();
+        webView.getEngine().load(null);
+        Parent root = FXMLLoader.load(Objects.requireNonNull(GUI.class.getClassLoader().getResource("mainApp.fxml")));
+        stage.setTitle("D&D Loot Generator");
+        stage.getIcons().add(new Image(("/toolbarIcon.png")));
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.show();
     }
 
 }

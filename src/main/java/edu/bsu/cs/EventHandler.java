@@ -26,7 +26,8 @@ public class EventHandler {
     public Button generateButton;
     public Button refreshItemDataButton;
     public Label RefreshDate;
-    public WebView webView = new WebView();
+
+    private final WebView webView = new WebView();
 
     public void initialize()  {
         new GUI().displayTableViewDefault(itemTableView);
@@ -56,8 +57,7 @@ public class EventHandler {
     private void attemptToPopulateItemTableView() throws IOException {
         if (!ErrorHandler.verifyItemDataFilesValid()) {
             GUI.displayMissingFilesAlert();
-            new GUI().displayTableViewLoading(itemTableView);
-            new Thread(attemptToRefreshItemFiles()).start();
+            initiateLoadingProcess();
         } else {
             int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
             Configuration.setNumItemsRequested(numberOfItemsToGenerate);
@@ -68,6 +68,10 @@ public class EventHandler {
     @FXML
     protected void refreshItemData() {
         GUI.displayRefreshStarting();
+        initiateLoadingProcess();
+    }
+
+    private void initiateLoadingProcess() {
         new GUI().displayTableViewLoading(itemTableView);
         GUI.displayLoadingVideo(webView);
         new Thread(attemptToRefreshItemFiles()).start();
