@@ -18,4 +18,5 @@ public class RefreshTracker {
         Scanner scanner = new Scanner(timeFile);
         return scanner.nextLine();
     }
+
 }

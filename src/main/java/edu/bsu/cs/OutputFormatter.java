@@ -78,4 +78,5 @@ public class OutputFormatter {
     protected static Object formatWeaponDamageType(Object weapon){
         return weapon.toString().substring(38, weapon.toString().length() - 13);
     }
+
 }

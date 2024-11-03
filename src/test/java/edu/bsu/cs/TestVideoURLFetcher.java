@@ -19,7 +19,6 @@ public class TestVideoURLFetcher {
             "https://www.youtube.com/embed/aBOH8YLUPjE?autoplay=1&start=979",
             "https://www.youtube.com/embed/aBOH8YLUPjE?autoplay=1&start=1070",
             "https://www.youtube.com/embed/4i8qAZOu5-g?autoplay=1"
-
         };
 
     @Test
@@ -27,4 +26,5 @@ public class TestVideoURLFetcher {
         String result = VideoURLFetcher.getRandomVideoLocation();
         Assertions.assertTrue(List.of(urlList).contains(result));
     }
+
 }

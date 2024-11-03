@@ -17,4 +17,5 @@ public class Homebrew {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/filters.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
+
 }

@@ -69,4 +69,5 @@ public class TestMagicItemsParser {
         assert inputStream != null;
         return inputStream;
     }
+
 }

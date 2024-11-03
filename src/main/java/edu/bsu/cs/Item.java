@@ -45,4 +45,5 @@ public class Item {
     protected void setType(String newType){
         this.type = newType;
     }
+
 }

@@ -12,8 +12,10 @@ public class Filters {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/mainApp.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
+
     protected void goToHomebrew() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/homebrew.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
+
 }

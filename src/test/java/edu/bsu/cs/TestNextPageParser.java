@@ -22,4 +22,5 @@ public class TestNextPageParser {
         assert inputStream != null;
         return inputStream;
     }
+
 }

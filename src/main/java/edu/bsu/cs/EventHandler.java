@@ -153,6 +153,7 @@ public class EventHandler {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/homebrew.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
+
     protected void switchToFilters() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/filters.fxml")));
         GUI.stage.getScene().setRoot(root);
