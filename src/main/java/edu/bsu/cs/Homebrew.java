@@ -8,12 +8,12 @@ import java.util.Objects;
 
 public class Homebrew {
 
-    public void goBackToMain() throws IOException {
+    protected void goBackToMain() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/mainApp.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
 
-    public void goToFilters() throws IOException {
+    protected void goToFilters() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/filters.fxml")));
         GUI.stage.getScene().setRoot(root);
     }

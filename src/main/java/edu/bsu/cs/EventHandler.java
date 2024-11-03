@@ -29,7 +29,7 @@ public class EventHandler {
 
     private final WebView webView = new WebView();
 
-    public void initialize()  {
+    protected void initialize()  {
         new GUI().displayTableViewDefault(itemTableView);
         nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         rarityTableColumn.setCellValueFactory(new PropertyValueFactory<>("rarity"));
@@ -149,11 +149,11 @@ public class EventHandler {
         });
     }
 
-    public void switchToHomeBrew() throws IOException {
+    protected void switchToHomeBrew() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/homebrew.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
-    public void switchToFilters() throws IOException {
+    protected void switchToFilters() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/filters.fxml")));
         GUI.stage.getScene().setRoot(root);
     }

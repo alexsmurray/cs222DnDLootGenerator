@@ -28,7 +28,7 @@ public class ErrorHandler {
         return true;
     }
 
-    public static boolean verifyFileHasContents(String filePath) throws IOException {
+    protected static boolean verifyFileHasContents(String filePath) throws IOException {
         String fileString = JsonFileReader.readFileToString(filePath);
         return fileString.startsWith("{");
     }

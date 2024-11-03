@@ -45,7 +45,7 @@ public class GUI extends Application implements Initializable{
         eventHandler.initialize();
     }
 
-    public static void displayGeneratedItems(TableView<Item> itemTableView) throws IOException {
+    protected static void displayGeneratedItems(TableView<Item> itemTableView) throws IOException {
         ItemBuilder itemBuilder = new ItemBuilder();
         clearItems(itemTableView);
         itemsForList.addAll(itemBuilder.generateAmountOfItems());
@@ -84,7 +84,7 @@ public class GUI extends Application implements Initializable{
         RefreshDate.setText("Last Refresh was " + output);
     }
 
-    public static void displayNoRecentRefresh(Label RefreshDate) {
+    protected static void displayNoRecentRefresh(Label RefreshDate) {
         RefreshDate.setText("No Recent Refresh");
     }
 
@@ -131,7 +131,7 @@ public class GUI extends Application implements Initializable{
         alert.show();
     }
 
-    public static void displayLoadingVideo(WebView webView) {
+    protected static void displayLoadingVideo(WebView webView) {
         String videoURL = VideoURLFetcher.getRandomVideoLocation();
         webView.getEngine().load(videoURL);
         Scene scene = new Scene(webView, 960, 540);
@@ -139,7 +139,7 @@ public class GUI extends Application implements Initializable{
         stage.show();
     }
 
-    public static void displayMainScreen(WebView webView) throws IOException {
+    protected static void displayMainScreen(WebView webView) throws IOException {
         webView.getEngine().load(null);
         Parent root = FXMLLoader.load(Objects.requireNonNull(GUI.class.getClassLoader().getResource("mainApp.fxml")));
         stage.setTitle("D&D Loot Generator");

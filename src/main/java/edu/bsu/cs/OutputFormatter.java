@@ -55,7 +55,7 @@ public class OutputFormatter {
 
     }
 
-    public static String formatArmorStats(Dictionary<Integer, String> statDictionary) {
+    protected static String formatArmorStats(Dictionary<Integer, String> statDictionary) {
         StringBuilder armorStats = new StringBuilder();
         String[] statNames = {"AC:  ","Category:  ","Stealth Disadvantage:  ","Strength Score Required:  "};
         for (int i = 0; i < statDictionary.size(); i++) {
@@ -64,7 +64,7 @@ public class OutputFormatter {
         return  armorStats.toString();
     }
 
-    public static String formatWeaponStats(Dictionary<Integer, String> statDictionary) {
+    protected static String formatWeaponStats(Dictionary<Integer, String> statDictionary) {
         StringBuilder weaponStats = new StringBuilder();
         String[] statNames = {"Is Martial:  ", "Is Simple:  ", "Damage Dice:  ", "Reach:  ", "Range:  ", "Long Range:  ", "Damage Type:  ", "Properties:  ", "Is Lance:  ", "Is Net:  "};
         for (int i = 0; i < statDictionary.size(); i++){
@@ -75,7 +75,7 @@ public class OutputFormatter {
         return weaponStats.toString();
     }
 
-    public static Object formatWeaponDamageType(Object weapon){
+    protected static Object formatWeaponDamageType(Object weapon){
         return weapon.toString().substring(38, weapon.toString().length() - 13);
     }
 }

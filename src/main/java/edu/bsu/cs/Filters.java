@@ -8,11 +8,11 @@ import java.util.Objects;
 
 public class Filters {
 
-    public void goBackToMain() throws IOException {
+    protected void goBackToMain() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/mainApp.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
-    public void goToHomebrew() throws IOException {
+    protected void goToHomebrew() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/homebrew.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
