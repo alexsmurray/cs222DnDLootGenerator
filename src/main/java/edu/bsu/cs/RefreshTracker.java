@@ -13,7 +13,7 @@ public class RefreshTracker {
         }catch (Exception ignore){}
     }
 
-    protected static String readTimeFile(String fileName) throws IOException {
+    public static String readTimeFile(String fileName) throws IOException {
         File timeFile = new File(fileName);
         Scanner scanner = new Scanner(timeFile);
         return scanner.nextLine();

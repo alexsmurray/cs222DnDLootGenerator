@@ -22,23 +22,23 @@ public class Item {
         this.details = details;
     }
 
-    protected String getName() {
+    public String getName() {
         return name;
     }
 
-    protected String getRarity() {
+    public String getRarity() {
         return rarity;
     }
 
-    protected String getType() {
+    public String getType() {
         return type;
     }
 
-    protected String getAttunement() {
+    public String getAttunement() {
         return attunement;
     }
 
-    protected String getDetails() {
+    public String getDetails() {
         return details;
     }
 
