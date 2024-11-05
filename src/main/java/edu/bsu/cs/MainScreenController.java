@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Objects;
 
-public class EventHandler {
+public class MainScreenController {
 
     @FXML
     public TextField userInputField;
@@ -150,11 +150,11 @@ public class EventHandler {
     }
 
     public void switchToHomeBrew() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/homebrew.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/HomebrewScreen.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
     public void switchToFilters() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/filters.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FilterScreen.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
 

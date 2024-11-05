@@ -20,7 +20,7 @@ public class TestJsonFileReader {
 
     @Test
     public void testFileIsNotBlank() throws IOException {
-            String result = JsonFileReader.readFileToString("src/main/resources/mainApp.fxml");
+            String result = JsonFileReader.readFileToString("src/main/resources/MainScreen.fxml");
             Assertions.assertFalse(result.isBlank());
     }
 

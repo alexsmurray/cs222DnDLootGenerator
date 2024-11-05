@@ -23,7 +23,7 @@ public class GUI extends Application implements Initializable{
 
     protected static Stage stage;
     protected static ObservableList<Item> itemsForList = FXCollections.observableArrayList();
-    protected EventHandler eventHandler = new EventHandler();
+    protected MainScreenController mainScreenController = new MainScreenController();
 
     public static void main(String[] args) {
         launch(args);
@@ -32,7 +32,7 @@ public class GUI extends Application implements Initializable{
     @Override
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("mainApp.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("MainScreen.fxml")));
         primaryStage.setTitle("D&D Loot Generator");
         primaryStage.getIcons().add(new Image(("/toolbarIcon.png")));
         primaryStage.setScene(new Scene(root));
@@ -42,7 +42,7 @@ public class GUI extends Application implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        eventHandler.initialize();
+        mainScreenController.initialize();
     }
 
     public static void displayGeneratedItems(TableView<Item> itemTableView) throws IOException {
@@ -141,7 +141,7 @@ public class GUI extends Application implements Initializable{
 
     public static void displayMainScreen(WebView webView) throws IOException {
         webView.getEngine().load(null);
-        Parent root = FXMLLoader.load(Objects.requireNonNull(GUI.class.getClassLoader().getResource("mainApp.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(GUI.class.getClassLoader().getResource("MainScreen.fxml")));
         stage.setTitle("D&D Loot Generator");
         stage.getIcons().add(new Image(("/toolbarIcon.png")));
         stage.setScene(new Scene(root));
