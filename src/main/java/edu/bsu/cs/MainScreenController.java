@@ -74,6 +74,11 @@ public class MainScreenController {
 
     private void initiateLoadingProcess() {
         new GUI().displayTableViewLoading(itemTableView);
+        playAudioClip();
+        new Thread(attemptToRefreshItemFiles()).start();
+    }
+
+    private void playAudioClip() {
         String fileName;
         try {
             fileName = Objects.requireNonNull(getClass().getResource("/funTune.mp3")).toURI().toString();
@@ -82,7 +87,6 @@ public class MainScreenController {
         }
         audioClip = new AudioClip(fileName);
         audioClip.play();
-        new Thread(attemptToRefreshItemFiles()).start();
     }
 
     private Task<Void> attemptToRefreshItemFiles(){
