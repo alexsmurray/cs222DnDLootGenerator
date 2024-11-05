@@ -9,7 +9,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.media.AudioClip;
-import javafx.scene.web.WebView;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -28,7 +27,6 @@ public class MainScreenController {
     public Button refreshItemDataButton;
     public Label RefreshDate;
 
-    private final WebView webView = new WebView();
     private AudioClip audioClip;
 
 
