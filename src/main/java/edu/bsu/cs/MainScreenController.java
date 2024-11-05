@@ -76,7 +76,6 @@ public class MainScreenController {
 
     private void initiateLoadingProcess() {
         new GUI().displayTableViewLoading(itemTableView);
-        //GUI.displayLoadingVideo(webView);
         String fileName;
         try {
             fileName = Objects.requireNonNull(getClass().getResource("/funTune.mp3")).toURI().toString();
@@ -107,7 +106,6 @@ public class MainScreenController {
                 new GUI().displayTableViewDefault(itemTableView);
                 audioClip.stop();
                 enableInput();
-                attemptToDisplayMainScreen(webView);
             }
             @Override
             protected void failed(){
@@ -119,7 +117,6 @@ public class MainScreenController {
                 audioClip.stop();
                 new GUI().displayTableViewDefault(itemTableView);
                 enableInput();
-                attemptToDisplayMainScreen(webView);
             }
         };
     }
@@ -142,14 +139,6 @@ public class MainScreenController {
             GUI.displayLastRefreshDate(RefreshDate, filePath);
         }catch (Exception IOException){
             GUI.displayNoRecentRefresh(RefreshDate);
-        }
-    }
-
-    private void attemptToDisplayMainScreen(WebView webView) {
-        try {
-            GUI.displayMainScreen(webView);
-        } catch (IOException DisplayMainScreenException) {
-            throw new RuntimeException(DisplayMainScreenException);
         }
     }
 

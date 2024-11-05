@@ -131,22 +131,4 @@ public class GUI extends Application implements Initializable{
         alert.show();
     }
 
-    public static void displayLoadingVideo(WebView webView) {
-        String videoURL = VideoURLFetcher.getRandomVideoLocation();
-        webView.getEngine().load(videoURL);
-        Scene scene = new Scene(webView, 960, 540);
-        stage.setScene(scene);
-        stage.hide();
-    }
-
-    public static void displayMainScreen(WebView webView) throws IOException {
-        webView.getEngine().load(null);
-        Parent root = FXMLLoader.load(Objects.requireNonNull(GUI.class.getClassLoader().getResource("MainScreen.fxml")));
-        stage.setTitle("D&D Loot Generator");
-        stage.getIcons().add(new Image(("/toolbarIcon.png")));
-        stage.setScene(new Scene(root));
-        stage.setResizable(false);
-        stage.show();
-    }
-
 }
