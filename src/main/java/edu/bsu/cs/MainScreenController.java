@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.AudioClip;
 import javafx.scene.web.WebView;
 
 import java.io.IOException;
@@ -28,6 +29,8 @@ public class MainScreenController {
     public Label RefreshDate;
 
     private final WebView webView = new WebView();
+    private AudioClip audioClip;
+
 
     public void initialize()  {
         new GUI().displayTableViewDefault(itemTableView);
@@ -73,7 +76,15 @@ public class MainScreenController {
 
     private void initiateLoadingProcess() {
         new GUI().displayTableViewLoading(itemTableView);
-        GUI.displayLoadingVideo(webView);
+        //GUI.displayLoadingVideo(webView);
+        String fileName;
+        try {
+            fileName = Objects.requireNonNull(getClass().getResource("/funTune.mp3")).toURI().toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        audioClip = new AudioClip(fileName);
+        audioClip.play();
         new Thread(attemptToRefreshItemFiles()).start();
     }
 
@@ -94,6 +105,7 @@ public class MainScreenController {
                 RefreshTracker.saveCurrentTime("src/main/resources/lastRefreshDate.txt");
                 updateRefreshDate();
                 new GUI().displayTableViewDefault(itemTableView);
+                audioClip.stop();
                 enableInput();
                 attemptToDisplayMainScreen(webView);
             }
@@ -104,6 +116,7 @@ public class MainScreenController {
                 } else {
                     GUI.displayRefreshErrorAlert();
                 }
+                audioClip.stop();
                 new GUI().displayTableViewDefault(itemTableView);
                 enableInput();
                 attemptToDisplayMainScreen(webView);

@@ -136,7 +136,7 @@ public class GUI extends Application implements Initializable{
         webView.getEngine().load(videoURL);
         Scene scene = new Scene(webView, 960, 540);
         stage.setScene(scene);
-        stage.show();
+        stage.hide();
     }
 
     public static void displayMainScreen(WebView webView) throws IOException {
