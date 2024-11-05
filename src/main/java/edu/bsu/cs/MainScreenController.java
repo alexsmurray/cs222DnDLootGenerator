@@ -26,6 +26,7 @@ public class MainScreenController {
     public Button generateButton;
     public Button refreshItemDataButton;
     public Label RefreshDate;
+    public MenuButton navigationMenu;
 
     private AudioClip audioClip;
 
@@ -127,12 +128,14 @@ public class MainScreenController {
         userInputField.setDisable(true);
         generateButton.setDisable(true);
         refreshItemDataButton.setDisable(true);
+        navigationMenu.setDisable(true);
     }
 
     private void enableInput(){
         userInputField.setDisable(false);
         generateButton.setDisable(false);
         refreshItemDataButton.setDisable(false);
+        navigationMenu.setDisable(false);
     }
 
     private void updateRefreshDate(){
