@@ -33,7 +33,7 @@ public class TestWeaponItemParser {
 
     @Test
     public void testGetStandardItemNameFromSampleJson() throws IOException {
-        JSONArray sampleJsonArray = testWeaponParser.parseStandardItemName(JsonToString.readJsonAsString(weaponInputStream));
+        JSONArray sampleJsonArray = testWeaponParser.parseWeaponItemName(JsonToString.readJsonAsString(weaponInputStream));
         String[] expected = {"Battleaxe", "Blowgun", "Club", "Crossbow, hand", "Crossbow, heavy"};
         String[] result = new String[5];
         for (int i = 0; i < 5; i++) {

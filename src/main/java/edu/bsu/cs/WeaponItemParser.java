@@ -8,7 +8,7 @@ import java.util.Hashtable;
 
 public class WeaponItemParser {
 
-    protected JSONArray parseStandardItemName(String stringifiedJson){
+    protected JSONArray parseWeaponItemName(String stringifiedJson){
         return JsonPath.read(stringifiedJson, "$..name");
     }
 

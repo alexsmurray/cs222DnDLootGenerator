@@ -29,7 +29,7 @@ public class ItemBuilder {
     }
 
     protected Item generateWeapon(String filePath) throws IOException {
-        JSONArray nameJsonArray =  weaponItemParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
+        JSONArray nameJsonArray =  weaponItemParser.parseWeaponItemName(JsonFileReader.readFileToString(filePath));
         int randomIndex = selectRandomItemIndex(nameJsonArray);
         Dictionary<Integer, String> statDictionary = weaponItemParser.parseAllWeaponStats(JsonFileReader.readFileToString(filePath), randomIndex);
         Item item = new Item(nameJsonArray.get(randomIndex).toString(), OutputFormatter.formatWeaponStats(statDictionary));
@@ -38,7 +38,7 @@ public class ItemBuilder {
     }
 
     protected Item generateArmor(String filePath) throws IOException {
-        JSONArray nameJsonArray =  weaponItemParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
+        JSONArray nameJsonArray =  armorItemParser.parseArmorItemName(JsonFileReader.readFileToString(filePath));
         int randomIndex = selectRandomItemIndex(nameJsonArray);
         Dictionary<Integer, String> statDictionary = armorItemParser.parseAllArmorStats(JsonFileReader.readFileToString(filePath), randomIndex);
         Item item = new Item(nameJsonArray.get(randomIndex).toString(), OutputFormatter.formatArmorStats(statDictionary));

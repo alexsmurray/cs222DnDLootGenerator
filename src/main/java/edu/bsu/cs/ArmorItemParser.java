@@ -9,6 +9,10 @@ import java.util.Objects;
 
 public class ArmorItemParser {
 
+    protected JSONArray parseArmorItemName(String stringifiedJson){
+        return JsonPath.read(stringifiedJson, "$..name");
+    }
+
     protected Dictionary<Integer, String> parseAllArmorStats(String filePath, int randomIndex) {
         Dictionary<Integer, String> statDictionary = new Hashtable<>();
 
