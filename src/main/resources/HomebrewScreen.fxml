@@ -11,6 +11,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -31,8 +32,11 @@
     </MenuButton>
    <Pane fx:id="weaponMaker" layoutX="164.0" layoutY="99.0" prefHeight="426.0" prefWidth="631.0" style="-fx-background-color: white; -fx-border-color: black;">
          <TextField fx:id="weaponNameInput" layoutX="34.0" layoutY="14.0" prefHeight="26.0" prefWidth="352.0" promptText="Enter Name" />
-         <RadioButton fx:id="simpleRadio" layoutX="108.0" layoutY="63.0" mnemonicParsing="false" text="Simple" />
-         <RadioButton fx:id="martialRadio" layoutX="34.0" layoutY="63.0" mnemonicParsing="false" text="Martial" />
+         <RadioButton fx:id="simpleRadio" layoutX="108.0" layoutY="63.0" mnemonicParsing="false" selected="true" text="Simple">
+         <toggleGroup>
+            <ToggleGroup fx:id="proficiency" />
+         </toggleGroup></RadioButton>
+         <RadioButton fx:id="martialRadio" layoutX="34.0" layoutY="63.0" mnemonicParsing="false" text="Martial" toggleGroup="$proficiency" />
          <Label layoutX="190.0" layoutY="63.0" text="Damage Dice" />
        <ChoiceBox fx:id="damageDiceChoice" layoutX="351.0" layoutY="59.0" prefHeight="25.0" prefWidth="46.0" value="d6">
            <items>
@@ -89,7 +93,7 @@
              </items>
          </ChoiceBox>
          <Label layoutX="39.0" layoutY="106.0" text="Reach" />
-         <ToggleButton fx:id="attunementToggle" layoutX="257.0" layoutY="147.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Attunement" onAction="#checkAttunement"/>
+         <ToggleButton fx:id="attunementToggle" layoutX="257.0" layoutY="147.0" mnemonicParsing="false" onAction="#checkAttunement" prefHeight="25.0" prefWidth="86.0" text="Attunement" />
          <ChoiceBox fx:id="damageTypeChoice" layoutX="101.0" layoutY="147.0" prefHeight="25.0" prefWidth="100.0" value="Slashing">
              <items>
                  <FXCollections fx:factory="observableArrayList">
