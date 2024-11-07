@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -129,24 +128,6 @@ public class GUI extends Application implements Initializable{
         alert.setHeaderText("You are missing necessary data files.\nThis will be the case the first time the program runs.");
         alert.setContentText("Missing data files will be built now.\nThis may take a minute.");
         alert.show();
-    }
-
-    public static void displayLoadingVideo(WebView webView) {
-        String videoURL = VideoURLFetcher.getRandomVideoLocation();
-        webView.getEngine().load(videoURL);
-        Scene scene = new Scene(webView, 960, 540);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public static void displayMainScreen(WebView webView) throws IOException {
-        webView.getEngine().load(null);
-        Parent root = FXMLLoader.load(Objects.requireNonNull(GUI.class.getClassLoader().getResource("MainScreen.fxml")));
-        stage.setTitle("D&D Loot Generator");
-        stage.getIcons().add(new Image(("/toolbarIcon.png")));
-        stage.setScene(new Scene(root));
-        stage.setResizable(false);
-        stage.show();
     }
 
 }
