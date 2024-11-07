@@ -8,7 +8,8 @@ import java.util.*;
 public class ItemBuilder {
 
     MagicItemsParser attributeParser = new MagicItemsParser();
-    StandardItemsParser standardItemParser = new StandardItemsParser();
+    WeaponItemParser weaponItemParser = new WeaponItemParser();
+    ArmorItemParser armorItemParser = new ArmorItemParser();
 
     protected List<Item> generateAmountOfItems() throws IOException {
         List<Item> itemsList = new ArrayList<>();
@@ -28,17 +29,19 @@ public class ItemBuilder {
     }
 
     protected Item generateWeapon(String filePath) throws IOException {
-        JSONArray nameJsonArray =  standardItemParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
+        JSONArray nameJsonArray =  weaponItemParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
         int randomIndex = selectRandomItemIndex(nameJsonArray);
-        Item item = new Item(nameJsonArray.get(randomIndex).toString(), OutputFormatter.formatWeaponStats(getWeaponStats(JsonFileReader.readFileToString(filePath), randomIndex)));
+        Dictionary<Integer, String> statDictionary = weaponItemParser.parseAllWeaponStats(JsonFileReader.readFileToString(filePath), randomIndex);
+        Item item = new Item(nameJsonArray.get(randomIndex).toString(), OutputFormatter.formatWeaponStats(statDictionary));
         item.setType("Weapon");
         return item;
     }
 
     protected Item generateArmor(String filePath) throws IOException {
-        JSONArray nameJsonArray =  standardItemParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
+        JSONArray nameJsonArray =  weaponItemParser.parseStandardItemName(JsonFileReader.readFileToString(filePath));
         int randomIndex = selectRandomItemIndex(nameJsonArray);
-        Item item = new Item(nameJsonArray.get(randomIndex).toString(), OutputFormatter.formatArmorStats(getArmorStats(JsonFileReader.readFileToString(filePath), randomIndex)));
+        Dictionary<Integer, String> statDictionary = armorItemParser.parseAllArmorStats(JsonFileReader.readFileToString(filePath), randomIndex);
+        Item item = new Item(nameJsonArray.get(randomIndex).toString(), OutputFormatter.formatArmorStats(statDictionary));
         item.setType("Armor");
         return item;
     }
@@ -63,36 +66,6 @@ public class ItemBuilder {
                 OutputFormatter.formatAttunement(attunementJsonArray.get(selectedIndex).toString()),
                 descriptionJsonArray.get(selectedIndex).toString()
                 );
-    }
-
-    private Dictionary<Integer, String> getArmorStats(String filePath, int randomIndex) {
-        Dictionary<Integer, String> statDictionary = new Hashtable<>();
-
-        statDictionary.put(1, standardItemParser.parseArmorClassDisplay(filePath).get(randomIndex).toString());
-        statDictionary.put(2, standardItemParser.parseArmorCategory(filePath).get(randomIndex).toString());
-        statDictionary.put(3, standardItemParser.parseStealthDisadvantage(filePath).get(randomIndex).toString());
-        statDictionary.put(4, verifyStrengthRequirement(standardItemParser.parseStrengthScoreRequirement(filePath).get(randomIndex)).toString());
-        return statDictionary;
-    }
-
-    private Object verifyStrengthRequirement(Object parsedItem) {
-        return Objects.requireNonNullElse(parsedItem, "None");
-    }
-
-    private Dictionary<Integer, String> getWeaponStats(String filePath, int randomIndex) {
-        Dictionary<Integer, String> statDictionary = new Hashtable<>();
-
-        statDictionary.put(1, standardItemParser.parseWeaponIsMartial(filePath).get(randomIndex).toString());
-        statDictionary.put(2, standardItemParser.parseWeaponIsSimple(filePath).get(randomIndex).toString());
-        statDictionary.put(3, standardItemParser.parseDamageDice(filePath).get(randomIndex).toString());
-        statDictionary.put(4, standardItemParser.parseWeaponReach(filePath).get(randomIndex).toString());
-        statDictionary.put(5, standardItemParser.parseWeaponRange(filePath).get(randomIndex).toString());
-        statDictionary.put(6, standardItemParser.parseWeaponLongRange(filePath).get(randomIndex).toString());
-        statDictionary.put(7, OutputFormatter.formatWeaponDamageType(standardItemParser.parseWeaponDamageType(filePath).get(randomIndex)).toString());
-        statDictionary.put(8, standardItemParser.parseWeaponProperties(filePath).get(randomIndex).toString().replace("\\",""));
-        statDictionary.put(9, standardItemParser.parseWeaponIsLance(filePath).get(randomIndex).toString());
-        statDictionary.put(10, standardItemParser.parseWeaponIsNet(filePath).get(randomIndex).toString());
-        return statDictionary;
     }
 
     protected static int selectRandomItemIndex(JSONArray array){

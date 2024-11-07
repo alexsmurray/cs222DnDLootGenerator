@@ -3,31 +3,30 @@ package edu.bsu.cs;
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
 
-public class StandardItemsParser {
+import java.util.Dictionary;
+import java.util.Hashtable;
+
+public class WeaponItemParser {
 
     protected JSONArray parseStandardItemName(String stringifiedJson){
         return JsonPath.read(stringifiedJson, "$..name");
     }
 
-    //Rename for weapon use
-    protected JSONArray parseStandardItemResults(String stringifiedJson) {
-        return JsonPath.read(stringifiedJson, "$.results");
-    }
+    protected Dictionary<Integer, String> parseAllWeaponStats(String filePath, int randomIndex) {
+        Dictionary<Integer, String> statDictionary = new Hashtable<>();
 
-    protected JSONArray parseArmorClassDisplay(String stringifiedJson){
-        return JsonPath.read(stringifiedJson, "$..ac_display");
-    }
+        statDictionary.put(1, parseWeaponIsMartial(filePath).get(randomIndex).toString());
+        statDictionary.put(2, parseWeaponIsSimple(filePath).get(randomIndex).toString());
+        statDictionary.put(3, parseDamageDice(filePath).get(randomIndex).toString());
+        statDictionary.put(4, parseWeaponReach(filePath).get(randomIndex).toString());
+        statDictionary.put(5, parseWeaponRange(filePath).get(randomIndex).toString());
+        statDictionary.put(6, parseWeaponLongRange(filePath).get(randomIndex).toString());
+        statDictionary.put(7, OutputFormatter.formatWeaponDamageType(parseWeaponDamageType(filePath).get(randomIndex)).toString());
+        statDictionary.put(8, parseWeaponProperties(filePath).get(randomIndex).toString().replace("\\",""));
+        statDictionary.put(9, parseWeaponIsLance(filePath).get(randomIndex).toString());
+        statDictionary.put(10, parseWeaponIsNet(filePath).get(randomIndex).toString());
 
-    protected JSONArray parseArmorCategory(String stringifiedJson){
-        return JsonPath.read(stringifiedJson, "$..category");
-    }
-
-    protected JSONArray parseStealthDisadvantage(String stringifiedJson){
-        return JsonPath.read(stringifiedJson, "$..grants_stealth_disadvantage");
-    }
-
-    protected JSONArray parseStrengthScoreRequirement(String stringifiedJson){
-        return JsonPath.read(stringifiedJson, "$..strength_score_required");
+        return statDictionary;
     }
 
     protected JSONArray parseWeaponIsMartial(String stringifiedJson){
