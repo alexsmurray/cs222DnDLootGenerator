@@ -1,14 +1,19 @@
 package edu.bsu.cs;
 
+import javafx.animation.Interpolator;
+import javafx.animation.RotateTransition;
+import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.media.AudioClip;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -25,10 +30,12 @@ public class MainScreenController {
     public TableColumn<Item, String> attunementTableColumn;
     public Button generateButton;
     public Button refreshItemDataButton;
-    public Label RefreshDate;
+    public Label refreshDate;
     public MenuButton navigationMenu;
+    public ImageView loadingImage;
 
     private AudioClip audioClip;
+    private RotateTransition rotateAnimation;
 
 
     public void initialize()  {
@@ -76,6 +83,7 @@ public class MainScreenController {
     private void initiateLoadingProcess() {
         new GUI().displayTableViewLoading(itemTableView);
         playAudioClip();
+        animateLoadingImage();
         new Thread(attemptToRefreshItemFiles()).start();
     }
 
@@ -88,6 +96,21 @@ public class MainScreenController {
         }
         audioClip = new AudioClip(fileName);
         audioClip.play();
+    }
+
+    private void animateLoadingImage() {
+        loadingImage.setVisible(true);
+        rotateAnimation = new RotateTransition(Duration.seconds(5), loadingImage);
+        rotateAnimation.setFromAngle(0);
+        rotateAnimation.setToAngle(-360);
+        rotateAnimation.setCycleCount(Timeline.INDEFINITE);
+        rotateAnimation.setInterpolator(Interpolator.LINEAR);
+        rotateAnimation.play();
+    }
+
+    private void stopLoadingImage() {
+        loadingImage.setVisible(false);
+        rotateAnimation.stop();
     }
 
     private Task<Void> attemptToRefreshItemFiles(){
@@ -108,6 +131,7 @@ public class MainScreenController {
                 updateRefreshDate();
                 new GUI().displayTableViewDefault(itemTableView);
                 audioClip.stop();
+                stopLoadingImage();
                 enableInput();
             }
             @Override
@@ -118,6 +142,7 @@ public class MainScreenController {
                     GUI.displayRefreshErrorAlert();
                 }
                 audioClip.stop();
+                stopLoadingImage();
                 new GUI().displayTableViewDefault(itemTableView);
                 enableInput();
             }
@@ -141,9 +166,9 @@ public class MainScreenController {
     private void updateRefreshDate(){
         String filePath = "src/main/resources/lastRefreshDate.txt";
         try{
-            GUI.displayLastRefreshDate(RefreshDate, filePath);
+            GUI.displayLastRefreshDate(refreshDate, filePath);
         }catch (Exception IOException){
-            GUI.displayNoRecentRefresh(RefreshDate);
+            GUI.displayNoRecentRefresh(refreshDate);
         }
     }
 

@@ -63,11 +63,14 @@
          <Insets left="5.0" right="5.0" />
       </padding></Label>
    <Label layoutX="841.0" layoutY="81.0" />
-   <Label fx:id="RefreshDate" alignment="CENTER" contentDisplay="RIGHT" layoutX="727.0" layoutY="459.0" prefHeight="18.0" prefWidth="210.0" text="No Recent Refresh" textFill="WHITE" wrapText="true" />
+   <Label fx:id="refreshDate" alignment="CENTER" contentDisplay="RIGHT" layoutX="727.0" layoutY="459.0" prefHeight="18.0" prefWidth="210.0" text="No Recent Refresh" textFill="WHITE" wrapText="true" />
    <MenuButton fx:id="navigationMenu" layoutX="777.0" layoutY="99.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Navigate to...">
      <items>
        <MenuItem mnemonicParsing="false" onAction="#switchToHomeBrew" text="Homebrew" />
        <MenuItem mnemonicParsing="false" onAction="#switchToFilters" text="Filtering Options" />
      </items>
    </MenuButton>
+    <ImageView fx:id="loadingImage" fitHeight="150.0" fitWidth="200.0" layoutX="285.0" layoutY="240.0" opacity="0.2" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" visible="false">
+        <Image url="@loadingImage.png" />
+    </ImageView>
 </AnchorPane>
