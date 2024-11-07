@@ -14,6 +14,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.HomebrewScreenController">
     <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true">
     <Image url="@backgroundImageBlue.png" />
@@ -32,7 +34,18 @@
          <RadioButton fx:id="simpleRadio" layoutX="108.0" layoutY="50.0" mnemonicParsing="false" text="Simple" />
          <RadioButton fx:id="martialRadio" layoutX="34.0" layoutY="50.0" mnemonicParsing="false" text="Martial" />
          <Label layoutX="190.0" layoutY="50.0" text="Damage Dice" />
-         <ChoiceBox fx:id="damageDiceChoice" layoutX="351.0" layoutY="47.0" prefHeight="25.0" prefWidth="46.0" />
+       <ChoiceBox fx:id="damageDiceChoice" layoutX="351.0" layoutY="47.0" prefHeight="25.0" prefWidth="46.0" value="d6">
+           <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="d4" />
+                    <String fx:value="d6" />
+                    <String fx:value="d8" />
+                    <String fx:value="d10" />
+                    <String fx:value="d12" />
+                    <String fx:value="d20" />
+                </FXCollections>
+           </items>
+       </ChoiceBox>
          <ListView fx:id="propertyListView" layoutX="410.0" layoutY="59.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: black;" />
          <MenuButton fx:id="propertyMenu" layoutX="467.0" layoutY="15.0" mnemonicParsing="false" text="Properties">
            <items>
@@ -51,9 +64,28 @@
          <Label layoutX="424.0" layoutY="42.0" text="Double click to remove property" />
          <TextField fx:id="numberOfDiceInput" layoutX="268.0" layoutY="47.0" prefHeight="25.0" prefWidth="71.0" promptText="# of dice" />
          <TextArea fx:id="weaponDescription" layoutX="18.0" layoutY="270.0" prefHeight="143.0" prefWidth="595.0" promptText="Enter item description" style="-fx-border-color: black;" />
-         <ChoiceBox fx:id="reachChoice" layoutX="44.0" layoutY="102.0" prefHeight="25.0" prefWidth="71.0" />
-         <ChoiceBox fx:id="weaponRarityChoice" layoutX="275.0" layoutY="204.0" prefHeight="25.0" prefWidth="111.0" />
-         <Label layoutX="150.0" layoutY="139.0" prefHeight="40.0" prefWidth="120.0" text="*Requires thrown or ammunition property" wrapText="true" />
+         <ChoiceBox fx:id="reachChoice" layoutX="44.0" layoutY="102.0" prefHeight="25.0" prefWidth="71.0" value="5.0 ft">
+             <items>
+                 <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="0.0 ft" />
+                     <String fx:value="5.0 ft" />
+                     <String fx:value="10.0 ft" />
+                 </FXCollections>
+             </items>
+         </ChoiceBox>
+         <ChoiceBox fx:id="weaponRarityChoice" layoutX="275.0" layoutY="204.0" prefHeight="25.0" prefWidth="111.0" value="common">
+             <items>
+                 <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="mundane" />
+                     <String fx:value="common" />
+                     <String fx:value="uncommon" />
+                     <String fx:value="rare" />
+                     <String fx:value="very rare" />
+                     <String fx:value="legendary" />
+                     <String fx:value="artifact" />
+                 </FXCollections>
+             </items>
+         </ChoiceBox>
          <Label layoutX="64.0" layoutY="131.0" text="Reach" />
          <ToggleButton fx:id="attunementToggle" layoutX="299.0" layoutY="102.0" mnemonicParsing="false" style="-fx-background-color: lightgrey;" text="Attunement" />
          <ChoiceBox fx:id="extraTypeChoice" layoutX="33.0" layoutY="204.0" prefHeight="25.0" prefWidth="111.0" />
