@@ -18,7 +18,7 @@ public class TestWeaponItemParser {
         String stringifiedJson = JsonFileReader.readFileToString("src/test/resources/SampleWeapons.json");
         Dictionary<Integer, String> testStatDictionary = testWeaponParser.parseAllWeaponStats(stringifiedJson, 0);
         String[] result = buildStatArray(testStatDictionary);
-        String[] expected = {"true", "false", "1d8", "5.0", "0.0"};
+        String[] expected = {"true", "false", "1d8", "5.0", "slashing"};
         Assertions.assertArrayEquals(expected, result);
     }
 
@@ -89,33 +89,6 @@ public class TestWeaponItemParser {
         String[] expected = {"5.0","5.0","5.0","5.0","5.0","5.0","5.0","5.0","5.0","10.0"};
         String[] result = new String[10];
         for (int i = 0; i < 10; i++) {
-            if (sampleJsonArray.get(i)!=null){
-                result[i] = sampleJsonArray.get(i).toString();
-            }
-        }
-        Assertions.assertArrayEquals(expected, result);
-    }
-
-    @Test
-    public void testParseWeaponRange() throws IOException {
-        JSONArray sampleJsonArray = testWeaponParser.parseWeaponRange(JsonToString.readJsonAsString(weaponInputStream));
-        String[] expected = {"0.0","25.0","0.0","30.0","100.0"};
-        String[] result = new String[5];
-        for (int i = 0; i < 5; i++) {
-            if (sampleJsonArray.get(i)!=null){
-                result[i] = sampleJsonArray.get(i).toString();
-            }
-        }
-        Assertions.assertArrayEquals(expected, result);
-    }
-
-    @Test
-    public void testParseWeaponLongRange() throws IOException {
-        InputStream testInputStream = getWeaponItemJsonFile();
-        JSONArray sampleJsonArray = testWeaponParser.parseWeaponLongRange(JsonToString.readJsonAsString(testInputStream));
-        String[] expected = {"0.0","100.0","0.0","120.0","400.0"};
-        String[] result = new String[5];
-        for (int i = 0; i < 5; i++) {
             if (sampleJsonArray.get(i)!=null){
                 result[i] = sampleJsonArray.get(i).toString();
             }

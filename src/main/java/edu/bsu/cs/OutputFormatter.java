@@ -66,7 +66,7 @@ public class OutputFormatter {
 
     public static String formatWeaponStats(Dictionary<Integer, String> statDictionary) {
         StringBuilder weaponStats = new StringBuilder();
-        String[] statNames = {"Is Martial:  ", "Is Simple:  ", "Damage Dice:  ", "Reach:  ", "Range:  ", "Long Range:  ", "Damage Type:  ", "Properties:  ", "Is Lance:  ", "Is Net:  "};
+        String[] statNames = {"Is Martial:  ", "Is Simple:  ", "Damage Dice:  ", "Reach:  ", "Damage Type:  ", "Properties:  ", "Is Lance:  ", "Is Net:  "};
         for (int i = 0; i < statDictionary.size(); i++){
             if (!statDictionary.get(i+1).equals("false") && !(statDictionary.get(i+1).equals("0.0")) && !statDictionary.get(i+1).equals("[]")){
                 weaponStats.append(statNames[i]).append(statDictionary.get(i+1)).append("\n");

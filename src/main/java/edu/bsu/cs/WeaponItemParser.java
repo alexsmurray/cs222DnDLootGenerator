@@ -19,12 +19,10 @@ public class WeaponItemParser {
         statDictionary.put(2, parseWeaponIsSimple(filePath).get(randomIndex).toString());
         statDictionary.put(3, parseDamageDice(filePath).get(randomIndex).toString());
         statDictionary.put(4, parseWeaponReach(filePath).get(randomIndex).toString());
-        statDictionary.put(5, parseWeaponRange(filePath).get(randomIndex).toString());
-        statDictionary.put(6, parseWeaponLongRange(filePath).get(randomIndex).toString());
-        statDictionary.put(7, OutputFormatter.formatWeaponDamageType(parseWeaponDamageType(filePath).get(randomIndex)).toString());
-        statDictionary.put(8, parseWeaponProperties(filePath).get(randomIndex).toString().replace("\\",""));
-        statDictionary.put(9, parseWeaponIsLance(filePath).get(randomIndex).toString());
-        statDictionary.put(10, parseWeaponIsNet(filePath).get(randomIndex).toString());
+        statDictionary.put(5, OutputFormatter.formatWeaponDamageType(parseWeaponDamageType(filePath).get(randomIndex)).toString());
+        statDictionary.put(6, parseWeaponProperties(filePath).get(randomIndex).toString().replace("\\",""));
+        statDictionary.put(7, parseWeaponIsLance(filePath).get(randomIndex).toString());
+        statDictionary.put(8, parseWeaponIsNet(filePath).get(randomIndex).toString());
 
         return statDictionary;
     }
@@ -43,14 +41,6 @@ public class WeaponItemParser {
 
     protected JSONArray parseWeaponReach(String stringifiedJson){
         return JsonPath.read(stringifiedJson, "$..reach");
-    }
-
-    protected JSONArray parseWeaponRange(String stringifiedJson){
-        return JsonPath.read(stringifiedJson, "$..range");
-    }
-
-    protected JSONArray parseWeaponLongRange(String stringifiedJson){
-        return JsonPath.read(stringifiedJson, "$..long_range");
     }
 
     protected JSONArray parseWeaponIsLance(String stringifiedJson){
