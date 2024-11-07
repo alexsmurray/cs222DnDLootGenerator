@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -14,8 +16,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.HomebrewScreenController">
     <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true">
     <Image url="@backgroundImageBlue.png" />
@@ -31,10 +31,10 @@
     </MenuButton>
    <Pane fx:id="weaponMaker" layoutX="164.0" layoutY="99.0" prefHeight="426.0" prefWidth="631.0" style="-fx-background-color: white; -fx-border-color: black;">
          <TextField fx:id="weaponNameInput" layoutX="34.0" layoutY="14.0" prefHeight="26.0" prefWidth="352.0" promptText="Enter Name" />
-         <RadioButton fx:id="simpleRadio" layoutX="108.0" layoutY="50.0" mnemonicParsing="false" text="Simple" />
-         <RadioButton fx:id="martialRadio" layoutX="34.0" layoutY="50.0" mnemonicParsing="false" text="Martial" />
-         <Label layoutX="190.0" layoutY="50.0" text="Damage Dice" />
-       <ChoiceBox fx:id="damageDiceChoice" layoutX="351.0" layoutY="47.0" prefHeight="25.0" prefWidth="46.0" value="d6">
+         <RadioButton fx:id="simpleRadio" layoutX="108.0" layoutY="63.0" mnemonicParsing="false" text="Simple" />
+         <RadioButton fx:id="martialRadio" layoutX="34.0" layoutY="63.0" mnemonicParsing="false" text="Martial" />
+         <Label layoutX="190.0" layoutY="63.0" text="Damage Dice" />
+       <ChoiceBox fx:id="damageDiceChoice" layoutX="351.0" layoutY="59.0" prefHeight="25.0" prefWidth="46.0" value="d6">
            <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="d4" />
@@ -49,47 +49,60 @@
          <ListView fx:id="propertyListView" layoutX="410.0" layoutY="59.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: black;" />
          <MenuButton fx:id="propertyMenu" layoutX="467.0" layoutY="15.0" mnemonicParsing="false" text="Properties">
            <items>
-             <MenuItem mnemonicParsing="false" text="ammunition" />
-             <MenuItem mnemonicParsing="false" text="finesse" />
-             <MenuItem mnemonicParsing="false" text="heavy" />
-             <MenuItem mnemonicParsing="false" text="light" />
-             <MenuItem mnemonicParsing="false" text="loading" />
-             <MenuItem mnemonicParsing="false" text="reach" />
-             <MenuItem mnemonicParsing="false" text="special" />
-             <MenuItem mnemonicParsing="false" text="thrown" />
-             <MenuItem mnemonicParsing="false" text="two-handed" />
-             <MenuItem mnemonicParsing="false" text="versatile" />
+             <MenuItem mnemonicParsing="false" text="Ammunition" />
+             <MenuItem mnemonicParsing="false" text="Finesse" />
+             <MenuItem mnemonicParsing="false" text="Heavy" />
+             <MenuItem mnemonicParsing="false" text="Lance" />
+             <MenuItem mnemonicParsing="false" text="Light" />
+             <MenuItem mnemonicParsing="false" text="Loading" />
+             <MenuItem mnemonicParsing="false" text="Net" />
+             <MenuItem mnemonicParsing="false" text="Reach" />
+             <MenuItem mnemonicParsing="false" text="Special" />
+             <MenuItem mnemonicParsing="false" text="Thrown" />
+             <MenuItem mnemonicParsing="false" text="Two-Handed" />
+             <MenuItem mnemonicParsing="false" text="Versatile" />
            </items>
          </MenuButton>
          <Label layoutX="424.0" layoutY="42.0" text="Double click to remove property" />
-         <TextField fx:id="numberOfDiceInput" layoutX="268.0" layoutY="47.0" prefHeight="25.0" prefWidth="71.0" promptText="# of dice" />
+         <TextField fx:id="numberOfDiceInput" layoutX="268.0" layoutY="59.0" prefHeight="25.0" prefWidth="71.0" promptText="# of dice" />
          <TextArea fx:id="weaponDescription" layoutX="18.0" layoutY="270.0" prefHeight="143.0" prefWidth="595.0" promptText="Enter item description" style="-fx-border-color: black;" />
-         <ChoiceBox fx:id="reachChoice" layoutX="44.0" layoutY="102.0" prefHeight="25.0" prefWidth="71.0" value="5.0 ft">
+         <ChoiceBox fx:id="reachChoice" layoutX="101.0" layoutY="102.0" prefHeight="25.0" prefWidth="100.0" value="5.0 feet">
              <items>
                  <FXCollections fx:factory="observableArrayList">
-                     <String fx:value="0.0 ft" />
-                     <String fx:value="5.0 ft" />
-                     <String fx:value="10.0 ft" />
+                     <String fx:value="0.0 feet" />
+                     <String fx:value="5.0 feet" />
+                     <String fx:value="10.0 feet" />
                  </FXCollections>
              </items>
          </ChoiceBox>
-         <ChoiceBox fx:id="weaponRarityChoice" layoutX="275.0" layoutY="204.0" prefHeight="25.0" prefWidth="111.0" value="common">
+         <ChoiceBox fx:id="weaponRarityChoice" layoutX="101.0" layoutY="195.0" prefHeight="25.0" prefWidth="100.0" value="Common">
              <items>
                  <FXCollections fx:factory="observableArrayList">
-                     <String fx:value="mundane" />
-                     <String fx:value="common" />
-                     <String fx:value="uncommon" />
-                     <String fx:value="rare" />
-                     <String fx:value="very rare" />
-                     <String fx:value="legendary" />
-                     <String fx:value="artifact" />
+                     <String fx:value="Mundane" />
+                     <String fx:value="Common" />
+                     <String fx:value="Uncommon" />
+                     <String fx:value="Rare" />
+                     <String fx:value="Very Rare" />
+                     <String fx:value="Legendary" />
+                     <String fx:value="Artifact" />
                  </FXCollections>
              </items>
          </ChoiceBox>
-         <Label layoutX="64.0" layoutY="131.0" text="Reach" />
-         <ToggleButton fx:id="attunementToggle" layoutX="299.0" layoutY="102.0" mnemonicParsing="false" style="-fx-background-color: lightgrey;" text="Attunement" />
-         <ChoiceBox fx:id="extraTypeChoice" layoutX="33.0" layoutY="204.0" prefHeight="25.0" prefWidth="111.0" />
-         <ChoiceBox fx:id="damageTypeChoice" layoutX="155.0" layoutY="204.0" prefHeight="25.0" prefWidth="111.0" />
-         <TextField fx:id="weaponRangeInput" layoutX="175.0" layoutY="102.0" prefHeight="25.0" prefWidth="71.0" promptText="Range" />
+         <Label layoutX="39.0" layoutY="106.0" text="Reach" />
+         <ToggleButton fx:id="attunementToggle" layoutX="257.0" layoutY="147.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Attunement" />
+         <ChoiceBox fx:id="damageTypeChoice" layoutX="101.0" layoutY="147.0" prefHeight="25.0" prefWidth="100.0" value="Slashing">
+             <items>
+                 <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="Bludgeoning" />
+                     <String fx:value="Piercing" />
+                     <String fx:value="Slashing" />
+                 </FXCollections>
+             </items>
+         </ChoiceBox>
+         <TextField fx:id="weaponRangeInput" layoutX="268.0" layoutY="102.0" prefHeight="25.0" prefWidth="71.0" promptText="Range" />
+      <Label layoutX="18.0" layoutY="151.0" text="Damage Type" />
+      <Label layoutX="39.0" layoutY="199.0" text="Rarity" />
+      <Label layoutX="225.0" layoutY="106.0" text="Range" />
+      <Label layoutX="241.0" layoutY="199.0" text="*Requires Attunement" visible="false" />
    </Pane>
 </AnchorPane>
