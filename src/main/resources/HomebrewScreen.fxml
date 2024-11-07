@@ -27,29 +27,37 @@
             <MenuItem mnemonicParsing="false" onAction="#goToFilters" text="Filtering Options" />
         </items>
     </MenuButton>
-   <Pane layoutX="164.0" layoutY="99.0" prefHeight="426.0" prefWidth="631.0" style="-fx-background-color: white; -fx-border-color: black;">
-         <TextField layoutX="34.0" layoutY="14.0" prefHeight="26.0" prefWidth="352.0" promptText="Enter Name" />
-         <RadioButton layoutX="108.0" layoutY="50.0" mnemonicParsing="false" text="Simple" />
-         <RadioButton layoutX="34.0" layoutY="50.0" mnemonicParsing="false" text="Martial" />
+   <Pane fx:id="weaponMaker" layoutX="164.0" layoutY="99.0" prefHeight="426.0" prefWidth="631.0" style="-fx-background-color: white; -fx-border-color: black;">
+         <TextField fx:id="weaponNameInput" layoutX="34.0" layoutY="14.0" prefHeight="26.0" prefWidth="352.0" promptText="Enter Name" />
+         <RadioButton fx:id="simpleRadio" layoutX="108.0" layoutY="50.0" mnemonicParsing="false" text="Simple" />
+         <RadioButton fx:id="martialRadio" layoutX="34.0" layoutY="50.0" mnemonicParsing="false" text="Martial" />
          <Label layoutX="190.0" layoutY="50.0" text="Damage Dice" />
-         <ChoiceBox layoutX="351.0" layoutY="47.0" prefHeight="25.0" prefWidth="46.0" />
-         <ListView layoutX="410.0" layoutY="59.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: black;" />
-         <MenuButton layoutX="467.0" layoutY="15.0" mnemonicParsing="false" text="Properties">
+         <ChoiceBox fx:id="damageDiceChoice" layoutX="351.0" layoutY="47.0" prefHeight="25.0" prefWidth="46.0" />
+         <ListView fx:id="propertyListView" layoutX="410.0" layoutY="59.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: black;" />
+         <MenuButton fx:id="propertyMenu" layoutX="467.0" layoutY="15.0" mnemonicParsing="false" text="Properties">
            <items>
-             <MenuItem mnemonicParsing="false" text="Action 1" />
-             <MenuItem mnemonicParsing="false" text="Action 2" />
+             <MenuItem mnemonicParsing="false" text="ammunition" />
+             <MenuItem mnemonicParsing="false" text="finesse" />
+             <MenuItem mnemonicParsing="false" text="heavy" />
+             <MenuItem mnemonicParsing="false" text="light" />
+             <MenuItem mnemonicParsing="false" text="loading" />
+             <MenuItem mnemonicParsing="false" text="reach" />
+             <MenuItem mnemonicParsing="false" text="special" />
+             <MenuItem mnemonicParsing="false" text="thrown" />
+             <MenuItem mnemonicParsing="false" text="two-handed" />
+             <MenuItem mnemonicParsing="false" text="versatile" />
            </items>
          </MenuButton>
          <Label layoutX="424.0" layoutY="42.0" text="Double click to remove property" />
-         <TextField layoutX="268.0" layoutY="47.0" prefHeight="25.0" prefWidth="71.0" promptText="# of dice" />
-         <TextArea layoutX="18.0" layoutY="270.0" prefHeight="143.0" prefWidth="595.0" promptText="Enter item description" style="-fx-border-color: black;" />
-         <ChoiceBox layoutX="44.0" layoutY="102.0" prefHeight="25.0" prefWidth="71.0" />
-         <ChoiceBox layoutX="275.0" layoutY="204.0" prefHeight="25.0" prefWidth="111.0" />
+         <TextField fx:id="numberOfDiceInput" layoutX="268.0" layoutY="47.0" prefHeight="25.0" prefWidth="71.0" promptText="# of dice" />
+         <TextArea fx:id="weaponDescription" layoutX="18.0" layoutY="270.0" prefHeight="143.0" prefWidth="595.0" promptText="Enter item description" style="-fx-border-color: black;" />
+         <ChoiceBox fx:id="reachChoice" layoutX="44.0" layoutY="102.0" prefHeight="25.0" prefWidth="71.0" />
+         <ChoiceBox fx:id="weaponRarityChoice" layoutX="275.0" layoutY="204.0" prefHeight="25.0" prefWidth="111.0" />
          <Label layoutX="150.0" layoutY="139.0" prefHeight="40.0" prefWidth="120.0" text="*Requires thrown or ammunition property" wrapText="true" />
          <Label layoutX="64.0" layoutY="131.0" text="Reach" />
-         <ToggleButton layoutX="299.0" layoutY="102.0" mnemonicParsing="false" text="Attunement" />
-         <ChoiceBox layoutX="33.0" layoutY="204.0" prefHeight="25.0" prefWidth="111.0" />
-         <ChoiceBox layoutX="155.0" layoutY="204.0" prefHeight="25.0" prefWidth="111.0" />
-         <TextField layoutX="175.0" layoutY="102.0" prefHeight="25.0" prefWidth="71.0" promptText="Range" />
+         <ToggleButton fx:id="attunementToggle" layoutX="299.0" layoutY="102.0" mnemonicParsing="false" style="-fx-background-color: lightgrey;" text="Attunement" />
+         <ChoiceBox fx:id="extraTypeChoice" layoutX="33.0" layoutY="204.0" prefHeight="25.0" prefWidth="111.0" />
+         <ChoiceBox fx:id="damageTypeChoice" layoutX="155.0" layoutY="204.0" prefHeight="25.0" prefWidth="111.0" />
+         <TextField fx:id="weaponRangeInput" layoutX="175.0" layoutY="102.0" prefHeight="25.0" prefWidth="71.0" promptText="Range" />
    </Pane>
 </AnchorPane>
