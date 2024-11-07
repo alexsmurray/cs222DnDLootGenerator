@@ -1,17 +1,12 @@
 package edu.bsu.cs;
 
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Paint;
-
 import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
+
 
 public class HomebrewScreenController {
 
@@ -19,18 +14,19 @@ public class HomebrewScreenController {
     public TextField weaponNameInput;
     public RadioButton simpleRadio;
     public RadioButton martialRadio;
-    public ChoiceBox damageDiceChoice;
-    public ListView propertyListView;
-    public MenuButton propertyMenu;
+    public ChoiceBox<String> damageDiceChoice;
     public TextField numberOfDiceInput;
     public TextArea weaponDescription;
-    public ChoiceBox reachChoice;
-    public ChoiceBox weaponRarityChoice;
+    public ChoiceBox<String> reachChoice;
+    public ChoiceBox<String> weaponRarityChoice;
     public ToggleButton attunementToggle;
-    public ChoiceBox extraTypeChoice;
-    public ChoiceBox damageTypeChoice;
+    public ChoiceBox<String> damageTypeChoice;
     public TextField weaponRangeInput;
     public Label requiresAttunementLabel;
+    public ToggleGroup proficiency;
+    public MenuItem Ammunition;
+    public CheckBox thrownCheckBox;
+    public CheckBox ammunitionCheckBox;
 
 
     public void goBackToMain() throws IOException {
@@ -66,5 +62,15 @@ public class HomebrewScreenController {
     public String getWeaponDescription() {
         return weaponDescription.getText();
     }
-
+    
+    public void setAmmunitionAndThrown(){
+        if (!weaponRangeInput.getText().isBlank() && !weaponRangeInput.getText().contains(".*[A-Z].*")){
+            ammunitionCheckBox.setDisable(false);
+            thrownCheckBox.setDisable(false);
+        }else {
+            ammunitionCheckBox.setDisable(true);
+            thrownCheckBox.setDisable(true);
+        }
+    }
+    
 }

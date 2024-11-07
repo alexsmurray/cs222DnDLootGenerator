@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.HomebrewScreenController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.HomebrewScreenController">
     <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true">
     <Image url="@backgroundImageBlue.png" />
     </ImageView>
@@ -50,24 +40,6 @@
                 </FXCollections>
            </items>
        </ChoiceBox>
-         <ListView fx:id="propertyListView" layoutX="410.0" layoutY="59.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: black;" />
-         <MenuButton fx:id="propertyMenu" layoutX="467.0" layoutY="15.0" mnemonicParsing="false" text="Properties">
-           <items>
-             <MenuItem mnemonicParsing="false" text="Ammunition" />
-             <MenuItem mnemonicParsing="false" text="Finesse" />
-             <MenuItem mnemonicParsing="false" text="Heavy" />
-             <MenuItem mnemonicParsing="false" text="Lance" />
-             <MenuItem mnemonicParsing="false" text="Light" />
-             <MenuItem mnemonicParsing="false" text="Loading" />
-             <MenuItem mnemonicParsing="false" text="Net" />
-             <MenuItem mnemonicParsing="false" text="Reach" />
-             <MenuItem mnemonicParsing="false" text="Special" />
-             <MenuItem mnemonicParsing="false" text="Thrown" />
-             <MenuItem mnemonicParsing="false" text="Two-Handed" />
-             <MenuItem mnemonicParsing="false" text="Versatile" />
-           </items>
-         </MenuButton>
-         <Label layoutX="424.0" layoutY="42.0" text="Double click to remove property" />
          <TextField fx:id="numberOfDiceInput" layoutX="268.0" layoutY="59.0" prefHeight="25.0" prefWidth="71.0" promptText="# of dice" />
          <TextArea fx:id="weaponDescription" layoutX="18.0" layoutY="270.0" prefHeight="143.0" prefWidth="595.0" promptText="Enter item description" style="-fx-border-color: black;" />
          <ChoiceBox fx:id="reachChoice" layoutX="101.0" layoutY="102.0" prefHeight="25.0" prefWidth="100.0" value="5.0 feet">
@@ -103,10 +75,28 @@
                  </FXCollections>
              </items>
          </ChoiceBox>
-         <TextField fx:id="weaponRangeInput" layoutX="268.0" layoutY="102.0" prefHeight="25.0" prefWidth="71.0" promptText="Range" />
+         <TextField fx:id="weaponRangeInput" layoutX="268.0" layoutY="102.0" prefHeight="25.0" prefWidth="71.0" promptText="Range" onAction="#setAmmunitionAndThrown" />
       <Label layoutX="18.0" layoutY="151.0" text="Damage Type" />
       <Label layoutX="39.0" layoutY="199.0" text="Rarity" />
       <Label layoutX="225.0" layoutY="106.0" text="Range" />
       <Label fx:id="requiresAttunementLabel" layoutX="241.0" layoutY="199.0" text="*Requires Attunement" visible="false" />
+      <Label layoutX="483.0" layoutY="63.0" text="Properties" />
+      <CheckBox layoutX="522.0" layoutY="210.0" mnemonicParsing="false" text="Versatile" />
+      <CheckBox layoutX="522.0" layoutY="188.0" mnemonicParsing="false" text="Two-Handed" />
+      <CheckBox fx:id="thrownCheckBox" layoutX="522.0" layoutY="166.0" mnemonicParsing="false" text="Thrown" disable="true" />
+      <CheckBox layoutX="522.0" layoutY="144.0" mnemonicParsing="false" text="Special" />
+      <CheckBox layoutX="522.0" layoutY="122.0" mnemonicParsing="false" text="Reach" />
+      <CheckBox layoutX="522.0" layoutY="100.0" mnemonicParsing="false" text="Net" />
+      <CheckBox layoutX="422.0" layoutY="210.0" mnemonicParsing="false" text="Loading" />
+      <CheckBox layoutX="422.0" layoutY="188.0" mnemonicParsing="false" text="Light" />
+      <CheckBox layoutX="422.0" layoutY="166.0" mnemonicParsing="false" text="Lance" />
+      <CheckBox layoutX="422.0" layoutY="144.0" mnemonicParsing="false" text="Heavy" />
+      <CheckBox layoutX="422.0" layoutY="122.0" mnemonicParsing="false" text="Finesse" />
+      <CheckBox fx:id="ammunitionCheckBox" layoutX="422.0" layoutY="100.0" mnemonicParsing="false" text="Ammunition" disable="true" />
+      <Label layoutX="419.0" layoutY="10.0" text="Weapon Builder">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
    </Pane>
 </AnchorPane>
