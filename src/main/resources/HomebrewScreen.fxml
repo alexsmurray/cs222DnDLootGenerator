@@ -89,7 +89,7 @@
              </items>
          </ChoiceBox>
          <Label layoutX="39.0" layoutY="106.0" text="Reach" />
-         <ToggleButton fx:id="attunementToggle" layoutX="257.0" layoutY="147.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Attunement" />
+         <ToggleButton fx:id="attunementToggle" layoutX="257.0" layoutY="147.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Attunement" onAction="#checkAttunement"/>
          <ChoiceBox fx:id="damageTypeChoice" layoutX="101.0" layoutY="147.0" prefHeight="25.0" prefWidth="100.0" value="Slashing">
              <items>
                  <FXCollections fx:factory="observableArrayList">
@@ -103,6 +103,6 @@
       <Label layoutX="18.0" layoutY="151.0" text="Damage Type" />
       <Label layoutX="39.0" layoutY="199.0" text="Rarity" />
       <Label layoutX="225.0" layoutY="106.0" text="Range" />
-      <Label layoutX="241.0" layoutY="199.0" text="*Requires Attunement" visible="false" />
+      <Label fx:id="requiresAttunementLabel" layoutX="241.0" layoutY="199.0" text="*Requires Attunement" visible="false" />
    </Pane>
 </AnchorPane>

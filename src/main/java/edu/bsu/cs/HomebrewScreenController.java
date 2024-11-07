@@ -30,6 +30,7 @@ public class HomebrewScreenController {
     public ChoiceBox extraTypeChoice;
     public ChoiceBox damageTypeChoice;
     public TextField weaponRangeInput;
+    public Label requiresAttunementLabel;
 
 
     public void goBackToMain() throws IOException {
@@ -47,14 +48,7 @@ public class HomebrewScreenController {
     }
 
     public void checkAttunement() {
-//        attunementToggle.setOnAction(event -> {
-//            if (attunementToggle.isSelected()) {
-//                attunementToggle.setStyle("-fx-background-color: lightgreen");
-//            } else {
-//                attunementToggle.setStyle("-fx-background-color: lightgrey");
-//            }
-//
-//        });
+        requiresAttunementLabel.setVisible(attunementToggle.isSelected());
     }
 
     public boolean getWeaponAttunement() {
