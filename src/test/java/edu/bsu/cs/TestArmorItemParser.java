@@ -6,15 +6,33 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Dictionary;
 
 public class TestArmorItemParser {
 
-    private final ArmorItemParser testStandardParser = new ArmorItemParser();
+    private final ArmorItemParser testArmorParser = new ArmorItemParser();
     private final InputStream armorInputStream = getArmorItemJsonFile();
 
     @Test
+    public void testParseAllArmorStats() throws IOException {
+        String stringifiedJson = JsonFileReader.readFileToString("src/test/resources/SampleArmor.json");
+        Dictionary<Integer, String> testStatDictionary = testArmorParser.parseAllArmorStats(stringifiedJson, 0);
+        String[] result = buildStatArray(testStatDictionary);
+        String[] expected = {"14 + Dex modifier (max 2)", "medium", "false", "None"};
+        Assertions.assertArrayEquals(expected, result);
+    }
+
+    private String[] buildStatArray(Dictionary<Integer, String> testStatDictionary) {
+        String[] testStatArray = new String[4];
+        for (int i = 1; i <= 4; i++) {
+            testStatArray[i-1] = testStatDictionary.get(i);
+        }
+        return testStatArray;
+    }
+
+    @Test
     public void testParseArmorClassDisplay() throws IOException {
-        JSONArray sampleJsonArray = testStandardParser.parseArmorClassDisplay(JsonToString.readJsonAsString(armorInputStream));
+        JSONArray sampleJsonArray = testArmorParser.parseArmorClassDisplay(JsonToString.readJsonAsString(armorInputStream));
         String[] expected = listOfArmorClassDisplay();
         String[] result = new String[12];
         for (int i = 0; i < 12; i++) {
@@ -25,7 +43,7 @@ public class TestArmorItemParser {
 
     @Test
     public void testParseArmorCategory() throws IOException {
-        JSONArray sampleJsonArray = testStandardParser.parseArmorCategory(JsonToString.readJsonAsString(armorInputStream));
+        JSONArray sampleJsonArray = testArmorParser.parseArmorCategory(JsonToString.readJsonAsString(armorInputStream));
         String[] expected = {"medium", "heavy", "medium", "medium", "medium", "light", "light", "heavy", "heavy", "medium", "heavy", "light"};
         String[] result = new String[12];
         for (int i = 0; i < 12; i++) {
@@ -37,7 +55,7 @@ public class TestArmorItemParser {
     @Test
     public void testParseStealthDisadvantage() throws IOException {
         InputStream testInputStream = getArmorItemJsonFile();
-        JSONArray sampleJsonArray = testStandardParser.parseStealthDisadvantage(JsonToString.readJsonAsString(testInputStream));
+        JSONArray sampleJsonArray = testArmorParser.parseStealthDisadvantage(JsonToString.readJsonAsString(testInputStream));
         String[] expected = {"false", "true", "false", "true", "false", "false", "true", "true", "true", "true", "true", "false"};
         String[] result = new String[12];
         for (int i = 0; i < 12; i++) {
@@ -48,7 +66,7 @@ public class TestArmorItemParser {
 
     @Test
     public void testParseStrengthScoreRequirement() throws IOException {
-        JSONArray sampleJsonArray = testStandardParser.parseStrengthScoreRequirement(JsonToString.readJsonAsString(armorInputStream));
+        JSONArray sampleJsonArray = testArmorParser.parseStrengthScoreRequirement(JsonToString.readJsonAsString(armorInputStream));
         String[] expected = {null,"13",null,null,null,null,null,"15",null,null,"15",null};
         String[] result = new String[12];
         for (int i = 0; i < 12; i++) {
