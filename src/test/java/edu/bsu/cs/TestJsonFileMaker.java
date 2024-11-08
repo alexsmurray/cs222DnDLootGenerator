@@ -12,7 +12,7 @@ public class TestJsonFileMaker {
     public void testWriteItemsJsonToFile() throws IOException, URISyntaxException {
         JsonFileMaker fileMaker = new JsonFileMaker();
         fileMaker.writeItemsJsonToFile("weapons");
-        String fileContents = JsonFileReader.readFileToString("src/main/resources/weapons.txt");
+        String fileContents = JsonFileReader.readFileToString("src/main/resources/dataFiles/weapons.txt");
         Assertions.assertFalse(fileContents.isBlank());
     }
 

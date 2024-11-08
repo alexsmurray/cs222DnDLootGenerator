@@ -33,7 +33,7 @@ public class GUI extends Application implements Initializable{
         stage = primaryStage;
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("MainScreen.fxml")));
         primaryStage.setTitle("D&D Loot Generator");
-        primaryStage.getIcons().add(new Image(("/toolbarIcon.png")));
+        primaryStage.getIcons().add(new Image(("/images/toolbarIcon.png")));
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.show();

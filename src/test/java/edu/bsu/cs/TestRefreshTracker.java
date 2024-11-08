@@ -10,7 +10,7 @@ public class TestRefreshTracker {
 
     @Test
     public void testGetCurrentTime() throws IOException {
-        String fileName = "src/test/resources/testLastRefreshTime.txt";
+        String fileName = "src/test/resources/dataFiles/testLastRefreshTime.txt";
         RefreshTracker.saveCurrentTime(fileName);
         String dateTime = RefreshTracker.readTimeFile(fileName);
         String expected = LocalDateTime.now().toString();
