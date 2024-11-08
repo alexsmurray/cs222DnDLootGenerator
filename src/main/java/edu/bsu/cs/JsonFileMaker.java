@@ -4,12 +4,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class JsonFileMaker {
 
     NextPageParser nextPageParser = new NextPageParser();
 
     protected static void updateAPIFiles() throws IOException, URISyntaxException {
+        Files.createDirectories(Paths.get("src/main/resources/dataFiles"));
         JsonFileMaker jsonFileMaker = new JsonFileMaker();
         boolean updated = false;
         while (!updated) {
