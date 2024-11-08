@@ -6,11 +6,21 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Hashtable;
 
 public class TestMagicItemsParser {
 
     private final MagicItemsParser testMagicParser = new MagicItemsParser();
     private final InputStream testInputStream = getMagicItemJsonFile();
+
+    @Test
+    public void testParseAllMagicItemDetails() throws IOException {
+        String stringifiedJson = JsonFileReader.readFileToString("src/test/resources/SampleMagicItem.json");
+        Hashtable<String, JSONArray> testMagicItemTable = testMagicParser.parseAllMagicItemDetails(stringifiedJson,0);
+        String result = testMagicItemTable.get("description").getFirst().toString();
+        String expected = "This long scroll bears strange runes and seals of eldritch powers.";
+        Assertions.assertEquals(expected, result.substring(0,66));
+    }
 
     @Test
     public void testGetMagicItemNameFromSampleJson() throws IOException {

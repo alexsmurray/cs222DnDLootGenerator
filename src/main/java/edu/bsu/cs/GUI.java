@@ -33,7 +33,7 @@ public class GUI extends Application implements Initializable{
         stage = primaryStage;
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("MainScreen.fxml")));
         primaryStage.setTitle("D&D Loot Generator");
-        primaryStage.getIcons().add(new Image(("/toolbarIcon.png")));
+        primaryStage.getIcons().add(new Image(("/images/toolbarIcon.png")));
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.show();
@@ -44,10 +44,10 @@ public class GUI extends Application implements Initializable{
         mainScreenController.initialize();
     }
 
-    public static void displayGeneratedItems(TableView<Item> itemTableView) throws IOException {
+    public static void displayGeneratedItems(TableView<Item> itemTableView, int numberOfItemsToGenerate) throws IOException {
         ItemBuilder itemBuilder = new ItemBuilder();
         clearItems(itemTableView);
-        itemsForList.addAll(itemBuilder.generateAmountOfItems());
+        itemsForList.addAll(itemBuilder.generateAmountOfItems(numberOfItemsToGenerate));
         itemTableView.setItems(itemsForList);
     }
 

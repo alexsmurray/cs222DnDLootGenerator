@@ -11,9 +11,9 @@ public class ItemBuilder {
     WeaponItemParser weaponItemParser = new WeaponItemParser();
     ArmorItemParser armorItemParser = new ArmorItemParser();
 
-    protected List<Item> generateAmountOfItems() throws IOException {
+    protected List<Item> generateAmountOfItems(int numberOfItemsToGenerate) throws IOException {
         List<Item> itemsList = new ArrayList<>();
-        for (int i = 0; i < Configuration.getNumItemsRequested(); i++) {
+        for (int i = 0; i < numberOfItemsToGenerate; i++) {
             itemsList.add(generateAny());
         }
         return itemsList;

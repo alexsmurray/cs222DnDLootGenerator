@@ -39,10 +39,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #adadad; -fx-border-color: red;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.MainScreenController">
     <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true">
-        <Image url="@backgroundImage.jpg" />
+        <Image url="@images/backgroundImage.jpg" />
     </ImageView>
     <ImageView fitHeight="72.0" fitWidth="229.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true">
-        <Image url="@wordLogo.png" />
+        <Image url="@images/wordLogo.png" />
     </ImageView>
    <Button fx:id="refreshItemDataButton" layoutX="777.0" layoutY="485.0" mnemonicParsing="false" onAction="#refreshItemData" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Refresh Item Data" />
       <Button fx:id="generateButton" layoutX="434.0" layoutY="40.0" mnemonicParsing="false" onAction="#generateItems" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Generate" />
@@ -71,6 +71,6 @@
      </items>
    </MenuButton>
     <ImageView fx:id="loadingImage" fitHeight="150.0" fitWidth="200.0" layoutX="285.0" layoutY="240.0" opacity="0.2" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" visible="false">
-        <Image url="@loadingImage.png" />
+        <Image url="@images/loadingImage.png" />
     </ImageView>
 </AnchorPane>

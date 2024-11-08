@@ -69,8 +69,7 @@ public class MainScreenController {
             initiateLoadingProcess();
         } else {
             int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
-            Configuration.setNumItemsRequested(numberOfItemsToGenerate);
-            GUI.displayGeneratedItems(itemTableView);
+            GUI.displayGeneratedItems(itemTableView, numberOfItemsToGenerate);
         }
     }
 
@@ -90,7 +89,7 @@ public class MainScreenController {
     private void playAudioClip() {
         String fileName;
         try {
-            fileName = Objects.requireNonNull(getClass().getResource("/funTune.mp3")).toURI().toString();
+            fileName = Objects.requireNonNull(getClass().getResource("/audio/funTune.mp3")).toURI().toString();
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -127,7 +126,7 @@ public class MainScreenController {
             @Override
             protected void succeeded(){
                 GUI.displayRefreshDone();
-                RefreshTracker.saveCurrentTime("src/main/resources/lastRefreshDate.txt");
+                RefreshTracker.saveCurrentTime("src/main/resources/dataFiles/lastRefreshDate.txt");
                 updateRefreshDate();
                 new GUI().displayTableViewDefault(itemTableView);
                 audioClip.stop();

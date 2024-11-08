@@ -25,7 +25,7 @@ public class JsonFileMaker {
         if (categoryName.equals("magicitems")) {version = "v1";}
 
         int pageNum = 1;
-        FileWriter itemsApi = new FileWriter("src/main/resources/" + categoryName + ".txt");
+        FileWriter itemsApi = new FileWriter("src/main/resources/dataFiles/" + categoryName + ".txt");
         InputStream inputStream = APIConnection.fetchConnectionPath(version + "/" + categoryName + "/?format=json&page=" + pageNum).getInputStream();
         String inputStreamString = JsonToString.readJsonAsString(inputStream);
 
