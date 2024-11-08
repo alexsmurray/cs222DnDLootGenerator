@@ -12,6 +12,8 @@ import java.util.Objects;
 public class HomebrewScreenController {
 
     public Pane weaponMaker;
+    public Pane armorMaker;
+    public Pane miscItemMaker;
     public TextField weaponNameInput;
     public RadioButton simpleRadio;
     public RadioButton martialRadio;
@@ -29,6 +31,7 @@ public class HomebrewScreenController {
     public CheckBox thrownCheckBox;
     public CheckBox ammunitionCheckBox;
     public Label longRangeLabel;
+    public ChoiceBox<String> itemSelectionChoiceBox;
     int range;
 
 
@@ -115,4 +118,20 @@ public class HomebrewScreenController {
         }
     }
 
+    public void setItemPane(){
+        String currentItem = itemSelectionChoiceBox.getValue();
+            if (currentItem.equals("Weapon")){
+                weaponMaker.setVisible(true);
+                armorMaker.setVisible(false);
+                miscItemMaker.setVisible(false);
+        }else if (currentItem.equals("Armor")){
+                weaponMaker.setVisible(false);
+                armorMaker.setVisible(true);
+                miscItemMaker.setVisible(false);
+            }else {
+                weaponMaker.setVisible(false);
+                armorMaker.setVisible(false);
+                miscItemMaker.setVisible(true);
+            }
+    }
 }

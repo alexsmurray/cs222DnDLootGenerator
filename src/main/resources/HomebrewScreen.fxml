@@ -14,6 +14,15 @@
     <ImageView fitHeight="72.0" fitWidth="180.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true">
         <Image url="@dndLogo.png" />
     </ImageView>
+   <ChoiceBox fx:id="itemSelectionChoiceBox" layoutX="238.0" layoutY="34.0" prefWidth="150.0" value="Weapon" onAction="#setItemPane">
+      <items>
+       <FXCollections fx:factory="observableArrayList" >
+           <String fx:value="Weapon" />
+           <String fx:value="Armor" />
+           <String fx:value="Misc. Item" />
+       </FXCollections>
+      </items>
+   </ChoiceBox>
     <MenuButton layoutX="806.0" layoutY="33.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Navigate to...">
         <items>
             <MenuItem mnemonicParsing="false" onAction="#goBackToMain" text="Main" />
@@ -79,11 +88,11 @@
       <Label layoutX="18.0" layoutY="151.0" text="Damage Type" />
       <Label layoutX="39.0" layoutY="199.0" text="Rarity" />
       <Label layoutX="225.0" layoutY="106.0" text="Range" />
-      <Label fx:id="requiresAttunementLabel" layoutX="234.0" layoutY="227.0" prefWidth="163.0" text="*Requires Attunement" visible="false" />
+      <Label fx:id="requiresAttunementLabel" layoutX="234.0" layoutY="227.0" prefWidth="163.0" text="*Item Requires Attunement" visible="false" />
       <Label layoutX="483.0" layoutY="63.0" text="Properties" />
       <CheckBox layoutX="522.0" layoutY="210.0" mnemonicParsing="false" text="Versatile" />
       <CheckBox layoutX="522.0" layoutY="188.0" mnemonicParsing="false" text="Two-Handed" />
-      <CheckBox fx:id="thrownCheckBox" disable="true" layoutX="522.0" layoutY="166.0" mnemonicParsing="false" text="Thrown" onAction="#setLongRangeLabel"/>
+      <CheckBox fx:id="thrownCheckBox" disable="true" layoutX="522.0" layoutY="166.0" mnemonicParsing="false" onAction="#setLongRangeLabel" text="Thrown" />
       <CheckBox layoutX="522.0" layoutY="144.0" mnemonicParsing="false" text="Special" />
       <CheckBox layoutX="522.0" layoutY="122.0" mnemonicParsing="false" text="Reach" />
       <CheckBox layoutX="522.0" layoutY="100.0" mnemonicParsing="false" text="Net" />
@@ -92,7 +101,7 @@
       <CheckBox layoutX="422.0" layoutY="166.0" mnemonicParsing="false" text="Lance" />
       <CheckBox layoutX="422.0" layoutY="144.0" mnemonicParsing="false" text="Heavy" />
       <CheckBox layoutX="422.0" layoutY="122.0" mnemonicParsing="false" text="Finesse" />
-      <CheckBox fx:id="ammunitionCheckBox" disable="true" layoutX="422.0" layoutY="100.0" mnemonicParsing="false" text="Ammunition" onAction="#setLongRangeLabel" />
+      <CheckBox fx:id="ammunitionCheckBox" disable="true" layoutX="422.0" layoutY="100.0" mnemonicParsing="false" onAction="#setLongRangeLabel" text="Ammunition" />
       <Label layoutX="419.0" layoutY="10.0" text="Weapon Builder">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -100,5 +109,19 @@
       </Label>
       <Label fx:id="longRangeLabel" layoutX="225.0" layoutY="151.0" text="Long Range:" />
       <Label layoutX="437.0" layoutY="236.0" prefHeight="35.0" prefWidth="180.0" text="Enter in a range to access ammunition and thrown" wrapText="true" />
+   </Pane>
+   <Pane fx:id="armorMaker" layoutX="164.0" layoutY="99.0" prefHeight="426.0" prefWidth="631.0" style="-fx-background-color: white; -fx-border-color: black;" visible="false">
+        <Label layoutX="419.0" layoutY="10.0" text="Armor Builder">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+    </Pane>
+   <Pane fx:id="miscItemMaker" layoutX="164.0" layoutY="99.0" prefHeight="426.0" prefWidth="631.0" style="-fx-background-color: white; -fx-border-color: black;" visible="false">
+       <Label layoutX="419.0" layoutY="10.0" text="Misc Builder">
+           <font>
+               <Font name="System Bold" size="24.0" />
+           </font>
+       </Label>
    </Pane>
 </AnchorPane>
