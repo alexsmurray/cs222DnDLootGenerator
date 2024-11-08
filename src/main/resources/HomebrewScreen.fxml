@@ -7,16 +7,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.HomebrewScreenController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.HomebrewScreenController">
     <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true">
     <Image url="@backgroundImageBlue.png" />
     </ImageView>
     <ImageView fitHeight="72.0" fitWidth="180.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true">
         <Image url="@dndLogo.png" />
     </ImageView>
-   <ChoiceBox fx:id="itemSelectionChoiceBox" layoutX="238.0" layoutY="34.0" prefWidth="150.0" value="Weapon" onAction="#setItemPane">
+   <ChoiceBox fx:id="itemSelectionChoiceBox" layoutX="238.0" layoutY="34.0" onAction="#setItemPane" prefWidth="150.0" value="Weapon">
       <items>
-       <FXCollections fx:factory="observableArrayList" >
+       <FXCollections fx:factory="observableArrayList">
            <String fx:value="Weapon" />
            <String fx:value="Armor" />
            <String fx:value="Misc. Item" />
@@ -84,7 +84,7 @@
                  </FXCollections>
              </items>
          </ChoiceBox>
-         <TextField fx:id="weaponRangeInput" layoutX="268.0" layoutY="102.0" onAction="#setRangeSettings" prefHeight="25.0" prefWidth="71.0" promptText="Range" />
+         <TextField fx:id="weaponRangeInput" layoutX="268.0" layoutY="102.0" onKeyReleased="#setRangeSettings" prefHeight="25.0" prefWidth="71.0" promptText="Range" />
       <Label layoutX="18.0" layoutY="151.0" text="Damage Type" />
       <Label layoutX="39.0" layoutY="199.0" text="Rarity" />
       <Label layoutX="225.0" layoutY="106.0" text="Range" />
