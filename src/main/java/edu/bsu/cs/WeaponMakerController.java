@@ -22,6 +22,7 @@ public class WeaponMakerController {
     public CheckBox ammunitionCheckBox;
     public Label longRangeLabel;
     public ToggleGroup proficiency;
+    public HomebrewScreenController homebrewScreenController = new HomebrewScreenController();
 
 
     public void setLongRangeLabel() {
@@ -64,7 +65,7 @@ public class WeaponMakerController {
 
     public void setRangeSettings() {
         String input = weaponRangeInput.getText();
-        if (!input.isBlank() && checkForNumber(input)) {
+        if (!input.isBlank() && homebrewScreenController.checkForNumber(input)) {
             ammunitionCheckBox.setDisable(false);
             thrownCheckBox.setDisable(false);
         } else {
@@ -75,27 +76,8 @@ public class WeaponMakerController {
     }
 
     public void checkNumberOfDiceInput() {
-        if (!checkForNumber(numberOfDiceInput.getText())) {
+        if (!homebrewScreenController.checkForNumber(numberOfDiceInput.getText())) {
             numberOfDiceInput.clear();
         }
-    }
-
-    protected boolean checkForNumber(String input) {
-        try {
-            Integer.parseInt(input);
-            return true;
-        } catch (Exception exception) {
-            if (!input.isBlank()){
-                displayRangeInputAlert();
-            }
-            return false;
-        }
-    }
-
-    protected static void displayRangeInputAlert() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Input is not valid");
-        alert.setHeaderText("Please enter an whole number.");
-        alert.show();
     }
 }

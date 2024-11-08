@@ -14,6 +14,9 @@ public class ArmorMakerController {
     public Label requiresAttunementLabel;
     public Label stealthDisadvantageLabel;
     public ToggleButton stealthDisadvantageToggle;
+    public HomebrewScreenController homebrewScreenController = new HomebrewScreenController();
+    public TextField armorClassInput;
+    public TextField strengthRequirementInput;
 
     public void checkAttunement() {
         requiresAttunementLabel.setVisible(attunementToggle.isSelected());
@@ -21,4 +24,15 @@ public class ArmorMakerController {
     public void checkStealthDisadvantage() {
         stealthDisadvantageLabel.setVisible(stealthDisadvantageToggle.isSelected());
     }
+    public void checkArmorClassInput() {
+        if (!homebrewScreenController.checkForNumber(armorClassInput.getText())) {
+            armorClassInput.clear();
+        }
+    }
+    public void checkStrengthRequirementInput() {
+        if (!homebrewScreenController.checkForNumber(strengthRequirementInput.getText())) {
+            strengthRequirementInput.clear();
+        }
+    }
+
 }

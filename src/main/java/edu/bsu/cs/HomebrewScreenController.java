@@ -22,4 +22,22 @@ public class HomebrewScreenController {
         GUI.stage.getScene().setRoot(root);
     }
 
+    protected boolean checkForNumber(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (Exception exception) {
+            if (!input.isBlank()){
+                displayRangeInputAlert();
+            }
+            return false;
+        }
+    }
+
+    protected static void displayRangeInputAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Input is not valid");
+        alert.setHeaderText("Please enter an whole number.");
+        alert.show();
+    }
 }
