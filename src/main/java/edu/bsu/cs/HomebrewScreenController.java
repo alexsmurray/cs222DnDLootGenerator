@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -27,6 +28,8 @@ public class HomebrewScreenController {
     public MenuItem Ammunition;
     public CheckBox thrownCheckBox;
     public CheckBox ammunitionCheckBox;
+    public Label longRangeLabel;
+    int range;
 
 
     public void goBackToMain() throws IOException {
@@ -62,15 +65,54 @@ public class HomebrewScreenController {
     public String getWeaponDescription() {
         return weaponDescription.getText();
     }
-    
-    public void setAmmunitionAndThrown(){
-        if (!weaponRangeInput.getText().isBlank() && !weaponRangeInput.getText().contains(".*[A-Z].*")){
+
+    public void setRangeSettings() {
+        String input = weaponRangeInput.getText();
+        if (!input.isBlank() && checkForNumber(input)) {
             ammunitionCheckBox.setDisable(false);
             thrownCheckBox.setDisable(false);
-        }else {
+            range = Integer.parseInt(input);
+        } else {
             ammunitionCheckBox.setDisable(true);
             thrownCheckBox.setDisable(true);
         }
     }
-    
+
+    public void checkNumberOfDiceInput() {
+        if (!checkForNumber(numberOfDiceInput.getText())) {
+            numberOfDiceInput.clear();
+        }
+    }
+
+    protected boolean checkForNumber(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (Exception exception) {
+            displayRangeInputAlert();
+            return false;
+        }
+    }
+
+    protected static void displayRangeInputAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Input is not valid");
+        alert.setHeaderText("Please enter an whole number.");
+        alert.show();
+    }
+
+    public void setLongRangeLabel() {
+        if (thrownCheckBox.isSelected()) {
+            longRangeLabel.setText("Long Range: " + range * 3);
+            ammunitionCheckBox.setDisable(true);
+        } else if (ammunitionCheckBox.isSelected()) {
+            longRangeLabel.setText("Long Range: " + range * 4);
+            thrownCheckBox.setDisable(true);
+        }
+        else {
+            ammunitionCheckBox.setDisable(false);
+            thrownCheckBox.setDisable(false);
+        }
+    }
+
 }
