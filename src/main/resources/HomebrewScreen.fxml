@@ -28,7 +28,7 @@
             <fx:include source="ArmorMaker.fxml"/>
         </Tab>
         <Tab text="Misc. Item">
-            <fx:include source="WeaponMaker.fxml"/>
+            <fx:include source="MiscItemMaker.fxml"/>
         </Tab>
     </TabPane>
 </AnchorPane>
