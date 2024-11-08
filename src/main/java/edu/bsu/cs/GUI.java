@@ -44,10 +44,10 @@ public class GUI extends Application implements Initializable{
         mainScreenController.initialize();
     }
 
-    public static void displayGeneratedItems(TableView<Item> itemTableView) throws IOException {
+    public static void displayGeneratedItems(TableView<Item> itemTableView, int numberOfItemsToGenerate) throws IOException {
         ItemBuilder itemBuilder = new ItemBuilder();
         clearItems(itemTableView);
-        itemsForList.addAll(itemBuilder.generateAmountOfItems());
+        itemsForList.addAll(itemBuilder.generateAmountOfItems(numberOfItemsToGenerate));
         itemTableView.setItems(itemsForList);
     }
 

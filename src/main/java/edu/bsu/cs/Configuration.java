@@ -1,14 +1,9 @@
 package edu.bsu.cs;
 
 public class Configuration {
-    private static int numItemsRequested;
+    private static int randomGenerationWeight;
 
-    protected static void setNumItemsRequested(int numberOfItems) {
-        numItemsRequested = numberOfItems;
-    }
+    public static int getRandomGenerationWeight() { return randomGenerationWeight; }
 
-    protected static int getNumItemsRequested() {
-        return numItemsRequested;
-    }
-
+    public void setRandomGenerationWeight(int weight) { randomGenerationWeight = weight; }
 }

@@ -69,8 +69,7 @@ public class MainScreenController {
             initiateLoadingProcess();
         } else {
             int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
-            Configuration.setNumItemsRequested(numberOfItemsToGenerate);
-            GUI.displayGeneratedItems(itemTableView);
+            GUI.displayGeneratedItems(itemTableView, numberOfItemsToGenerate);
         }
     }
 
