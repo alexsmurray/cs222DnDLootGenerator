@@ -26,7 +26,7 @@
             </FXCollections>
         </items>
     </ChoiceBox>
-    <TextField fx:id="numberOfDiceInput" layoutX="268.0" layoutY="59.0" onAction="#checkNumberOfDiceInput" prefHeight="25.0" prefWidth="71.0" promptText="# of dice" />
+    <TextField fx:id="numberOfDiceInput" layoutX="268.0" layoutY="59.0" onAction="#checkNumberOfDiceInput" prefHeight="25.0" prefWidth="71.0" promptText="# of dice" onKeyReleased="#checkNumberOfDiceInput" />
     <TextArea fx:id="weaponDescription" layoutX="18.0" layoutY="270.0" prefHeight="118.0" prefWidth="595.0" promptText="Enter item description" style="-fx-border-color: black;" />
     <ChoiceBox fx:id="reachChoice" layoutX="101.0" layoutY="102.0" prefHeight="25.0" prefWidth="100.0" value="5.0 feet">
         <items>

@@ -70,6 +70,7 @@ public class WeaponMakerController {
         } else {
             ammunitionCheckBox.setDisable(true);
             thrownCheckBox.setDisable(true);
+            weaponRangeInput.clear();
         }
     }
 
@@ -84,7 +85,9 @@ public class WeaponMakerController {
             Integer.parseInt(input);
             return true;
         } catch (Exception exception) {
-            displayRangeInputAlert();
+            if (!input.isBlank()){
+                displayRangeInputAlert();
+            }
             return false;
         }
     }
