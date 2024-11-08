@@ -1,9 +1,13 @@
 package edu.bsu.cs;
 
 public class Configuration {
-    private static int randomGenerationWeight;
 
-    public static int getRandomGenerationWeight() { return randomGenerationWeight; }
+    private int itemGenerationWeight;
 
-    public void setRandomGenerationWeight(int weight) { randomGenerationWeight = weight; }
+    public int getRandomGenerationWeight() { return itemGenerationWeight; }
+
+    public void setRandomGenerationWeight(int itemGenerationWeight) {
+        this.itemGenerationWeight = itemGenerationWeight;
+    }
+
 }
