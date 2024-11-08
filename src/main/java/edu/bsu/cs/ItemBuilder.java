@@ -51,20 +51,16 @@ public class ItemBuilder {
         String[] pageLines = fileContents.split("\n");
         int pageIndex = new Random().nextInt(pageLines.length);
 
-        JSONArray nameJsonArray =  attributeParser.parseMagicItemName(fileContents, pageIndex);
-        JSONArray rarityJsonArray =  attributeParser.parseMagicItemRarity(fileContents, pageIndex);
-        JSONArray typeJsonArray =  attributeParser.parseMagicItemType(fileContents, pageIndex);
-        JSONArray attunementJsonArray =  attributeParser.parseMagicItemAttunement(fileContents, pageIndex);
-        JSONArray descriptionJsonArray = attributeParser.parseMagicItemDescription(fileContents,pageIndex);
+        Hashtable<String, JSONArray> magicItemDetailsList = attributeParser.parseAllMagicItemDetails(fileContents, pageIndex);
 
-        int selectedIndex = selectRandomItemIndex(nameJsonArray);
+        int selectedIndex = selectRandomItemIndex(magicItemDetailsList.get("name"));
 
         return new Item(
-                nameJsonArray.get(selectedIndex).toString(),
-                OutputFormatter.formatRarity(rarityJsonArray.get(selectedIndex).toString()),
-                typeJsonArray.get(selectedIndex).toString(),
-                OutputFormatter.formatAttunement(attunementJsonArray.get(selectedIndex).toString()),
-                descriptionJsonArray.get(selectedIndex).toString()
+                magicItemDetailsList.get("name").get(selectedIndex).toString(),
+                OutputFormatter.formatRarity(magicItemDetailsList.get("rarity").get(selectedIndex).toString()),
+                magicItemDetailsList.get("type").get(selectedIndex).toString(),
+                OutputFormatter.formatAttunement(magicItemDetailsList.get("attunement").get(selectedIndex).toString()),
+                magicItemDetailsList.get("description").get(selectedIndex).toString()
                 );
     }
 
