@@ -21,9 +21,9 @@ public class ItemBuilder {
 
     private Item generateAny() throws IOException {
         return switch (new Random().nextInt(3)) {
-            case 0 -> generateWeapon("src/main/resources/weapons.txt");
-            case 1 -> generateArmor("src/main/resources/armor.txt");
-            case 2 -> generateMagicItem("src/main/resources/magicitems.txt");
+            case 0 -> generateWeapon("src/main/resources/dataFiles/weapons.txt");
+            case 1 -> generateArmor("src/main/resources/dataFiles/armor.txt");
+            case 2 -> generateMagicItem("src/main/resources/dataFiles/magicitems.txt");
             default -> throw new IllegalStateException("Unexpected value: " + 3);
         };
     }
