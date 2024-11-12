@@ -68,10 +68,29 @@ public class MainScreenController {
             GUI.displayMissingFilesAlert();
             initiateLoadingProcess();
         } else {
-            int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
-            Configuration.setNumItemsRequested(numberOfItemsToGenerate);
-            GUI.displayGeneratedItems(itemTableView);
+            new Thread(populateTableView()).start();
         }
+    }
+
+    private Task<Void> populateTableView() {
+        return new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                disableInput();
+                int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
+                Configuration.setNumItemsRequested(numberOfItemsToGenerate);
+                GUI.displayGeneratedItems(itemTableView);
+                return null;
+            }
+            @Override
+            protected void succeeded() {
+                enableInput();
+            }
+            @Override
+            protected void failed(){
+                enableInput();
+            }
+        };
     }
 
     @FXML
