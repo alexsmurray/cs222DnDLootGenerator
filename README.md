@@ -23,4 +23,5 @@ Double-click to run this task.
 Resources:\
 wordLogo.png dndlogo.png sourced from = https://dnd.wizards.com/resources/press-assets \
 backgroundImage.jpg sourced from = https://www.freepik.com/free-photo/top-view-paper-texture_17193834.htm \
+loadingImage.png sourced from = https://openclipart.org/detail/215030/ouroboros \
 https://www.canva.com/ was used to alter the colors of backgroundImage.jpg to backgroundImageBlue.png and backgroundImageGreen.png 
