@@ -7,7 +7,6 @@ import java.util.*;
 
 public class ItemBuilder {
 
-    MagicItemsParser attributeParser = new MagicItemsParser();
 
     protected List<Item> generateAmountOfItems(int numberOfItemsToGenerate) throws IOException {
         List<Item> itemsList = new ArrayList<>();
@@ -48,10 +47,12 @@ public class ItemBuilder {
 
     protected Item generateMagicItem(String filePath) throws IOException {
         String fileContents = JsonFileReader.readFileToString(filePath);
+
         String[] pageLines = fileContents.split("\n");
         int pageIndex = new Random().nextInt(pageLines.length);
 
-        Hashtable<String, JSONArray> magicItemDetailsList = attributeParser.parseAllMagicItemDetails(fileContents, pageIndex);
+        MagicItemsParser attributeParser = new MagicItemsParser(fileContents);
+        Hashtable<String, JSONArray> magicItemDetailsList = attributeParser.parseAllMagicItemDetails(pageIndex);
 
         int selectedIndex = selectRandomItemIndex(magicItemDetailsList.get("name"));
 
