@@ -8,21 +8,22 @@ import java.util.Hashtable;
 
 public class WeaponItemParser {
 
+
     protected JSONArray parseWeaponItemName(String stringifiedJson){
         return JsonPath.read(stringifiedJson, "$..name");
     }
 
-    protected Dictionary<Integer, String> parseAllWeaponStats(String filePath, int randomIndex) {
+    protected Dictionary<Integer, String> parseAllWeaponStats(String stringifiedJson, int randomIndex) {
         Dictionary<Integer, String> statDictionary = new Hashtable<>();
 
-        statDictionary.put(1, parseWeaponIsMartial(filePath).get(randomIndex).toString());
-        statDictionary.put(2, parseWeaponIsSimple(filePath).get(randomIndex).toString());
-        statDictionary.put(3, parseDamageDice(filePath).get(randomIndex).toString());
-        statDictionary.put(4, parseWeaponReach(filePath).get(randomIndex).toString());
-        statDictionary.put(5, OutputFormatter.formatWeaponDamageType(parseWeaponDamageType(filePath).get(randomIndex)).toString());
-        statDictionary.put(6, parseWeaponProperties(filePath).get(randomIndex).toString().replace("\\",""));
-        statDictionary.put(7, parseWeaponIsLance(filePath).get(randomIndex).toString());
-        statDictionary.put(8, parseWeaponIsNet(filePath).get(randomIndex).toString());
+        statDictionary.put(1, parseWeaponIsMartial(stringifiedJson).get(randomIndex).toString());
+        statDictionary.put(2, parseWeaponIsSimple(stringifiedJson).get(randomIndex).toString());
+        statDictionary.put(3, parseDamageDice(stringifiedJson).get(randomIndex).toString());
+        statDictionary.put(4, parseWeaponReach(stringifiedJson).get(randomIndex).toString());
+        statDictionary.put(5, OutputFormatter.formatWeaponDamageType(parseWeaponDamageType(stringifiedJson).get(randomIndex)).toString());
+        statDictionary.put(6, parseWeaponProperties(stringifiedJson).get(randomIndex).toString().replace("\\",""));
+        statDictionary.put(7, parseWeaponIsLance(stringifiedJson).get(randomIndex).toString());
+        statDictionary.put(8, parseWeaponIsNet(stringifiedJson).get(randomIndex).toString());
 
         return statDictionary;
     }
