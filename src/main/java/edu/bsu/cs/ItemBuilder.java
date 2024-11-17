@@ -8,7 +8,6 @@ import java.util.*;
 public class ItemBuilder {
 
     MagicItemsParser attributeParser = new MagicItemsParser();
-    ArmorItemParser armorItemParser = new ArmorItemParser();
 
     protected List<Item> generateAmountOfItems(int numberOfItemsToGenerate) throws IOException {
         List<Item> itemsList = new ArrayList<>();
@@ -38,9 +37,10 @@ public class ItemBuilder {
     }
 
     protected Item generateArmor(String filePath) throws IOException {
-        JSONArray nameJsonArray =  armorItemParser.parseArmorItemName(JsonFileReader.readFileToString(filePath));
+        ArmorItemParser armorItemParser = new ArmorItemParser(JsonFileReader.readFileToString(filePath));
+        JSONArray nameJsonArray =  armorItemParser.parseArmorItemName();
         int randomIndex = selectRandomItemIndex(nameJsonArray);
-        Dictionary<Integer, String> statDictionary = armorItemParser.parseAllArmorStats(JsonFileReader.readFileToString(filePath), randomIndex);
+        Dictionary<Integer, String> statDictionary = armorItemParser.parseAllArmorStats(randomIndex);
         Item item = new Item(nameJsonArray.get(randomIndex).toString(), OutputFormatter.formatArmorStats(statDictionary));
         item.setType("Armor");
         return item;
