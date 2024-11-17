@@ -5,18 +5,18 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Dictionary;
 
 public class TestWeaponItemParser {
 
-    private final WeaponItemParser testWeaponParser = new WeaponItemParser();
-    private final InputStream weaponInputStream = getWeaponItemJsonFile();
+    private final WeaponItemParser testWeaponParser = new WeaponItemParser(JsonFileReader.readFileToString("src/test/resources/SampleWeapons.json"));
+
+    public TestWeaponItemParser() throws IOException {
+    }
 
     @Test
-    public void testParseAllWeaponStats() throws IOException {
-        String stringifiedJson = JsonFileReader.readFileToString("src/test/resources/SampleWeapons.json");
-        Dictionary<Integer, String> testStatDictionary = testWeaponParser.parseAllWeaponStats(stringifiedJson, 0);
+    public void testParseAllWeaponStats() {
+        Dictionary<Integer, String> testStatDictionary = testWeaponParser.parseAllWeaponStats(0);
         String[] result = buildStatArray(testStatDictionary);
         String[] expected = {"true", "false", "1d8", "5.0", "slashing"};
         Assertions.assertArrayEquals(expected, result);
@@ -25,15 +25,14 @@ public class TestWeaponItemParser {
     private String[] buildStatArray(Dictionary<Integer, String> testStatDictionary) {
         String[] testStatArray = new String[5];
         for (int i = 1; i <= 5; i++) {
-            testStatArray[i-1] = testStatDictionary.get(i);
+            testStatArray[i - 1] = testStatDictionary.get(i);
         }
         return testStatArray;
     }
 
-
     @Test
-    public void testGetStandardItemNameFromSampleJson() throws IOException {
-        JSONArray sampleJsonArray = testWeaponParser.parseWeaponItemName(JsonToString.readJsonAsString(weaponInputStream));
+    public void testGetStandardItemNameFromSampleJson() {
+        JSONArray sampleJsonArray = testWeaponParser.parseWeaponItemName();
         String[] expected = {"Battleaxe", "Blowgun", "Club", "Crossbow, hand", "Crossbow, heavy"};
         String[] result = new String[5];
         for (int i = 0; i < 5; i++) {
@@ -43,8 +42,8 @@ public class TestWeaponItemParser {
     }
 
     @Test
-    public void testParseWeaponIsMartial() throws IOException {
-        JSONArray sampleJsonArray = testWeaponParser.parseWeaponIsMartial(JsonToString.readJsonAsString(weaponInputStream));
+    public void testParseWeaponIsMartial() {
+        JSONArray sampleJsonArray = testWeaponParser.parseWeaponIsMartial();
         String[] expected = {"true","true","false","true","true"};
         String[] result = new String[5];
         for (int i = 0; i < 5; i++) {
@@ -56,8 +55,8 @@ public class TestWeaponItemParser {
     }
 
     @Test
-    public void testParseWeaponProperties() throws IOException {
-        JSONArray sampleJsonArray = testWeaponParser.parseWeaponProperties(JsonToString.readJsonAsString(weaponInputStream));
+    public void testParseWeaponProperties() {
+        JSONArray sampleJsonArray = testWeaponParser.parseWeaponProperties();
         String[] expected = {"[\"versatile (1d10)\"]","[\"ammuntion (range 25.0\\/100.0)\",\"loading\"]","[\"light\"]"};
         String[] result = new String[3];
         for (int i = 0; i < 3; i++) {
@@ -69,9 +68,8 @@ public class TestWeaponItemParser {
     }
 
     @Test
-    public void testParseDamageDice() throws IOException {
-        InputStream testInputStream = getWeaponItemJsonFile();
-        JSONArray sampleJsonArray = testWeaponParser.parseDamageDice(JsonToString.readJsonAsString(testInputStream));
+    public void testParseDamageDice() {
+        JSONArray sampleJsonArray = testWeaponParser.parseDamageDice();
         String[] expected = {"1d8","1","1d4","1d6","1d10"};
         String[] result = new String[5];
         for (int i = 0; i < 5; i++) {
@@ -83,9 +81,8 @@ public class TestWeaponItemParser {
     }
 
     @Test
-    public void testParseWeaponReach() throws IOException {
-        InputStream testInputStream = getWeaponItemJsonFile();
-        JSONArray sampleJsonArray = testWeaponParser.parseWeaponReach(JsonToString.readJsonAsString(testInputStream));
+    public void testParseWeaponReach() {
+        JSONArray sampleJsonArray = testWeaponParser.parseWeaponReach();
         String[] expected = {"5.0","5.0","5.0","5.0","5.0","5.0","5.0","5.0","5.0","10.0"};
         String[] result = new String[10];
         for (int i = 0; i < 10; i++) {
@@ -97,8 +94,8 @@ public class TestWeaponItemParser {
     }
 
     @Test
-    public void testParseWeaponIsLance() throws IOException {
-        JSONArray sampleJsonArray = testWeaponParser.parseWeaponIsLance(JsonToString.readJsonAsString(weaponInputStream));
+    public void testParseWeaponIsLance() {
+        JSONArray sampleJsonArray = testWeaponParser.parseWeaponIsLance();
         String[] expected = {"false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","true"};
         String[] result = new String[17];
         for (int i = 0; i < 17; i++) {
@@ -110,8 +107,8 @@ public class TestWeaponItemParser {
     }
 
     @Test
-    public void testParseWeaponIsNet() throws IOException {
-        JSONArray sampleJsonArray = testWeaponParser.parseWeaponIsNet(JsonToString.readJsonAsString(weaponInputStream));
+    public void testParseWeaponIsNet() {
+        JSONArray sampleJsonArray = testWeaponParser.parseWeaponIsNet();
         String[] expected = {"false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","true"};
         String[] result = new String[24];
         for (int i = 0; i < 24; i++) {
@@ -123,9 +120,8 @@ public class TestWeaponItemParser {
     }
 
     @Test
-    public void testParseWeaponIsSimple() throws IOException {
-        InputStream testInputStream = getWeaponItemJsonFile();
-        JSONArray sampleJsonArray = testWeaponParser.parseWeaponIsSimple(JsonToString.readJsonAsString(testInputStream));
+    public void testParseWeaponIsSimple() {
+        JSONArray sampleJsonArray = testWeaponParser.parseWeaponIsSimple();
         String[] expected = {"false","false","true","false","false"};
         String[] result = new String[5];
         for (int i = 0; i < 5; i++) {
@@ -137,17 +133,11 @@ public class TestWeaponItemParser {
     }
 
     @Test
-    public void testParseWeaponDamageType() throws IOException {
-        JSONArray sampleJsonArray = testWeaponParser.parseWeaponDamageType(JsonToString.readJsonAsString(weaponInputStream));
+    public void testParseWeaponDamageType() {
+        JSONArray sampleJsonArray = testWeaponParser.parseWeaponDamageType();
         String expected = OutputFormatter.formatWeaponDamageType(sampleJsonArray.getFirst()).toString();
         String result = "slashing";
         Assertions.assertEquals(expected, result);
-    }
-
-    private InputStream getWeaponItemJsonFile() {
-        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("SampleWeapons.json");
-        assert inputStream != null;
-        return inputStream;
     }
 
 }
