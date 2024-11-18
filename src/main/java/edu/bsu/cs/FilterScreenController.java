@@ -15,22 +15,35 @@ import java.util.ResourceBundle;
 public class FilterScreenController implements Initializable {
 
     @FXML
+    private Slider weightSlider;
+    @FXML
     private Slider raritySlider;
 
-    public void changeSliderLabel() {
-        //on change set to less than or equal to the selected rarity
+    @FXML
+    private void onChangeRaritySliderLabel() {
+        //on change set filtering to less than or equal to the selected rarity
+    }
+
+    @FXML
+    private void onChangeWeightSlider() {
+        //on change set weight to desired amount
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        raritySlider.setLabelFormatter(setSliderFormat());
+        setSliderFormat();
     }
 
-    private StringConverter<Double> setSliderFormat() {
+    private void setSliderFormat() {
+        raritySlider.setLabelFormatter(setRaritySliderFormat());
+        weightSlider.setLabelFormatter(setWeightSliderFormat());
+    }
+
+    private StringConverter<Double> setRaritySliderFormat() {
         return new StringConverter<>() {
             @Override
             public String toString(Double sliderValue) {
-               return setSliderLabels(sliderValue);
+               return setRaritySliderLabels(sliderValue);
             }
 
             @Override
@@ -40,7 +53,7 @@ public class FilterScreenController implements Initializable {
         };
     }
 
-    private String setSliderLabels(Double sliderValue) {
+    private String setRaritySliderLabels(Double sliderValue) {
         return switch (sliderValue.toString()){
             case "0.0" -> "Mundane";
             case "1.0" -> "Common";
@@ -53,6 +66,31 @@ public class FilterScreenController implements Initializable {
         };
     }
 
+    private StringConverter<Double> setWeightSliderFormat() {
+        return new StringConverter<>() {
+            @Override
+            public String toString(Double sliderValue) {
+                return setWeightSliderLabels(sliderValue);
+            }
+
+            @Override
+            public Double fromString(String s) {
+                return 0.0;
+            }
+        };
+    }
+
+    private String setWeightSliderLabels(Double sliderValue) {
+        return switch (sliderValue.toString()) {
+            case "0.0" -> "No Rares";
+            case "0.25" -> "Few Rares";
+            case "0.5" -> "No Weight";
+            case "0.75" -> "More Rares";
+            case "1.0" -> "Very Rare";
+            default -> sliderValue.toString();
+        };
+    }
+
     public void goBackToMain() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/MainScreen.fxml")));
         GUI.stage.getScene().setRoot(root);
@@ -61,7 +99,5 @@ public class FilterScreenController implements Initializable {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/HomebrewScreen.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
-
-
 
 }
