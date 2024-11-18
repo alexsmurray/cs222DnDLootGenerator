@@ -17,5 +17,7 @@
             <MenuItem mnemonicParsing="false" onAction="#goToHomebrew" text="Homebrew" />
         </items>
     </MenuButton>
-   <Pane layoutX="164.0" layoutY="99.0" prefHeight="426.0" prefWidth="631.0" style="-fx-background-color: white; -fx-border-color: black;"/>
+   <Pane layoutX="164.0" layoutY="99.0" prefHeight="426.0" prefWidth="631.0" style="-fx-background-color: white; -fx-border-color: black;">
+         <Slider fx:id="raritySlider" blockIncrement="6.0" layoutX="14.0" layoutY="14.0" majorTickUnit="1.0" max="6.0" minorTickCount="0" onMouseClicked="#changeSliderLabel" orientation="VERTICAL" prefHeight="388.0" prefWidth="14.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="6.0" />
+    </Pane>
 </AnchorPane>
