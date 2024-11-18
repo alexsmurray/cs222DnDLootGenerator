@@ -33,7 +33,7 @@ public class ConfigurationFileWriter {
         configFileWriter.append(configurationValues.get("magicEquipment")).append(", ");
         configFileWriter.append(configurationValues.get("magicMisc")).append(", ");
         configFileWriter.append(configurationValues.get("potions")).append(", ");
-        configFileWriter.append(configurationValues.get("requiresAttunement")).append(", ");
+        configFileWriter.append(configurationValues.get("requiresAttunement"));
     }
 
 }

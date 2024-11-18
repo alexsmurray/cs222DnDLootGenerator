@@ -4,26 +4,29 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Hashtable;
 
-public class TestConfigurationFileWriter {
+
+public class TestConfigurationFileReader {
 
     Hashtable<String, String> testConfigurationValues = new Hashtable<>();
 
     @Test
-    public void testInitializeConfigurationFile() throws IOException {
-        Files.createDirectories(Paths.get("src/test/resources/dataFiles"));
-        ConfigurationFileWriter configWriter = new ConfigurationFileWriter();
+    public void testReadConfigurationFile() throws IOException {
+        ConfigurationFileReader testConfigReader = new ConfigurationFileReader();
+        createConfigFile();
 
-        initializeTestHastTable();
-        configWriter.initializeConfigFile(testConfigurationValues);
-
-        String result = new ConfigurationFileReader().readConfigFileAsString();
+        String result = testConfigReader.readConfigFileAsString();
         String expected = "Artifact, 1.0, True, True, True, True, True, True";
 
-        Assertions.assertEquals(expected ,result);
+        Assertions.assertEquals(expected, result);
+
+    }
+
+    private void createConfigFile() throws IOException {
+        ConfigurationFileWriter testConfigWriter = new ConfigurationFileWriter();
+        initializeTestHastTable();
+        testConfigWriter.initializeConfigFile(testConfigurationValues);
     }
 
     private void initializeTestHastTable() {
@@ -36,5 +39,4 @@ public class TestConfigurationFileWriter {
         testConfigurationValues.put("potions", "True");
         testConfigurationValues.put("requiresAttunement", "True");
     }
-
 }
