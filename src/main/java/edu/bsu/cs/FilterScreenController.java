@@ -21,7 +21,7 @@ public class FilterScreenController implements Initializable {
 
     @FXML
     private void onChangeRaritySliderLabel() {
-        //on change set filtering to less than or equal to the selected rarity
+
     }
 
     @FXML
