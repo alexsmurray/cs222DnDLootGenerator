@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.FilterScreenController">
     <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true">
@@ -18,6 +20,49 @@
         </items>
     </MenuButton>
    <Pane layoutX="164.0" layoutY="99.0" prefHeight="426.0" prefWidth="631.0" style="-fx-background-color: white; -fx-border-color: black;">
-         <Slider fx:id="raritySlider" blockIncrement="6.0" layoutX="14.0" layoutY="14.0" majorTickUnit="1.0" max="6.0" minorTickCount="0" onMouseClicked="#changeSliderLabel" orientation="VERTICAL" prefHeight="388.0" prefWidth="14.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="6.0" />
+         <Slider fx:id="raritySlider" blockIncrement="6.0" layoutX="36.0" layoutY="14.0" majorTickUnit="1.0" max="6.0" minorTickCount="0" onMouseClicked="#changeSliderLabel" orientation="VERTICAL" prefHeight="388.0" prefWidth="14.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="6.0">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding></Slider>
+      <CheckBox layoutX="120.0" layoutY="326.0" mnemonicParsing="false" selected="true" text="Include Requires Attunement">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding></CheckBox>
+      <VBox layoutX="103.0" layoutY="14.0" prefHeight="312.0" prefWidth="250.0">
+         <opaqueInsets>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </opaqueInsets>
+         <children>
+            <Label text="Include Equipment Types">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <CheckBox mnemonicParsing="false" selected="true" text="Armor">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></CheckBox>
+            <CheckBox mnemonicParsing="false" selected="true" text="Weapons">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></CheckBox>
+            <CheckBox mnemonicParsing="false" selected="true" text="Magic Equipment">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></CheckBox>
+            <CheckBox mnemonicParsing="false" selected="true" text="Magic Miscellaneous Items">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></CheckBox>
+            <CheckBox mnemonicParsing="false" selected="true" text="Potions">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </CheckBox>
+         </children>
+      </VBox>
     </Pane>
 </AnchorPane>
