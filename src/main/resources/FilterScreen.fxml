@@ -20,21 +20,21 @@
         </items>
     </MenuButton>
    <Pane layoutX="164.0" layoutY="99.0" prefHeight="426.0" prefWidth="631.0" style="-fx-background-color: white; -fx-border-color: black;">
-         <Slider fx:id="raritySlider" blockIncrement="6.0" layoutX="36.0" layoutY="14.0" majorTickUnit="1.0" max="6.0" minorTickCount="0" onMouseClicked="#onChangeRaritySliderLabel" orientation="VERTICAL" prefHeight="388.0" prefWidth="14.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="6.0">
+         <Slider fx:id="raritySlider" blockIncrement="6.0" layoutX="35.0" layoutY="50.0" majorTickUnit="1.0" max="6.0" minorTickCount="0" onMouseClicked="#onChangeRaritySliderLabel" orientation="VERTICAL" prefHeight="350.0" prefWidth="50.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="6.0">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding></Slider>
-      <CheckBox layoutX="375.0" layoutY="300.0" mnemonicParsing="false" selected="true" text="Include Requires Attunement">
+      <CheckBox layoutX="278.0" layoutY="296.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" selected="true" text="Include Requires Attunement">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding></CheckBox>
-      <VBox layoutX="375.0" layoutY="15.0" prefHeight="300.0" prefWidth="250.0">
+      <VBox layoutX="286.0" layoutY="14.0" prefHeight="300.0" prefWidth="206.0">
          <opaqueInsets>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </opaqueInsets>
-            <Label text="Include Equipment Types">
+            <Label prefHeight="45.0" prefWidth="198.0" text="Include Equipment Types">
                <VBox.margin>
-                  <Insets left="25.0" />
+                  <Insets />
                </VBox.margin>
                <font>
                   <Font size="16.0" />
@@ -65,23 +65,17 @@
                </padding>
             </CheckBox>
       </VBox>
-      <VBox layoutX="100.0" layoutY="150.0" prefHeight="116.0" prefWidth="250.0">
-         <opaqueInsets>
+      <Label layoutX="15.0" layoutY="15.0" prefHeight="40.0" prefWidth="60.0" text="Max Rarity To Appear" wrapText="true" />
+         <Label layoutX="120.0" layoutY="5.0" prefHeight="60.0" prefWidth="80.0" text="Item Rarity Weighting" wrapText="true">
+            <padding>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+         </Label>
+         <Slider fx:id="weightSlider" blockIncrement="0.01" layoutX="150.0" layoutY="50.0" majorTickUnit="0.25" max="1.0" minorTickCount="0" onMouseClicked="#onChangeWeightSlider" orientation="VERTICAL" prefHeight="350.0" prefWidth="50.0" showTickLabels="true" showTickMarks="true" value="0.5">
+         <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </opaqueInsets>
-            <Label text="Item Rarity Weighting">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets left="40.0" />
-               </VBox.margin>
-            </Label>
-            <Slider fx:id="weightSlider" blockIncrement="0.01" majorTickUnit="0.25" max="1.0" minorTickCount="0" onMouseClicked="#onChangeWeightSlider" showTickLabels="true" showTickMarks="true" value="0.5" />
-      </VBox>
+         </padding>
+      </Slider>
     </Pane>
    <Label layoutX="377.0" layoutY="39.0" text="Filtering Options">
       <font>

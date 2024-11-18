@@ -82,11 +82,11 @@ public class FilterScreenController implements Initializable {
 
     private String setWeightSliderLabels(Double sliderValue) {
         return switch (sliderValue.toString()) {
-            case "0.0" -> "No Rares";
-            case "0.25" -> "Few Rares";
+            case "0.0" -> "No Magic Items";
+            case "0.25" -> "Few Magic Items";
             case "0.5" -> "No Weight";
-            case "0.75" -> "More Rares";
-            case "1.0" -> "Very Rare";
+            case "0.75" -> "More Magic Items";
+            case "1.0" -> "All Magic Items";
             default -> sliderValue.toString();
         };
     }
