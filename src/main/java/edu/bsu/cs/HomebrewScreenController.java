@@ -1,15 +1,18 @@
 package edu.bsu.cs;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+
 import java.io.IOException;
 import java.util.Objects;
 
 
 public class HomebrewScreenController {
-    public MenuItem Ammunition;
     public TabPane homebrewPane;
+    public AnchorPane homebrewAnchorPane;
 
 
     public void goBackToMain() throws IOException {
@@ -40,4 +43,5 @@ public class HomebrewScreenController {
         alert.setHeaderText("Please enter an whole number.");
         alert.show();
     }
+
 }

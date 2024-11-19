@@ -1,7 +1,11 @@
 package edu.bsu.cs;
 
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class WeaponMakerController {
@@ -18,12 +22,69 @@ public class WeaponMakerController {
     public ToggleButton attunementToggle;
     public TextField weaponRangeInput;
     public Label requiresAttunementLabel;
-    public CheckBox thrownCheckBox;
-    public CheckBox ammunitionCheckBox;
     public Label longRangeLabel;
     public ToggleGroup proficiency;
     public HomebrewScreenController homebrewScreenController = new HomebrewScreenController();
+    public CheckBox thrownCheckBox;
+    public CheckBox ammunitionCheckBox;
+    public CheckBox versatileCheckBox;
+    public CheckBox twoHandedCheckBox;
+    public CheckBox specialCheckBox;
+    public CheckBox reachCheckBox;
+    public CheckBox netCheckBox;
+    public CheckBox loadingCheckBox;
+    public CheckBox lightCheckBox;
+    public CheckBox lanceCheckBox;
+    public CheckBox heavyCheckBox;
+    public CheckBox finesseCheckBox;
 
+    public String getWeaponName() {
+        return weaponNameInput.getText();
+    }
+
+    public boolean getWeaponAttunement() {
+        return attunementToggle.isSelected();
+    }
+
+    public String getNumberOfNumberOfDamageDice() {
+        return numberOfDiceInput.getText();
+    }
+
+    public String getTypeOfDamageDice(){return damageDiceChoice.getValue();}
+
+    public String getWeaponRange() {
+        return weaponRangeInput.getText();
+    }
+
+    public String getWeaponDescription() {
+        return weaponDescription.getText();
+    }
+
+    public String getReach(){return  reachChoice.getValue();}
+
+    public String getDamageType(){return  damageTypeChoice.getValue();}
+
+    public String getRarity(){ return weaponRarityChoice.getValue();}
+
+    public List<String> getProperties() {
+        List<String> propertyNamesList = new ArrayList<>();
+        CheckBox[] properties = {thrownCheckBox,ammunitionCheckBox,versatileCheckBox,thrownCheckBox,specialCheckBox,reachCheckBox,netCheckBox,loadingCheckBox,lightCheckBox,lanceCheckBox,heavyCheckBox,finesseCheckBox};
+        for (CheckBox property : properties) {
+            if (property.isSelected()) {
+                propertyNamesList.add(property.getText());
+            }
+        }
+        return propertyNamesList;
+    }
+
+//    public boolean checkIfChildIsCheckBox(Node child){
+//
+//        return true;
+//    }
+
+    public void checkAttunement() {
+        requiresAttunementLabel.setVisible(attunementToggle.isSelected());
+    }
 
     public void setLongRangeLabel() {
         if (thrownCheckBox.isSelected()) {
@@ -37,30 +98,6 @@ public class WeaponMakerController {
             ammunitionCheckBox.setDisable(false);
             thrownCheckBox.setDisable(false);
         }
-    }
-
-    public String getWeaponName() {
-        return weaponNameInput.getText();
-    }
-
-    public void checkAttunement() {
-        requiresAttunementLabel.setVisible(attunementToggle.isSelected());
-    }
-
-    public boolean getWeaponAttunement() {
-        return attunementToggle.isSelected();
-    }
-
-    public String getNumberOfDamageDice() {
-        return numberOfDiceInput.getText();
-    }
-
-    public String getWeaponRange() {
-        return weaponRangeInput.getText();
-    }
-
-    public String getWeaponDescription() {
-        return weaponDescription.getText();
     }
 
     public void setRangeSettings() {
@@ -80,4 +117,15 @@ public class WeaponMakerController {
             numberOfDiceInput.clear();
         }
     }
+
+    public String collectWeaponDetails(){
+        StringBuilder weaponDetails = new StringBuilder();
+        weaponDetails.append(OutputFormatter.formatProperties(getProperties())).append("\n");
+        weaponDetails.append(weaponNameInput.getText()).append("\n");
+        weaponDetails.append(numberOfDiceInput.getText()).append(damageDiceChoice.getValue()).append("\n");
+        weaponDetails.append(reachChoice.getValue()).append("\n");
+        System.out.println(weaponDetails);
+        return weaponDetails.toString();
+    }
+
 }

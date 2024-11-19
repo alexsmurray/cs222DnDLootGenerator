@@ -1,6 +1,7 @@
 package edu.bsu.cs;
 
 import java.util.Dictionary;
+import java.util.List;
 
 public class OutputFormatter {
 
@@ -77,6 +78,18 @@ public class OutputFormatter {
 
     public static Object formatWeaponDamageType(Object weapon){
         return weapon.toString().substring(38, weapon.toString().length() - 13);
+    }
+
+    public static String formatProperties(List<String> listOfProperties){
+        StringBuilder properties = new StringBuilder();
+        int counter=0;
+        properties.append("[");
+        for (int i = 0; i < listOfProperties.size()-1; i++) {
+            properties.append(listOfProperties.get(i)).append(", ");
+            counter++;
+        }
+        properties.append(listOfProperties.get(counter)).append("]");
+        return properties.toString();
     }
 
 }
