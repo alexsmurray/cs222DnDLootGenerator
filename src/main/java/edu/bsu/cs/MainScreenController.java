@@ -56,7 +56,7 @@ public class MainScreenController {
         try {
             new ConfigurationFileWriter().initializeConfigFile(new ConfigurationTable());
         } catch (Exception ConfigException) {
-            //file write error handling needed
+            //TODO::file write error handling needed
         }
     }
 
