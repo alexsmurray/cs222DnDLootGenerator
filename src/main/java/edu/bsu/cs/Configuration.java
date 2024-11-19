@@ -1,14 +1,13 @@
 package edu.bsu.cs;
 
 public class Configuration {
-    private static int numItemsRequested;
 
-    protected static void setNumItemsRequested(int numberOfItems) {
-        numItemsRequested = numberOfItems;
-    }
+    private int itemGenerationWeight;
 
-    protected static int getNumItemsRequested() {
-        return numItemsRequested;
+    public int getRandomGenerationWeight() { return itemGenerationWeight; }
+
+    public void setRandomGenerationWeight(int itemGenerationWeight) {
+        this.itemGenerationWeight = itemGenerationWeight;
     }
 
 }

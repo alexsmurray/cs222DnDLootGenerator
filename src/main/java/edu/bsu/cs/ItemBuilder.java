@@ -7,13 +7,10 @@ import java.util.*;
 
 public class ItemBuilder {
 
-    MagicItemsParser attributeParser = new MagicItemsParser();
-    WeaponItemParser weaponItemParser = new WeaponItemParser();
-    ArmorItemParser armorItemParser = new ArmorItemParser();
 
-    protected List<Item> generateAmountOfItems() throws IOException {
+    protected List<Item> generateAmountOfItems(int numberOfItemsToGenerate) throws IOException {
         List<Item> itemsList = new ArrayList<>();
-        for (int i = 0; i < Configuration.getNumItemsRequested(); i++) {
+        for (int i = 0; i < numberOfItemsToGenerate; i++) {
             itemsList.add(generateAny());
         }
         return itemsList;
@@ -21,26 +18,28 @@ public class ItemBuilder {
 
     private Item generateAny() throws IOException {
         return switch (new Random().nextInt(3)) {
-            case 0 -> generateWeapon("src/main/resources/weapons.txt");
-            case 1 -> generateArmor("src/main/resources/armor.txt");
-            case 2 -> generateMagicItem("src/main/resources/magicitems.txt");
+            case 0 -> generateWeapon("src/main/resources/dataFiles/weapons.txt");
+            case 1 -> generateArmor("src/main/resources/dataFiles/armor.txt");
+            case 2 -> generateMagicItem("src/main/resources/dataFiles/magicitems.txt");
             default -> throw new IllegalStateException("Unexpected value: " + 3);
         };
     }
 
     protected Item generateWeapon(String filePath) throws IOException {
-        JSONArray nameJsonArray =  weaponItemParser.parseWeaponItemName(JsonFileReader.readFileToString(filePath));
+        WeaponItemParser weaponItemParser = new WeaponItemParser(JsonFileReader.readFileToString(filePath));
+        JSONArray nameJsonArray =  weaponItemParser.parseWeaponItemName();
         int randomIndex = selectRandomItemIndex(nameJsonArray);
-        Dictionary<Integer, String> statDictionary = weaponItemParser.parseAllWeaponStats(JsonFileReader.readFileToString(filePath), randomIndex);
+        Dictionary<Integer, String> statDictionary = weaponItemParser.parseAllWeaponStats(randomIndex);
         Item item = new Item(nameJsonArray.get(randomIndex).toString(), OutputFormatter.formatWeaponStats(statDictionary));
         item.setType("Weapon");
         return item;
     }
 
     protected Item generateArmor(String filePath) throws IOException {
-        JSONArray nameJsonArray =  armorItemParser.parseArmorItemName(JsonFileReader.readFileToString(filePath));
+        ArmorItemParser armorItemParser = new ArmorItemParser(JsonFileReader.readFileToString(filePath));
+        JSONArray nameJsonArray =  armorItemParser.parseArmorItemName();
         int randomIndex = selectRandomItemIndex(nameJsonArray);
-        Dictionary<Integer, String> statDictionary = armorItemParser.parseAllArmorStats(JsonFileReader.readFileToString(filePath), randomIndex);
+        Dictionary<Integer, String> statDictionary = armorItemParser.parseAllArmorStats(randomIndex);
         Item item = new Item(nameJsonArray.get(randomIndex).toString(), OutputFormatter.formatArmorStats(statDictionary));
         item.setType("Armor");
         return item;
@@ -48,23 +47,21 @@ public class ItemBuilder {
 
     protected Item generateMagicItem(String filePath) throws IOException {
         String fileContents = JsonFileReader.readFileToString(filePath);
+
         String[] pageLines = fileContents.split("\n");
         int pageIndex = new Random().nextInt(pageLines.length);
 
-        JSONArray nameJsonArray =  attributeParser.parseMagicItemName(fileContents, pageIndex);
-        JSONArray rarityJsonArray =  attributeParser.parseMagicItemRarity(fileContents, pageIndex);
-        JSONArray typeJsonArray =  attributeParser.parseMagicItemType(fileContents, pageIndex);
-        JSONArray attunementJsonArray =  attributeParser.parseMagicItemAttunement(fileContents, pageIndex);
-        JSONArray descriptionJsonArray = attributeParser.parseMagicItemDescription(fileContents,pageIndex);
+        MagicItemsParser attributeParser = new MagicItemsParser(fileContents);
+        Hashtable<String, JSONArray> magicItemDetailsList = attributeParser.parseAllMagicItemDetails(pageIndex);
 
-        int selectedIndex = selectRandomItemIndex(nameJsonArray);
+        int selectedIndex = selectRandomItemIndex(magicItemDetailsList.get("name"));
 
         return new Item(
-                nameJsonArray.get(selectedIndex).toString(),
-                OutputFormatter.formatRarity(rarityJsonArray.get(selectedIndex).toString()),
-                typeJsonArray.get(selectedIndex).toString(),
-                OutputFormatter.formatAttunement(attunementJsonArray.get(selectedIndex).toString()),
-                descriptionJsonArray.get(selectedIndex).toString()
+                magicItemDetailsList.get("name").get(selectedIndex).toString(),
+                OutputFormatter.formatRarity(magicItemDetailsList.get("rarity").get(selectedIndex).toString()),
+                magicItemDetailsList.get("type").get(selectedIndex).toString(),
+                OutputFormatter.formatAttunement(magicItemDetailsList.get("attunement").get(selectedIndex).toString()),
+                magicItemDetailsList.get("description").get(selectedIndex).toString()
                 );
     }
 

@@ -1,37 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
-  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
-  All rights reserved. Use is subject to license terms.
-
-  This file is available and licensed under the following license:
-
-  Redistribution and use in source and binary forms, with or without
-  modification, are permitted provided that the following conditions
-  are met:
-
-  - Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
-  - Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in
-    the documentation and/or other materials provided with the distribution.
-  - Neither the name of Oracle Corporation nor the names of its
-    contributors may be used to endorse or promote products derived
-    from this software without specific prior written permission.
-
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -39,10 +7,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #adadad; -fx-border-color: red;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.MainScreenController">
     <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true">
-        <Image url="@backgroundImage.jpg" />
+        <Image url="@images/backgroundImage.jpg" />
     </ImageView>
     <ImageView fitHeight="72.0" fitWidth="229.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true">
-        <Image url="@wordLogo.png" />
+        <Image url="@images/wordLogo.png" />
     </ImageView>
    <Button fx:id="refreshItemDataButton" layoutX="777.0" layoutY="485.0" mnemonicParsing="false" onAction="#refreshItemData" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Refresh Item Data" />
       <Button fx:id="generateButton" layoutX="434.0" layoutY="40.0" mnemonicParsing="false" onAction="#generateItems" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Generate" />
@@ -64,13 +32,13 @@
       </padding></Label>
    <Label layoutX="841.0" layoutY="81.0" />
    <Label fx:id="refreshDate" alignment="CENTER" contentDisplay="RIGHT" layoutX="727.0" layoutY="459.0" prefHeight="18.0" prefWidth="210.0" text="No Recent Refresh" textFill="WHITE" wrapText="true" />
-   <MenuButton fx:id="navigationMenu" layoutX="777.0" layoutY="99.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Navigate to...">
+   <MenuButton fx:id="navigationMenu" layoutX="806.0" layoutY="33.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Navigate to...">
      <items>
        <MenuItem mnemonicParsing="false" onAction="#switchToHomeBrew" text="Homebrew" />
        <MenuItem mnemonicParsing="false" onAction="#switchToFilters" text="Filtering Options" />
      </items>
    </MenuButton>
     <ImageView fx:id="loadingImage" fitHeight="150.0" fitWidth="200.0" layoutX="285.0" layoutY="240.0" opacity="0.2" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" visible="false">
-        <Image url="@loadingImage.png" />
+        <Image url="@images/loadingImage.png" />
     </ImageView>
 </AnchorPane>
