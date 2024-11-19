@@ -38,13 +38,35 @@ public class MainScreenController {
     private RotateTransition rotateAnimation;
 
 
-    public void initialize()  {
+    public void initialize() {
+        initializeTableView();
+        setConfigurationToDefault();
+        updateRefreshDate();
+    }
+
+    private void initializeTableView() {
         new GUI().displayTableViewDefault(itemTableView);
         nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         rarityTableColumn.setCellValueFactory(new PropertyValueFactory<>("rarity"));
         typeTableColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         attunementTableColumn.setCellValueFactory(new PropertyValueFactory<>("attunement"));
-        updateRefreshDate();
+    }
+
+    private void setConfigurationToDefault() {
+        try {
+            new ConfigurationFileWriter().initializeConfigFile(new ConfigurationTable());
+        } catch (Exception ConfigException) {
+            //file write error handling needed
+        }
+    }
+
+    private void updateRefreshDate(){
+        String filePath = "src/main/resources/lastRefreshDate.txt";
+        try{
+            GUI.displayLastRefreshDate(refreshDate, filePath);
+        }catch (Exception IOException){
+            GUI.displayNoRecentRefresh(refreshDate);
+        }
     }
 
     @FXML
@@ -78,8 +100,7 @@ public class MainScreenController {
             protected Void call() throws Exception {
                 disableInput();
                 int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
-                Configuration.setNumItemsRequested(numberOfItemsToGenerate);
-                GUI.displayGeneratedItems(itemTableView);
+                GUI.displayGeneratedItems(itemTableView, numberOfItemsToGenerate);
                 return null;
             }
             @Override
@@ -109,7 +130,7 @@ public class MainScreenController {
     private void playAudioClip() {
         String fileName;
         try {
-            fileName = Objects.requireNonNull(getClass().getResource("/funTune.mp3")).toURI().toString();
+            fileName = Objects.requireNonNull(getClass().getResource("/audio/funTune.mp3")).toURI().toString();
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -146,7 +167,7 @@ public class MainScreenController {
             @Override
             protected void succeeded(){
                 GUI.displayRefreshDone();
-                RefreshTracker.saveCurrentTime("src/main/resources/lastRefreshDate.txt");
+                RefreshTracker.saveCurrentTime("src/main/resources/dataFiles/lastRefreshDate.txt");
                 updateRefreshDate();
                 new GUI().displayTableViewDefault(itemTableView);
                 audioClip.stop();
@@ -180,15 +201,6 @@ public class MainScreenController {
         generateButton.setDisable(false);
         refreshItemDataButton.setDisable(false);
         navigationMenu.setDisable(false);
-    }
-
-    private void updateRefreshDate(){
-        String filePath = "src/main/resources/lastRefreshDate.txt";
-        try{
-            GUI.displayLastRefreshDate(refreshDate, filePath);
-        }catch (Exception IOException){
-            GUI.displayNoRecentRefresh(refreshDate);
-        }
     }
 
     @FXML

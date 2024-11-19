@@ -1,21 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.FilterScreenController">
     <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true">
-        <Image url="@backgroundImageGreen.png" />
+        <Image url="@images/backgroundImageGreen.png" />
     </ImageView>
     <ImageView fitHeight="72.0" fitWidth="180.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true">
-        <Image url="@dndLogo.png" />
+        <Image url="@images/dndLogo.png" />
     </ImageView>
-    <MenuButton layoutX="777.0" layoutY="99.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Navigate to...">
+    <MenuButton layoutX="806.0" layoutY="33.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Navigate to...">
         <items>
             <MenuItem mnemonicParsing="false" onAction="#goBackToMain" text="Main" />
             <MenuItem mnemonicParsing="false" onAction="#goToHomebrew" text="Homebrew" />
         </items>
     </MenuButton>
+   <Pane layoutX="164.0" layoutY="99.0" prefHeight="426.0" prefWidth="631.0" style="-fx-background-color: white; -fx-border-color: black;">
+         <Slider fx:id="raritySlider" blockIncrement="6.0" layoutX="35.0" layoutY="50.0" majorTickUnit="1.0" max="6.0" minorTickCount="0" onMouseClicked="#onChangeRaritySliderLabel" orientation="VERTICAL" prefHeight="350.0" prefWidth="50.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="6.0">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding></Slider>
+      <CheckBox layoutX="286.0" layoutY="296.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" selected="true" text="Include Requires Attunement">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding></CheckBox>
+      <VBox layoutX="286.0" layoutY="14.0" prefHeight="300.0" prefWidth="206.0">
+         <opaqueInsets>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </opaqueInsets>
+            <Label prefHeight="45.0" prefWidth="198.0" text="Include Equipment Types">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <CheckBox mnemonicParsing="false" selected="true" text="Armor">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></CheckBox>
+            <CheckBox mnemonicParsing="false" selected="true" text="Weapons">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></CheckBox>
+            <CheckBox mnemonicParsing="false" selected="true" text="Magic Equipment">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></CheckBox>
+            <CheckBox mnemonicParsing="false" selected="true" text="Magic Miscellaneous Items">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></CheckBox>
+            <CheckBox mnemonicParsing="false" selected="true" text="Potions">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </CheckBox>
+      </VBox>
+      <Label layoutX="15.0" layoutY="15.0" prefHeight="40.0" prefWidth="60.0" text="Max Rarity To Appear" wrapText="true" />
+         <Label layoutX="120.0" layoutY="5.0" prefHeight="60.0" prefWidth="80.0" text="Item Rarity Weighting" wrapText="true">
+            <padding>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+         </Label>
+         <Slider fx:id="weightSlider" blockIncrement="0.01" layoutX="150.0" layoutY="50.0" majorTickUnit="0.25" max="1.0" minorTickCount="0" onMouseClicked="#onChangeWeightSlider" orientation="VERTICAL" prefHeight="350.0" prefWidth="50.0" showTickLabels="true" showTickMarks="true" value="0.5">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </Slider>
+    </Pane>
+   <Label layoutX="377.0" layoutY="39.0" text="Filtering Options">
+      <font>
+         <Font size="28.0" />
+      </font>
+   </Label>
 </AnchorPane>

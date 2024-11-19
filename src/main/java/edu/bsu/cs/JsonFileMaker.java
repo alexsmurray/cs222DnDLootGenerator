@@ -4,12 +4,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class JsonFileMaker {
 
     NextPageParser nextPageParser = new NextPageParser();
 
     protected static void updateAPIFiles() throws IOException, URISyntaxException {
+        Files.createDirectories(Paths.get("src/main/resources/dataFiles"));
         JsonFileMaker jsonFileMaker = new JsonFileMaker();
         boolean updated = false;
         while (!updated) {
@@ -25,7 +28,7 @@ public class JsonFileMaker {
         if (categoryName.equals("magicitems")) {version = "v1";}
 
         int pageNum = 1;
-        FileWriter itemsApi = new FileWriter("src/main/resources/" + categoryName + ".txt");
+        FileWriter itemsApi = new FileWriter("src/main/resources/dataFiles/" + categoryName + ".txt");
         InputStream inputStream = APIConnection.fetchConnectionPath(version + "/" + categoryName + "/?format=json&page=" + pageNum).getInputStream();
         String inputStreamString = JsonToString.readJsonAsString(inputStream);
 

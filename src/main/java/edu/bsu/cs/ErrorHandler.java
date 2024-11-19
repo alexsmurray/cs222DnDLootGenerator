@@ -35,9 +35,9 @@ public class ErrorHandler {
 
     protected static boolean verifyItemDataFilesValid() throws IOException {
         LinkedList<String> filePathList  = new LinkedList<>();
-        filePathList.add("src/main/resources/armor.txt");
-        filePathList.add("src/main/resources/weapons.txt");
-        filePathList.add("src/main/resources/magicitems.txt");
+        filePathList.add("src/main/resources/dataFiles/armor.txt");
+        filePathList.add("src/main/resources/dataFiles/weapons.txt");
+        filePathList.add("src/main/resources/dataFiles/magicitems.txt");
 
         for (String filePath : filePathList) {
             if (!ErrorHandler.verifyFileExists(filePath)) {
