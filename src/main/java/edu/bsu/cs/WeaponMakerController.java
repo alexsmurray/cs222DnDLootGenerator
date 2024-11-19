@@ -37,7 +37,7 @@ public class WeaponMakerController {
 
     public List<String> getProperties() {
         List<String> propertyNamesList = new ArrayList<>();
-        CheckBox[] properties = {thrownCheckBox,ammunitionCheckBox,versatileCheckBox,thrownCheckBox,specialCheckBox,reachCheckBox,netCheckBox,loadingCheckBox,lightCheckBox,lanceCheckBox,heavyCheckBox,finesseCheckBox};
+        CheckBox[] properties = {thrownCheckBox,ammunitionCheckBox,twoHandedCheckBox,versatileCheckBox,specialCheckBox,reachCheckBox,netCheckBox,loadingCheckBox,lightCheckBox,lanceCheckBox,heavyCheckBox,finesseCheckBox};
         for (CheckBox property : properties) {
             if (property.isSelected()) {
                 propertyNamesList.add(property.getText());
@@ -84,6 +84,15 @@ public class WeaponMakerController {
         }
     }
 
+    public List<String> getRangeProperty(List<String> properties) {
+        for (int i = 0; i < properties.size(); i++) {
+            if (properties.get(i).contains("*")) {
+                properties.set(i, properties.get(i).substring(1) + " (range " + weaponRangeInput.getText() + "/" + longRangeLabel.getText().substring(12) + ")");
+            }
+        }
+        return properties;
+    }
+
     public void checkNumberOfDiceInput() {
         if (!homebrewScreenController.checkForNumber(numberOfDiceInput.getText())) {
             numberOfDiceInput.clear();
@@ -97,7 +106,7 @@ public class WeaponMakerController {
         weaponDetails.append("Damage Dice: ").append(numberOfDiceInput.getText()).append(damageDiceChoice.getValue()).append("\n");
         weaponDetails.append("Reach: ").append(reachChoice.getValue()).append("\n");
         weaponDetails.append("Damage Type: ").append(damageTypeChoice.getValue()).append("\n");
-        weaponDetails.append("Properties: ").append(OutputFormatter.formatProperties(getProperties())).append("\n");
+        weaponDetails.append("Properties: ").append(OutputFormatter.formatProperties(getRangeProperty(getProperties()))).append("\n");
         weaponDetails.append("Rarity: ").append(weaponRarityChoice.getValue()).append("\n");
         weaponDetails.append("Attunement: ").append(attunementToggle.isSelected()).append("\n");
         weaponDetails.append("Description:\n").append(weaponDescription.getText()).append("\n");

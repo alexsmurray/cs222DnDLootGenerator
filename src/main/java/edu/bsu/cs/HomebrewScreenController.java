@@ -12,7 +12,6 @@ import java.util.Objects;
 
 public class HomebrewScreenController {
     public TabPane homebrewPane;
-    public AnchorPane homebrewAnchorPane;
 
 
     public void goBackToMain() throws IOException {
