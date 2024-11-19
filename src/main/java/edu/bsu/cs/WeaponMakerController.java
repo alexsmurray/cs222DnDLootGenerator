@@ -1,12 +1,9 @@
 package edu.bsu.cs;
 
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class WeaponMakerController {
     public RadioButton simpleRadio;
@@ -38,34 +35,6 @@ public class WeaponMakerController {
     public CheckBox heavyCheckBox;
     public CheckBox finesseCheckBox;
 
-    public String getWeaponName() {
-        return weaponNameInput.getText();
-    }
-
-    public boolean getWeaponAttunement() {
-        return attunementToggle.isSelected();
-    }
-
-    public String getNumberOfNumberOfDamageDice() {
-        return numberOfDiceInput.getText();
-    }
-
-    public String getTypeOfDamageDice(){return damageDiceChoice.getValue();}
-
-    public String getWeaponRange() {
-        return weaponRangeInput.getText();
-    }
-
-    public String getWeaponDescription() {
-        return weaponDescription.getText();
-    }
-
-    public String getReach(){return  reachChoice.getValue();}
-
-    public String getDamageType(){return  damageTypeChoice.getValue();}
-
-    public String getRarity(){ return weaponRarityChoice.getValue();}
-
     public List<String> getProperties() {
         List<String> propertyNamesList = new ArrayList<>();
         CheckBox[] properties = {thrownCheckBox,ammunitionCheckBox,versatileCheckBox,thrownCheckBox,specialCheckBox,reachCheckBox,netCheckBox,loadingCheckBox,lightCheckBox,lanceCheckBox,heavyCheckBox,finesseCheckBox};
@@ -77,10 +46,13 @@ public class WeaponMakerController {
         return propertyNamesList;
     }
 
-//    public boolean checkIfChildIsCheckBox(Node child){
-//
-//        return true;
-//    }
+    protected String getProficiency(){
+        if (simpleRadio.isSelected()){
+            return "Simple";
+        }else {
+            return "Martial";
+        }
+    }
 
     public void checkAttunement() {
         requiresAttunementLabel.setVisible(attunementToggle.isSelected());
@@ -120,10 +92,15 @@ public class WeaponMakerController {
 
     public String collectWeaponDetails(){
         StringBuilder weaponDetails = new StringBuilder();
-        weaponDetails.append(OutputFormatter.formatProperties(getProperties())).append("\n");
-        weaponDetails.append(weaponNameInput.getText()).append("\n");
-        weaponDetails.append(numberOfDiceInput.getText()).append(damageDiceChoice.getValue()).append("\n");
-        weaponDetails.append(reachChoice.getValue()).append("\n");
+        weaponDetails.append("Name: ").append(weaponNameInput.getText()).append("\n");
+        weaponDetails.append("Proficiency: ").append(getProficiency()).append("\n");
+        weaponDetails.append("Damage Dice: ").append(numberOfDiceInput.getText()).append(damageDiceChoice.getValue()).append("\n");
+        weaponDetails.append("Reach: ").append(reachChoice.getValue()).append("\n");
+        weaponDetails.append("Damage Type: ").append(damageTypeChoice.getValue()).append("\n");
+        weaponDetails.append("Properties: ").append(OutputFormatter.formatProperties(getProperties())).append("\n");
+        weaponDetails.append("Rarity: ").append(weaponRarityChoice.getValue()).append("\n");
+        weaponDetails.append("Attunement: ").append(attunementToggle.isSelected()).append("\n");
+        weaponDetails.append("Description:\n").append(weaponDescription.getText()).append("\n");
         System.out.println(weaponDetails);
         return weaponDetails.toString();
     }
