@@ -38,13 +38,35 @@ public class MainScreenController {
     private RotateTransition rotateAnimation;
 
 
-    public void initialize()  {
+    public void initialize() {
+        initializeTableView();
+        setConfigurationToDefault();
+        updateRefreshDate();
+    }
+
+    private void initializeTableView() {
         new GUI().displayTableViewDefault(itemTableView);
         nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         rarityTableColumn.setCellValueFactory(new PropertyValueFactory<>("rarity"));
         typeTableColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         attunementTableColumn.setCellValueFactory(new PropertyValueFactory<>("attunement"));
-        updateRefreshDate();
+    }
+
+    private void setConfigurationToDefault() {
+        try {
+            new ConfigurationFileWriter().initializeConfigFile(new ConfigurationTable());
+        } catch (Exception ConfigException) {
+            //file write error handling needed
+        }
+    }
+
+    private void updateRefreshDate(){
+        String filePath = "src/main/resources/lastRefreshDate.txt";
+        try{
+            GUI.displayLastRefreshDate(refreshDate, filePath);
+        }catch (Exception IOException){
+            GUI.displayNoRecentRefresh(refreshDate);
+        }
     }
 
     @FXML
@@ -179,15 +201,6 @@ public class MainScreenController {
         generateButton.setDisable(false);
         refreshItemDataButton.setDisable(false);
         navigationMenu.setDisable(false);
-    }
-
-    private void updateRefreshDate(){
-        String filePath = "src/main/resources/lastRefreshDate.txt";
-        try{
-            GUI.displayLastRefreshDate(refreshDate, filePath);
-        }catch (Exception IOException){
-            GUI.displayNoRecentRefresh(refreshDate);
-        }
     }
 
     @FXML
