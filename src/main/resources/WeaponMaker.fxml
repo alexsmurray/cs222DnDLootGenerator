@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.collections.FXCollections?>
-<Pane fx:id="weaponMaker"  prefWidth="631.0" style="-fx-background-color: white; -fx-border-color: black;" fx:controller="edu.bsu.cs.WeaponMakerController" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="weaponMaker" prefWidth="631.0" style="-fx-background-color: white; -fx-border-color: black;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.WeaponMakerController">
     <TextField fx:id="weaponNameInput" layoutX="34.0" layoutY="14.0" prefHeight="26.0" prefWidth="352.0" promptText="Enter Name" />
     <RadioButton fx:id="simpleRadio" layoutX="108.0" layoutY="63.0" mnemonicParsing="false" selected="true" text="Simple">
         <toggleGroup>
@@ -26,7 +26,7 @@
             </FXCollections>
         </items>
     </ChoiceBox>
-    <TextField fx:id="numberOfDiceInput" layoutX="268.0" layoutY="59.0" onAction="#checkNumberOfDiceInput" prefHeight="25.0" prefWidth="71.0" promptText="# of dice" onKeyReleased="#checkNumberOfDiceInput" />
+    <TextField fx:id="numberOfDiceInput" layoutX="268.0" layoutY="59.0" onAction="#checkNumberOfDiceInput" onKeyReleased="#checkNumberOfDiceInput" prefHeight="25.0" prefWidth="71.0" promptText="# of dice" />
     <TextArea fx:id="weaponDescription" layoutX="18.0" layoutY="270.0" prefHeight="118.0" prefWidth="595.0" promptText="Enter item description" style="-fx-border-color: black;" />
     <ChoiceBox fx:id="reachChoice" layoutX="101.0" layoutY="102.0" prefHeight="25.0" prefWidth="100.0" value="5.0 feet">
         <items>
@@ -67,23 +67,24 @@
     <Label layoutX="225.0" layoutY="106.0" text="Range" />
     <Label fx:id="requiresAttunementLabel" layoutX="234.0" layoutY="227.0" prefWidth="163.0" text="*Item Requires Attunement" visible="false" />
     <Label layoutX="483.0" layoutY="53.0" text="Properties" />
-    <CheckBox layoutX="522.0" layoutY="195.0" mnemonicParsing="false" text="Versatile" />
-    <CheckBox layoutX="522.0" layoutY="173.0" mnemonicParsing="false" text="Two-Handed" />
+
+    <CheckBox fx:id="versatileCheckBox" layoutX="522.0" layoutY="195.0" mnemonicParsing="false" text="Versatile" />
+    <CheckBox fx:id="twoHandedCheckBox" layoutX="522.0" layoutY="173.0" mnemonicParsing="false" text="Two-Handed" />
     <CheckBox fx:id="thrownCheckBox" disable="true" layoutX="522.0" layoutY="151.0" mnemonicParsing="false" onAction="#setLongRangeLabel" text="*Thrown" />
-    <CheckBox layoutX="522.0" layoutY="129.0" mnemonicParsing="false" text="Special" />
-    <CheckBox layoutX="522.0" layoutY="107.0" mnemonicParsing="false" text="Reach" />
-    <CheckBox layoutX="522.0" layoutY="85.0" mnemonicParsing="false" text="Net" />
-    <CheckBox layoutX="422.0" layoutY="195.0" mnemonicParsing="false" text="Loading" />
-    <CheckBox layoutX="422.0" layoutY="173.0" mnemonicParsing="false" text="Light" />
-    <CheckBox layoutX="422.0" layoutY="151.0" mnemonicParsing="false" text="Lance" />
-    <CheckBox layoutX="422.0" layoutY="129.0" mnemonicParsing="false" text="Heavy" />
-    <CheckBox layoutX="422.0" layoutY="107.0" mnemonicParsing="false" text="Finesse" />
+    <CheckBox fx:id="specialCheckBox" layoutX="522.0" layoutY="129.0" mnemonicParsing="false" text="Special" />
+    <CheckBox fx:id="reachCheckBox" layoutX="522.0" layoutY="107.0" mnemonicParsing="false" text="Reach" />
+    <CheckBox fx:id="netCheckBox" layoutX="522.0" layoutY="85.0" mnemonicParsing="false" text="Net" />
+    <CheckBox fx:id="loadingCheckBox" layoutX="422.0" layoutY="195.0" mnemonicParsing="false" text="Loading" />
+    <CheckBox fx:id="lightCheckBox" layoutX="422.0" layoutY="173.0" mnemonicParsing="false" text="Light" />
+    <CheckBox fx:id="lanceCheckBox" layoutX="422.0" layoutY="151.0" mnemonicParsing="false" text="Lance" />
+    <CheckBox fx:id="heavyCheckBox" layoutX="422.0" layoutY="129.0" mnemonicParsing="false" text="Heavy" />
+    <CheckBox fx:id="finesseCheckBox" layoutX="422.0" layoutY="107.0" mnemonicParsing="false" text="Finesse" />
     <CheckBox fx:id="ammunitionCheckBox" disable="true" layoutX="422.0" layoutY="85.0" mnemonicParsing="false" onAction="#setLongRangeLabel" text="*Ammunition" />
-    <Label layoutX="419.0" layoutY="10.0" text="Weapon Builder">
+    <Button layoutX="396.0" layoutY="8.0" prefHeight="0.0" prefWidth="227.0" text="Build Weapon" onAction="#collectWeaponDetails">
         <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="20.0" />
         </font>
-    </Label>
+    </Button>
     <Label fx:id="longRangeLabel" layoutX="225.0" layoutY="151.0" text="Long Range:" />
     <Label layoutX="437.0" layoutY="221.0" prefHeight="35.0" prefWidth="180.0" text="*Enter in a range to access" wrapText="true" />
 </Pane>

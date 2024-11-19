@@ -2,7 +2,8 @@ package edu.bsu.cs;
 
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class WeaponMakerController {
     public RadioButton simpleRadio;
@@ -18,12 +19,44 @@ public class WeaponMakerController {
     public ToggleButton attunementToggle;
     public TextField weaponRangeInput;
     public Label requiresAttunementLabel;
-    public CheckBox thrownCheckBox;
-    public CheckBox ammunitionCheckBox;
     public Label longRangeLabel;
     public ToggleGroup proficiency;
     public HomebrewScreenController homebrewScreenController = new HomebrewScreenController();
+    public CheckBox thrownCheckBox;
+    public CheckBox ammunitionCheckBox;
+    public CheckBox versatileCheckBox;
+    public CheckBox twoHandedCheckBox;
+    public CheckBox specialCheckBox;
+    public CheckBox reachCheckBox;
+    public CheckBox netCheckBox;
+    public CheckBox loadingCheckBox;
+    public CheckBox lightCheckBox;
+    public CheckBox lanceCheckBox;
+    public CheckBox heavyCheckBox;
+    public CheckBox finesseCheckBox;
 
+    public List<String> getProperties() {
+        List<String> propertyNamesList = new ArrayList<>();
+        CheckBox[] properties = {thrownCheckBox,ammunitionCheckBox,versatileCheckBox,thrownCheckBox,specialCheckBox,reachCheckBox,netCheckBox,loadingCheckBox,lightCheckBox,lanceCheckBox,heavyCheckBox,finesseCheckBox};
+        for (CheckBox property : properties) {
+            if (property.isSelected()) {
+                propertyNamesList.add(property.getText());
+            }
+        }
+        return propertyNamesList;
+    }
+
+    protected String getProficiency(){
+        if (simpleRadio.isSelected()){
+            return "Simple";
+        }else {
+            return "Martial";
+        }
+    }
+
+    public void checkAttunement() {
+        requiresAttunementLabel.setVisible(attunementToggle.isSelected());
+    }
 
     public void setLongRangeLabel() {
         if (thrownCheckBox.isSelected()) {
@@ -37,30 +70,6 @@ public class WeaponMakerController {
             ammunitionCheckBox.setDisable(false);
             thrownCheckBox.setDisable(false);
         }
-    }
-
-    public String getWeaponName() {
-        return weaponNameInput.getText();
-    }
-
-    public void checkAttunement() {
-        requiresAttunementLabel.setVisible(attunementToggle.isSelected());
-    }
-
-    public boolean getWeaponAttunement() {
-        return attunementToggle.isSelected();
-    }
-
-    public String getNumberOfDamageDice() {
-        return numberOfDiceInput.getText();
-    }
-
-    public String getWeaponRange() {
-        return weaponRangeInput.getText();
-    }
-
-    public String getWeaponDescription() {
-        return weaponDescription.getText();
     }
 
     public void setRangeSettings() {
@@ -80,4 +89,20 @@ public class WeaponMakerController {
             numberOfDiceInput.clear();
         }
     }
+
+    public String collectWeaponDetails(){
+        StringBuilder weaponDetails = new StringBuilder();
+        weaponDetails.append("Name: ").append(weaponNameInput.getText()).append("\n");
+        weaponDetails.append("Proficiency: ").append(getProficiency()).append("\n");
+        weaponDetails.append("Damage Dice: ").append(numberOfDiceInput.getText()).append(damageDiceChoice.getValue()).append("\n");
+        weaponDetails.append("Reach: ").append(reachChoice.getValue()).append("\n");
+        weaponDetails.append("Damage Type: ").append(damageTypeChoice.getValue()).append("\n");
+        weaponDetails.append("Properties: ").append(OutputFormatter.formatProperties(getProperties())).append("\n");
+        weaponDetails.append("Rarity: ").append(weaponRarityChoice.getValue()).append("\n");
+        weaponDetails.append("Attunement: ").append(attunementToggle.isSelected()).append("\n");
+        weaponDetails.append("Description:\n").append(weaponDescription.getText()).append("\n");
+        System.out.println(weaponDetails);
+        return weaponDetails.toString();
+    }
+
 }

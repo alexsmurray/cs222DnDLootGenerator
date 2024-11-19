@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.HomebrewScreenController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.HomebrewScreenController">
     <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true">
     <Image url="@images/backgroundImageBlue.png" />
     </ImageView>
@@ -18,17 +18,15 @@
             <MenuItem mnemonicParsing="false" onAction="#goToFilters" text="Filtering Options" />
         </items>
     </MenuButton>
-    <TabPane fx:id="homebrewPane" layoutX="164.0" layoutY="99.0" prefHeight="426.0" prefWidth="631.0"
-             style="-fx-background-color: white; -fx-border-color: black;" xmlns:fx="http://javafx.com/fxml/1"
-             tabClosingPolicy="UNAVAILABLE">
+    <TabPane fx:id="homebrewPane" layoutX="164.0" layoutY="99.0" prefHeight="426.0" prefWidth="631.0" style="-fx-background-color: white; -fx-border-color: black;" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1">
         <Tab text="Weapon">
-            <fx:include source="WeaponMaker.fxml"/>
+            <fx:include source="WeaponMaker.fxml" />
         </Tab>
         <Tab text="Armor">
-            <fx:include source="ArmorMaker.fxml"/>
+            <fx:include source="ArmorMaker.fxml" />
         </Tab>
         <Tab text="Misc. Item">
-            <fx:include source="MiscItemMaker.fxml"/>
+            <fx:include source="MiscItemMaker.fxml" />
         </Tab>
     </TabPane>
 </AnchorPane>
