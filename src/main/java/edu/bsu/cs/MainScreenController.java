@@ -78,8 +78,7 @@ public class MainScreenController {
             protected Void call() throws Exception {
                 disableInput();
                 int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
-                Configuration.setNumItemsRequested(numberOfItemsToGenerate);
-                GUI.displayGeneratedItems(itemTableView);
+                GUI.displayGeneratedItems(itemTableView, numberOfItemsToGenerate);
                 return null;
             }
             @Override
