@@ -9,6 +9,7 @@ import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -31,7 +32,26 @@ public class FilterScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initializeFiltersToSetValues();
         setSliderFormat();
+    }
+
+    private void initializeFiltersToSetValues() {
+        String configurationString = readConfigurationFile();
+        if (configurationString != null) {
+            configurationString = configurationString.replace(" ", "");
+            String[] configurationValues = configurationString.split(",");
+            System.out.println(Arrays.toString(configurationValues));
+        }
+    }
+
+    private String readConfigurationFile() {
+        try {
+            return new ConfigurationFileReader().readConfigFileAsString();
+        } catch (Exception ConfigException) {
+            return null;
+            //TODO::add error handling for file read
+        }
     }
 
     private void setSliderFormat() {
@@ -82,11 +102,11 @@ public class FilterScreenController implements Initializable {
 
     private String setWeightSliderLabels(Double sliderValue) {
         return switch (sliderValue.toString()) {
-            case "0.0" -> "No Magic Items";
-            case "0.25" -> "Few Magic Items";
+            case "0.0" -> "Mostly Common";
+            case "0.25" -> "More Common";
             case "0.5" -> "No Weight";
-            case "0.75" -> "More Magic Items";
-            case "1.0" -> "All Magic Items";
+            case "0.75" -> "More Rare";
+            case "1.0" -> "Mostly Rare";
             default -> sliderValue.toString();
         };
     }
