@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
@@ -65,8 +66,15 @@ public class FilterScreenController implements Initializable {
         try {
             new ConfigurationFileWriter().initializeConfigFile(new ConfigurationTable());
         } catch (Exception ConfigException) {
-            //TODO::file write error handling needed
+            displayFileWriteAlert();
         }
+    }
+
+    private static void displayFileWriteAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Configuration File Write Error");
+        alert.setHeaderText("Directory not found.\nUnable to update configuration file.");
+        alert.show();
     }
 
     private void setConfigToSavedValuesIfNotNull(String configurationString) {
@@ -85,15 +93,14 @@ public class FilterScreenController implements Initializable {
     private void setGraphicsToValues(String[] configurationValues) {
         raritySlider.setValue(Double.parseDouble(configurationValues[0]));
         weightSlider.setValue(Double.parseDouble(configurationValues[1]));
-        setCheckboxesValues(configurationValues);
+        setCheckboxValues(configurationValues);
         attunementCheckBox.setSelected(Boolean.parseBoolean(configurationValues[6]));
     }
 
-    private void setCheckboxesValues(String[] configurationValues) {
+    private void setCheckboxValues(String[] configurationValues) {
         for (int i = 1; i < equipmentBox.getChildren().size(); i++) {
             CheckBox checkBox = (CheckBox) equipmentBox.getChildren().get(i);
             checkBox.setSelected(Boolean.parseBoolean(configurationValues[i+1]));
-            System.out.println(checkBox.isSelected());
         }
     }
 
@@ -155,12 +162,37 @@ public class FilterScreenController implements Initializable {
     }
 
     public void goBackToMain() throws IOException {
+        saveConfigurationToFile();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/MainScreen.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
     public void goToHomebrew() throws IOException {
+        saveConfigurationToFile();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/HomebrewScreen.fxml")));
         GUI.stage.getScene().setRoot(root);
+    }
+
+    private void saveConfigurationToFile() throws IOException {
+        ConfigurationTable configurationTable = setConfigurationTable();
+        new ConfigurationFileWriter().writeConfigurationFile(configurationTable);
+    }
+
+    private ConfigurationTable setConfigurationTable() {
+        ConfigurationTable configurationTable = new ConfigurationTable();
+        configurationTable.put("rarity", String.valueOf(raritySlider.getValue()));
+        configurationTable.put("weight", String.valueOf(weightSlider.getValue()));
+        saveCheckboxValues(configurationTable);
+        configurationTable.put("requiresAttunement", "true");
+        return configurationTable;
+    }
+
+    private void saveCheckboxValues(ConfigurationTable configurationTable) {
+
+        configurationTable.put("armor", String.valueOf(((CheckBox) equipmentBox.getChildren().get(1)).isSelected()));
+        configurationTable.put("weapons", String.valueOf(((CheckBox) equipmentBox.getChildren().get(2)).isSelected()));
+        configurationTable.put("magicEquipment", String.valueOf(((CheckBox) equipmentBox.getChildren().get(3)).isSelected()));
+        configurationTable.put("magicMisc", String.valueOf(((CheckBox) equipmentBox.getChildren().get(4)).isSelected()));
+        configurationTable.put("potions", String.valueOf(((CheckBox) equipmentBox.getChildren().get(5)).isSelected()));
     }
 
 }

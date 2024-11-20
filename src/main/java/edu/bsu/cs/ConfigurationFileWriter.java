@@ -8,13 +8,13 @@ import java.util.Hashtable;
 
 public class ConfigurationFileWriter {
 
-    public void initializeConfigFile(Hashtable<String, String> configurationValues) throws IOException {
+    protected void initializeConfigFile(Hashtable<String, String> configurationValues) throws IOException {
         Files.createDirectories(Paths.get("src/main/resources/dataFiles"));
 
         writeConfigurationFile(configurationValues);
     }
 
-    private void writeConfigurationFile(Hashtable<String, String> configurationValues) throws IOException {
+    protected void writeConfigurationFile(Hashtable<String, String> configurationValues) throws IOException {
         FileWriter configFileWriter = new FileWriter("src/main/resources/dataFiles/configuration.txt");
         clearConfigFile(configFileWriter);
         writeTableToFile(configurationValues, configFileWriter);
