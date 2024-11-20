@@ -4,12 +4,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.Hashtable;
 
 
 public class TestConfigurationFileReader {
 
-    Hashtable<String, String> testConfigurationValues = new Hashtable<>();
+    ConfigurationTable testConfigurationTable = new ConfigurationTable();
 
     @Test
     public void testReadConfigurationFile() throws IOException {
@@ -17,26 +16,23 @@ public class TestConfigurationFileReader {
         createConfigFile();
 
         String result = testConfigReader.readConfigFileAsString();
-        String expected = "Artifact, 1.0, True, True, True, True, True, True";
+        String expected = "6, .5, true, true, true, true, true, true";
 
         Assertions.assertEquals(expected, result);
 
     }
 
-    private void createConfigFile() throws IOException {
-        ConfigurationFileWriter testConfigWriter = new ConfigurationFileWriter();
-        initializeTestHastTable();
-        testConfigWriter.initializeConfigFile(testConfigurationValues);
+    @Test
+    public void testFetchConfigValues() throws IOException {
+        createConfigFile();
+        String[] result = new ConfigurationFileReader().fetchConfigValues();
+        String[] expected = {"6"," .5"," true"," true"," true"," true"," true"," true"};
+
+        Assertions.assertArrayEquals(expected, result);
     }
 
-    private void initializeTestHastTable() {
-        testConfigurationValues.put("rarity", "Artifact");
-        testConfigurationValues.put("weight", "1.0");
-        testConfigurationValues.put("armor", "True");
-        testConfigurationValues.put("weapons", "True");
-        testConfigurationValues.put("magicEquipment", "True");
-        testConfigurationValues.put("magicMisc", "True");
-        testConfigurationValues.put("potions", "True");
-        testConfigurationValues.put("requiresAttunement", "True");
+    private void createConfigFile() throws IOException {
+        ConfigurationFileWriter testConfigWriter = new ConfigurationFileWriter();
+        testConfigWriter.initializeConfigFile(testConfigurationTable);
     }
 }

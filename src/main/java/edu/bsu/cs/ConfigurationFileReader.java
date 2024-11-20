@@ -11,4 +11,8 @@ public class ConfigurationFileReader {
         testConfigReader.close();
         return configurationFileString;
     }
+
+    protected String[] fetchConfigValues() throws IOException {
+        return readConfigFileAsString().split(",");
+    }
 }

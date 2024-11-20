@@ -7,9 +7,13 @@ import java.util.*;
 
 public class ItemBuilder {
 
+    String armorFilePath = "src/main/resources/dataFiles/armor.txt";
+    String weaponsFilePath = "src/main/resources/dataFiles/weapons.txt";
+    String magicItemFilePath = "src/main/resources/dataFiles/magicitems.txt";
 
     protected List<Item> generateAmountOfItems(int numberOfItemsToGenerate) throws IOException {
         List<Item> itemsList = new ArrayList<>();
+
         for (int i = 0; i < numberOfItemsToGenerate; i++) {
             itemsList.add(generateAny());
         }
@@ -18,9 +22,9 @@ public class ItemBuilder {
 
     private Item generateAny() throws IOException {
         return switch (new Random().nextInt(3)) {
-            case 0 -> generateWeapon("src/main/resources/dataFiles/weapons.txt");
-            case 1 -> generateArmor("src/main/resources/dataFiles/armor.txt");
-            case 2 -> generateMagicItem("src/main/resources/dataFiles/magicitems.txt");
+            case 0 -> generateWeapon(weaponsFilePath);
+            case 1 -> generateArmor(armorFilePath);
+            case 2 -> generateMagicItem(magicItemFilePath);
             default -> throw new IllegalStateException("Unexpected value: " + 3);
         };
     }
@@ -29,9 +33,12 @@ public class ItemBuilder {
         WeaponItemParser weaponItemParser = new WeaponItemParser(JsonFileReader.readFileToString(filePath));
         JSONArray nameJsonArray =  weaponItemParser.parseWeaponItemName();
         int randomIndex = selectRandomItemIndex(nameJsonArray);
+
+
         Dictionary<Integer, String> statDictionary = weaponItemParser.parseAllWeaponStats(randomIndex);
         Item item = new Item(nameJsonArray.get(randomIndex).toString(), OutputFormatter.formatWeaponStats(statDictionary));
         item.setType("Weapon");
+
         return item;
     }
 
