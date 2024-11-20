@@ -13,9 +13,28 @@ public class ItemBuilder {
 
     protected List<Item> generateAmountOfItems(int numberOfItemsToGenerate) throws IOException {
         List<Item> itemsList = new ArrayList<>();
+        if (includeMundaneItems()) {
+            return generateListIncludingMundaneItems(numberOfItemsToGenerate, itemsList);
+        } else {
+            return generateListOfMagicItems(numberOfItemsToGenerate, itemsList);
+        }
+    }
 
+    private boolean includeMundaneItems() throws IOException {
+        String[] configurationValues = new ConfigurationFileReader().readConfigFileAsString().split(",");
+        return Double.parseDouble(configurationValues[0]) == 0;
+    }
+
+    private List<Item> generateListIncludingMundaneItems(int numberOfItemsToGenerate, List<Item> itemsList) throws IOException {
         for (int i = 0; i < numberOfItemsToGenerate; i++) {
             itemsList.add(generateAny());
+        }
+        return itemsList;
+    }
+
+    private List<Item> generateListOfMagicItems(int numberOfItemsToGenerate, List<Item> itemsList) throws IOException {
+        for (int i = 0; i < numberOfItemsToGenerate; i++) {
+            itemsList.add(generateMagicItem(magicItemFilePath));
         }
         return itemsList;
     }
