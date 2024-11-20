@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
@@ -43,7 +42,6 @@ public class FilterScreenController implements Initializable {
 
     private void initializeFiltersToSetValues() {
         String configurationString = readConfigurationFile();
-        setConfigToDefaultIfNull(configurationString);
         setConfigToSavedValuesIfNotNull(configurationString);
     }
 
@@ -53,28 +51,6 @@ public class FilterScreenController implements Initializable {
         } catch (Exception ConfigException) {
             return null;
         }
-
-    }
-
-    private void setConfigToDefaultIfNull(String configurationString) {
-        if (configurationString == null) {
-            setConfigurationToDefault();
-        }
-    }
-
-    private void setConfigurationToDefault() {
-        try {
-            new ConfigurationFileWriter().initializeConfigFile(new ConfigurationTable());
-        } catch (Exception ConfigException) {
-            displayFileWriteAlert();
-        }
-    }
-
-    private static void displayFileWriteAlert() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Configuration File Write Error");
-        alert.setHeaderText("Directory not found.\nUnable to update configuration file.");
-        alert.show();
     }
 
     private void setConfigToSavedValuesIfNotNull(String configurationString) {

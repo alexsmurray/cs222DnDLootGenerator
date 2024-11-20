@@ -130,4 +130,11 @@ public class GUI extends Application implements Initializable{
         alert.show();
     }
 
+    protected static void displayFileWriteAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Configuration File Write Error");
+        alert.setHeaderText("Directory not found.\nUnable to update configuration file.");
+        alert.show();
+    }
+
 }
