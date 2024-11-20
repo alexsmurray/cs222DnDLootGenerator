@@ -13,6 +13,10 @@ public class ItemBuilder {
 
     protected List<Item> generateAmountOfItems(int numberOfItemsToGenerate) throws IOException {
         List<Item> itemsList = new ArrayList<>();
+        return determineToIncludeMundaneItems(numberOfItemsToGenerate, itemsList);
+    }
+
+    private List<Item> determineToIncludeMundaneItems(int numberOfItemsToGenerate, List<Item> itemsList) throws IOException {
         if (includeMundaneItems()) {
             return generateListIncludingMundaneItems(numberOfItemsToGenerate, itemsList);
         } else {
