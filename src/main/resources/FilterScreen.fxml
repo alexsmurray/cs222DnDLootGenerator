@@ -24,11 +24,11 @@
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding></Slider>
-      <CheckBox layoutX="286.0" layoutY="296.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" selected="true" text="Include Requires Attunement">
+      <CheckBox fx:id="attunementCheckBox" layoutX="286.0" layoutY="296.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" selected="true" text="Include Requires Attunement">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding></CheckBox>
-      <VBox layoutX="286.0" layoutY="14.0" prefHeight="300.0" prefWidth="206.0">
+      <VBox fx:id="equipmentBox" layoutX="286.0" layoutY="14.0" prefHeight="300.0" prefWidth="206.0">
          <opaqueInsets>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </opaqueInsets>

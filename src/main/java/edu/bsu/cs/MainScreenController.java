@@ -40,7 +40,6 @@ public class MainScreenController {
 
     public void initialize() {
         initializeTableView();
-        setConfigurationToDefault();
         updateRefreshDate();
     }
 
@@ -50,14 +49,6 @@ public class MainScreenController {
         rarityTableColumn.setCellValueFactory(new PropertyValueFactory<>("rarity"));
         typeTableColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         attunementTableColumn.setCellValueFactory(new PropertyValueFactory<>("attunement"));
-    }
-
-    private void setConfigurationToDefault() {
-        try {
-            new ConfigurationFileWriter().initializeConfigFile(new ConfigurationTable());
-        } catch (Exception ConfigException) {
-            //TODO::file write error handling needed
-        }
     }
 
     private void updateRefreshDate(){

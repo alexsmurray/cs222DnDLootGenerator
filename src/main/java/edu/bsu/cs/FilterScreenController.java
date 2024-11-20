@@ -4,19 +4,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class FilterScreenController implements Initializable {
-
     @FXML
-    private Slider weightSlider;
+    private VBox equipmentBox;
+    @FXML
+    private CheckBox attunementCheckBox;
+    @FXML
+    protected Slider weightSlider;
     @FXML
     private Slider raritySlider;
 
@@ -38,11 +42,8 @@ public class FilterScreenController implements Initializable {
 
     private void initializeFiltersToSetValues() {
         String configurationString = readConfigurationFile();
-        if (configurationString != null) {
-            configurationString = configurationString.replace(" ", "");
-            String[] configurationValues = configurationString.split(",");
-            System.out.println(Arrays.toString(configurationValues));
-        }
+        setConfigToDefaultIfNull(configurationString);
+        setConfigToSavedValuesIfNotNull(configurationString);
     }
 
     private String readConfigurationFile() {
@@ -50,7 +51,49 @@ public class FilterScreenController implements Initializable {
             return new ConfigurationFileReader().readConfigFileAsString();
         } catch (Exception ConfigException) {
             return null;
-            //TODO::add error handling for file read
+        }
+
+    }
+
+    private void setConfigToDefaultIfNull(String configurationString) {
+        if (configurationString == null) {
+            setConfigurationToDefault();
+        }
+    }
+
+    private void setConfigurationToDefault() {
+        try {
+            new ConfigurationFileWriter().initializeConfigFile(new ConfigurationTable());
+        } catch (Exception ConfigException) {
+            //TODO::file write error handling needed
+        }
+    }
+
+    private void setConfigToSavedValuesIfNotNull(String configurationString) {
+        if (configurationString != null) {
+            setConfigurationValues(configurationString);
+        }
+    }
+
+    private void setConfigurationValues(String configurationString) {
+        configurationString = configurationString.replace(" ", "");
+        String[] configurationValues = configurationString.split(",");
+        setGraphicsToValues(configurationValues);
+
+    }
+
+    private void setGraphicsToValues(String[] configurationValues) {
+        raritySlider.setValue(Double.parseDouble(configurationValues[0]));
+        weightSlider.setValue(Double.parseDouble(configurationValues[1]));
+        setCheckboxesValues(configurationValues);
+        attunementCheckBox.setSelected(Boolean.parseBoolean(configurationValues[6]));
+    }
+
+    private void setCheckboxesValues(String[] configurationValues) {
+        for (int i = 1; i < equipmentBox.getChildren().size(); i++) {
+            CheckBox checkBox = (CheckBox) equipmentBox.getChildren().get(i);
+            checkBox.setSelected(Boolean.parseBoolean(configurationValues[i+1]));
+            System.out.println(checkBox.isSelected());
         }
     }
 

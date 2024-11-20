@@ -5,13 +5,13 @@ import java.util.Hashtable;
 public class ConfigurationTable extends Hashtable<String, String> {
 
     public ConfigurationTable() {
-        put("rarity", "Artifact");
-        put("weight", "1.0");
-        put("armor", "True");
-        put("weapons", "True");
-        put("magicEquipment", "True");
-        put("magicMisc", "True");
-        put("potions", "True");
-        put("requiresAttunement", "True");
+        put("rarity", "6");
+        put("weight", ".5");
+        put("armor", "true");
+        put("weapons", "true");
+        put("magicEquipment", "true");
+        put("magicMisc", "true");
+        put("potions", "true");
+        put("requiresAttunement", "true");
     }
 }
