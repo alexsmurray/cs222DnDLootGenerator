@@ -40,11 +40,10 @@ public class TestJsonFileMaker {
 
     private void clearFile() throws IOException {
         String fileContents = JsonFileReader.readFileToString("src/main/resources/dataFiles/homebrew.txt");
-        FileWriter fileWriter = new FileWriter("src/main/resources/dataFiles/homebrew.txt");
         if (fileContents.contains("TestItem")){
+            FileWriter fileWriter = new FileWriter("src/main/resources/dataFiles/homebrew.txt");
             fileWriter.write("");
+            fileWriter.close();
         }
-        fileWriter.close();
     }
-
 }
