@@ -80,7 +80,7 @@
     <CheckBox fx:id="heavyCheckBox" layoutX="422.0" layoutY="129.0" mnemonicParsing="false" text="Heavy" />
     <CheckBox fx:id="finesseCheckBox" layoutX="422.0" layoutY="107.0" mnemonicParsing="false" text="Finesse" />
     <CheckBox fx:id="ammunitionCheckBox" disable="true" layoutX="422.0" layoutY="85.0" mnemonicParsing="false" onAction="#setLongRangeLabel" text="*Ammunition" />
-    <Button layoutX="396.0" layoutY="8.0" prefHeight="0.0" prefWidth="227.0" text="Build Weapon" onAction="#collectWeaponDetails">
+    <Button layoutX="396.0" layoutY="8.0" prefHeight="0.0" prefWidth="227.0" text="Build Weapon" onAction="#writeWeaponToFile">
         <font>
             <Font name="System Bold" size="20.0" />
         </font>

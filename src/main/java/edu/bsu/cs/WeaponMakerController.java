@@ -2,6 +2,8 @@ package edu.bsu.cs;
 
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,17 +103,26 @@ public class WeaponMakerController {
 
     public String collectWeaponDetails(){
         StringBuilder weaponDetails = new StringBuilder();
-        weaponDetails.append("Name: ").append(weaponNameInput.getText()).append("\n");
-        weaponDetails.append("Proficiency: ").append(getProficiency()).append("\n");
-        weaponDetails.append("Damage Dice: ").append(numberOfDiceInput.getText()).append(damageDiceChoice.getValue()).append("\n");
-        weaponDetails.append("Reach: ").append(reachChoice.getValue()).append("\n");
-        weaponDetails.append("Damage Type: ").append(damageTypeChoice.getValue()).append("\n");
-        weaponDetails.append("Properties: ").append(OutputFormatter.formatProperties(getRangeProperty(getProperties()))).append("\n");
-        weaponDetails.append("Rarity: ").append(weaponRarityChoice.getValue()).append("\n");
-        weaponDetails.append("Attunement: ").append(attunementToggle.isSelected()).append("\n");
-        weaponDetails.append("Description:\n").append(weaponDescription.getText()).append("\n");
+        weaponDetails.append("{\n");
+        weaponDetails.append("\tItem Type: Weapon\n");
+        weaponDetails.append("\tName: ").append(weaponNameInput.getText()).append("\n");
+        weaponDetails.append("\tProficiency: ").append(getProficiency()).append("\n");
+        weaponDetails.append("\tDamage Dice: ").append(numberOfDiceInput.getText()).append(damageDiceChoice.getValue()).append("\n");
+        weaponDetails.append("\tReach: ").append(reachChoice.getValue()).append("\n");
+        weaponDetails.append("\tDamage Type: ").append(damageTypeChoice.getValue()).append("\n");
+        weaponDetails.append("\tProperties: ").append(OutputFormatter.formatProperties(getRangeProperty(getProperties()))).append("\n");
+        weaponDetails.append("\tRarity: ").append(weaponRarityChoice.getValue()).append("\n");
+        weaponDetails.append("\tAttunement: ").append(attunementToggle.isSelected()).append("\n");
+        weaponDetails.append("\tDescription:\n\t").append(weaponDescription.getText()).append("\n");
+        weaponDetails.append("}\n");
         System.out.println(weaponDetails);
         return weaponDetails.toString();
     }
+
+    public void writeWeaponToFile() throws IOException {
+       JsonFileMaker jsonFileMaker = new JsonFileMaker();
+       jsonFileMaker.writeHomebrewToFile(collectWeaponDetails());
+    }
+
 
 }

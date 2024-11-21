@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class JsonFileMaker {
@@ -19,8 +20,28 @@ public class JsonFileMaker {
             jsonFileMaker.writeItemsJsonToFile("magicitems");
             jsonFileMaker.writeItemsJsonToFile("armor");
             jsonFileMaker.writeItemsJsonToFile("weapons");
+            checkForHomebrewFile();
             updated = true;
         }
+    }
+
+    protected static void checkForHomebrewFile() throws IOException {
+        Path homebrew = Paths.get("src/main/resources/dataFiles/homebrew.txt");
+        if (!Files.exists(homebrew)){
+            FileWriter homebrewFile = new FileWriter("src/main/resources/dataFiles/homebrew.txt");
+            homebrewFile.close();
+        }
+    }
+
+    protected void writeHomebrewToFile(String itemDetails) throws IOException {
+        checkForHomebrewFile();
+        String fileContents = JsonFileReader.readFileToString("src/main/resources/dataFiles/homebrew.txt");
+        FileWriter homebrewFile = new FileWriter("src/main/resources/dataFiles/homebrew.txt");
+
+        homebrewFile.write(fileContents +"\n" + itemDetails);
+
+        homebrewFile.close();
+
     }
 
     protected void writeItemsJsonToFile(String categoryName) throws  IOException, URISyntaxException {
