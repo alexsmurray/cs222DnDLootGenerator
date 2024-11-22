@@ -4,15 +4,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestItemListBuilder {
 
     private final ItemListBuilder itemFilter = new ItemListBuilder();
-    List<String> testFilterItemList = new ArrayList<>();
+    private final List<String> testFilterItemList = new ArrayList<>();
 
     public TestItemListBuilder() throws IOException {}
 
@@ -57,10 +55,5 @@ public class TestItemListBuilder {
         int result = itemFilter.fetchNumberOfMagicItemPages();
 
         Assertions.assertEquals(33,result);
-    }
-
-    private void setConfigFileToDefault() throws IOException {
-        Files.createDirectories(Paths.get("src/main/resources/dataFiles"));
-        new ConfigurationFileWriter().writeConfigurationFile(new ConfigurationTable());
     }
 }
