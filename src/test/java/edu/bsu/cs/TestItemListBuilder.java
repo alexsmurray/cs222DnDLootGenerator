@@ -9,12 +9,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestItemFilter {
+public class TestItemListBuilder {
 
-    private final ItemFilter itemFilter = new ItemFilter();
+    private final ItemListBuilder itemFilter = new ItemListBuilder();
     List<String> testFilterItemList = new ArrayList<>();
 
-    public TestItemFilter() throws IOException {}
+    public TestItemListBuilder() throws IOException {}
 
     @Test
     public void testPopulateListOfItems() throws IOException {
@@ -55,6 +55,7 @@ public class TestItemFilter {
     @Test
     public void testFetchNumberOfMagicItemPages() throws IOException {
         int result = itemFilter.fetchNumberOfMagicItemPages();
+
         Assertions.assertEquals(33,result);
     }
 

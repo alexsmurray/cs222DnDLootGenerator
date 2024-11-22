@@ -5,7 +5,7 @@ import net.minidev.json.JSONArray;
 import java.io.IOException;
 import java.util.List;
 
-public class ItemFilter {
+public class ItemListBuilder {
 
     String armorFilePath = "src/main/resources/dataFiles/armor.txt";
     String weaponFilePath = "src/main/resources/dataFiles/weapons.txt";
@@ -15,7 +15,7 @@ public class ItemFilter {
     MagicItemsParser magicItemsParser = new MagicItemsParser(JsonFileReader.readFileToString(magicItemFilePath));
     JSONArray nameJsonArray;
 
-    public ItemFilter() throws IOException {}
+    public ItemListBuilder() throws IOException {}
 
     protected void populateListOfItems(List<String> filterItemList) throws IOException {
         populateListWithArmorItems(filterItemList);
@@ -25,12 +25,13 @@ public class ItemFilter {
 
     protected void populateListWithArmorItems(List<String> filterItemList) {
         nameJsonArray =  armorItemParser.parseArmorItemName();
+        //TODO:: Actually filter
         populateFilteredList(filterItemList);
     }
 
     protected void populateListWithWeaponItems(List<String> filterItemList) {
-
         nameJsonArray =  weaponItemParser.parseWeaponItemName();
+        //TODO:: Actually filter
         populateFilteredList(filterItemList);
     }
 
@@ -38,6 +39,7 @@ public class ItemFilter {
         int magicItemPages = fetchNumberOfMagicItemPages();
         for (int page = 0; page < magicItemPages; page++) {
             nameJsonArray = magicItemsParser.parseMagicItemName(page);
+            //TODO:: Actually filter
             populateFilteredList(filterItemList);
         }
     }
