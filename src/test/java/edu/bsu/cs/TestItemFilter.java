@@ -12,6 +12,14 @@ public class TestItemFilter {
     private final ItemFilter testItemFilter = new ItemFilter();
 
     @Test
+    public void testCheckForMaxRarityPermitted() throws IOException {
+        setConfigFileToDefault();
+        int result = testItemFilter.checkForMaxRarityPermitted();
+
+        Assertions.assertEquals(6, result);
+    }
+
+    @Test
     public void testCheckForArmorEnabled() throws IOException {
         setConfigFileToDefault();
         Boolean result = testItemFilter.checkForItemTypeEnabled("armor");

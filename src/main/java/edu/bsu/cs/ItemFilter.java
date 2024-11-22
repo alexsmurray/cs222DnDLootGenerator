@@ -4,7 +4,11 @@ import java.io.IOException;
 
 public class ItemFilter {
 
-    public Boolean checkForItemTypeEnabled(String configValue) throws IOException {
+    protected int checkForMaxRarityPermitted() throws IOException {
+        return Integer.parseInt(new ConfigurationFileReader().fetchConfigValues()[0]);
+    }
+
+    protected Boolean checkForItemTypeEnabled(String configValue) throws IOException {
         return Boolean.parseBoolean(fetchItemTypeConfigValue(configValue));
     }
 
@@ -15,7 +19,7 @@ public class ItemFilter {
             case "magicEquipment" -> new ConfigurationFileReader().fetchConfigValues()[5].strip();
             case "magicMisc" -> new ConfigurationFileReader().fetchConfigValues()[6].strip();
             case "potions" -> new ConfigurationFileReader().fetchConfigValues()[7].strip();
-            default -> throw new IllegalStateException("Unexpected value: " + configValue);
+            default -> throw new IllegalStateException("Unexpected item type: " + configValue);
         };
     }
 
