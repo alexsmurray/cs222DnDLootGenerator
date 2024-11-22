@@ -13,6 +13,7 @@ public class ItemBuilder {
 
     protected List<Item> generateAmountOfItems(int numberOfItemsToGenerate) throws IOException {
         List<Item> itemsList = new ArrayList<>();
+        ItemListBuilder itemListBuilder = new ItemListBuilder(itemsList);
 
         for (int i = 0; i < numberOfItemsToGenerate; i++) {
             itemsList.add(generateAny());

@@ -3,6 +3,7 @@ package edu.bsu.cs;
 import net.minidev.json.JSONArray;
 
 import java.io.IOException;
+import java.util.Dictionary;
 import java.util.List;
 
 public class ItemListBuilder {
@@ -35,10 +36,13 @@ public class ItemListBuilder {
     }
 
     private void populateFilteredArmorItems(List<Item> filterItemList) {
-        //TODO:: Grab all the info for armor
+        int armorIndexNum = 0;
         for (Object name : nameJsonArray) {
-            Item item = new Item(name.toString(), "rarity", "type", "attunement", "details");
+            Dictionary<Integer, String> statDictionary = armorItemParser.parseAllArmorStats(armorIndexNum);
+            Item item = new Item(name.toString(), OutputFormatter.formatArmorStats(statDictionary));
+            item.setType("Armor");
             filterItemList.add(item);
+            armorIndexNum++;
         }
     }
 
@@ -51,10 +55,13 @@ public class ItemListBuilder {
     }
 
     private void populateFilteredWeaponItems(List<Item> filterItemList) {
-        //TODO:: Grab all the info for weapons
+        int weaponIndexNum = 0;
         for (Object name : nameJsonArray) {
-            Item item = new Item(name.toString(), "rarity", "type", "attunement", "details");
+            Dictionary<Integer, String> statDictionary = weaponItemParser.parseAllWeaponStats(weaponIndexNum);
+            Item item = new Item(name.toString(), OutputFormatter.formatWeaponStats(statDictionary));
+            item.setType("Weapon");
             filterItemList.add(item);
+            weaponIndexNum++;
         }
     }
 
