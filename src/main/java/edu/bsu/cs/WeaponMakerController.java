@@ -104,6 +104,7 @@ public class WeaponMakerController {
     public String collectWeaponDetails(){
         String[] checkedInputs = {weaponNameInput.getText(), numberOfDiceInput.getText()};
         if (!ErrorHandler.verifyHomebrewInputsNotBlank(checkedInputs)) {
+            GUI.displayHomebrewWeaponFieldsAlert();
             return "";
         }
         return "{\n" +
@@ -122,7 +123,10 @@ public class WeaponMakerController {
 
     public void writeWeaponToFile() throws IOException {
        JsonFileMaker jsonFileMaker = new JsonFileMaker();
-       jsonFileMaker.writeHomebrewToFile(collectWeaponDetails());
+       String itemDetails = collectWeaponDetails();
+       if (!itemDetails.isEmpty()) {
+           jsonFileMaker.writeHomebrewToFile(itemDetails);
+       }
     }
 
 
