@@ -102,20 +102,18 @@ public class WeaponMakerController {
     }
 
     public String collectWeaponDetails(){
-        StringBuilder weaponDetails = new StringBuilder();
-        weaponDetails.append("{\n");
-        weaponDetails.append("\tItem Type: Weapon\n");
-        weaponDetails.append("\tName: ").append(weaponNameInput.getText()).append("\n");
-        weaponDetails.append("\tProficiency: ").append(getProficiency()).append("\n");
-        weaponDetails.append("\tDamage Dice: ").append(numberOfDiceInput.getText()).append(damageDiceChoice.getValue()).append("\n");
-        weaponDetails.append("\tReach: ").append(reachChoice.getValue()).append("\n");
-        weaponDetails.append("\tDamage Type: ").append(damageTypeChoice.getValue()).append("\n");
-        weaponDetails.append("\tProperties: ").append(OutputFormatter.formatProperties(getRangeProperty(getProperties()))).append("\n");
-        weaponDetails.append("\tRarity: ").append(weaponRarityChoice.getValue()).append("\n");
-        weaponDetails.append("\tAttunement: ").append(attunementToggle.isSelected()).append("\n");
-        weaponDetails.append("\tDescription:\n\t").append(weaponDescription.getText()).append("\n");
-        weaponDetails.append("}\n");
-        return weaponDetails.toString();
+        return "{\n" +
+                "\tItem Type: Weapon\n" +
+                "\tName: " + weaponNameInput.getText() + "\n" +
+                "\tProficiency: " + getProficiency() + "\n" +
+                "\tDamage Dice: " + numberOfDiceInput.getText() + damageDiceChoice.getValue() + "\n" +
+                "\tReach: " + reachChoice.getValue() + "\n" +
+                "\tDamage Type: " + damageTypeChoice.getValue() + "\n" +
+                "\tProperties: " + OutputFormatter.formatProperties(getRangeProperty(getProperties())) + "\n" +
+                "\tRarity: " + weaponRarityChoice.getValue() + "\n" +
+                "\tAttunement: " + attunementToggle.isSelected() + "\n" +
+                "\tDescription:\n\t" + weaponDescription.getText() + "\n" +
+                "}\n";
     }
 
     public void writeWeaponToFile() throws IOException {
