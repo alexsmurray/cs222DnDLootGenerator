@@ -62,4 +62,12 @@ public class ErrorHandler {
         return true;
     }
 
+    public static boolean verifyHomebrewInputsNotBlank(String[] checkedInputs) {
+        for (String input : checkedInputs) {
+            if (input.isBlank()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

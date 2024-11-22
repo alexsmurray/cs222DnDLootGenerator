@@ -39,4 +39,10 @@ public class TestErrorHandler {
         Assertions.assertTrue(result);
     }
 
+    @Test
+    public void testVerifyHomebrewInputIsNotBlank() {
+        String[] checkedInputs = {"   ",""};
+        Assertions.assertFalse(ErrorHandler.verifyHomebrewInputsNotBlank(checkedInputs));
+    }
+
 }

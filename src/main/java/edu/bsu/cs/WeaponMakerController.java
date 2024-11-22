@@ -102,6 +102,10 @@ public class WeaponMakerController {
     }
 
     public String collectWeaponDetails(){
+        String[] checkedInputs = {weaponNameInput.getText(), numberOfDiceInput.getText()};
+        if (!ErrorHandler.verifyHomebrewInputsNotBlank(checkedInputs)) {
+            return "";
+        }
         return "{\n" +
                 "\tItem Type: Weapon\n" +
                 "\tName: " + weaponNameInput.getText() + "\n" +
