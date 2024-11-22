@@ -12,12 +12,30 @@ public class TestItemFilter {
     private final ItemFilter testItemFilter = new ItemFilter();
 
     @Test
-    public void testCheckForWeaponsEnabled() throws IOException {
+    public void testCheckForArmorEnabled() throws IOException {
         setConfigFileToDefault();
-        Boolean result = testItemFilter.checkForWeaponsEnabled();
+        Boolean result = testItemFilter.checkForItemTypeEnabled("armor");
 
         Assertions.assertTrue(result);
     }
+
+    @Test
+    public void testCheckForWeaponsEnabled() throws IOException {
+        setConfigFileToDefault();
+        Boolean result = testItemFilter.checkForItemTypeEnabled("weapon");
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void testCheckForMagicEquipmentEnabled() throws IOException {
+        setConfigFileToDefault();
+        Boolean result = testItemFilter.checkForItemTypeEnabled("magicEquipment");
+
+        Assertions.assertTrue(result);
+    }
+
+
 
     private void setConfigFileToDefault() throws IOException {
         Files.createDirectories(Paths.get("src/main/resources/dataFiles"));
