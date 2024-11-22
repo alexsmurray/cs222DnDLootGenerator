@@ -9,7 +9,8 @@ import java.util.List;
 
 public class TestItemListBuilder {
 
-    private final ItemListBuilder itemListBuilder = new ItemListBuilder();
+    List<Item> itemsList = new ArrayList<>();
+    private final ItemListBuilder itemListBuilder = new ItemListBuilder(itemsList);
     private final List<Item> testFilterItemList = new ArrayList<>();
 
     public TestItemListBuilder() throws IOException {}

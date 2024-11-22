@@ -232,10 +232,12 @@ public class MainScreenController {
     }
 
     public void switchToHomeBrew() throws IOException {
+        GUI.clearItems(itemTableView);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/HomebrewScreen.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
     public void switchToFilters() throws IOException {
+        GUI.clearItems(itemTableView);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FilterScreen.fxml")));
         GUI.stage.getScene().setRoot(root);
     }

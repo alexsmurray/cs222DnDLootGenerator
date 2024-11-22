@@ -16,7 +16,9 @@ public class ItemListBuilder {
     private final ItemFilter itemFilter = new ItemFilter();
     private  JSONArray nameJsonArray;
 
-    public ItemListBuilder() throws IOException {}
+    public ItemListBuilder(List<Item> itemsList) throws IOException {
+        populateListOfItems(itemsList);
+    }
 
     protected void populateListOfItems(List<Item> filterItemList) throws IOException {
         populateListWithArmorItems(filterItemList);
@@ -28,7 +30,15 @@ public class ItemListBuilder {
         nameJsonArray =  armorItemParser.parseArmorItemName();
 
         if (itemFilter.checkForItemTypeEnabled("armor")) {
-            populateFilteredList(filterItemList);
+            populateFilteredArmorItems(filterItemList);
+        }
+    }
+
+    private void populateFilteredArmorItems(List<Item> filterItemList) {
+        //TODO:: Grab all the info for armor
+        for (Object name : nameJsonArray) {
+            Item item = new Item(name.toString(), "rarity", "type", "attunement", "details");
+            filterItemList.add(item);
         }
     }
 
@@ -36,7 +46,15 @@ public class ItemListBuilder {
         nameJsonArray =  weaponItemParser.parseWeaponItemName();
 
         if (itemFilter.checkForItemTypeEnabled("weapon")) {
-            populateFilteredList(filterItemList);
+            populateFilteredWeaponItems(filterItemList);
+        }
+    }
+
+    private void populateFilteredWeaponItems(List<Item> filterItemList) {
+        //TODO:: Grab all the info for weapons
+        for (Object name : nameJsonArray) {
+            Item item = new Item(name.toString(), "rarity", "type", "attunement", "details");
+            filterItemList.add(item);
         }
     }
 
@@ -45,7 +63,7 @@ public class ItemListBuilder {
         for (int page = 0; page < magicItemPages; page++) {
             nameJsonArray = magicItemsParser.parseMagicItemName(page);
             if (itemFilter.checkForItemTypeEnabled("magicEquipment")) {
-                populateFilteredList(filterItemList);
+                populateFilteredMagicItems(filterItemList);
             }
         }
     }
@@ -56,7 +74,8 @@ public class ItemListBuilder {
         return pageLines.length;
     }
 
-    protected void populateFilteredList(List<Item> filterItemList) {
+    protected void populateFilteredMagicItems(List<Item> filterItemList) {
+        //TODO:: Grab all the info for magic items
         for (Object name : nameJsonArray) {
             Item item = new Item(name.toString(), "rarity", "type", "attunement", "details");
             filterItemList.add(item);
