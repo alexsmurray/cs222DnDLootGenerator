@@ -33,8 +33,6 @@ public class ItemBuilder {
         WeaponItemParser weaponItemParser = new WeaponItemParser(JsonFileReader.readFileToString(filePath));
         JSONArray nameJsonArray =  weaponItemParser.parseWeaponItemName();
         int randomIndex = selectRandomItemIndex(nameJsonArray);
-
-
         Dictionary<Integer, String> statDictionary = weaponItemParser.parseAllWeaponStats(randomIndex);
         Item item = new Item(nameJsonArray.get(randomIndex).toString(), OutputFormatter.formatWeaponStats(statDictionary));
         item.setType("Weapon");

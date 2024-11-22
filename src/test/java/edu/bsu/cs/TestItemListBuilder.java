@@ -10,7 +10,7 @@ import java.util.List;
 public class TestItemListBuilder {
 
     private final ItemListBuilder itemListBuilder = new ItemListBuilder();
-    private final List<String> testFilterItemList = new ArrayList<>();
+    private final List<Item> testFilterItemList = new ArrayList<>();
 
     public TestItemListBuilder() throws IOException {}
 
@@ -19,8 +19,8 @@ public class TestItemListBuilder {
         testFilterItemList.clear();
         itemListBuilder.populateListOfItems(testFilterItemList);
 
-        String firstMagicItem = testFilterItemList.getFirst();
-        String secondToLastMagicItem = testFilterItemList.get(testFilterItemList.size()-2);
+        String firstMagicItem = testFilterItemList.getFirst().getName();
+        String secondToLastMagicItem = testFilterItemList.get(testFilterItemList.size()-2).getName();
         String[] result = {firstMagicItem, secondToLastMagicItem};
         String[] expected = {"Breastplate", "Zipline Ring"};
 
@@ -33,7 +33,7 @@ public class TestItemListBuilder {
         itemListBuilder.populateListWithArmorItems(testFilterItemList);
         String expected = "Breastplate";
 
-        Assertions.assertEquals(expected,testFilterItemList.getFirst());
+        Assertions.assertEquals(expected,testFilterItemList.getFirst().getName());
     }
 
     @Test
@@ -42,7 +42,7 @@ public class TestItemListBuilder {
         itemListBuilder.populateListWithWeaponItems(testFilterItemList);
         String expected = "Battleaxe";
 
-        Assertions.assertEquals(expected,testFilterItemList.getFirst());
+        Assertions.assertEquals(expected,testFilterItemList.getFirst().getName());
     }
 
     @Test
@@ -51,7 +51,7 @@ public class TestItemListBuilder {
         itemListBuilder.populateListWithMagicItems(testFilterItemList);
         String expected = "Aberrant Agreement";
 
-        Assertions.assertEquals(expected,testFilterItemList.getFirst());
+        Assertions.assertEquals(expected,testFilterItemList.getFirst().getName());
     }
 
     @Test

@@ -18,13 +18,13 @@ public class ItemListBuilder {
 
     public ItemListBuilder() throws IOException {}
 
-    protected void populateListOfItems(List<String> filterItemList) throws IOException {
+    protected void populateListOfItems(List<Item> filterItemList) throws IOException {
         populateListWithArmorItems(filterItemList);
         populateListWithWeaponItems(filterItemList);
         populateListWithMagicItems(filterItemList);
     }
 
-    protected void populateListWithArmorItems(List<String> filterItemList) throws IOException {
+    protected void populateListWithArmorItems(List<Item> filterItemList) throws IOException {
         nameJsonArray =  armorItemParser.parseArmorItemName();
 
         if (itemFilter.checkForItemTypeEnabled("armor")) {
@@ -32,7 +32,7 @@ public class ItemListBuilder {
         }
     }
 
-    protected void populateListWithWeaponItems(List<String> filterItemList) throws IOException {
+    protected void populateListWithWeaponItems(List<Item> filterItemList) throws IOException {
         nameJsonArray =  weaponItemParser.parseWeaponItemName();
 
         if (itemFilter.checkForItemTypeEnabled("weapon")) {
@@ -40,7 +40,7 @@ public class ItemListBuilder {
         }
     }
 
-    protected void populateListWithMagicItems(List<String> filterItemList) throws IOException {
+    protected void populateListWithMagicItems(List<Item> filterItemList) throws IOException {
         int magicItemPages = fetchNumberOfMagicItemPages();
         for (int page = 0; page < magicItemPages; page++) {
             nameJsonArray = magicItemsParser.parseMagicItemName(page);
@@ -56,9 +56,10 @@ public class ItemListBuilder {
         return pageLines.length;
     }
 
-    protected void populateFilteredList(List<String> filterItemList) {
-        for (Object item : nameJsonArray) {
-            filterItemList.add(item.toString());
+    protected void populateFilteredList(List<Item> filterItemList) {
+        for (Object name : nameJsonArray) {
+            Item item = new Item(name.toString(), "rarity", "type", "attunement", "details");
+            filterItemList.add(item);
         }
     }
 }
