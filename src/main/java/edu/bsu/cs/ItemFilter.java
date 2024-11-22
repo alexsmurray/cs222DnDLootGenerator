@@ -16,24 +16,24 @@ public class ItemFilter {
 
     public ItemFilter() throws IOException {}
 
-    public void populateListOfItems(List<String> filterItemList) throws IOException {
+    protected void populateListOfItems(List<String> filterItemList) throws IOException {
         populateListWithArmorItems(filterItemList);
         populateListWithWeaponItems(filterItemList);
         populateListWithMagicItems(filterItemList);
     }
 
-    private void populateListWithArmorItems(List<String> filterItemList) {
+    protected void populateListWithArmorItems(List<String> filterItemList) {
         JSONArray nameJsonArray =  armorItemParser.parseArmorItemName();
         populateFilteredList(filterItemList, nameJsonArray);
     }
 
-    private void populateListWithWeaponItems(List<String> filterItemList) {
+    protected void populateListWithWeaponItems(List<String> filterItemList) {
         JSONArray nameJsonArray;
         nameJsonArray =  weaponItemParser.parseWeaponItemName();
         populateFilteredList(filterItemList, nameJsonArray);
     }
 
-    private void populateListWithMagicItems(List<String> filterItemList) throws IOException {
+    protected void populateListWithMagicItems(List<String> filterItemList) throws IOException {
         JSONArray nameJsonArray;
         int magicItemPages = fetchNumberOfMagicItemPages();
         for (int page = 0; page < magicItemPages; page++) {
@@ -42,13 +42,13 @@ public class ItemFilter {
         }
     }
 
-    private int fetchNumberOfMagicItemPages() throws IOException {
+    protected int fetchNumberOfMagicItemPages() throws IOException {
         String fileContents = JsonFileReader.readFileToString(magicItemFilePath);
         String[] pageLines = fileContents.split("\n");
         return pageLines.length;
     }
 
-    private void populateFilteredList(List<String> filterItemList, JSONArray nameJsonArray) {
+    protected void populateFilteredList(List<String> filterItemList, JSONArray nameJsonArray) {
         for (Object item : nameJsonArray) {
             filterItemList.add(item.toString());
         }

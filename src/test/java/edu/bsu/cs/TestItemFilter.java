@@ -12,12 +12,12 @@ import java.util.List;
 public class TestItemFilter {
 
     private final ItemFilter itemFilter = new ItemFilter();
+    List<String> testFilterItemList = new ArrayList<>();
 
     public TestItemFilter() throws IOException {}
 
     @Test
     public void testPopulateListOfItems() throws IOException {
-        List<String> testFilterItemList = new ArrayList<>();
         itemFilter.populateListOfItems(testFilterItemList);
 
         String firstMagicItem = testFilterItemList.getFirst();
@@ -26,6 +26,30 @@ public class TestItemFilter {
         String[] expected = {"Breastplate", "Zipline Ring"};
 
         Assertions.assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void testPopulateListWithArmorItems() {
+        itemFilter.populateListWithArmorItems(testFilterItemList);
+        String expected = "Breastplate";
+
+        Assertions.assertEquals(expected,testFilterItemList.getFirst());
+    }
+
+    @Test
+    public void testPopulateListWithWeaponItems() {
+        itemFilter.populateListWithWeaponItems(testFilterItemList);
+        String expected = "Battleaxe";
+
+        Assertions.assertEquals(expected,testFilterItemList.getFirst());
+    }
+
+    @Test
+    public void testPopulateListWithMagicItems() throws IOException {
+        itemFilter.populateListWithMagicItems(testFilterItemList);
+        String expected = "Aberrant Agreement";
+
+        Assertions.assertEquals(expected,testFilterItemList.getFirst());
     }
 
     private void setConfigFileToDefault() throws IOException {
