@@ -20,6 +20,14 @@ public class TestItemFilter {
     }
 
     @Test
+    public void testFetchWeight() throws IOException {
+        setConfigFileToDefault();
+        double result = testItemFilter.fetchWeight();
+
+        Assertions.assertEquals(.5, result);
+    }
+
+    @Test
     public void testCheckForArmorEnabled() throws IOException {
         setConfigFileToDefault();
         Boolean result = testItemFilter.checkForItemTypeEnabled("armor");

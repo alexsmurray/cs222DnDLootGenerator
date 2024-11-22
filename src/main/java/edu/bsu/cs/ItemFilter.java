@@ -4,8 +4,14 @@ import java.io.IOException;
 
 public class ItemFilter {
 
+    ConfigurationFileReader configFileReader = new ConfigurationFileReader();
+
     protected int checkForMaxRarityPermitted() throws IOException {
-        return Integer.parseInt(new ConfigurationFileReader().fetchConfigValues()[0]);
+        return Integer.parseInt(configFileReader.fetchConfigValues()[0]);
+    }
+
+    protected double fetchWeight() throws IOException {
+        return Double.parseDouble(configFileReader.fetchConfigValues()[1]);
     }
 
     protected Boolean checkForItemTypeEnabled(String configValue) throws IOException {
@@ -14,14 +20,13 @@ public class ItemFilter {
 
     private String fetchItemTypeConfigValue(String configValue) throws IOException {
         return switch (configValue){
-            case "armor" -> new ConfigurationFileReader().fetchConfigValues()[3].strip();
-            case "weapon" -> new ConfigurationFileReader().fetchConfigValues()[4].strip();
-            case "magicEquipment" -> new ConfigurationFileReader().fetchConfigValues()[5].strip();
-            case "magicMisc" -> new ConfigurationFileReader().fetchConfigValues()[6].strip();
-            case "potions" -> new ConfigurationFileReader().fetchConfigValues()[7].strip();
+            case "armor" -> configFileReader.fetchConfigValues()[3].strip();
+            case "weapon" -> configFileReader.fetchConfigValues()[4].strip();
+            case "magicEquipment" -> configFileReader.fetchConfigValues()[5].strip();
+            case "magicMisc" -> configFileReader.fetchConfigValues()[6].strip();
+            case "potions" -> configFileReader.fetchConfigValues()[7].strip();
             default -> throw new IllegalStateException("Unexpected item type: " + configValue);
         };
     }
-
 
 }
