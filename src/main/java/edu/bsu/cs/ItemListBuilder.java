@@ -7,14 +7,14 @@ import java.util.List;
 
 public class ItemListBuilder {
 
-    private String armorFilePath = "src/main/resources/dataFiles/armor.txt";
-    private String weaponFilePath = "src/main/resources/dataFiles/weapons.txt";
-    private String magicItemFilePath = "src/main/resources/dataFiles/magicitems.txt";
-    private ArmorItemParser armorItemParser = new ArmorItemParser(JsonFileReader.readFileToString(armorFilePath));
-    private WeaponItemParser weaponItemParser = new WeaponItemParser(JsonFileReader.readFileToString(weaponFilePath));
-    private MagicItemsParser magicItemsParser = new MagicItemsParser(JsonFileReader.readFileToString(magicItemFilePath));
-    private JSONArray nameJsonArray;
-    private ItemFilter itemFilter = new ItemFilter();
+    private final String armorFilePath = "src/main/resources/dataFiles/armor.txt";
+    private final String weaponFilePath = "src/main/resources/dataFiles/weapons.txt";
+    private final String magicItemFilePath = "src/main/resources/dataFiles/magicitems.txt";
+    private final ArmorItemParser armorItemParser = new ArmorItemParser(JsonFileReader.readFileToString(armorFilePath));
+    private final WeaponItemParser weaponItemParser = new WeaponItemParser(JsonFileReader.readFileToString(weaponFilePath));
+    private final MagicItemsParser magicItemsParser = new MagicItemsParser(JsonFileReader.readFileToString(magicItemFilePath));
+    private final ItemFilter itemFilter = new ItemFilter();
+    private  JSONArray nameJsonArray;
 
     public ItemListBuilder() throws IOException {}
 
@@ -32,18 +32,21 @@ public class ItemListBuilder {
         }
     }
 
-    protected void populateListWithWeaponItems(List<String> filterItemList) {
+    protected void populateListWithWeaponItems(List<String> filterItemList) throws IOException {
         nameJsonArray =  weaponItemParser.parseWeaponItemName();
-        //TODO:: Actually filter
-        populateFilteredList(filterItemList);
+
+        if (itemFilter.checkForItemTypeEnabled("weapon")) {
+            populateFilteredList(filterItemList);
+        }
     }
 
     protected void populateListWithMagicItems(List<String> filterItemList) throws IOException {
         int magicItemPages = fetchNumberOfMagicItemPages();
         for (int page = 0; page < magicItemPages; page++) {
             nameJsonArray = magicItemsParser.parseMagicItemName(page);
-            //TODO:: Actually filter
-            populateFilteredList(filterItemList);
+            if (itemFilter.checkForItemTypeEnabled("magicEquipment")) {
+                populateFilteredList(filterItemList);
+            }
         }
     }
 

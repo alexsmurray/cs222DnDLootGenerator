@@ -37,7 +37,7 @@ public class TestItemListBuilder {
     }
 
     @Test
-    public void testPopulateListWithWeaponItems() {
+    public void testPopulateListWithWeaponItems() throws IOException {
         testFilterItemList.clear();
         itemListBuilder.populateListWithWeaponItems(testFilterItemList);
         String expected = "Battleaxe";
