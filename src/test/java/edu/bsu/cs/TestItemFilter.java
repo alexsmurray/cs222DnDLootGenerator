@@ -16,14 +16,16 @@ public class TestItemFilter {
     public TestItemFilter() throws IOException {}
 
     @Test
-    public void populateListOfItems() throws IOException {
+    public void testPopulateListOfItems() throws IOException {
         List<String> testFilterItemList = new ArrayList<>();
         itemFilter.populateListOfItems(testFilterItemList);
 
-        String result = testFilterItemList.getFirst();
-        String expected = "Breastplate";
+        String firstMagicItem = testFilterItemList.getFirst();
+        String secondToLastMagicItem = testFilterItemList.get(testFilterItemList.size()-2);
+        String[] result = {firstMagicItem, secondToLastMagicItem};
+        String[] expected = {"Breastplate", "Zipline Ring"};
 
-        Assertions.assertEquals(expected, result);
+        Assertions.assertArrayEquals(expected, result);
     }
 
     private void setConfigFileToDefault() throws IOException {
