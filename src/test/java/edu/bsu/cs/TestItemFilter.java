@@ -35,6 +35,15 @@ public class TestItemFilter {
         Assertions.assertTrue(result);
     }
 
+    @Test
+    public void testCheckForMagicMiscEnabled() throws IOException {
+        setConfigFileToDefault();
+        Boolean result = testItemFilter.checkForItemTypeEnabled("magicMisc");
+
+        Assertions.assertTrue(result);
+    }
+
+
 
 
     private void setConfigFileToDefault() throws IOException {
