@@ -13,6 +13,7 @@ public class ItemFilter {
     ArmorItemParser armorItemParser = new ArmorItemParser(JsonFileReader.readFileToString(armorFilePath));
     WeaponItemParser weaponItemParser = new WeaponItemParser(JsonFileReader.readFileToString(weaponFilePath));
     MagicItemsParser magicItemsParser = new MagicItemsParser(JsonFileReader.readFileToString(magicItemFilePath));
+    JSONArray nameJsonArray;
 
     public ItemFilter() throws IOException {}
 
@@ -23,22 +24,21 @@ public class ItemFilter {
     }
 
     protected void populateListWithArmorItems(List<String> filterItemList) {
-        JSONArray nameJsonArray =  armorItemParser.parseArmorItemName();
-        populateFilteredList(filterItemList, nameJsonArray);
+        nameJsonArray =  armorItemParser.parseArmorItemName();
+        populateFilteredList(filterItemList);
     }
 
     protected void populateListWithWeaponItems(List<String> filterItemList) {
-        JSONArray nameJsonArray;
+
         nameJsonArray =  weaponItemParser.parseWeaponItemName();
-        populateFilteredList(filterItemList, nameJsonArray);
+        populateFilteredList(filterItemList);
     }
 
     protected void populateListWithMagicItems(List<String> filterItemList) throws IOException {
-        JSONArray nameJsonArray;
         int magicItemPages = fetchNumberOfMagicItemPages();
         for (int page = 0; page < magicItemPages; page++) {
             nameJsonArray = magicItemsParser.parseMagicItemName(page);
-            populateFilteredList(filterItemList, nameJsonArray);
+            populateFilteredList(filterItemList);
         }
     }
 
@@ -48,7 +48,7 @@ public class ItemFilter {
         return pageLines.length;
     }
 
-    protected void populateFilteredList(List<String> filterItemList, JSONArray nameJsonArray) {
+    protected void populateFilteredList(List<String> filterItemList) {
         for (Object item : nameJsonArray) {
             filterItemList.add(item.toString());
         }

@@ -52,6 +52,12 @@ public class TestItemFilter {
         Assertions.assertEquals(expected,testFilterItemList.getFirst());
     }
 
+    @Test
+    public void testFetchNumberOfMagicItemPages() throws IOException {
+        int result = itemFilter.fetchNumberOfMagicItemPages();
+        Assertions.assertEquals(33,result);
+    }
+
     private void setConfigFileToDefault() throws IOException {
         Files.createDirectories(Paths.get("src/main/resources/dataFiles"));
         new ConfigurationFileWriter().writeConfigurationFile(new ConfigurationTable());
