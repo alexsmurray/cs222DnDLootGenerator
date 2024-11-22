@@ -81,6 +81,9 @@ public class OutputFormatter {
     }
 
     public static String formatProperties(List<String> listOfProperties){
+        if (listOfProperties.isEmpty()) {
+            return "[]";
+        }
         StringBuilder properties = new StringBuilder();
         int counter=0;
         properties.append("[");
