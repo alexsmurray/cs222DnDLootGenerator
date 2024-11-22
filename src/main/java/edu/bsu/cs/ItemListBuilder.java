@@ -7,13 +7,14 @@ import java.util.List;
 
 public class ItemListBuilder {
 
-    String armorFilePath = "src/main/resources/dataFiles/armor.txt";
-    String weaponFilePath = "src/main/resources/dataFiles/weapons.txt";
-    String magicItemFilePath = "src/main/resources/dataFiles/magicitems.txt";
-    ArmorItemParser armorItemParser = new ArmorItemParser(JsonFileReader.readFileToString(armorFilePath));
-    WeaponItemParser weaponItemParser = new WeaponItemParser(JsonFileReader.readFileToString(weaponFilePath));
-    MagicItemsParser magicItemsParser = new MagicItemsParser(JsonFileReader.readFileToString(magicItemFilePath));
-    JSONArray nameJsonArray;
+    private String armorFilePath = "src/main/resources/dataFiles/armor.txt";
+    private String weaponFilePath = "src/main/resources/dataFiles/weapons.txt";
+    private String magicItemFilePath = "src/main/resources/dataFiles/magicitems.txt";
+    private ArmorItemParser armorItemParser = new ArmorItemParser(JsonFileReader.readFileToString(armorFilePath));
+    private WeaponItemParser weaponItemParser = new WeaponItemParser(JsonFileReader.readFileToString(weaponFilePath));
+    private MagicItemsParser magicItemsParser = new MagicItemsParser(JsonFileReader.readFileToString(magicItemFilePath));
+    private JSONArray nameJsonArray;
+    private ItemFilter itemFilter = new ItemFilter();
 
     public ItemListBuilder() throws IOException {}
 
@@ -23,10 +24,12 @@ public class ItemListBuilder {
         populateListWithMagicItems(filterItemList);
     }
 
-    protected void populateListWithArmorItems(List<String> filterItemList) {
+    protected void populateListWithArmorItems(List<String> filterItemList) throws IOException {
         nameJsonArray =  armorItemParser.parseArmorItemName();
-        //TODO:: Actually filter
-        populateFilteredList(filterItemList);
+
+        if (itemFilter.checkForItemTypeEnabled("armor")) {
+            populateFilteredList(filterItemList);
+        }
     }
 
     protected void populateListWithWeaponItems(List<String> filterItemList) {

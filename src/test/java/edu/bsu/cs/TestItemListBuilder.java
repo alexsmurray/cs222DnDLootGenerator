@@ -9,14 +9,15 @@ import java.util.List;
 
 public class TestItemListBuilder {
 
-    private final ItemListBuilder itemFilter = new ItemListBuilder();
+    private final ItemListBuilder itemListBuilder = new ItemListBuilder();
     private final List<String> testFilterItemList = new ArrayList<>();
 
     public TestItemListBuilder() throws IOException {}
 
     @Test
     public void testPopulateListOfItems() throws IOException {
-        itemFilter.populateListOfItems(testFilterItemList);
+        testFilterItemList.clear();
+        itemListBuilder.populateListOfItems(testFilterItemList);
 
         String firstMagicItem = testFilterItemList.getFirst();
         String secondToLastMagicItem = testFilterItemList.get(testFilterItemList.size()-2);
@@ -27,8 +28,9 @@ public class TestItemListBuilder {
     }
 
     @Test
-    public void testPopulateListWithArmorItems() {
-        itemFilter.populateListWithArmorItems(testFilterItemList);
+    public void testPopulateListWithArmorItems() throws IOException {
+        testFilterItemList.clear();
+        itemListBuilder.populateListWithArmorItems(testFilterItemList);
         String expected = "Breastplate";
 
         Assertions.assertEquals(expected,testFilterItemList.getFirst());
@@ -36,7 +38,8 @@ public class TestItemListBuilder {
 
     @Test
     public void testPopulateListWithWeaponItems() {
-        itemFilter.populateListWithWeaponItems(testFilterItemList);
+        testFilterItemList.clear();
+        itemListBuilder.populateListWithWeaponItems(testFilterItemList);
         String expected = "Battleaxe";
 
         Assertions.assertEquals(expected,testFilterItemList.getFirst());
@@ -44,7 +47,8 @@ public class TestItemListBuilder {
 
     @Test
     public void testPopulateListWithMagicItems() throws IOException {
-        itemFilter.populateListWithMagicItems(testFilterItemList);
+        testFilterItemList.clear();
+        itemListBuilder.populateListWithMagicItems(testFilterItemList);
         String expected = "Aberrant Agreement";
 
         Assertions.assertEquals(expected,testFilterItemList.getFirst());
@@ -52,7 +56,8 @@ public class TestItemListBuilder {
 
     @Test
     public void testFetchNumberOfMagicItemPages() throws IOException {
-        int result = itemFilter.fetchNumberOfMagicItemPages();
+        testFilterItemList.clear();
+        int result = itemListBuilder.fetchNumberOfMagicItemPages();
 
         Assertions.assertEquals(33,result);
     }
