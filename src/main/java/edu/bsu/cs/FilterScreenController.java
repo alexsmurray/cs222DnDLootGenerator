@@ -26,16 +26,6 @@ public class FilterScreenController implements Initializable {
 
     private ConfigurationTable configurationTable = new ConfigurationTable();
 
-    @FXML
-    private void onChangeRaritySliderLabel() {
-
-    }
-
-    @FXML
-    private void onChangeWeightSlider() {
-        //on change set weight to desired amount
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeFiltersToSetValues();
@@ -179,4 +169,9 @@ public class FilterScreenController implements Initializable {
         configurationTable.put("requiresAttunement", String.valueOf(attunementCheckBox.isSelected()));
     }
 
+    @FXML
+    private void setToDefault(){
+        String defaultValues = "6, .5, true, true, true, true, true, true";
+        setConfigurationValues(defaultValues);
+    }
 }
