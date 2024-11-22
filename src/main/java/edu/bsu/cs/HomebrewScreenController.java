@@ -1,11 +1,8 @@
 package edu.bsu.cs;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-
 import java.io.IOException;
 import java.util.Objects;
 
