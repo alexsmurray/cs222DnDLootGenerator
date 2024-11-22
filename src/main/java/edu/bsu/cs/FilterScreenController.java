@@ -24,6 +24,8 @@ public class FilterScreenController implements Initializable {
     @FXML
     private Slider raritySlider;
 
+    private ConfigurationTable configurationTable = new ConfigurationTable();
+
     @FXML
     private void onChangeRaritySliderLabel() {
 
@@ -70,7 +72,7 @@ public class FilterScreenController implements Initializable {
         raritySlider.setValue(Double.parseDouble(configurationValues[0]));
         weightSlider.setValue(Double.parseDouble(configurationValues[1]));
         setCheckboxValues(configurationValues);
-        attunementCheckBox.setSelected(Boolean.parseBoolean(configurationValues[6]));
+        attunementCheckBox.setSelected(Boolean.parseBoolean(configurationValues[7]));
     }
 
     private void setCheckboxValues(String[] configurationValues) {
@@ -149,17 +151,22 @@ public class FilterScreenController implements Initializable {
     }
 
     private void saveConfigurationToFile() throws IOException {
-        ConfigurationTable configurationTable = setConfigurationTable();
+        configurationTable = setConfigurationTable();
         new ConfigurationFileWriter().writeConfigurationFile(configurationTable);
     }
 
     private ConfigurationTable setConfigurationTable() {
-        ConfigurationTable configurationTable = new ConfigurationTable();
+        configurationTable.clear();
+
+        saveSliders();
+        saveCheckboxValues(configurationTable);
+
+        return configurationTable;
+    }
+
+    private void saveSliders() {
         configurationTable.put("rarity", String.valueOf(raritySlider.getValue()));
         configurationTable.put("weight", String.valueOf(weightSlider.getValue()));
-        saveCheckboxValues(configurationTable);
-        configurationTable.put("requiresAttunement", "true");
-        return configurationTable;
     }
 
     private void saveCheckboxValues(ConfigurationTable configurationTable) {
@@ -169,6 +176,7 @@ public class FilterScreenController implements Initializable {
         configurationTable.put("magicEquipment", String.valueOf(((CheckBox) equipmentBox.getChildren().get(3)).isSelected()));
         configurationTable.put("magicMisc", String.valueOf(((CheckBox) equipmentBox.getChildren().get(4)).isSelected()));
         configurationTable.put("potions", String.valueOf(((CheckBox) equipmentBox.getChildren().get(5)).isSelected()));
+        configurationTable.put("requiresAttunement", String.valueOf(attunementCheckBox.isSelected()));
     }
 
 }
