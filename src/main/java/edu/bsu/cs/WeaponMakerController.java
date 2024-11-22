@@ -115,7 +115,6 @@ public class WeaponMakerController {
         weaponDetails.append("\tAttunement: ").append(attunementToggle.isSelected()).append("\n");
         weaponDetails.append("\tDescription:\n\t").append(weaponDescription.getText()).append("\n");
         weaponDetails.append("}\n");
-        System.out.println(weaponDetails);
         return weaponDetails.toString();
     }
 
