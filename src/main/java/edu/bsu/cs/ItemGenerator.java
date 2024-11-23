@@ -3,7 +3,7 @@ package edu.bsu.cs;
 import java.io.IOException;
 import java.util.*;
 
-public class ItemBuilder {
+public class ItemGenerator {
 
     protected List<Item> generateAmountOfItems(int numberOfItemsToGenerate) throws IOException {
         List<Item> filteredItemList = new ArrayList<>();

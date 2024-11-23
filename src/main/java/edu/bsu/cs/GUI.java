@@ -45,9 +45,9 @@ public class GUI extends Application implements Initializable{
     }
 
     public static void displayGeneratedItems(TableView<Item> itemTableView, int numberOfItemsToGenerate) throws IOException {
-        ItemBuilder itemBuilder = new ItemBuilder();
+        ItemGenerator itemGenerator = new ItemGenerator();
         clearItems(itemTableView);
-        itemsForList.addAll(itemBuilder.generateAmountOfItems(numberOfItemsToGenerate));
+        itemsForList.addAll(itemGenerator.generateAmountOfItems(numberOfItemsToGenerate));
         itemTableView.setItems(itemsForList);
     }
 
