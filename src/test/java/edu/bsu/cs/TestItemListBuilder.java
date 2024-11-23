@@ -11,17 +11,17 @@ public class TestItemListBuilder {
 
     List<Item> itemsList = new ArrayList<>();
     private final ItemListBuilder itemListBuilder = new ItemListBuilder(itemsList);
-    private final List<Item> testFilterItemList = new ArrayList<>();
+    private final List<Item> testItemList = new ArrayList<>();
 
     public TestItemListBuilder() throws IOException {}
 
     @Test
     public void testPopulateListOfItems() throws IOException {
-        testFilterItemList.clear();
-        itemListBuilder.populateListOfItems(testFilterItemList);
+        testItemList.clear();
+        itemListBuilder.populateListOfItems(testItemList);
 
-        String firstMagicItem = testFilterItemList.getFirst().getName();
-        String secondToLastMagicItem = testFilterItemList.get(testFilterItemList.size()-2).getName();
+        String firstMagicItem = testItemList.getFirst().getName();
+        String secondToLastMagicItem = testItemList.get(testItemList.size()-2).getName();
         String[] result = {firstMagicItem, secondToLastMagicItem};
         String[] expected = {"Breastplate", "Zipline Ring"};
 
@@ -30,34 +30,34 @@ public class TestItemListBuilder {
 
     @Test
     public void testPopulateListWithArmorItems() throws IOException {
-        testFilterItemList.clear();
-        itemListBuilder.populateListWithArmorItems(testFilterItemList);
+        testItemList.clear();
+        itemListBuilder.populateListWithArmorItems(testItemList);
         String expected = "Breastplate";
 
-        Assertions.assertEquals(expected,testFilterItemList.getFirst().getName());
+        Assertions.assertEquals(expected, testItemList.getFirst().getName());
     }
 
     @Test
     public void testPopulateListWithWeaponItems() throws IOException {
-        testFilterItemList.clear();
-        itemListBuilder.populateListWithWeaponItems(testFilterItemList);
+        testItemList.clear();
+        itemListBuilder.populateListWithWeaponItems(testItemList);
         String expected = "Battleaxe";
 
-        Assertions.assertEquals(expected,testFilterItemList.getFirst().getName());
+        Assertions.assertEquals(expected, testItemList.getFirst().getName());
     }
 
     @Test
     public void testPopulateListWithMagicItems() throws IOException {
-        testFilterItemList.clear();
-        itemListBuilder.populateListWithMagicItems(testFilterItemList);
+        testItemList.clear();
+        itemListBuilder.populateListWithMagicItems(testItemList);
         String expected = "Aberrant Agreement";
 
-        Assertions.assertEquals(expected,testFilterItemList.getFirst().getName());
+        Assertions.assertEquals(expected, testItemList.getFirst().getName());
     }
 
     @Test
     public void testFetchNumberOfMagicItemPages() throws IOException {
-        testFilterItemList.clear();
+        testItemList.clear();
         int result = itemListBuilder.fetchNumberOfMagicItemPages();
 
         Assertions.assertEquals(33,result);

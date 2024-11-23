@@ -4,6 +4,7 @@ import net.minidev.json.JSONArray;
 
 import java.io.IOException;
 import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.List;
 
 public class ItemListBuilder {
@@ -17,61 +18,74 @@ public class ItemListBuilder {
     private final ItemFilter itemFilter = new ItemFilter();
     private  JSONArray nameJsonArray;
 
-    public ItemListBuilder(List<Item> itemsList) throws IOException {
-        populateListOfItems(itemsList);
+    public ItemListBuilder(List<Item> builderItemList) throws IOException {
+        populateListOfItems(builderItemList);
     }
 
-    protected void populateListOfItems(List<Item> filterItemList) throws IOException {
-        populateListWithArmorItems(filterItemList);
-        populateListWithWeaponItems(filterItemList);
-        populateListWithMagicItems(filterItemList);
+    protected void populateListOfItems(List<Item> builderItemList) throws IOException {
+        populateListWithArmorItems(builderItemList);
+        populateListWithWeaponItems(builderItemList);
+        populateListWithMagicItems(builderItemList);
     }
 
-    protected void populateListWithArmorItems(List<Item> filterItemList) throws IOException {
+    protected void populateListWithArmorItems(List<Item> builderItemList) throws IOException {
         nameJsonArray =  armorItemParser.parseArmorItemName();
 
         if (itemFilter.checkForItemTypeEnabled("armor")) {
-            populateFilteredArmorItems(filterItemList);
+            populateFilteredArmorItems(builderItemList);
         }
     }
 
-    private void populateFilteredArmorItems(List<Item> filterItemList) {
+    private void populateFilteredArmorItems(List<Item> builderItemList) {
         int armorIndexNum = 0;
         for (Object name : nameJsonArray) {
             Dictionary<Integer, String> statDictionary = armorItemParser.parseAllArmorStats(armorIndexNum);
             Item item = new Item(name.toString(), OutputFormatter.formatArmorStats(statDictionary));
             item.setType("Armor");
-            filterItemList.add(item);
+            builderItemList.add(item);
             armorIndexNum++;
         }
     }
 
-    protected void populateListWithWeaponItems(List<Item> filterItemList) throws IOException {
+    protected void populateListWithWeaponItems(List<Item> builderItemList) throws IOException {
         nameJsonArray =  weaponItemParser.parseWeaponItemName();
 
         if (itemFilter.checkForItemTypeEnabled("weapon")) {
-            populateFilteredWeaponItems(filterItemList);
+            populateFilteredWeaponItems(builderItemList);
         }
     }
 
-    private void populateFilteredWeaponItems(List<Item> filterItemList) {
+    private void populateFilteredWeaponItems(List<Item> builderItemList) {
         int weaponIndexNum = 0;
         for (Object name : nameJsonArray) {
             Dictionary<Integer, String> statDictionary = weaponItemParser.parseAllWeaponStats(weaponIndexNum);
             Item item = new Item(name.toString(), OutputFormatter.formatWeaponStats(statDictionary));
             item.setType("Weapon");
-            filterItemList.add(item);
+            builderItemList.add(item);
             weaponIndexNum++;
         }
     }
 
-    protected void populateListWithMagicItems(List<Item> filterItemList) throws IOException {
-        int magicItemPages = fetchNumberOfMagicItemPages();
-        for (int page = 0; page < magicItemPages; page++) {
-            nameJsonArray = magicItemsParser.parseMagicItemName(page);
+    protected void populateListWithMagicItems(List<Item> builderItemList) throws IOException {
             if (itemFilter.checkForItemTypeEnabled("magicEquipment")) {
-                populateFilteredMagicItems(filterItemList);
+                populateFilteredMagicItems(builderItemList);
             }
+    }
+
+    private void populateFilteredMagicItems(List<Item> builderItemList) throws IOException {
+        int magicItemPages = fetchNumberOfMagicItemPages();
+
+        for (int page = 0; page < magicItemPages; page++) {
+            Hashtable<String, JSONArray> magicItemDetails = magicItemsParser.parseAllMagicItemDetails(page);
+                for(int itemIndex = 0; itemIndex < magicItemDetails.get("name").size(); itemIndex++) {
+                    String name = magicItemDetails.get("name").get(itemIndex).toString();
+                    String rarity = OutputFormatter.formatRarity(magicItemDetails.get("rarity").get(itemIndex).toString());
+                    String type = magicItemDetails.get("type").get(itemIndex).toString();
+                    String attunement = OutputFormatter.formatAttunement(magicItemDetails.get("attunement").get(itemIndex).toString());
+                    String description = magicItemDetails.get("description").get(itemIndex).toString();
+                    Item item = new Item(name, rarity, type, attunement, description);
+                    builderItemList.add(item);
+                }
         }
     }
 
@@ -79,13 +93,5 @@ public class ItemListBuilder {
         String fileContents = JsonFileReader.readFileToString(magicItemFilePath);
         String[] pageLines = fileContents.split("\n");
         return pageLines.length;
-    }
-
-    protected void populateFilteredMagicItems(List<Item> filterItemList) {
-        //TODO:: Grab all the info for magic items
-        for (Object name : nameJsonArray) {
-            Item item = new Item(name.toString(), "rarity", "type", "attunement", "details");
-            filterItemList.add(item);
-        }
     }
 }
