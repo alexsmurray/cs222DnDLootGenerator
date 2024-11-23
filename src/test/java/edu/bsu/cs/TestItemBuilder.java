@@ -1,6 +1,6 @@
 package edu.bsu.cs;
 
-import net.minidev.json.JSONArray;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -9,41 +9,19 @@ import java.util.List;
 
 public class TestItemBuilder {
 
-    private final ItemBuilder itemBuilder = new ItemBuilder();
-
     @Test
-    public void testSelectRandomItemGeneratesIndexInRange() {
-        JSONArray testJsonArray = createJsonArray();
-        int testIndex = ItemBuilder.selectRandomItemIndex(testJsonArray);
-        Assertions.assertTrue(testIndex >= 0 && testIndex < testJsonArray.size());
+    public void testGenerateAmountOfItems() throws IOException {
+        List<Item> result = new ItemBuilder().generateAmountOfItems(5);
+        Assertions.assertEquals(5, result.size());
     }
 
     @Test
-    public void testGenerateWeapon() throws IOException {
-        Item testWeapon = itemBuilder.generateWeapon("src/test/resources/SampleWeapons.json");
-        Assertions.assertTrue(List.of(WeaponsListStringArray.SAMPLE).contains(testWeapon.getName()));
+    public void testGenerateAmountOfItemReturnsValues() throws IOException {
+        List<Item> result = new ItemBuilder().generateAmountOfItems(5);
+        Assertions.assertFalse(result.getFirst().getName().isBlank());
+        Assertions.assertFalse(result.getFirst().getRarity().isBlank());
+        Assertions.assertFalse(result.getFirst().getType().isBlank());
+        Assertions.assertFalse(result.getFirst().getAttunement().isBlank());
+        Assertions.assertFalse(result.getFirst().getDetails().isBlank());
     }
-
-    @Test
-    public void testGenerateArmor() throws IOException {
-        Item testArmor = itemBuilder.generateArmor("src/test/resources/SampleArmor.json");
-        Assertions.assertTrue(List.of(ArmorListStringArray.SAMPLE).contains(testArmor.getName()));
-    }
-
-    @Test
-    public void testGenerateMagicItem() throws IOException {
-        Item testMagicItem = itemBuilder.generateMagicItem("src/test/resources/SampleMagicItem.json");
-        Assertions.assertNotNull(testMagicItem.getName());
-    }
-
-    private JSONArray createJsonArray(){
-        JSONArray array = new JSONArray();
-        array.add("A");
-        array.add("B");
-        array.add("C");
-        array.add("D");
-        array.add("E");
-        return array;
-    }
-
 }
