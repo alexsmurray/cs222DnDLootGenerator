@@ -81,8 +81,8 @@ public class ItemListBuilder {
                     String name = magicItemDetails.get("name").get(itemIndex).toString();
                     String rarity = OutputFormatter.formatRarity(magicItemDetails.get("rarity").get(itemIndex).toString());
                     String type = magicItemDetails.get("type").get(itemIndex).toString();
-                    String attunement = OutputFormatter.formatAttunement(magicItemDetails.get("attunement").get(itemIndex).toString());
-                    String description = magicItemDetails.get("description").get(itemIndex).toString();
+                    String attunement = OutputFormatter.formatAttunement(magicItemDetails.get("requires_attunement").get(itemIndex).toString());
+                    String description = magicItemDetails.get("desc").get(itemIndex).toString();
                     Item item = new Item(name, rarity, type, attunement, description);
                     builderItemList.add(item);
                 }

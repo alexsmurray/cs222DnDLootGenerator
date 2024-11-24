@@ -16,38 +16,16 @@ public class MagicItemsParser {
 
     protected Hashtable<String, JSONArray> parseAllMagicItemDetails(int pageIndex) {
         Hashtable<String, JSONArray> magicItemDetailsList = new Hashtable<>();
+        String[] attributes = {"name", "rarity", "type", "requires_attunement", "desc"};
 
-        magicItemDetailsList.put("name", parseMagicItemName(pageIndex));
-        magicItemDetailsList.put("rarity", parseMagicItemRarity(pageIndex));
-        magicItemDetailsList.put("type", parseMagicItemType(pageIndex));
-        magicItemDetailsList.put("attunement", parseMagicItemAttunement(pageIndex));
-        magicItemDetailsList.put("description", parseMagicItemDescription(pageIndex));
-
+        for(String attribute : attributes) {
+            magicItemDetailsList.put(attribute, parseAttribute(attribute,pageIndex));
+        }
         return magicItemDetailsList;
     }
 
-    protected JSONArray parseMagicItemName(int pageIndex) {
-        JSONArray jsonArray = jsonArrayBuilder.buildJsonArrayOfMagicItemPages(stringifiedJson, "name");
-        return (JSONArray) jsonArray.get(pageIndex);
+    protected JSONArray parseAttribute(String attribute, int pageIndex) {
+        return (JSONArray) jsonArrayBuilder.buildJsonArrayOfMagicItemPages(stringifiedJson, attribute).get(pageIndex);
     }
 
-    protected JSONArray parseMagicItemRarity(int pageIndex) {
-        JSONArray jsonArray = jsonArrayBuilder.buildJsonArrayOfMagicItemPages(stringifiedJson, "rarity");
-        return (JSONArray) jsonArray.get(pageIndex);
-    }
-
-    protected JSONArray parseMagicItemType(int pageIndex) {
-        JSONArray jsonArray = jsonArrayBuilder.buildJsonArrayOfMagicItemPages(stringifiedJson, "type");
-        return (JSONArray) jsonArray.get(pageIndex);
-    }
-
-    protected JSONArray parseMagicItemAttunement(int pageIndex) {
-        JSONArray jsonArray = jsonArrayBuilder.buildJsonArrayOfMagicItemPages(stringifiedJson, "requires_attunement");
-        return (JSONArray) jsonArray.get(pageIndex);
-    }
-
-    protected JSONArray parseMagicItemDescription(int pageIndex) {
-        JSONArray jsonArray = jsonArrayBuilder.buildJsonArrayOfMagicItemPages(stringifiedJson, "desc");
-        return (JSONArray) jsonArray.get(pageIndex);
-    }
 }
