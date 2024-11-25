@@ -51,23 +51,6 @@ public class TestItemFilter {
         Assertions.assertTrue(result);
     }
 
-    @Test
-    public void testCheckForMagicMiscEnabled() throws IOException {
-        setConfigFileToDefault();
-        Boolean result = testItemFilter.checkForItemTypeEnabled("magicMisc");
-
-        Assertions.assertTrue(result);
-    }
-
-    @Test
-    public void testCheckForPotionsEnabled() throws IOException {
-        setConfigFileToDefault();
-        Boolean result = testItemFilter.checkForItemTypeEnabled("potions");
-
-        Assertions.assertTrue(result);
-    }
-
-
     private void setConfigFileToDefault() throws IOException {
         Files.createDirectories(Paths.get("src/main/resources/dataFiles"));
         new ConfigurationFileWriter().writeConfigurationFile(new ConfigurationTable());

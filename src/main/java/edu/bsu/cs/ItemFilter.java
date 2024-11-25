@@ -24,8 +24,6 @@ public class ItemFilter {
             case "armor" -> configFileReader.fetchConfigValues()[2].strip();
             case "weapon" -> configFileReader.fetchConfigValues()[3].strip();
             case "magicEquipment" -> configFileReader.fetchConfigValues()[4].strip();
-            case "magicMisc" -> configFileReader.fetchConfigValues()[5].strip();
-            case "potions" -> configFileReader.fetchConfigValues()[6].strip();
             default -> throw new IllegalStateException("Unexpected item type: " + configValue);
         };
     }

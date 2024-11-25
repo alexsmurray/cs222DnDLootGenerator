@@ -18,8 +18,6 @@ public class FilterScreenController implements Initializable {
     @FXML
     private VBox equipmentBox;
     @FXML
-    private CheckBox attunementCheckBox;
-    @FXML
     protected Slider weightSlider;
     @FXML
     private Slider raritySlider;
@@ -62,7 +60,6 @@ public class FilterScreenController implements Initializable {
         raritySlider.setValue(Double.parseDouble(configurationValues[0]));
         weightSlider.setValue(Double.parseDouble(configurationValues[1]));
         setCheckboxValues(configurationValues);
-        attunementCheckBox.setSelected(Boolean.parseBoolean(configurationValues[7]));
     }
 
     private void setCheckboxValues(String[] configurationValues) {
@@ -165,9 +162,6 @@ public class FilterScreenController implements Initializable {
         configurationTable.put("armor", String.valueOf(((CheckBox) equipmentBox.getChildren().get(1)).isSelected()));
         configurationTable.put("weapons", String.valueOf(((CheckBox) equipmentBox.getChildren().get(2)).isSelected()));
         configurationTable.put("magicEquipment", String.valueOf(((CheckBox) equipmentBox.getChildren().get(3)).isSelected()));
-        configurationTable.put("magicMisc", String.valueOf(((CheckBox) equipmentBox.getChildren().get(4)).isSelected()));
-        configurationTable.put("potions", String.valueOf(((CheckBox) equipmentBox.getChildren().get(5)).isSelected()));
-        configurationTable.put("requiresAttunement", String.valueOf(attunementCheckBox.isSelected()));
     }
 
     @FXML

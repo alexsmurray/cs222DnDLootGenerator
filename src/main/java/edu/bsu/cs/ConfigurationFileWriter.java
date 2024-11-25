@@ -30,10 +30,7 @@ public class ConfigurationFileWriter {
         configFileWriter.append(configurationValues.get("weight")).append(", ");
         configFileWriter.append(configurationValues.get("armor")).append(", ");
         configFileWriter.append(configurationValues.get("weapons")).append(", ");
-        configFileWriter.append(configurationValues.get("magicEquipment")).append(", ");
-        configFileWriter.append(configurationValues.get("magicMisc")).append(", ");
-        configFileWriter.append(configurationValues.get("potions")).append(", ");
-        configFileWriter.append(configurationValues.get("requiresAttunement"));
+        configFileWriter.append(configurationValues.get("magicEquipment"));
     }
 
 }

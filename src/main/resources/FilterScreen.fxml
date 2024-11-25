@@ -24,10 +24,6 @@
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding></Slider>
-      <CheckBox fx:id="attunementCheckBox" layoutX="286.0" layoutY="296.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" selected="true" text="Include Requires Attunement">
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding></CheckBox>
       <VBox fx:id="equipmentBox" layoutX="286.0" layoutY="14.0" prefHeight="300.0" prefWidth="206.0">
          <opaqueInsets>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -43,27 +39,18 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <CheckBox mnemonicParsing="false" selected="true" text="Armor">
+            <CheckBox mnemonicParsing="false" selected="true" text="Mundane Armor">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></CheckBox>
-            <CheckBox mnemonicParsing="false" selected="true" text="Weapons">
+            <CheckBox mnemonicParsing="false" selected="true" text="Mundane Weapons">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></CheckBox>
-            <CheckBox mnemonicParsing="false" selected="true" text="Magic Equipment">
+            <CheckBox mnemonicParsing="false" selected="true" text="Magic Items">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></CheckBox>
-            <CheckBox mnemonicParsing="false" selected="true" text="Magic Miscellaneous Items">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding></CheckBox>
-            <CheckBox mnemonicParsing="false" selected="true" text="Potions">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </CheckBox>
       </VBox>
       <Label layoutX="15.0" layoutY="15.0" prefHeight="40.0" prefWidth="60.0" text="Max Rarity To Appear" wrapText="true" />
          <Label layoutX="120.0" layoutY="5.0" prefHeight="60.0" prefWidth="80.0" text="Rare Item Likelihood" wrapText="true">
