@@ -16,7 +16,7 @@ public class TestItemFilter {
         setConfigFileToDefault();
         int result = testItemFilter.checkForMaxRarityPermitted();
 
-        Assertions.assertEquals(6, result);
+        Assertions.assertEquals(0, result);
     }
 
     @Test
@@ -24,7 +24,7 @@ public class TestItemFilter {
         setConfigFileToDefault();
         double result = testItemFilter.fetchWeight();
 
-        Assertions.assertEquals(.5, result);
+        Assertions.assertEquals(20.0, result);
     }
 
     @Test

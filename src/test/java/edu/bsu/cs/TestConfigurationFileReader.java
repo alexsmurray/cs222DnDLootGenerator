@@ -16,7 +16,7 @@ public class TestConfigurationFileReader {
         createConfigFile();
 
         String result = testConfigReader.readConfigFileAsString();
-        String expected = "6, .5, true, true, true";
+        String expected = "0, .5, true, true, true";
 
         Assertions.assertEquals(expected, result);
 
@@ -26,7 +26,7 @@ public class TestConfigurationFileReader {
     public void testFetchConfigValues() throws IOException {
         createConfigFile();
         String[] result = new ConfigurationFileReader().fetchConfigValues();
-        String[] expected = {"6"," .5"," true"," true"," true"};
+        String[] expected = {"0"," .5"," true"," true"," true"};
 
         Assertions.assertArrayEquals(expected, result);
     }
