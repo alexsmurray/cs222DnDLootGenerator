@@ -41,6 +41,7 @@ public class MainScreenController {
     public void initialize() {
         initializeTableView();
         verifyConfigurationExists();
+        setFilteredItemList();
         updateRefreshDate();
     }
 
@@ -55,6 +56,15 @@ public class MainScreenController {
     private void verifyConfigurationExists() {
         String configurationString = readConfigurationFile();
         setConfigToDefaultIfNull(configurationString);
+    }
+
+    private static void setFilteredItemList() {
+        try {
+            ItemGenerator.filteredItemList.clear();
+            new ItemListBuilder(ItemGenerator.filteredItemList);
+        } catch (Exception FilterItemSetException) {
+            throw new RuntimeException();
+        }
     }
 
     private String readConfigurationFile() {

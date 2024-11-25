@@ -1,14 +1,13 @@
 package edu.bsu.cs;
 
-import java.io.IOException;
 import java.util.*;
 
 public class ItemGenerator {
 
-    protected List<Item> generateAmountOfItems(int numberOfItemsToGenerate) throws IOException {
-        List<Item> filteredItemList = new ArrayList<>();
+    protected static List<Item> filteredItemList = new ArrayList<>();
+
+    protected List<Item> generateAmountOfItems(int numberOfItemsToGenerate) {
         List<Item> displayItemList = new ArrayList<>();
-        new ItemListBuilder(filteredItemList);
 
         for (int i = 0; i < numberOfItemsToGenerate; i++) {
             displayItemList.add(generateItem(filteredItemList));

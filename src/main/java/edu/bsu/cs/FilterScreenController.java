@@ -134,6 +134,7 @@ public class FilterScreenController implements Initializable {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/MainScreen.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
+
     public void goToHomebrew() throws IOException {
         saveConfigurationToFile();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/HomebrewScreen.fxml")));
