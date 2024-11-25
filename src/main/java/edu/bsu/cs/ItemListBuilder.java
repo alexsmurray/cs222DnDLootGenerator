@@ -77,15 +77,7 @@ public class ItemListBuilder {
 
         for (int page = 0; page < magicItemPages; page++) {
             Hashtable<String, JSONArray> magicItemDetails = magicItemsParser.parseAllMagicItemDetails(page);
-                for(int itemIndex = 0; itemIndex < magicItemDetails.get("name").size(); itemIndex++) {
-                    String name = magicItemDetails.get("name").get(itemIndex).toString();
-                    String rarity = OutputFormatter.formatRarity(magicItemDetails.get("rarity").get(itemIndex).toString());
-                    String type = magicItemDetails.get("type").get(itemIndex).toString();
-                    String attunement = OutputFormatter.formatAttunement(magicItemDetails.get("requires_attunement").get(itemIndex).toString());
-                    String description = magicItemDetails.get("desc").get(itemIndex).toString();
-                    Item item = new Item(name, rarity, type, attunement, description);
-                    builderItemList.add(item);
-                }
+            buildListFromPage(builderItemList, magicItemDetails);
         }
     }
 
@@ -93,5 +85,32 @@ public class ItemListBuilder {
         String fileContents = JsonFileReader.readFileToString(magicItemFilePath);
         String[] pageLines = fileContents.split("\n");
         return pageLines.length;
+    }
+
+    private void buildListFromPage(List<Item> builderItemList, Hashtable<String, JSONArray> magicItemDetails) {
+        for(int itemIndex = 0; itemIndex < magicItemDetails.get("name").size(); itemIndex++) {
+            String name = magicItemDetails.get("name").get(itemIndex).toString();
+            String rarity = OutputFormatter.formatRarity(magicItemDetails.get("rarity").get(itemIndex).toString());
+            String type = magicItemDetails.get("type").get(itemIndex).toString();
+            String attunement = OutputFormatter.formatAttunement(magicItemDetails.get("requires_attunement").get(itemIndex).toString());
+            String description = magicItemDetails.get("desc").get(itemIndex).toString();
+            int rarityValue = determineRarityValue(rarity);
+            if (rarityValue >= itemFilter.checkForMaxRarityPermitted()) {
+                Item item = new Item(name, rarity, type, attunement, description);
+                builderItemList.add(item);
+            }
+        }
+    }
+
+    private int determineRarityValue(String rarity) {
+        return switch (rarity.strip()){
+            default -> 0;
+            case "Legendary" -> 1;
+            case "Very Rare" -> 2;
+            case "Rare" -> 3;
+            case "Uncommon" -> 4;
+            case "Common" -> 5;
+            case "Mundane" -> 6;
+        };
     }
 }

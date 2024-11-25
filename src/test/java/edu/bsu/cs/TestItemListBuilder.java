@@ -19,6 +19,7 @@ public class TestItemListBuilder {
     public void testPopulateListOfItems() throws IOException {
         testItemList.clear();
         itemListBuilder.populateListOfItems(testItemList);
+        createConfigFile();
 
         String firstMagicItem = testItemList.getFirst().getName();
         String secondToLastMagicItem = testItemList.get(testItemList.size()-2).getName();
@@ -50,6 +51,9 @@ public class TestItemListBuilder {
     public void testPopulateListWithMagicItems() throws IOException {
         testItemList.clear();
         itemListBuilder.populateListWithMagicItems(testItemList);
+        createConfigFile();
+
+
         String expected = "Aberrant Agreement";
 
         Assertions.assertEquals(expected, testItemList.getFirst().getName());
@@ -61,5 +65,10 @@ public class TestItemListBuilder {
         int result = itemListBuilder.fetchNumberOfMagicItemPages();
 
         Assertions.assertEquals(33,result);
+    }
+
+    private void createConfigFile() throws IOException {
+        ConfigurationFileWriter testConfigWriter = new ConfigurationFileWriter();
+        testConfigWriter.initializeConfigFile(new ConfigurationTable());
     }
 }

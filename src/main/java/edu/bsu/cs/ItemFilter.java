@@ -7,8 +7,13 @@ public class ItemFilter {
     ConfigurationFileReader configFileReader = new ConfigurationFileReader();
 
 
-    protected int checkForMaxRarityPermitted() throws IOException {
-        return Integer.parseInt(configFileReader.fetchConfigValues()[0]);
+    protected int checkForMaxRarityPermitted(){
+        try {
+            double rawRarityValue = Double.parseDouble(configFileReader.fetchConfigValues()[0]);
+            return (int) rawRarityValue;
+        } catch (Exception ignored) {
+            return 0;
+        }
     }
 
     protected int fetchWeight() {
