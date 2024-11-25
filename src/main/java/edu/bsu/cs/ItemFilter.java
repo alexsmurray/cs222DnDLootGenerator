@@ -11,8 +11,14 @@ public class ItemFilter {
         return Integer.parseInt(configFileReader.fetchConfigValues()[0]);
     }
 
-    protected double fetchWeight() throws IOException {
-        return Double.parseDouble(configFileReader.fetchConfigValues()[1]);
+    protected int fetchWeight() {
+        try {
+            double rawWeight = Double.parseDouble(new ConfigurationFileReader().fetchConfigValues()[1]);
+            return (int) (rawWeight * 40);
+        } catch (Exception ignored) {
+            System.out.println("Exception");
+            return 20;
+        }
     }
 
     protected Boolean checkForItemTypeEnabled(String configValue) throws IOException {

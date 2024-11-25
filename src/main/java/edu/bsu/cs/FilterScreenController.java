@@ -90,13 +90,13 @@ public class FilterScreenController implements Initializable {
 
     private String setRaritySliderLabels(Double sliderValue) {
         return switch (sliderValue.toString()){
-            case "0.0" -> "Mundane";
-            case "1.0" -> "Common";
-            case "2.0" -> "Uncommon";
+            case "0.0" -> "Artifact";
+            case "1.0" -> "Legendary";
+            case "2.0" -> "Very Rare";
             case "3.0" -> "Rare";
-            case "4.0" -> "Very Rare";
-            case "5.0" -> "Legendary";
-            case "6.0" -> "Artifact";
+            case "4.0" -> "Uncommon";
+            case "5.0" -> "Common";
+            case "6.0" -> "Mundane";
             default -> "Unknown";
         };
     }
@@ -117,11 +117,11 @@ public class FilterScreenController implements Initializable {
 
     private String setWeightSliderLabels(Double sliderValue) {
         return switch (sliderValue.toString()) {
-            case "0.0" -> "Mostly Common";
-            case "0.25" -> "More Common";
+            case "1.0" -> "Mostly Common";
+            case "0.75" -> "More Common";
             case "0.5" -> "No Weight";
-            case "0.75" -> "More Rare";
-            case "1.0" -> "Mostly Rare";
+            case "0.25" -> "More Rare";
+            case "0.0" -> "Mostly Rare";
             default -> sliderValue.toString();
         };
     }
@@ -166,7 +166,7 @@ public class FilterScreenController implements Initializable {
 
     @FXML
     private void setToDefault(){
-        String defaultValues = "6, .5, true, true, true, true, true, true";
+        String defaultValues = "0, .5, true, true, true, true, true, true";
         setConfigurationValues(defaultValues);
     }
 }

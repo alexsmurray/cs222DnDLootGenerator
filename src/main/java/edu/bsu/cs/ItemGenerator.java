@@ -17,7 +17,18 @@ public class ItemGenerator {
 
     private Item generateItem(List<Item> filteredItemList) {
         int randomItemIndex = new Random().nextInt(filteredItemList.size());
+        randomItemIndex = weightGeneratedItem(filteredItemList, randomItemIndex);
         return filteredItemList.get(randomItemIndex);
+    }
+
+    private int weightGeneratedItem(List<Item> filteredItemList, int randomItemIndex) {
+        int weight = new ItemFilter().fetchWeight();
+        for (int i = 0; i < weight; i++) {
+            if (!filteredItemList.get(randomItemIndex).getRarity().equals("Mundane")) {
+                randomItemIndex = new Random().nextInt(filteredItemList.size());
+            }
+        }
+        return randomItemIndex;
     }
 
 }

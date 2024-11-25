@@ -13,6 +13,6 @@ public class ConfigurationFileReader {
     }
 
     protected String[] fetchConfigValues() throws IOException {
-        return readConfigFileAsString().split(",");
+            return readConfigFileAsString().split(",");
     }
 }
