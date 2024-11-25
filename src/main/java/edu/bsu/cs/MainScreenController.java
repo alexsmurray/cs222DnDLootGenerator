@@ -90,7 +90,7 @@ public class MainScreenController {
     }
 
     private void updateRefreshDate(){
-        String filePath = "src/main/resources/lastRefreshDate.txt";
+        String filePath = "src/main/resources/dataFiles/lastRefreshDate.txt";
         try{
             GUI.displayLastRefreshDate(refreshDate, filePath);
         }catch (Exception IOException){
