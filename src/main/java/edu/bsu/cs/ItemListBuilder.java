@@ -131,7 +131,10 @@ public class ItemListBuilder {
         for (Object name : nameJsonArray){
             if (name != null){
                 Hashtable<String, String> homebrewItemDetails = homebrewItemsParser.parseAllHomebrewItemDetails(counter);
-                Item item = new Item(name.toString(), homebrewItemDetails.get("Description"));
+                Item item = new Item(name.toString(), OutputFormatter.formatHomebrewDetails(homebrewItemDetails));
+                item.setType(homebrewItemDetails.get("Item_Type"));
+                item.setRarity(homebrewItemDetails.get("Rarity"));
+                item.setAttunement(homebrewItemDetails.get("Attunement"));
                 builderItemList.add(item);
             }
             counter++;

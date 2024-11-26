@@ -1,6 +1,7 @@
 package edu.bsu.cs;
 
 import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.List;
 
 public class OutputFormatter {
@@ -76,16 +77,14 @@ public class OutputFormatter {
         return weaponStats.toString();
     }
 
-//    public static String formatHomebrewDetails(Dictionary<Integer, String> statDictionary) {
-//        StringBuilder homebrewDetails = new StringBuilder();
-//        String[] statNames = {"Is Martial:  ", "Is Simple:  ", "Damage Dice:  ", "Reach:  ", "Damage Type:  ", "Properties:  ", "Is Lance:  ", "Is Net:  "};
-//        for (int i = 0; i < statDictionary.size(); i++){
-//            if (!statDictionary.get(i+1).equals("false") && !(statDictionary.get(i+1).equals("0.0")) && !statDictionary.get(i+1).equals("[]")){
-//                homebrewDetails.append(statNames[i]).append(statDictionary.get(i+1)).append("\n");
-//            }
-//        }
-//        return homebrewDetails.toString();
-//    }
+    public static String formatHomebrewDetails(Hashtable<String, String> homebrewItems) {
+        StringBuilder homebrewDetails = new StringBuilder();
+        String[] statNames = {"Item_Type", "Proficiency", "Damage_Dice", "Reach", "Damage_Type", "Properties", "Rarity", "Attunement", "Description"};
+        for (String name: statNames) {
+            homebrewDetails.append(name.replaceAll("_", " ")).append(": ").append(homebrewItems.get(name)).append("\n");
+        }
+        return homebrewDetails.toString();
+    }
 
     public static Object formatWeaponDamageType(Object weapon){
         return weapon.toString().substring(38, weapon.toString().length() - 13);
