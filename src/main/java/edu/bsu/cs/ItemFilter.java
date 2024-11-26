@@ -21,7 +21,6 @@ public class ItemFilter {
             double rawWeight = Double.parseDouble(new ConfigurationFileReader().fetchConfigValues()[1]);
             return (int) (rawWeight * 40);
         } catch (Exception ignored) {
-            System.out.println("Exception");
             return 20;
         }
     }

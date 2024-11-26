@@ -96,7 +96,8 @@ public class ItemListBuilder {
             String description = magicItemDetails.get("desc").get(itemIndex).toString();
             int rarityValue = determineRarityValue(rarity);
             if (rarityValue >= itemFilter.checkForMaxRarityPermitted()) {
-                Item item = new Item(name, rarity, type, attunement, description);
+                Item item = new Item(name, description)
+                        .setRarity(rarity).setType(type).setAttunement(attunement);
                 builderItemList.add(item);
             }
         }
