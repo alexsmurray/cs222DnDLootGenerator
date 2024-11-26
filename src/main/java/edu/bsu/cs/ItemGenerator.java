@@ -1,6 +1,7 @@
 package edu.bsu.cs;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class ItemGenerator {
 
@@ -16,6 +17,7 @@ public class ItemGenerator {
             displayItemList.add(generateItem(filteredItemList));
         }
 
+        awaitDisplayItemListToPopulate();
         return displayItemList;
     }
 
@@ -33,6 +35,14 @@ public class ItemGenerator {
             }
         }
         return randomItemIndex;
+    }
+
+    private static void awaitDisplayItemListToPopulate() {
+        try {
+            TimeUnit.MILLISECONDS.sleep(100);
+        } catch (Exception TimeOutException) {
+            throw new RuntimeException("displayItemList timeout exception");
+        }
     }
 
 }
