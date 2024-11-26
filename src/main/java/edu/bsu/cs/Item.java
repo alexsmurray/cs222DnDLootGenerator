@@ -42,8 +42,19 @@ public class Item {
         return details;
     }
 
-    protected void setType(String newType){
+    protected Item setRarity(String rarity) {
+        this.rarity = rarity;
+        return this;
+    }
+
+    protected Item setType(String newType){
         this.type = newType;
+        return this;
+    }
+
+    protected Item setAttunement(String attunement) {
+        this.attunement = attunement;
+        return this;
     }
 
 }
