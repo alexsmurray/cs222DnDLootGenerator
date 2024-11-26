@@ -8,15 +8,6 @@ public class Item {
     private String attunement = "False";
     private final String details;
 
-
-    public Item(String name, String rarity, String type, String attunement, String details) {
-        this.name = name;
-        this.rarity = rarity;
-        this.type = type;
-        this.attunement = attunement;
-        this.details = details;
-    }
-
     public Item(String name, String details) {
         this.name = name;
         this.details = details;
