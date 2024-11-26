@@ -51,6 +51,10 @@
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></CheckBox>
+            <CheckBox mnemonicParsing="false" selected="true" text="Homebrew Items">
+                <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </padding></CheckBox>
       </VBox>
       <Label layoutX="15.0" layoutY="15.0" prefHeight="40.0" prefWidth="60.0" text="Max Rarity To Appear" wrapText="true" />
          <Label layoutX="120.0" layoutY="5.0" prefHeight="60.0" prefWidth="80.0" text="Rare Item Likelihood" wrapText="true">

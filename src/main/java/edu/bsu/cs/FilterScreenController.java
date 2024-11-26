@@ -162,6 +162,7 @@ public class FilterScreenController implements Initializable {
         configurationTable.put("armor", String.valueOf(((CheckBox) equipmentBox.getChildren().get(1)).isSelected()));
         configurationTable.put("weapons", String.valueOf(((CheckBox) equipmentBox.getChildren().get(2)).isSelected()));
         configurationTable.put("magicEquipment", String.valueOf(((CheckBox) equipmentBox.getChildren().get(3)).isSelected()));
+        configurationTable.put("homebrew", String.valueOf(((CheckBox) equipmentBox.getChildren().get(4)).isSelected()));
     }
 
     @FXML

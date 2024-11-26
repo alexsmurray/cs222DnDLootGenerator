@@ -12,9 +12,11 @@ public class ItemListBuilder {
     private final String armorFilePath = "src/main/resources/dataFiles/armor.txt";
     private final String weaponFilePath = "src/main/resources/dataFiles/weapons.txt";
     private final String magicItemFilePath = "src/main/resources/dataFiles/magicitems.txt";
+    private final String homebrewItemFilePath = "src/main/resources/dataFiles/homebrew.txt";
     private final ArmorItemParser armorItemParser = new ArmorItemParser(JsonFileReader.readFileToString(armorFilePath));
     private final WeaponItemParser weaponItemParser = new WeaponItemParser(JsonFileReader.readFileToString(weaponFilePath));
     private final MagicItemsParser magicItemsParser = new MagicItemsParser(JsonFileReader.readFileToString(magicItemFilePath));
+    private final HomebrewItemParser homebrewItemsParser = new HomebrewItemParser(JsonFileReader.readFileToString(homebrewItemFilePath));
     private final ItemFilter itemFilter = new ItemFilter();
     private  JSONArray nameJsonArray;
 
@@ -26,6 +28,7 @@ public class ItemListBuilder {
         populateListWithArmorItems(builderItemList);
         populateListWithWeaponItems(builderItemList);
         populateListWithMagicItems(builderItemList);
+        populateListWithHomebrewItems(builderItemList);
     }
 
     protected void populateListWithArmorItems(List<Item> builderItemList) throws IOException {
@@ -114,4 +117,26 @@ public class ItemListBuilder {
             case "Mundane" -> 6;
         };
     }
+
+    protected void populateListWithHomebrewItems(List<Item> builderItemList) throws IOException {
+
+        if (itemFilter.checkForItemTypeEnabled("homebrew")) {
+            populateFilteredHomebrewItems(builderItemList);
+        }
+    }
+
+    private void populateFilteredHomebrewItems(List<Item> builderItemList) {
+        nameJsonArray = homebrewItemsParser.buildJsonArrayOfHomebrewItemsNames();
+        int counter = 0;
+        for (Object name : nameJsonArray){
+            if (name != null){
+                Hashtable<String, String> homebrewItemDetails = homebrewItemsParser.parseAllHomebrewItemDetails(counter);
+                Item item = new Item(name.toString(), homebrewItemDetails.get("Description"));
+                builderItemList.add(item);
+            }
+            counter++;
+        }
+
+    }
+
 }

@@ -108,12 +108,12 @@ public class WeaponMakerController {
             return "";
         }
         return "{\n" +
-                "\tItem Type: Weapon\n" +
+                "\tItem_Type: Weapon\n" +
                 "\tName: " + weaponNameInput.getText() + "\n" +
                 "\tProficiency: " + getProficiency() + "\n" +
-                "\tDamage Dice: " + numberOfDiceInput.getText() + damageDiceChoice.getValue() + "\n" +
+                "\tDamage_Dice: " + numberOfDiceInput.getText() + damageDiceChoice.getValue() + "\n" +
                 "\tReach: " + reachChoice.getValue() + "\n" +
-                "\tDamage Type: " + damageTypeChoice.getValue() + "\n" +
+                "\tDamage_Type: " + damageTypeChoice.getValue() + "\n" +
                 "\tProperties: " + OutputFormatter.formatProperties(getRangeProperty(getProperties())) + "\n" +
                 "\tRarity: " + weaponRarityChoice.getValue() + "\n" +
                 "\tAttunement: " + attunementToggle.isSelected() + "\n" +
