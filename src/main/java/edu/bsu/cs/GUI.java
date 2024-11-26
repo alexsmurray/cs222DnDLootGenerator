@@ -41,7 +41,11 @@ public class GUI extends Application implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        mainScreenController.initialize();
+        try {
+            mainScreenController.initialize();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void displayGeneratedItems(TableView<Item> itemTableView, int numberOfItemsToGenerate){

@@ -38,7 +38,8 @@ public class MainScreenController {
     private RotateTransition rotateAnimation;
 
 
-    public void initialize() {
+    public void initialize() throws IOException {
+        JsonFileMaker.checkForHomebrewFile();
         initializeTableView();
         verifyConfigurationExists();
         setFilteredItemList();

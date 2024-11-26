@@ -108,17 +108,18 @@ public class WeaponMakerController {
             return "";
         }
         return "{\n" +
-                "\tItem_Type: Weapon\n" +
-                "\tName: " + weaponNameInput.getText() + "\n" +
-                "\tProficiency: " + getProficiency() + "\n" +
-                "\tDamage_Dice: " + numberOfDiceInput.getText() + damageDiceChoice.getValue() + "\n" +
-                "\tReach: " + reachChoice.getValue() + "\n" +
-                "\tDamage_Type: " + damageTypeChoice.getValue() + "\n" +
-                "\tProperties: " + OutputFormatter.formatProperties(getRangeProperty(getProperties())) + "\n" +
-                "\tRarity: " + weaponRarityChoice.getValue() + "\n" +
-                "\tAttunement: " + attunementToggle.isSelected() + "\n" +
-                "\tDescription:\n\t" + weaponDescription.getText() + "\n" +
-                "}\n";
+                "\t\"Item_Type\": \"Weapon HB\",\n" +
+                "\t\"Name\": \"" + weaponNameInput.getText() + "\",\n" +
+                "\t\"Proficiency\": \"" + getProficiency() + "\",\n" +
+                "\t\"Damage_Dice\": \"" + numberOfDiceInput.getText() + damageDiceChoice.getValue() + "\",\n" +
+                "\t\"Reach\": \"" + reachChoice.getValue() + "\",\n" +
+                "\t\"Damage_Type\": \"" + damageTypeChoice.getValue() + "\",\n" +
+                "\t\"Properties\": \"" + OutputFormatter.formatProperties(getRangeProperty(getProperties())) + "\",\n" +
+                "\t\"Rarity\": \"" + weaponRarityChoice.getValue() + "\",\n" +
+                "\t\"Attunement\": " + attunementToggle.isSelected() + ",\n" +
+                "\t\"Description\":\n\t\"" + weaponDescription.getText() + "\",\n" +
+                "},]\n" +
+                "}";
     }
 
     public void writeWeaponToFile() throws IOException {

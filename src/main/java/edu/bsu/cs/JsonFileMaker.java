@@ -32,7 +32,6 @@ public class JsonFileMaker {
             homebrewFile.write("""
                     {
                     "results": [{
-                    
                     \t"Item_Type": "Weapon HB",
                     \t"Name": null,
                     \t"Proficiency": "Simple",
@@ -43,7 +42,7 @@ public class JsonFileMaker {
                     \t"Rarity": "Non-existent",
                     \t"Attunement": false,
                     \t"Description": "YOU SHOULD NOT BE HERE",
-                    }]
+                    },]
                     }""");
             homebrewFile.close();
         }
@@ -54,7 +53,7 @@ public class JsonFileMaker {
         String fileContents = JsonFileReader.readFileToString("src/main/resources/dataFiles/homebrew.txt");
         FileWriter homebrewFile = new FileWriter("src/main/resources/dataFiles/homebrew.txt");
 
-        homebrewFile.write(fileContents +"\n" + itemDetails);
+        homebrewFile.write(fileContents.substring(0, fileContents.length() - 3) +"\n" + itemDetails);
 
         homebrewFile.close();
 
