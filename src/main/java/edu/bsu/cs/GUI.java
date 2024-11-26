@@ -44,7 +44,7 @@ public class GUI extends Application implements Initializable{
         mainScreenController.initialize();
     }
 
-    public static void displayGeneratedItems(TableView<Item> itemTableView, int numberOfItemsToGenerate) throws IOException {
+    public static void displayGeneratedItems(TableView<Item> itemTableView, int numberOfItemsToGenerate){
         ItemGenerator itemGenerator = new ItemGenerator();
         clearItems(itemTableView);
         itemsForList.addAll(itemGenerator.generateAmountOfItems(numberOfItemsToGenerate));
@@ -141,6 +141,13 @@ public class GUI extends Application implements Initializable{
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Missing required inputs");
         alert.setHeaderText("Please fill out the required fields:\n- Name\n- Damage Dice");
+        alert.show();
+    }
+
+    protected static void displayNoItemsWithCurrentFilters() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Filter Issue");
+        alert.setHeaderText("No Items will be displayed with your current filters.");
         alert.show();
     }
 

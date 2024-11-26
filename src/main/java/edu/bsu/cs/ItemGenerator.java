@@ -8,10 +8,14 @@ public class ItemGenerator {
 
     protected List<Item> generateAmountOfItems(int numberOfItemsToGenerate) {
         List<Item> displayItemList = new ArrayList<>();
+        if (filteredItemList.isEmpty()) {
+            GUI.displayNoItemsWithCurrentFilters();
+        }
 
         for (int i = 0; i < numberOfItemsToGenerate; i++) {
             displayItemList.add(generateItem(filteredItemList));
         }
+
         return displayItemList;
     }
 

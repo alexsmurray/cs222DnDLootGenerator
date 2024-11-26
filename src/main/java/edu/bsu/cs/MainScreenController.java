@@ -126,7 +126,7 @@ public class MainScreenController {
     private Task<Void> populateTableView() {
         return new Task<>() {
             @Override
-            protected Void call() throws Exception {
+            protected Void call() {
                 disableInput();
                 int numberOfItemsToGenerate = Integer.parseInt(userInputField.getText());
                 GUI.displayGeneratedItems(itemTableView, numberOfItemsToGenerate);
@@ -139,6 +139,9 @@ public class MainScreenController {
             @Override
             protected void failed(){
                 enableInput();
+                if (itemTableView.getItems().isEmpty()) {
+                    GUI.displayNoItemsWithCurrentFilters();
+                }
             }
         };
     }
