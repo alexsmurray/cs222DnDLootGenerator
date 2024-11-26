@@ -155,4 +155,11 @@ public class GUI extends Application implements Initializable{
         alert.show();
     }
 
+    protected static void displayItemCreatedAlert() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Item Created");
+        alert.setHeaderText("Your Item has been forged.");
+        alert.show();
+    }
+
 }
