@@ -29,6 +29,22 @@ public class JsonFileMaker {
         Path homebrew = Paths.get("src/main/resources/dataFiles/homebrew.txt");
         if (!Files.exists(homebrew)){
             FileWriter homebrewFile = new FileWriter("src/main/resources/dataFiles/homebrew.txt");
+            homebrewFile.write("""
+                    {
+                    "results": [{
+                    
+                    \t"Item_Type": "Weapon HB",
+                    \t"Name": null,
+                    \t"Proficiency": "Simple",
+                    \t"Damage_Dice": "0d0",
+                    \t"Reach": "0.0 feet",
+                    \t"Damage_Type": "Piercing",
+                    \t"Properties": "[No properties]",
+                    \t"Rarity": "Non-existent",
+                    \t"Attunement": false,
+                    \t"Description": "YOU SHOULD NOT BE HERE",
+                    }]
+                    }""");
             homebrewFile.close();
         }
     }
