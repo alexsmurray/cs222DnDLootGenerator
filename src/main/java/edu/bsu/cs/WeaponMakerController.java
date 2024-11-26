@@ -128,6 +128,30 @@ public class WeaponMakerController {
        if (!itemDetails.isEmpty()) {
            jsonFileMaker.writeHomebrewToFile(itemDetails);
        }
+       clearAllInput();
+    }
+
+    public void clearAllInput() {
+        TextField[] textFields = {weaponNameInput, weaponRangeInput, numberOfDiceInput};
+        for (TextField field: textFields) {
+            field.setText("");
+        }
+        CheckBox[] properties = {thrownCheckBox,ammunitionCheckBox,twoHandedCheckBox,versatileCheckBox,specialCheckBox,reachCheckBox,netCheckBox,loadingCheckBox,lightCheckBox,lanceCheckBox,heavyCheckBox,finesseCheckBox};
+        for (CheckBox property: properties) {
+            property.setSelected(false);
+        }
+        thrownCheckBox.setDisable(true);
+        ammunitionCheckBox.setDisable(true);
+        weaponDescription.setText("");
+        simpleRadio.setSelected(true);
+        weaponRarityChoice.getSelectionModel().select(1);
+        reachChoice.getSelectionModel().select(1);
+        damageTypeChoice.getSelectionModel().select(2);
+        damageDiceChoice.getSelectionModel().select(1);
+        longRangeLabel.setText("Long Range: ");
+        attunementToggle.setSelected(false);
+        requiresAttunementLabel.setVisible(false);
+
     }
 
 
