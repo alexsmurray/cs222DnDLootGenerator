@@ -3,6 +3,7 @@ package edu.bsu.cs;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,8 @@ public class TestItemListBuilder {
     public TestItemListBuilder() throws IOException {}
 
     @Test
-    public void testPopulateListOfItems() throws IOException {
+    public void testPopulateListOfItems() throws IOException{
+        setHomeBrewToDefault();
         testItemList.clear();
         itemListBuilder.populateListOfItems(testItemList);
         createConfigFile();
@@ -29,10 +31,31 @@ public class TestItemListBuilder {
         Assertions.assertArrayEquals(expected, result);
     }
 
+    private void setHomeBrewToDefault() throws IOException{
+        FileWriter homebrewFile = new FileWriter("src/main/resources/dataFiles/homebrew.txt");
+        homebrewFile.write("""
+                    {
+                    "results": [{
+                    \t"Item_Type": "Weapon HB",
+                    \t"Name": null,
+                    \t"Proficiency": "Simple",
+                    \t"Damage_Dice": "0d0",
+                    \t"Reach": "0.0 feet",
+                    \t"Damage_Type": "Piercing",
+                    \t"Properties": "[No properties]",
+                    \t"Rarity": "Non-existent",
+                    \t"Attunement": false,
+                    \t"Description": "YOU SHOULD NOT BE HERE",
+                    },]
+                    }""");
+        homebrewFile.close();
+    }
+
     @Test
     public void testPopulateListWithArmorItems() throws IOException {
         testItemList.clear();
         itemListBuilder.populateListWithArmorItems(testItemList);
+        createConfigFile();
         String expected = "Breastplate";
 
         Assertions.assertEquals(expected, testItemList.getFirst().getName());
@@ -42,6 +65,7 @@ public class TestItemListBuilder {
     public void testPopulateListWithWeaponItems() throws IOException {
         testItemList.clear();
         itemListBuilder.populateListWithWeaponItems(testItemList);
+        createConfigFile();
         String expected = "Battleaxe";
 
         Assertions.assertEquals(expected, testItemList.getFirst().getName());
