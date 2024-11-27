@@ -67,7 +67,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </Slider>
-      <Button layoutX="525.0" layoutY="373.0" mnemonicParsing="false" onAction="#setToDefault" style="-fx-background-color: FFFFFF; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-image-insets: -1.5;" text="Reset  Default" />
+      <Button layoutX="525.0" layoutY="373.0" mnemonicParsing="false" onAction="#setConfigurationValuesToDefault" style="-fx-background-color: FFFFFF; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-image-insets: -1.5;" text="Reset  Default" />
     </Pane>
    <Label layoutX="377.0" layoutY="39.0" text="Filtering Options">
       <font>

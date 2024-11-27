@@ -19,7 +19,7 @@ public class TestConfigurationFileWriter {
         configWriter.initializeConfigFile(testConfigurationValues);
 
         String result = new ConfigurationFileReader().readConfigFileAsString();
-        String expected = "0, .5, true, true, true";
+        String expected = "0, .5, true, true, true, true";
 
         Assertions.assertEquals(expected ,result);
     }

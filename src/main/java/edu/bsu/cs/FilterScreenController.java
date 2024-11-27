@@ -43,6 +43,12 @@ public class FilterScreenController implements Initializable {
         }
     }
 
+    @FXML
+    private void setConfigurationValuesToDefault(){
+        String defaultValues = "0, .5, true, true, true, true";
+        setConfigurationValues(defaultValues);
+    }
+
     private void setConfigToSavedValuesIfNotNull(String configurationString) {
         if (configurationString != null) {
             setConfigurationValues(configurationString);
@@ -165,9 +171,4 @@ public class FilterScreenController implements Initializable {
         configurationTable.put("homebrew", String.valueOf(((CheckBox) equipmentBox.getChildren().get(4)).isSelected()));
     }
 
-    @FXML
-    private void setToDefault(){
-        String defaultValues = "0, .5, true, true, true, true, true, true";
-        setConfigurationValues(defaultValues);
-    }
 }

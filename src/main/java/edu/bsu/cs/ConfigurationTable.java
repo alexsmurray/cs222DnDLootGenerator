@@ -10,9 +10,6 @@ public class ConfigurationTable extends Hashtable<String, String> {
         put("armor", "true");
         put("weapons", "true");
         put("magicEquipment", "true");
-        put("magicMisc", "true");
-        put("potions", "true");
-        put("requiresAttunement", "true");
         put("homebrew", "true");
     }
 }
