@@ -12,10 +12,11 @@ import java.util.List;
 public class TestItemListBuilder {
 
     List<Item> itemsList = new ArrayList<>();
-    private final ItemListBuilder itemListBuilder = new ItemListBuilder(itemsList);
+    private ItemListBuilder itemListBuilder = new ItemListBuilder(itemsList);
     private final List<Item> testItemList = new ArrayList<>();
 
     public TestItemListBuilder() throws IOException, URISyntaxException {
+        setHomeBrewToDefault();
         verifyDataFilesExist();
     }
 
@@ -29,9 +30,8 @@ public class TestItemListBuilder {
 
     @Test
     public void testPopulateListOfItems() throws IOException{
-        setHomeBrewToDefault();
         testItemList.clear();
-        itemListBuilder.populateListOfItems(testItemList);
+        itemListBuilder = new ItemListBuilder(testItemList);
         createConfigFile();
 
         String firstMagicItem = testItemList.getFirst().getName();
