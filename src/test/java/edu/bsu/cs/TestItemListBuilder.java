@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,17 @@ public class TestItemListBuilder {
     private final ItemListBuilder itemListBuilder = new ItemListBuilder(itemsList);
     private final List<Item> testItemList = new ArrayList<>();
 
-    public TestItemListBuilder() throws IOException {}
+    public TestItemListBuilder() throws IOException, URISyntaxException {
+        verifyDataFilesExist();
+    }
+
+    private void verifyDataFilesExist() throws IOException, URISyntaxException {
+        try {
+            itemListBuilder.populateListOfItems(testItemList);
+        } catch (Exception FilesMissingInTestsException) {
+            JsonFileMaker.updateAPIFiles();
+        }
+    }
 
     @Test
     public void testPopulateListOfItems() throws IOException{

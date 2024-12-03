@@ -5,11 +5,24 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 public class TestItemGenerator {
 
     ConfigurationTable testConfigurationTable = new ConfigurationTable();
+
+    public TestItemGenerator() throws IOException, URISyntaxException {
+        verifyDataFilesExist();
+    }
+
+    private void verifyDataFilesExist() throws IOException, URISyntaxException {
+        try {
+            setDefaultConfigSettings();
+        } catch (Exception FilesMissingInTestsException) {
+            JsonFileMaker.updateAPIFiles();
+        }
+    }
 
     @Test
     public void testGenerateAmountOfItems() throws IOException {
