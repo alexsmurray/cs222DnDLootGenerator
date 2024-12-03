@@ -108,13 +108,13 @@ public class ItemListBuilder {
 
     private int determineRarityValue(String rarity) {
         return switch (rarity.strip()){
-            default -> 0;
             case "Legendary" -> 1;
             case "Very Rare" -> 2;
             case "Rare" -> 3;
             case "Uncommon" -> 4;
             case "Common" -> 5;
             case "Mundane" -> 6;
+            default -> 0;
         };
     }
 
@@ -131,7 +131,7 @@ public class ItemListBuilder {
         for (Object name : nameJsonArray){
             if (name != null){
                 Hashtable<String, String> homebrewItemDetails = homebrewItemsParser.parseAllHomebrewItemDetails(counter);
-                Item item = new Item(name.toString(), homebrewItemDetails.get("Description"));
+                Item item = new Item(name.toString(), homebrewItemDetails.get("Description").replaceAll("\t",""));
                 item.setType(homebrewItemDetails.get("Item_Type"));
                 item.setRarity(homebrewItemDetails.get("Rarity"));
                 item.setAttunement(homebrewItemDetails.get("Attunement"));

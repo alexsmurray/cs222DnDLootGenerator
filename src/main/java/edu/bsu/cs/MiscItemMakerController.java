@@ -30,7 +30,7 @@ public class MiscItemMakerController {
                 "\t\"Rarity\": \"" + rarityChoice.getValue() + "\",\n" +
                 "\t\"Attunement\": " + attunementToggle.isSelected() + ",\n" +
                 "\t\"Description\":" +
-                "\n\n\"" + itemDescription.getText() + "\"\n" +
+                "\n\n\t\t\"" + itemDescription.getText() + "\"\n" +
                 "},]\n" +
                 "}";
     }

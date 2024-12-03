@@ -49,12 +49,12 @@ public class ArmorMakerController {
                 "\t\"Rarity\": \"" + armorRarityChoice.getValue() + "\",\n" +
                 "\t\"Attunement\": " + attunementToggle.isSelected() + ",\n" +
                 "\t\"Description\":" +
-                "\n\"AC:  " + armorClassInput.getText() + OutputFormatter.formatDexModifier(dexModChoice.getValue()) + "\n" +
-                "Category:  " + categoryChoice.getValue() + "\n" +
-                "Strength Requirement:  " + strengthRequirementInput.getText() + "\n" +
-                "Stealth Disadvantage:  " + stealthDisadvantageToggle.isSelected() + "\n" +
-                "Description: " +
-                "\n\n" + armorDescription.getText() + "\"\n" +
+                "\n\t\t\"AC:  " + armorClassInput.getText() + OutputFormatter.formatDexModifier(dexModChoice.getValue()) + "\n" +
+                "\t\tCategory:  " + categoryChoice.getValue() + "\n" +
+                "\t\tStrength Requirement:  " + strengthRequirementInput.getText() + "\n" +
+                "\t\tStealth Disadvantage:  " + stealthDisadvantageToggle.isSelected() + "\n" +
+                "\n\t\tDescription: " +
+                "\n\n\t\t" + armorDescription.getText() + "\"\n" +
                 "},]\n" +
                 "}";
     }

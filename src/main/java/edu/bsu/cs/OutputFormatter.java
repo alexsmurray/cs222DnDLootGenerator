@@ -100,7 +100,6 @@ public class OutputFormatter {
         if (dexMod.equals("None")){
             return "";
         }
-
         return " +  Dex Modifier " + dexMod;
     }
 
