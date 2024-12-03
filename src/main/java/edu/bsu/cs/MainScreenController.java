@@ -42,7 +42,11 @@ public class MainScreenController {
         JsonFileMaker.checkForHomebrewFile();
         initializeTableView();
         verifyConfigurationExists();
-        setFilteredItemList();
+        try {
+            setFilteredItemList();
+        } catch (Exception NoFilesToFilterException) {
+            refreshItemData();
+        }
         updateRefreshDate();
     }
 

@@ -30,7 +30,7 @@ public class FilterScreenController implements Initializable {
         setSliderFormat();
     }
 
-    private void initializeFiltersToSetValues() {
+    protected void initializeFiltersToSetValues() {
         String configurationString = readConfigurationFile();
         setConfigToSavedValuesIfNotNull(configurationString);
     }
