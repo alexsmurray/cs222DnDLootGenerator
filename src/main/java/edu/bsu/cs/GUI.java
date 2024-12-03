@@ -148,6 +148,13 @@ public class GUI extends Application implements Initializable{
         alert.show();
     }
 
+    protected static void displayHomebrewArmorFieldsAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Missing required inputs");
+        alert.setHeaderText("Please fill out the required fields:\n- Name\n- AC\n- Strength requirement");
+        alert.show();
+    }
+
     protected static void displayNoItemsWithCurrentFilters() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Filter Issue");

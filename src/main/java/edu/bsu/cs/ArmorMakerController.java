@@ -40,7 +40,7 @@ public class ArmorMakerController {
     public String collectArmorDetails(){
         String[] checkedInputs = {armorNameInput.getText(), armorClassInput.getText(), strengthRequirementInput.getText()};
         if (!ErrorHandler.verifyHomebrewInputsNotBlank(checkedInputs)) {
-            GUI.displayHomebrewWeaponFieldsAlert();
+            GUI.displayHomebrewArmorFieldsAlert();
             return "";
         }
         return "{\n" +
