@@ -66,7 +66,22 @@ public class ArmorMakerController {
             jsonFileMaker.writeHomebrewToFile(itemDetails);
             GUI.displayItemCreatedAlert();
         }
-        //clearAllInput();
+        clearAllInput();
+    }
+
+    public void clearAllInput() {
+        TextField[] textFields = {armorNameInput, armorClassInput, strengthRequirementInput};
+        for (TextField field: textFields) {
+            field.setText("");
+        }
+        armorDescription.setText("");
+        armorRarityChoice.getSelectionModel().select(1);
+        dexModChoice.getSelectionModel().select(0);
+        categoryChoice.getSelectionModel().select(0);
+        attunementToggle.setSelected(false);
+        stealthDisadvantageToggle.setSelected(false);
+        requiresAttunementLabel.setVisible(false);
+        stealthDisadvantageLabel.setVisible(false);
     }
 
 }

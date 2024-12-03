@@ -42,7 +42,19 @@ public class MiscItemMakerController {
             jsonFileMaker.writeHomebrewToFile(itemDetails);
             GUI.displayItemCreatedAlert();
         }
-        //clearAllInput();
+        clearAllInput();
     }
 
+    public void clearAllInput() {
+        TextField[] textFields = {itemNameInput};
+        for (TextField field: textFields) {
+            field.setText("");
+        }
+        itemDescription.setText("");
+        rarityChoice.getSelectionModel().select(1);
+        itemTypeChoice.getSelectionModel().select(6);
+        attunementToggle.setSelected(false);
+        requiresAttunementLabel.setVisible(false);
+
+    }
 }
