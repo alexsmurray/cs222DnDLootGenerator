@@ -42,12 +42,16 @@ public class MainScreenController {
         JsonFileMaker.checkForHomebrewFile();
         initializeTableView();
         verifyConfigurationExists();
+        attemptToFilterItems();
+        updateRefreshDate();
+    }
+
+    private void attemptToFilterItems() {
         try {
             setFilteredItemList();
         } catch (Exception NoFilesToFilterException) {
             refreshItemData();
         }
-        updateRefreshDate();
     }
 
     private void initializeTableView() {
@@ -203,6 +207,7 @@ public class MainScreenController {
             }
             @Override
             protected void succeeded(){
+                setFilteredItemList();
                 GUI.displayRefreshDone();
                 RefreshTracker.saveCurrentTime("src/main/resources/dataFiles/lastRefreshDate.txt");
                 updateRefreshDate();

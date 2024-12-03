@@ -26,6 +26,7 @@ public class JsonFileMaker {
     }
 
     protected static void checkForHomebrewFile() throws IOException {
+        Files.createDirectories(Paths.get("src/main/resources/dataFiles"));
         Path homebrew = Paths.get("src/main/resources/dataFiles/homebrew.txt");
         if (!Files.exists(homebrew)){
             FileWriter homebrewFile = new FileWriter("src/main/resources/dataFiles/homebrew.txt");
