@@ -129,8 +129,8 @@ public class WeaponMakerController {
        String itemDetails = collectWeaponDetails();
        if (!itemDetails.isEmpty()) {
            jsonFileMaker.writeHomebrewToFile(itemDetails);
+           GUI.displayItemCreatedAlert();
        }
-       GUI.displayItemCreatedAlert();
        clearAllInput();
     }
 
