@@ -1,7 +1,6 @@
 package edu.bsu.cs;
 
 import java.util.Dictionary;
-import java.util.Hashtable;
 import java.util.List;
 
 public class OutputFormatter {
@@ -95,6 +94,14 @@ public class OutputFormatter {
         }
         properties.append(listOfProperties.get(counter)).append("]");
         return properties.toString();
+    }
+
+    protected static String formatDexModifier(String dexMod){
+        if (dexMod.equals("None")){
+            return "";
+        }
+
+        return " +  Dex Modifier " + dexMod;
     }
 
 }

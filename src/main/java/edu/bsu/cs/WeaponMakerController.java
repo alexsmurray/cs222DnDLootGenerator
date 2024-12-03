@@ -108,7 +108,7 @@ public class WeaponMakerController {
             return "";
         }
         return "{\n" +
-                "\t\"Item_Type\": \"Homebrew Item\",\n" +
+                "\t\"Item_Type\": \"Weapon HB\",\n" +
                 "\t\"Name\": \"" + weaponNameInput.getText() + "\",\n" +
                 "\t\"Rarity\": \"" + weaponRarityChoice.getValue() + "\",\n" +
                 "\t\"Attunement\": " + attunementToggle.isSelected() + ",\n" +

@@ -3,6 +3,8 @@ package edu.bsu.cs;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
+import java.io.IOException;
+
 public class ArmorMakerController {
     public TextField armorNameInput;
     public Pane armorMaker;
@@ -33,6 +35,38 @@ public class ArmorMakerController {
         if (!homebrewScreenController.checkForNumber(strengthRequirementInput.getText())) {
             strengthRequirementInput.clear();
         }
+    }
+
+    public String collectArmorDetails(){
+        String[] checkedInputs = {armorNameInput.getText(), armorClassInput.getText(), strengthRequirementInput.getText()};
+        if (!ErrorHandler.verifyHomebrewInputsNotBlank(checkedInputs)) {
+            GUI.displayHomebrewWeaponFieldsAlert();
+            return "";
+        }
+        return "{\n" +
+                "\t\"Item_Type\": \"Armor HB\",\n" +
+                "\t\"Name\": \"" + armorNameInput.getText() + "\",\n" +
+                "\t\"Rarity\": \"" + armorRarityChoice.getValue() + "\",\n" +
+                "\t\"Attunement\": " + attunementToggle.isSelected() + ",\n" +
+                "\t\"Description\":" +
+                "\n\"AC:  " + armorClassInput.getText() + OutputFormatter.formatDexModifier(dexModChoice.getValue()) + "\n" +
+                "Category:  " + categoryChoice.getValue() + "\n" +
+                "Strength Requirement:  " + strengthRequirementInput.getText() + "\n" +
+                "Stealth Disadvantage:  " + stealthDisadvantageToggle.isSelected() + "\n" +
+                "Description: " +
+                "\n\n" + armorDescription.getText() + "\"\n" +
+                "},]\n" +
+                "}";
+    }
+
+    public void writeArmorToFile() throws IOException {
+        JsonFileMaker jsonFileMaker = new JsonFileMaker();
+        String itemDetails = collectArmorDetails();
+        if (!itemDetails.isEmpty()) {
+            jsonFileMaker.writeHomebrewToFile(itemDetails);
+            GUI.displayItemCreatedAlert();
+        }
+        //clearAllInput();
     }
 
 }
