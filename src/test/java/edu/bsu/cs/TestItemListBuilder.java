@@ -47,13 +47,8 @@ public class TestItemListBuilder {
         homebrewFile.write("""
                     {
                     "results": [{
-                    \t"Item_Type": "Weapon HB",
+                    \t"Item_Type": "Homebrew Item",
                     \t"Name": null,
-                    \t"Proficiency": "Simple",
-                    \t"Damage_Dice": "0d0",
-                    \t"Reach": "0.0 feet",
-                    \t"Damage_Type": "Piercing",
-                    \t"Properties": "[No properties]",
                     \t"Rarity": "Non-existent",
                     \t"Attunement": false,
                     \t"Description": "YOU SHOULD NOT BE HERE",

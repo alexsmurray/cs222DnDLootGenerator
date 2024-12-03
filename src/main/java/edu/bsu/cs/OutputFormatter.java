@@ -77,14 +77,6 @@ public class OutputFormatter {
         return weaponStats.toString();
     }
 
-    public static String formatHomebrewDetails(Hashtable<String, String> homebrewItems) {
-        StringBuilder homebrewDetails = new StringBuilder();
-        String[] statNames = {"Item_Type", "Proficiency", "Damage_Dice", "Reach", "Damage_Type", "Properties", "Rarity", "Attunement", "Description"};
-        for (String name: statNames) {
-            homebrewDetails.append(name.replaceAll("_", " ")).append(": ").append(homebrewItems.get(name)).append("\n");
-        }
-        return homebrewDetails.toString();
-    }
 
     public static Object formatWeaponDamageType(Object weapon){
         return weapon.toString().substring(38, weapon.toString().length() - 13);

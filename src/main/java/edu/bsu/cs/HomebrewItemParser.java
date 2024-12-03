@@ -14,7 +14,7 @@ public class HomebrewItemParser {
 
     protected Hashtable<String, String> parseAllHomebrewItemDetails(int counter) {
         Hashtable<String, String> homebrewItemDetailsList = new Hashtable<>();
-        String[] attributes = {"Item_Type", "Proficiency", "Damage_Dice", "Reach", "Damage_Type", "Properties", "Rarity", "Attunement", "Description"};
+        String[] attributes = {"Item_Type", "Rarity", "Attunement", "Description"};
 
         for(String attribute : attributes) {
             homebrewItemDetailsList.put(attribute, parseHomebrewAttribute(attribute,counter));

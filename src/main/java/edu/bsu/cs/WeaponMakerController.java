@@ -108,16 +108,18 @@ public class WeaponMakerController {
             return "";
         }
         return "{\n" +
-                "\t\"Item_Type\": \"Weapon HB\",\n" +
+                "\t\"Item_Type\": \"Homebrew Item\",\n" +
                 "\t\"Name\": \"" + weaponNameInput.getText() + "\",\n" +
-                "\t\"Proficiency\": \"" + getProficiency() + "\",\n" +
-                "\t\"Damage_Dice\": \"" + numberOfDiceInput.getText() + damageDiceChoice.getValue() + "\",\n" +
-                "\t\"Reach\": \"" + reachChoice.getValue() + "\",\n" +
-                "\t\"Damage_Type\": \"" + damageTypeChoice.getValue() + "\",\n" +
-                "\t\"Properties\": \"" + OutputFormatter.formatProperties(getRangeProperty(getProperties())) + "\",\n" +
                 "\t\"Rarity\": \"" + weaponRarityChoice.getValue() + "\",\n" +
                 "\t\"Attunement\": " + attunementToggle.isSelected() + ",\n" +
-                "\t\"Description\":\n\t\"" + weaponDescription.getText() + "\",\n" +
+                "\t\"Description\":" +
+                "\n\"Proficiency:  " + getProficiency() + "\n" +
+                "Damage Dice:  " + numberOfDiceInput.getText() + damageDiceChoice.getValue() + "\n" +
+                "Reach:  " + reachChoice.getValue() + "\n" +
+                "Damage Type:  " + damageTypeChoice.getValue() + "\n" +
+                "Properties:  " + OutputFormatter.formatProperties(getRangeProperty(getProperties())) + "\n\n" +
+                "Description: " +
+                "\n\n" + weaponDescription.getText() + "\"\n" +
                 "},]\n" +
                 "}";
     }
