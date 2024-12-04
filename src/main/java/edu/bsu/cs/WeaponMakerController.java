@@ -8,34 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeaponMakerController {
-    public RadioButton simpleRadio;
-    public RadioButton martialRadio;
-    public ChoiceBox<String> damageDiceChoice;
-    public ChoiceBox<String> reachChoice;
-    public ChoiceBox<String> weaponRarityChoice;
-    public ChoiceBox<String> damageTypeChoice;
+
+    public CheckBox thrownCheckBox, ammunitionCheckBox, versatileCheckBox,
+            twoHandedCheckBox, specialCheckBox, reachCheckBox, netCheckBox,
+            loadingCheckBox, lightCheckBox, lanceCheckBox, heavyCheckBox, finesseCheckBox;
+
+    public ChoiceBox<String>
+            damageDiceChoice, reachChoice, weaponRarityChoice, damageTypeChoice;
+
+    public Label requiresAttunementLabel, longRangeLabel;
     public Pane weaponMaker;
-    public TextField weaponNameInput;
-    public TextField numberOfDiceInput;
+    public RadioButton simpleRadio, martialRadio;
     public TextArea weaponDescription;
+    public TextField weaponNameInput, numberOfDiceInput, weaponRangeInput;
     public ToggleButton attunementToggle;
-    public TextField weaponRangeInput;
-    public Label requiresAttunementLabel;
-    public Label longRangeLabel;
     public ToggleGroup proficiency;
+
     public HomebrewScreenController homebrewScreenController = new HomebrewScreenController();
-    public CheckBox thrownCheckBox;
-    public CheckBox ammunitionCheckBox;
-    public CheckBox versatileCheckBox;
-    public CheckBox twoHandedCheckBox;
-    public CheckBox specialCheckBox;
-    public CheckBox reachCheckBox;
-    public CheckBox netCheckBox;
-    public CheckBox loadingCheckBox;
-    public CheckBox lightCheckBox;
-    public CheckBox lanceCheckBox;
-    public CheckBox heavyCheckBox;
-    public CheckBox finesseCheckBox;
+
 
     public List<String> getProperties() {
         List<String> propertyNamesList = new ArrayList<>();
