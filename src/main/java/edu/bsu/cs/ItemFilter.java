@@ -7,7 +7,7 @@ public class ItemFilter {
     ConfigurationFileReader configFileReader = new ConfigurationFileReader();
 
 
-    protected int checkForMaxRarityPermitted(){
+    protected int checkForMaxRarityPermitted() {
         try {
             double rawRarityValue = Double.parseDouble(configFileReader.fetchConfigValues()[0]);
             return (int) rawRarityValue;
@@ -30,7 +30,7 @@ public class ItemFilter {
     }
 
     private String fetchItemTypeConfigValue(String configValue) throws IOException {
-        return switch (configValue){
+        return switch (configValue) {
             case "armor" -> configFileReader.fetchConfigValues()[2].strip();
             case "weapon" -> configFileReader.fetchConfigValues()[3].strip();
             case "magicEquipment" -> configFileReader.fetchConfigValues()[4].strip();

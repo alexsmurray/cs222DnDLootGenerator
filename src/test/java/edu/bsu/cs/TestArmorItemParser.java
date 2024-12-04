@@ -12,7 +12,8 @@ public class TestArmorItemParser {
     private final ArmorItemParser testArmorParser = new ArmorItemParser(
             JsonFileReader.readFileToString("src/test/resources/SampleArmor.json"));
 
-    public TestArmorItemParser() throws IOException {}
+    public TestArmorItemParser() throws IOException {
+    }
 
     @Test
     public void testParseAllArmorStats() {
@@ -25,7 +26,7 @@ public class TestArmorItemParser {
     private String[] buildStatArray(Dictionary<Integer, String> testStatDictionary) {
         String[] testStatArray = new String[4];
         for (int i = 1; i <= 4; i++) {
-            testStatArray[i-1] = testStatDictionary.get(i);
+            testStatArray[i - 1] = testStatDictionary.get(i);
         }
         return testStatArray;
     }
@@ -66,10 +67,10 @@ public class TestArmorItemParser {
     @Test
     public void testParseStrengthScoreRequirement() {
         JSONArray sampleJsonArray = testArmorParser.parseStrengthScoreRequirement();
-        String[] expected = {null,"13",null,null,null,null,null,"15",null,null,"15",null};
+        String[] expected = {null, "13", null, null, null, null, null, "15", null, null, "15", null};
         String[] result = new String[12];
         for (int i = 0; i < 12; i++) {
-            if (sampleJsonArray.get(i)!=null){
+            if (sampleJsonArray.get(i) != null) {
                 result[i] = sampleJsonArray.get(i).toString();
             }
         }

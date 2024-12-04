@@ -18,14 +18,14 @@ public class MiscItemMakerController {
         requiresAttunementLabel.setVisible(attunementToggle.isSelected());
     }
 
-    public String collectMiscItemDetails(){
+    public String collectMiscItemDetails() {
         String[] checkedInputs = {itemNameInput.getText()};
         if (!ErrorHandler.verifyHomebrewInputsNotBlank(checkedInputs)) {
             GUI.displayHomebrewWeaponFieldsAlert();
             return "";
         }
         return "{\n" +
-                "\t\"Item_Type\": \""+ itemTypeChoice.getValue() + " HB\",\n" +
+                "\t\"Item_Type\": \"" + itemTypeChoice.getValue() + " HB\",\n" +
                 "\t\"Name\": \"" + itemNameInput.getText() + "\",\n" +
                 "\t\"Rarity\": \"" + rarityChoice.getValue() + "\",\n" +
                 "\t\"Attunement\": " + attunementToggle.isSelected() + ",\n" +
@@ -38,7 +38,7 @@ public class MiscItemMakerController {
     public void writeMiscItemToFile() throws IOException {
         String itemDetails = collectMiscItemDetails();
         if (!itemDetails.isEmpty()) {
-           new HomebrewFileMaker().writeHomebrewToFile(itemDetails);
+            new HomebrewFileMaker().writeHomebrewToFile(itemDetails);
             GUI.displayItemCreatedAlert();
         }
         clearAllInput();
@@ -46,7 +46,7 @@ public class MiscItemMakerController {
 
     public void clearAllInput() {
         TextField[] textFields = {itemNameInput};
-        for (TextField field: textFields) {
+        for (TextField field : textFields) {
             field.setText("");
         }
         itemDescription.setText("");

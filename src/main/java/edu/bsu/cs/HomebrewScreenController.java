@@ -2,7 +2,9 @@ package edu.bsu.cs;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TabPane;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -26,7 +28,7 @@ public class HomebrewScreenController {
             Integer.parseInt(input);
             return true;
         } catch (Exception exception) {
-            if (!input.isBlank()){
+            if (!input.isBlank()) {
                 displayRangeInputAlert();
             }
             return false;

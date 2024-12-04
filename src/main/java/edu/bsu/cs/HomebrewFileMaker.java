@@ -11,7 +11,7 @@ public class HomebrewFileMaker {
     protected void checkForHomebrewFile() throws IOException {
         Files.createDirectories(Paths.get("src/main/resources/dataFiles"));
         Path homebrew = Paths.get("src/main/resources/dataFiles/homebrew.txt");
-        if (!Files.exists(homebrew)){
+        if (!Files.exists(homebrew)) {
             FileWriter homebrewFile = new FileWriter("src/main/resources/dataFiles/homebrew.txt");
             homebrewFile.write("""
                     {
@@ -32,7 +32,7 @@ public class HomebrewFileMaker {
         String fileContents = JsonFileReader.readFileToString("src/main/resources/dataFiles/homebrew.txt");
         FileWriter homebrewFile = new FileWriter("src/main/resources/dataFiles/homebrew.txt");
 
-        homebrewFile.write(fileContents.substring(0, fileContents.length() - 3) +"\n" + itemDetails);
+        homebrewFile.write(fileContents.substring(0, fileContents.length() - 3) + "\n" + itemDetails);
 
         homebrewFile.close();
 

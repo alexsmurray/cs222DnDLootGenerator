@@ -44,7 +44,7 @@ public class FilterScreenController implements Initializable {
     }
 
     @FXML
-    private void setConfigurationValuesToDefault(){
+    private void setConfigurationValuesToDefault() {
         String defaultValues = "0, .5, true, true, true, true";
         setConfigurationValues(defaultValues);
     }
@@ -71,7 +71,7 @@ public class FilterScreenController implements Initializable {
     private void setCheckboxValues(String[] configurationValues) {
         for (int i = 1; i < equipmentBox.getChildren().size(); i++) {
             CheckBox checkBox = (CheckBox) equipmentBox.getChildren().get(i);
-            checkBox.setSelected(Boolean.parseBoolean(configurationValues[i+1]));
+            checkBox.setSelected(Boolean.parseBoolean(configurationValues[i + 1]));
         }
     }
 
@@ -84,7 +84,7 @@ public class FilterScreenController implements Initializable {
         return new StringConverter<>() {
             @Override
             public String toString(Double sliderValue) {
-               return setRaritySliderLabels(sliderValue);
+                return setRaritySliderLabels(sliderValue);
             }
 
             @Override
@@ -95,7 +95,7 @@ public class FilterScreenController implements Initializable {
     }
 
     private String setRaritySliderLabels(Double sliderValue) {
-        return switch (sliderValue.toString()){
+        return switch (sliderValue.toString()) {
             case "0.0" -> "Artifact";
             case "1.0" -> "Legendary";
             case "2.0" -> "Very Rare";

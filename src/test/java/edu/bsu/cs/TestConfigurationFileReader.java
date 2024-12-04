@@ -26,7 +26,7 @@ public class TestConfigurationFileReader {
     public void testFetchConfigValues() throws IOException {
         createConfigFile();
         String[] result = new ConfigurationFileReader().fetchConfigValues();
-        String[] expected = {"0"," .5"," true"," true"," true", " true"};
+        String[] expected = {"0", " .5", " true", " true", " true", " true"};
 
         Assertions.assertArrayEquals(expected, result);
     }

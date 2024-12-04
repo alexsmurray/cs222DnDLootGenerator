@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class JsonFileMaker {
@@ -25,9 +24,11 @@ public class JsonFileMaker {
         }
     }
 
-    protected void writeItemsJsonToFile(String categoryName) throws  IOException, URISyntaxException {
+    protected void writeItemsJsonToFile(String categoryName) throws IOException, URISyntaxException {
         String version = "v2";
-        if (categoryName.equals("magicitems")) {version = "v1";}
+        if (categoryName.equals("magicitems")) {
+            version = "v1";
+        }
 
         int pageNum = 1;
         FileWriter itemsApi = new FileWriter("src/main/resources/dataFiles/" + categoryName + ".txt");
@@ -38,8 +39,8 @@ public class JsonFileMaker {
         StringBuilder itemsString = new StringBuilder();
         while (!nextPage.equals("[null]")) {
             itemsString.append(inputStreamString).append("\n");
-            pageNum ++;
-            inputStream = APIConnection.fetchConnectionPath("v1/magicitems/?format=json&page="+pageNum).getInputStream();
+            pageNum++;
+            inputStream = APIConnection.fetchConnectionPath("v1/magicitems/?format=json&page=" + pageNum).getInputStream();
             inputStreamString = JsonToString.readJsonAsString(inputStream);
             nextPage = nextPageParser.parseNext(inputStreamString);
         }

@@ -9,7 +9,7 @@ public class ErrorHandler {
 
     protected static String verifyNetworkConnection() {
         URLConnection url;
-        String urlName="https://api.open5e.com/";
+        String urlName = "https://api.open5e.com/";
         try {
             url = new URI(urlName).toURL().openConnection();
             url.connect();
@@ -34,7 +34,7 @@ public class ErrorHandler {
     }
 
     protected static boolean verifyItemDataFilesValid() throws IOException {
-        LinkedList<String> filePathList  = new LinkedList<>();
+        LinkedList<String> filePathList = new LinkedList<>();
         filePathList.add("src/main/resources/dataFiles/armor.txt");
         filePathList.add("src/main/resources/dataFiles/weapons.txt");
         filePathList.add("src/main/resources/dataFiles/magicitems.txt");
@@ -43,7 +43,7 @@ public class ErrorHandler {
             if (!ErrorHandler.verifyFileExists(filePath)) {
                 return false;
             }
-            if (!ErrorHandler.verifyFileHasContents(filePath)){
+            if (!ErrorHandler.verifyFileHasContents(filePath)) {
                 return false;
             }
         }

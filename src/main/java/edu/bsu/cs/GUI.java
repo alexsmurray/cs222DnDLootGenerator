@@ -7,7 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
@@ -18,7 +20,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 
-public class GUI extends Application implements Initializable{
+public class GUI extends Application implements Initializable {
 
     protected static Stage stage;
     protected static ObservableList<Item> itemsForList = FXCollections.observableArrayList();
@@ -48,14 +50,14 @@ public class GUI extends Application implements Initializable{
         }
     }
 
-    public static void displayGeneratedItems(TableView<Item> itemTableView, int numberOfItemsToGenerate){
+    public static void displayGeneratedItems(TableView<Item> itemTableView, int numberOfItemsToGenerate) {
         ItemGenerator itemGenerator = new ItemGenerator();
         clearItems(itemTableView);
         itemsForList.addAll(itemGenerator.generateAmountOfItems(numberOfItemsToGenerate));
         itemTableView.setItems(itemsForList);
     }
 
-    protected static void clearItems(TableView<Item> itemTableView){
+    protected static void clearItems(TableView<Item> itemTableView) {
         itemsForList.removeAll();
         itemTableView.getItems().clear();
     }

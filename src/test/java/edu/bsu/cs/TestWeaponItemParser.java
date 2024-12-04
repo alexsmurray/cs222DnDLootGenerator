@@ -44,10 +44,10 @@ public class TestWeaponItemParser {
     @Test
     public void testParseWeaponIsMartial() {
         JSONArray sampleJsonArray = testWeaponParser.parseWeaponIsMartial();
-        String[] expected = {"true","true","false","true","true"};
+        String[] expected = {"true", "true", "false", "true", "true"};
         String[] result = new String[5];
         for (int i = 0; i < 5; i++) {
-            if (sampleJsonArray.get(i)!=null){
+            if (sampleJsonArray.get(i) != null) {
                 result[i] = sampleJsonArray.get(i).toString();
             }
         }
@@ -57,10 +57,10 @@ public class TestWeaponItemParser {
     @Test
     public void testParseWeaponProperties() {
         JSONArray sampleJsonArray = testWeaponParser.parseWeaponProperties();
-        String[] expected = {"[\"versatile (1d10)\"]","[\"ammuntion (range 25.0\\/100.0)\",\"loading\"]","[\"light\"]"};
+        String[] expected = {"[\"versatile (1d10)\"]", "[\"ammuntion (range 25.0\\/100.0)\",\"loading\"]", "[\"light\"]"};
         String[] result = new String[3];
         for (int i = 0; i < 3; i++) {
-            if (sampleJsonArray.get(i)!=null){
+            if (sampleJsonArray.get(i) != null) {
                 result[i] = sampleJsonArray.get(i).toString();
             }
         }
@@ -70,10 +70,10 @@ public class TestWeaponItemParser {
     @Test
     public void testParseDamageDice() {
         JSONArray sampleJsonArray = testWeaponParser.parseDamageDice();
-        String[] expected = {"1d8","1","1d4","1d6","1d10"};
+        String[] expected = {"1d8", "1", "1d4", "1d6", "1d10"};
         String[] result = new String[5];
         for (int i = 0; i < 5; i++) {
-            if (sampleJsonArray.get(i)!=null){
+            if (sampleJsonArray.get(i) != null) {
                 result[i] = sampleJsonArray.get(i).toString();
             }
         }
@@ -83,10 +83,10 @@ public class TestWeaponItemParser {
     @Test
     public void testParseWeaponReach() {
         JSONArray sampleJsonArray = testWeaponParser.parseWeaponReach();
-        String[] expected = {"5.0","5.0","5.0","5.0","5.0","5.0","5.0","5.0","5.0","10.0"};
+        String[] expected = {"5.0", "5.0", "5.0", "5.0", "5.0", "5.0", "5.0", "5.0", "5.0", "10.0"};
         String[] result = new String[10];
         for (int i = 0; i < 10; i++) {
-            if (sampleJsonArray.get(i)!=null){
+            if (sampleJsonArray.get(i) != null) {
                 result[i] = sampleJsonArray.get(i).toString();
             }
         }
@@ -96,10 +96,10 @@ public class TestWeaponItemParser {
     @Test
     public void testParseWeaponIsLance() {
         JSONArray sampleJsonArray = testWeaponParser.parseWeaponIsLance();
-        String[] expected = {"false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","true"};
+        String[] expected = {"false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "true"};
         String[] result = new String[17];
         for (int i = 0; i < 17; i++) {
-            if (sampleJsonArray.get(i)!=null){
+            if (sampleJsonArray.get(i) != null) {
                 result[i] = sampleJsonArray.get(i).toString();
             }
         }
@@ -109,10 +109,10 @@ public class TestWeaponItemParser {
     @Test
     public void testParseWeaponIsNet() {
         JSONArray sampleJsonArray = testWeaponParser.parseWeaponIsNet();
-        String[] expected = {"false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","false","true"};
+        String[] expected = {"false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "true"};
         String[] result = new String[24];
         for (int i = 0; i < 24; i++) {
-            if (sampleJsonArray.get(i)!=null){
+            if (sampleJsonArray.get(i) != null) {
                 result[i] = sampleJsonArray.get(i).toString();
             }
         }
@@ -122,10 +122,10 @@ public class TestWeaponItemParser {
     @Test
     public void testParseWeaponIsSimple() {
         JSONArray sampleJsonArray = testWeaponParser.parseWeaponIsSimple();
-        String[] expected = {"false","false","true","false","false"};
+        String[] expected = {"false", "false", "true", "false", "false"};
         String[] result = new String[5];
         for (int i = 0; i < 5; i++) {
-            if (sampleJsonArray.get(i)!=null){
+            if (sampleJsonArray.get(i) != null) {
                 result[i] = sampleJsonArray.get(i).toString();
             }
         }

@@ -3,7 +3,10 @@ package edu.bsu.cs;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 
 public class TestJsonFileReader {
@@ -20,8 +23,8 @@ public class TestJsonFileReader {
 
     @Test
     public void testFileIsNotBlank() throws IOException {
-            String result = JsonFileReader.readFileToString("src/main/resources/MainScreen.fxml");
-            Assertions.assertFalse(result.isBlank());
+        String result = JsonFileReader.readFileToString("src/main/resources/MainScreen.fxml");
+        Assertions.assertFalse(result.isBlank());
     }
 
 }

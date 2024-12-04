@@ -12,32 +12,32 @@ public class TestHomebrewParser {
 
     public TestHomebrewParser() throws IOException {
         new HomebrewFileMaker().checkForHomebrewFile();
-        homebrewItemParser =  new HomebrewItemParser(JsonFileReader.readFileToString("src/main/resources/dataFiles/homebrew.txt"));
+        homebrewItemParser = new HomebrewItemParser(JsonFileReader.readFileToString("src/main/resources/dataFiles/homebrew.txt"));
     }
 
     @Test
-    public void testBuildJsonArrayOfHomebrewItemsNames(){
+    public void testBuildJsonArrayOfHomebrewItemsNames() {
         JSONArray testArray = homebrewItemParser.buildJsonArrayOfHomebrewItemsNames();
 
         Assertions.assertFalse(testArray.isEmpty());
     }
 
     @Test
-    public void testBuildJsonArrayOfHomebrewItems(){
+    public void testBuildJsonArrayOfHomebrewItems() {
         String testRarity = homebrewItemParser.buildJsonArrayOfHomebrewItems("Rarity").getFirst().toString();
 
-        Assertions.assertEquals("Non-existent",testRarity);
+        Assertions.assertEquals("Non-existent", testRarity);
     }
 
     @Test
-    public void testParseHomebrewAttribute(){
-        String testRarity = homebrewItemParser.parseHomebrewAttribute("Description",0);
+    public void testParseHomebrewAttribute() {
+        String testRarity = homebrewItemParser.parseHomebrewAttribute("Description", 0);
 
-        Assertions.assertEquals("YOU SHOULD NOT BE HERE",testRarity);
+        Assertions.assertEquals("YOU SHOULD NOT BE HERE", testRarity);
     }
 
     @Test
-    public void testParseAllHomebrewItemDetails(){
+    public void testParseAllHomebrewItemDetails() {
         Hashtable<String, String> testList = homebrewItemParser.parseAllHomebrewItemDetails(0);
 
         Assertions.assertNull(testList.get("Name"));

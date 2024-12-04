@@ -38,7 +38,7 @@ public class Item {
         return this;
     }
 
-    protected Item setType(String newType){
+    protected Item setType(String newType) {
         this.type = newType;
         return this;
     }

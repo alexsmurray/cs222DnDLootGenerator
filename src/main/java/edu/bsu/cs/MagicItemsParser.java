@@ -18,8 +18,8 @@ public class MagicItemsParser {
         Hashtable<String, JSONArray> magicItemDetailsList = new Hashtable<>();
         String[] attributes = {"name", "rarity", "type", "requires_attunement", "desc"};
 
-        for(String attribute : attributes) {
-            magicItemDetailsList.put(attribute, parseAttribute(attribute,pageIndex));
+        for (String attribute : attributes) {
+            magicItemDetailsList.put(attribute, parseAttribute(attribute, pageIndex));
         }
         return magicItemDetailsList;
     }
