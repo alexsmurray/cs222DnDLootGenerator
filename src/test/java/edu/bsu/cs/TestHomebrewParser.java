@@ -8,9 +8,11 @@ import java.io.IOException;
 import java.util.Hashtable;
 
 public class TestHomebrewParser {
-    HomebrewItemParser homebrewItemParser = new HomebrewItemParser(JsonFileReader.readFileToString("src/main/resources/dataFiles/homebrew.txt"));
+    private final HomebrewItemParser homebrewItemParser;
 
     public TestHomebrewParser() throws IOException {
+        JsonFileMaker.checkForHomebrewFile();
+        homebrewItemParser =  new HomebrewItemParser(JsonFileReader.readFileToString("src/main/resources/dataFiles/homebrew.txt"));
     }
 
     @Test
