@@ -68,11 +68,15 @@ public class ArmorMakerController {
 
     protected void writeArmorToFile() throws IOException {
         String itemDetails = collectArmorDetails();
+        displayAlertIfNotEmpty(itemDetails);
+        clearAllInput();
+    }
+
+    private static void displayAlertIfNotEmpty(String itemDetails) throws IOException {
         if (!itemDetails.isEmpty()) {
             new HomebrewFileMaker().writeHomebrewToFile(itemDetails);
             GUI.displayItemCreatedAlert();
         }
-        clearAllInput();
     }
 
     public void clearAllInput() {
