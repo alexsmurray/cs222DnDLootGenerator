@@ -11,7 +11,7 @@ public class TestHomebrewParser {
     private final HomebrewItemParser homebrewItemParser;
 
     public TestHomebrewParser() throws IOException {
-        JsonFileMaker.checkForHomebrewFile();
+        new HomebrewFileMaker().checkForHomebrewFile();
         homebrewItemParser =  new HomebrewItemParser(JsonFileReader.readFileToString("src/main/resources/dataFiles/homebrew.txt"));
     }
 

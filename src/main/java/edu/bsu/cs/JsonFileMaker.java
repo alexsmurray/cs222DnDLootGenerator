@@ -20,39 +20,9 @@ public class JsonFileMaker {
             jsonFileMaker.writeItemsJsonToFile("magicitems");
             jsonFileMaker.writeItemsJsonToFile("armor");
             jsonFileMaker.writeItemsJsonToFile("weapons");
-            checkForHomebrewFile();
+            new HomebrewFileMaker().checkForHomebrewFile();
             updated = true;
         }
-    }
-
-    protected static void checkForHomebrewFile() throws IOException {
-        Files.createDirectories(Paths.get("src/main/resources/dataFiles"));
-        Path homebrew = Paths.get("src/main/resources/dataFiles/homebrew.txt");
-        if (!Files.exists(homebrew)){
-            FileWriter homebrewFile = new FileWriter("src/main/resources/dataFiles/homebrew.txt");
-            homebrewFile.write("""
-                    {
-                    "results": [{
-                    \t"Item_Type": "Homebrew Item",
-                    \t"Name": null,
-                    \t"Rarity": "Non-existent",
-                    \t"Attunement": false,
-                    \t"Description": "YOU SHOULD NOT BE HERE",
-                    },]
-                    }""");
-            homebrewFile.close();
-        }
-    }
-
-    protected void writeHomebrewToFile(String itemDetails) throws IOException {
-        checkForHomebrewFile();
-        String fileContents = JsonFileReader.readFileToString("src/main/resources/dataFiles/homebrew.txt");
-        FileWriter homebrewFile = new FileWriter("src/main/resources/dataFiles/homebrew.txt");
-
-        homebrewFile.write(fileContents.substring(0, fileContents.length() - 3) +"\n" + itemDetails);
-
-        homebrewFile.close();
-
     }
 
     protected void writeItemsJsonToFile(String categoryName) throws  IOException, URISyntaxException {

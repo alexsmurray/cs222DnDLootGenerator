@@ -39,7 +39,7 @@ public class MainScreenController {
 
 
     public void initialize() throws IOException {
-        JsonFileMaker.checkForHomebrewFile();
+        new HomebrewFileMaker().checkForHomebrewFile();
         initializeTableView();
         verifyConfigurationExists();
         attemptToFilterItems();

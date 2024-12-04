@@ -36,10 +36,9 @@ public class MiscItemMakerController {
     }
 
     public void writeMiscItemToFile() throws IOException {
-        JsonFileMaker jsonFileMaker = new JsonFileMaker();
         String itemDetails = collectMiscItemDetails();
         if (!itemDetails.isEmpty()) {
-            jsonFileMaker.writeHomebrewToFile(itemDetails);
+           new HomebrewFileMaker().writeHomebrewToFile(itemDetails);
             GUI.displayItemCreatedAlert();
         }
         clearAllInput();

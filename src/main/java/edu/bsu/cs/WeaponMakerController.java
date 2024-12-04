@@ -125,10 +125,9 @@ public class WeaponMakerController {
     }
 
     public void writeWeaponToFile() throws IOException {
-       JsonFileMaker jsonFileMaker = new JsonFileMaker();
        String itemDetails = collectWeaponDetails();
        if (!itemDetails.isEmpty()) {
-           jsonFileMaker.writeHomebrewToFile(itemDetails);
+            new HomebrewFileMaker().writeHomebrewToFile(itemDetails);
            GUI.displayItemCreatedAlert();
        }
        clearAllInput();

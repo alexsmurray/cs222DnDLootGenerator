@@ -60,10 +60,9 @@ public class ArmorMakerController {
     }
 
     public void writeArmorToFile() throws IOException {
-        JsonFileMaker jsonFileMaker = new JsonFileMaker();
         String itemDetails = collectArmorDetails();
         if (!itemDetails.isEmpty()) {
-            jsonFileMaker.writeHomebrewToFile(itemDetails);
+            new HomebrewFileMaker().writeHomebrewToFile(itemDetails);
             GUI.displayItemCreatedAlert();
         }
         clearAllInput();

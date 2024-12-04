@@ -23,8 +23,8 @@ public class TestJsonFileMaker {
 
     @Test
     public void testWriteItemsToHomebrewFile() throws IOException{
-        JsonFileMaker fileMaker = new JsonFileMaker();
-        JsonFileMaker.checkForHomebrewFile();
+        HomebrewFileMaker fileMaker = new HomebrewFileMaker();
+        fileMaker.checkForHomebrewFile();
         String fileContents;
 
         File homebrew = new File("src/main/resources/dataFiles/homebrew.txt");
