@@ -35,7 +35,6 @@ public class HomebrewFileMaker {
         homebrewFile.write(fileContents.substring(0, fileContents.length() - 3) + "\n" + itemDetails);
 
         homebrewFile.close();
-
     }
 
 }

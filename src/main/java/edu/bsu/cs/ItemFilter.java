@@ -6,7 +6,6 @@ public class ItemFilter {
 
     ConfigurationFileReader configFileReader = new ConfigurationFileReader();
 
-
     protected int checkForMaxRarityPermitted() {
         try {
             double rawRarityValue = Double.parseDouble(configFileReader.fetchConfigValues()[0]);
@@ -38,4 +37,5 @@ public class ItemFilter {
             default -> throw new IllegalStateException("Unexpected item type: " + configValue);
         };
     }
+
 }

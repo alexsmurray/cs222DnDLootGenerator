@@ -70,11 +70,11 @@ public class ArmorMakerController {
     @FXML
     protected void writeArmorToFile() throws IOException {
         String itemDetails = collectArmorDetails();
-        displayAlertIfNotEmpty(itemDetails);
+        displayCreationConfirmationIfNotEmpty(itemDetails);
         clearAllInput();
     }
 
-    private static void displayAlertIfNotEmpty(String itemDetails) throws IOException {
+    private void displayCreationConfirmationIfNotEmpty(String itemDetails) throws IOException {
         if (!itemDetails.isEmpty()) {
             new HomebrewFileMaker().writeHomebrewToFile(itemDetails);
             GUI.displayItemCreatedAlert();

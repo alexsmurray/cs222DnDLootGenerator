@@ -168,17 +168,17 @@ public class GUI extends Application implements Initializable {
         alert.show();
     }
 
-    protected static void displayNoItemsWithCurrentFilters() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Filter Issue");
-        alert.setHeaderText("No Items will be displayed with your current filters.");
-        alert.show();
-    }
-
     protected static void displayItemCreatedAlert() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Item Created");
         alert.setHeaderText("Your Item has been forged.");
+        alert.show();
+    }
+
+    protected static void displayNoItemsWithCurrentFilters() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Filter Issue");
+        alert.setHeaderText("No Items will be displayed with your current filters.");
         alert.show();
     }
 

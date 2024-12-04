@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class RefreshTracker {
+
     protected static void saveCurrentTime(String fileName) {
         try {
             FileWriter fileWriter = new FileWriter(fileName);

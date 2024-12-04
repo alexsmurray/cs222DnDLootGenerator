@@ -14,5 +14,4 @@ public class JsonArrayBuilder {
         return jsonArray;
     }
 
-
 }

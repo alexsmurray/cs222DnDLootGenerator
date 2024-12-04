@@ -46,14 +46,6 @@ public class MainScreenController {
         updateRefreshDate();
     }
 
-    private void attemptToFilterItems() {
-        try {
-            setFilteredItemList();
-        } catch (Exception NoFilesToFilterException) {
-            refreshItemData();
-        }
-    }
-
     private void initializeTableView() {
         new GUI().displayTableViewDefault(itemTableView);
         nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -65,15 +57,6 @@ public class MainScreenController {
     private void verifyConfigurationExists() {
         String configurationString = readConfigurationFile();
         setConfigToDefaultIfNull(configurationString);
-    }
-
-    private static void setFilteredItemList() {
-        try {
-            ItemGenerator.filteredItemList.clear();
-            new ItemListBuilder(ItemGenerator.filteredItemList);
-        } catch (Exception FilterItemSetException) {
-            throw new RuntimeException();
-        }
     }
 
     private String readConfigurationFile() {
@@ -95,6 +78,23 @@ public class MainScreenController {
             new ConfigurationFileWriter().initializeConfigFile(new ConfigurationTable());
         } catch (Exception ConfigException) {
             GUI.displayConfigurationFileWriteAlert();
+        }
+    }
+
+    private void attemptToFilterItems() {
+        try {
+            setFilteredItemList();
+        } catch (Exception NoFilesToFilterException) {
+            refreshItemData();
+        }
+    }
+
+    private static void setFilteredItemList() {
+        try {
+            ItemGenerator.filteredItemList.clear();
+            new ItemListBuilder(ItemGenerator.filteredItemList);
+        } catch (Exception FilterItemSetException) {
+            throw new RuntimeException();
         }
     }
 
@@ -258,13 +258,15 @@ public class MainScreenController {
         });
     }
 
-    public void switchToHomeBrew() throws IOException {
+    @FXML
+    private void goToHomeBrew() throws IOException {
         GUI.clearItems(itemTableView);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/HomebrewScreen.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
 
-    public void switchToFilters() throws IOException {
+    @FXML
+    private void goToFilters() throws IOException {
         GUI.clearItems(itemTableView);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FilterScreen.fxml")));
         GUI.stage.getScene().setRoot(root);
