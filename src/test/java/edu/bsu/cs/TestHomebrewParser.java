@@ -18,14 +18,14 @@ public class TestHomebrewParser {
 
     @Test
     public void testBuildJsonArrayOfHomebrewItemsNames() {
-        JSONArray testArray = homebrewItemParser.buildJsonArrayOfHomebrewItemsNames();
+        JSONArray testArray = homebrewItemParser.buildJsonArrayOfHomebrewItemNames();
 
         Assertions.assertFalse(testArray.isEmpty());
     }
 
     @Test
     public void testBuildJsonArrayOfHomebrewItems() {
-        String testRarity = homebrewItemParser.buildJsonArrayOfHomebrewItems("Rarity").getFirst().toString();
+        String testRarity = homebrewItemParser.fetchAllHomebrewItemsAsJsonArray("Rarity").getFirst().toString();
 
         Assertions.assertEquals("Non-existent", testRarity);
     }

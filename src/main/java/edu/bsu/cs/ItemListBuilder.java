@@ -126,7 +126,7 @@ public class ItemListBuilder {
     }
 
     private void populateFilteredHomebrewItems(List<Item> builderItemList) {
-        nameJsonArray = homebrewItemsParser.buildJsonArrayOfHomebrewItemsNames();
+        nameJsonArray = homebrewItemsParser.buildJsonArrayOfHomebrewItemNames();
         int counter = 0;
         for (Object name : nameJsonArray) {
             if (name != null) {

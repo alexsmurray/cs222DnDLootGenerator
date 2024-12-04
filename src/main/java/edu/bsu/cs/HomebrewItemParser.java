@@ -24,14 +24,14 @@ public class HomebrewItemParser {
     }
 
     protected String parseHomebrewAttribute(String attribute, int counter) {
-        return buildJsonArrayOfHomebrewItems(attribute).get(counter).toString();
+        return fetchAllHomebrewItemsAsJsonArray(attribute).get(counter).toString();
     }
 
-    protected JSONArray buildJsonArrayOfHomebrewItemsNames() {
-        return buildJsonArrayOfHomebrewItems("Name");
+    protected JSONArray buildJsonArrayOfHomebrewItemNames() {
+        return fetchAllHomebrewItemsAsJsonArray("Name");
     }
 
-    protected JSONArray buildJsonArrayOfHomebrewItems(String category) {
+    protected JSONArray fetchAllHomebrewItemsAsJsonArray(String category) {
         return JsonPath.read(stringifiedJson, "$.." + category);
     }
 
