@@ -92,13 +92,16 @@ public class ItemListBuilder {
 
     private void buildListFromPage(List<Item> builderItemList, Hashtable<String, JSONArray> magicItemDetails) {
         for (int itemIndex = 0; itemIndex < magicItemDetails.get("name").size(); itemIndex++) {
-            String name = magicItemDetails.get("name").get(itemIndex).toString();
-            String rarity = OutputFormatter.formatRarity(magicItemDetails.get("rarity").get(itemIndex).toString());
-            String type = magicItemDetails.get("type").get(itemIndex).toString();
-            String attunement = OutputFormatter.formatAttunement(magicItemDetails.get("requires_attunement").get(itemIndex).toString());
-            String description = magicItemDetails.get("desc").get(itemIndex).toString();
-            int rarityValue = determineRarityValue(rarity);
+            int rarityValue = determineRarityValue(magicItemDetails.get("rarity").get(itemIndex).toString());
+
             if (rarityValue >= itemFilter.checkForMaxRarityPermitted()) {
+
+                String name = magicItemDetails.get("name").get(itemIndex).toString();
+                String rarity = OutputFormatter.formatRarity(magicItemDetails.get("rarity").get(itemIndex).toString());
+                String type = magicItemDetails.get("type").get(itemIndex).toString();
+                String attunement = OutputFormatter.formatAttunement(magicItemDetails.get("requires_attunement").get(itemIndex).toString());
+                String description = magicItemDetails.get("desc").get(itemIndex).toString();
+
                 Item item = new Item(name, description)
                         .setRarity(rarity).setType(type).setAttunement(attunement);
                 builderItemList.add(item);
@@ -131,11 +134,16 @@ public class ItemListBuilder {
         for (Object name : nameJsonArray) {
             if (name != null) {
                 Hashtable<String, String> homebrewItemDetails = homebrewItemsParser.parseAllHomebrewItemDetails(counter);
-                Item item = new Item(name.toString(), homebrewItemDetails.get("Description").replaceAll("\t", ""));
-                item.setType(homebrewItemDetails.get("Item_Type"));
-                item.setRarity(homebrewItemDetails.get("Rarity"));
-                item.setAttunement(homebrewItemDetails.get("Attunement"));
-                builderItemList.add(item);
+
+                int rarityValue = determineRarityValue(homebrewItemDetails.get("Rarity"));
+
+                if (rarityValue >= itemFilter.checkForMaxRarityPermitted()) {
+                    Item item = new Item(name.toString(), homebrewItemDetails.get("Description").replaceAll("\t", ""));
+                    item.setType(homebrewItemDetails.get("Item_Type"));
+                    item.setRarity(homebrewItemDetails.get("Rarity"));
+                    item.setAttunement(homebrewItemDetails.get("Attunement"));
+                    builderItemList.add(item);
+                }
             }
             counter++;
         }
