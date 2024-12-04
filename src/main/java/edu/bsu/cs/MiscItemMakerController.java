@@ -21,7 +21,7 @@ public class MiscItemMakerController {
     public String collectMiscItemDetails() {
         String[] checkedInputs = {itemNameInput.getText()};
         if (!ErrorHandler.verifyHomebrewInputsNotBlank(checkedInputs)) {
-            GUI.displayHomebrewWeaponFieldsAlert();
+            GUI.displayHomebrewMiscFieldsAlert();
             return "";
         }
         return "{\n" +
