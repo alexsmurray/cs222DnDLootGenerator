@@ -94,7 +94,7 @@ public class MainScreenController {
         try {
             new ConfigurationFileWriter().initializeConfigFile(new ConfigurationTable());
         } catch (Exception ConfigException) {
-            GUI.displayFileWriteAlert();
+            GUI.displayConfigurationFileWriteAlert();
         }
     }
 

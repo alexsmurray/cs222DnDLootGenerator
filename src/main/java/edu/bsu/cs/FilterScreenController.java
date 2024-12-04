@@ -15,6 +15,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class FilterScreenController implements Initializable {
+
     @FXML
     private VBox equipmentBox;
     @FXML
@@ -43,16 +44,16 @@ public class FilterScreenController implements Initializable {
         }
     }
 
-    @FXML
-    private void setConfigurationValuesToDefault() {
-        String defaultValues = "0, .5, true, true, true, true";
-        setConfigurationValues(defaultValues);
-    }
-
     private void setConfigToSavedValuesIfNotNull(String configurationString) {
         if (configurationString != null) {
             setConfigurationValues(configurationString);
         }
+    }
+
+    @FXML
+    private void setConfigurationValuesToDefault() {
+        String defaultValues = "0, .5, true, true, true, true";
+        setConfigurationValues(defaultValues);
     }
 
     private void setConfigurationValues(String configurationString) {
@@ -132,7 +133,7 @@ public class FilterScreenController implements Initializable {
         };
     }
 
-    public void goBackToMain() throws IOException {
+    public void goToMain() throws IOException {
         saveConfigurationToFile();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/MainScreen.fxml")));
         GUI.stage.getScene().setRoot(root);
@@ -164,7 +165,6 @@ public class FilterScreenController implements Initializable {
     }
 
     private void saveCheckboxValues(ConfigurationTable configurationTable) {
-
         configurationTable.put("armor", String.valueOf(((CheckBox) equipmentBox.getChildren().get(1)).isSelected()));
         configurationTable.put("weapons", String.valueOf(((CheckBox) equipmentBox.getChildren().get(2)).isSelected()));
         configurationTable.put("magicEquipment", String.valueOf(((CheckBox) equipmentBox.getChildren().get(3)).isSelected()));

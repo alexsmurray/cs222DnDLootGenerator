@@ -43,6 +43,10 @@ public class GUI extends Application implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        attemptToInitializeMainScreen();
+    }
+
+    private void attemptToInitializeMainScreen() {
         try {
             mainScreenController.initialize();
         } catch (IOException e) {
@@ -50,7 +54,7 @@ public class GUI extends Application implements Initializable {
         }
     }
 
-    public static void displayGeneratedItems(TableView<Item> itemTableView, int numberOfItemsToGenerate) {
+    protected static void displayGeneratedItems(TableView<Item> itemTableView, int numberOfItemsToGenerate) {
         ItemGenerator itemGenerator = new ItemGenerator();
         clearItems(itemTableView);
         itemsForList.addAll(itemGenerator.generateAmountOfItems(numberOfItemsToGenerate));
@@ -84,6 +88,27 @@ public class GUI extends Application implements Initializable {
         itemTableView.setPlaceholder(new Label("Enter above how many items you would like to generate and then press the generate button! :)"));
     }
 
+    protected static void displayRefreshStarting() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Refresh In Progress");
+        alert.setHeaderText("We're updating your data from the server.\nThis may take a minute.");
+        alert.show();
+    }
+
+    protected static void displayRefreshDone() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Refresh Complete");
+        alert.setHeaderText("Your files are up to date.");
+        alert.show();
+    }
+
+    protected static void displayRefreshErrorAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Refresh Error");
+        alert.setHeaderText("Your files could not be updated.");
+        alert.show();
+    }
+
     protected static void displayLastRefreshDate(Label RefreshDate, String filePath) throws IOException {
         String output = OutputFormatter.formatDateTime(RefreshTracker.readTimeFile(filePath));
         RefreshDate.setText("Last Refresh was " + output);
@@ -107,27 +132,6 @@ public class GUI extends Application implements Initializable {
         alert.show();
     }
 
-    protected static void displayRefreshStarting() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Refresh In Progress");
-        alert.setHeaderText("We're updating your data from the server.\nThis may take a minute.");
-        alert.show();
-    }
-
-    protected static void displayRefreshDone() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Refresh Complete");
-        alert.setHeaderText("Your files are up to date.");
-        alert.show();
-    }
-
-    protected static void displayRefreshErrorAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Refresh Error");
-        alert.setHeaderText("Your files could not be updated.");
-        alert.show();
-    }
-
     protected static void displayMissingFilesAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Missing Files");
@@ -136,7 +140,7 @@ public class GUI extends Application implements Initializable {
         alert.show();
     }
 
-    protected static void displayFileWriteAlert() {
+    protected static void displayConfigurationFileWriteAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Configuration File Write Error");
         alert.setHeaderText("Directory not found.\nUnable to update configuration file.");

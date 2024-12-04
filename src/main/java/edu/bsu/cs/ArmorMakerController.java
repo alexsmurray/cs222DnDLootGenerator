@@ -1,5 +1,6 @@
 package edu.bsu.cs;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
@@ -66,6 +67,7 @@ public class ArmorMakerController {
                 "}";
     }
 
+    @FXML
     protected void writeArmorToFile() throws IOException {
         String itemDetails = collectArmorDetails();
         displayAlertIfNotEmpty(itemDetails);

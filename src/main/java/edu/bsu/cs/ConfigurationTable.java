@@ -12,4 +12,5 @@ public class ConfigurationTable extends Hashtable<String, String> {
         put("magicEquipment", "true");
         put("homebrew", "true");
     }
+
 }
