@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class JsonFileMaker {
@@ -20,44 +19,16 @@ public class JsonFileMaker {
             jsonFileMaker.writeItemsJsonToFile("magicitems");
             jsonFileMaker.writeItemsJsonToFile("armor");
             jsonFileMaker.writeItemsJsonToFile("weapons");
-            checkForHomebrewFile();
+            new HomebrewFileMaker().checkForHomebrewFile();
             updated = true;
         }
     }
 
-    protected static void checkForHomebrewFile() throws IOException {
-        Files.createDirectories(Paths.get("src/main/resources/dataFiles"));
-        Path homebrew = Paths.get("src/main/resources/dataFiles/homebrew.txt");
-        if (!Files.exists(homebrew)){
-            FileWriter homebrewFile = new FileWriter("src/main/resources/dataFiles/homebrew.txt");
-            homebrewFile.write("""
-                    {
-                    "results": [{
-                    \t"Item_Type": "Homebrew Item",
-                    \t"Name": null,
-                    \t"Rarity": "Non-existent",
-                    \t"Attunement": false,
-                    \t"Description": "YOU SHOULD NOT BE HERE",
-                    },]
-                    }""");
-            homebrewFile.close();
-        }
-    }
-
-    protected void writeHomebrewToFile(String itemDetails) throws IOException {
-        checkForHomebrewFile();
-        String fileContents = JsonFileReader.readFileToString("src/main/resources/dataFiles/homebrew.txt");
-        FileWriter homebrewFile = new FileWriter("src/main/resources/dataFiles/homebrew.txt");
-
-        homebrewFile.write(fileContents.substring(0, fileContents.length() - 3) +"\n" + itemDetails);
-
-        homebrewFile.close();
-
-    }
-
-    protected void writeItemsJsonToFile(String categoryName) throws  IOException, URISyntaxException {
+    protected void writeItemsJsonToFile(String categoryName) throws IOException, URISyntaxException {
         String version = "v2";
-        if (categoryName.equals("magicitems")) {version = "v1";}
+        if (categoryName.equals("magicitems")) {
+            version = "v1";
+        }
 
         int pageNum = 1;
         FileWriter itemsApi = new FileWriter("src/main/resources/dataFiles/" + categoryName + ".txt");
@@ -68,8 +39,8 @@ public class JsonFileMaker {
         StringBuilder itemsString = new StringBuilder();
         while (!nextPage.equals("[null]")) {
             itemsString.append(inputStreamString).append("\n");
-            pageNum ++;
-            inputStream = APIConnection.fetchConnectionPath("v1/magicitems/?format=json&page="+pageNum).getInputStream();
+            pageNum++;
+            inputStream = APIConnection.fetchConnectionPath("v1/magicitems/?format=json&page=" + pageNum).getInputStream();
             inputStreamString = JsonToString.readJsonAsString(inputStream);
             nextPage = nextPageParser.parseNext(inputStreamString);
         }

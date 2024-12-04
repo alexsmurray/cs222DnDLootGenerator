@@ -5,7 +5,7 @@ import net.minidev.json.JSONArray;
 
 public class JsonArrayBuilder {
 
-    protected JSONArray buildJsonArrayOfMagicItemPages(String stringifiedJson, String category){
+    protected JSONArray buildJsonArrayOfMagicItemPages(String stringifiedJson, String category) {
         JSONArray jsonArray = new JSONArray();
         String[] magicItemJsonArray = stringifiedJson.split("\n");
         for (String magicItemPage : magicItemJsonArray) {
@@ -13,7 +13,5 @@ public class JsonArrayBuilder {
         }
         return jsonArray;
     }
-
-
 
 }

@@ -29,7 +29,7 @@ public class WeaponMakerController {
 
     public List<String> getProperties() {
         List<String> propertyNamesList = new ArrayList<>();
-        CheckBox[] properties = {thrownCheckBox,ammunitionCheckBox,twoHandedCheckBox,versatileCheckBox,specialCheckBox,reachCheckBox,netCheckBox,loadingCheckBox,lightCheckBox,lanceCheckBox,heavyCheckBox,finesseCheckBox};
+        CheckBox[] properties = {thrownCheckBox, ammunitionCheckBox, twoHandedCheckBox, versatileCheckBox, specialCheckBox, reachCheckBox, netCheckBox, loadingCheckBox, lightCheckBox, lanceCheckBox, heavyCheckBox, finesseCheckBox};
         for (CheckBox property : properties) {
             if (property.isSelected()) {
                 propertyNamesList.add(property.getText());
@@ -38,10 +38,10 @@ public class WeaponMakerController {
         return propertyNamesList;
     }
 
-    protected String getProficiency(){
-        if (simpleRadio.isSelected()){
+    protected String getProficiency() {
+        if (simpleRadio.isSelected()) {
             return "Simple";
-        }else {
+        } else {
             return "Martial";
         }
     }
@@ -57,8 +57,7 @@ public class WeaponMakerController {
         } else if (ammunitionCheckBox.isSelected()) {
             longRangeLabel.setText("Long Range: " + Integer.parseInt(weaponRangeInput.getText()) * 4);
             thrownCheckBox.setDisable(true);
-        }
-        else {
+        } else {
             ammunitionCheckBox.setDisable(false);
             thrownCheckBox.setDisable(false);
         }
@@ -91,7 +90,7 @@ public class WeaponMakerController {
         }
     }
 
-    public String collectWeaponDetails(){
+    public String collectWeaponDetails() {
         String[] checkedInputs = {weaponNameInput.getText(), numberOfDiceInput.getText()};
         if (!ErrorHandler.verifyHomebrewInputsNotBlank(checkedInputs)) {
             GUI.displayHomebrewWeaponFieldsAlert();
@@ -115,22 +114,21 @@ public class WeaponMakerController {
     }
 
     public void writeWeaponToFile() throws IOException {
-       JsonFileMaker jsonFileMaker = new JsonFileMaker();
-       String itemDetails = collectWeaponDetails();
-       if (!itemDetails.isEmpty()) {
-           jsonFileMaker.writeHomebrewToFile(itemDetails);
-           GUI.displayItemCreatedAlert();
-       }
-       clearAllInput();
+        String itemDetails = collectWeaponDetails();
+        if (!itemDetails.isEmpty()) {
+            new HomebrewFileMaker().writeHomebrewToFile(itemDetails);
+            GUI.displayItemCreatedAlert();
+        }
+        clearAllInput();
     }
 
     public void clearAllInput() {
         TextField[] textFields = {weaponNameInput, weaponRangeInput, numberOfDiceInput};
-        for (TextField field: textFields) {
+        for (TextField field : textFields) {
             field.setText("");
         }
-        CheckBox[] properties = {thrownCheckBox,ammunitionCheckBox,twoHandedCheckBox,versatileCheckBox,specialCheckBox,reachCheckBox,netCheckBox,loadingCheckBox,lightCheckBox,lanceCheckBox,heavyCheckBox,finesseCheckBox};
-        for (CheckBox property: properties) {
+        CheckBox[] properties = {thrownCheckBox, ammunitionCheckBox, twoHandedCheckBox, versatileCheckBox, specialCheckBox, reachCheckBox, netCheckBox, loadingCheckBox, lightCheckBox, lanceCheckBox, heavyCheckBox, finesseCheckBox};
+        for (CheckBox property : properties) {
             property.setSelected(false);
         }
         thrownCheckBox.setDisable(true);

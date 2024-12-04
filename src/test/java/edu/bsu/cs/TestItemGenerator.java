@@ -49,4 +49,5 @@ public class TestItemGenerator {
         testConfigWriter.initializeConfigFile(testConfigurationTable);
         new ItemListBuilder(ItemGenerator.filteredItemList);
     }
+
 }

@@ -3,10 +3,10 @@ package edu.bsu.cs;
 public class Item {
 
     private final String name;
+    private final String details;
     private String rarity = "Mundane";
     private String type = "Standard Item";
     private String attunement = "False";
-    private final String details;
 
     public Item(String name, String details) {
         this.name = name;
@@ -38,7 +38,7 @@ public class Item {
         return this;
     }
 
-    protected Item setType(String newType){
+    protected Item setType(String newType) {
         this.type = newType;
         return this;
     }

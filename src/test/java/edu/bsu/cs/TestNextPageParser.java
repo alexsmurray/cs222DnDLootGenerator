@@ -14,10 +14,10 @@ public class TestNextPageParser {
         NextPageParser pageParser = new NextPageParser();
         String result = pageParser.parseNext(JsonToString.readJsonAsString(testInputStream));
         String expected = "format=json&page=2";
-        Assertions.assertEquals(expected, result.substring(45,63));
+        Assertions.assertEquals(expected, result.substring(45, 63));
     }
 
-    private InputStream getMagicItemJsonFile(){
+    private InputStream getMagicItemJsonFile() {
         InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("SampleMagicItem.json");
         assert inputStream != null;
         return inputStream;

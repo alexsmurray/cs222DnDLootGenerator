@@ -15,6 +15,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class FilterScreenController implements Initializable {
+
     @FXML
     private VBox equipmentBox;
     @FXML
@@ -43,16 +44,16 @@ public class FilterScreenController implements Initializable {
         }
     }
 
-    @FXML
-    private void setConfigurationValuesToDefault(){
-        String defaultValues = "0, .5, true, true, true, true";
-        setConfigurationValues(defaultValues);
-    }
-
     private void setConfigToSavedValuesIfNotNull(String configurationString) {
         if (configurationString != null) {
             setConfigurationValues(configurationString);
         }
+    }
+
+    @FXML
+    private void setConfigurationValuesToDefault() {
+        String defaultValues = "0, .5, true, true, true, true";
+        setConfigurationValues(defaultValues);
     }
 
     private void setConfigurationValues(String configurationString) {
@@ -71,7 +72,7 @@ public class FilterScreenController implements Initializable {
     private void setCheckboxValues(String[] configurationValues) {
         for (int i = 1; i < equipmentBox.getChildren().size(); i++) {
             CheckBox checkBox = (CheckBox) equipmentBox.getChildren().get(i);
-            checkBox.setSelected(Boolean.parseBoolean(configurationValues[i+1]));
+            checkBox.setSelected(Boolean.parseBoolean(configurationValues[i + 1]));
         }
     }
 
@@ -84,7 +85,7 @@ public class FilterScreenController implements Initializable {
         return new StringConverter<>() {
             @Override
             public String toString(Double sliderValue) {
-               return setRaritySliderLabels(sliderValue);
+                return setRaritySliderLabels(sliderValue);
             }
 
             @Override
@@ -95,7 +96,7 @@ public class FilterScreenController implements Initializable {
     }
 
     private String setRaritySliderLabels(Double sliderValue) {
-        return switch (sliderValue.toString()){
+        return switch (sliderValue.toString()) {
             case "0.0" -> "Artifact";
             case "1.0" -> "Legendary";
             case "2.0" -> "Very Rare";
@@ -132,7 +133,7 @@ public class FilterScreenController implements Initializable {
         };
     }
 
-    public void goBackToMain() throws IOException {
+    public void goToMain() throws IOException {
         saveConfigurationToFile();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/MainScreen.fxml")));
         GUI.stage.getScene().setRoot(root);
@@ -164,7 +165,6 @@ public class FilterScreenController implements Initializable {
     }
 
     private void saveCheckboxValues(ConfigurationTable configurationTable) {
-
         configurationTable.put("armor", String.valueOf(((CheckBox) equipmentBox.getChildren().get(1)).isSelected()));
         configurationTable.put("weapons", String.valueOf(((CheckBox) equipmentBox.getChildren().get(2)).isSelected()));
         configurationTable.put("magicEquipment", String.valueOf(((CheckBox) equipmentBox.getChildren().get(3)).isSelected()));

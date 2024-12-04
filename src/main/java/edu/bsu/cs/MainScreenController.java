@@ -39,19 +39,11 @@ public class MainScreenController {
 
 
     public void initialize() throws IOException {
-        JsonFileMaker.checkForHomebrewFile();
+        new HomebrewFileMaker().checkForHomebrewFile();
         initializeTableView();
         verifyConfigurationExists();
         attemptToFilterItems();
         updateRefreshDate();
-    }
-
-    private void attemptToFilterItems() {
-        try {
-            setFilteredItemList();
-        } catch (Exception NoFilesToFilterException) {
-            refreshItemData();
-        }
     }
 
     private void initializeTableView() {
@@ -65,15 +57,6 @@ public class MainScreenController {
     private void verifyConfigurationExists() {
         String configurationString = readConfigurationFile();
         setConfigToDefaultIfNull(configurationString);
-    }
-
-    private static void setFilteredItemList() {
-        try {
-            ItemGenerator.filteredItemList.clear();
-            new ItemListBuilder(ItemGenerator.filteredItemList);
-        } catch (Exception FilterItemSetException) {
-            throw new RuntimeException();
-        }
     }
 
     private String readConfigurationFile() {
@@ -94,22 +77,39 @@ public class MainScreenController {
         try {
             new ConfigurationFileWriter().initializeConfigFile(new ConfigurationTable());
         } catch (Exception ConfigException) {
-            GUI.displayFileWriteAlert();
+            GUI.displayConfigurationFileWriteAlert();
         }
     }
 
-    private void updateRefreshDate(){
+    private void attemptToFilterItems() {
+        try {
+            setFilteredItemList();
+        } catch (Exception NoFilesToFilterException) {
+            refreshItemData();
+        }
+    }
+
+    private static void setFilteredItemList() {
+        try {
+            ItemGenerator.filteredItemList.clear();
+            new ItemListBuilder(ItemGenerator.filteredItemList);
+        } catch (Exception FilterItemSetException) {
+            throw new RuntimeException();
+        }
+    }
+
+    private void updateRefreshDate() {
         String filePath = "src/main/resources/dataFiles/lastRefreshDate.txt";
-        try{
+        try {
             GUI.displayLastRefreshDate(refreshDate, filePath);
-        }catch (Exception IOException){
+        } catch (Exception IOException) {
             GUI.displayNoRecentRefresh(refreshDate);
         }
     }
 
     @FXML
     protected void executeGenerateItemsOnEnter(KeyEvent keyEvent) throws IOException {
-        if (keyEvent.getCode() == KeyCode.ENTER){
+        if (keyEvent.getCode() == KeyCode.ENTER) {
             generateItems();
         }
     }
@@ -141,12 +141,14 @@ public class MainScreenController {
                 GUI.displayGeneratedItems(itemTableView, numberOfItemsToGenerate);
                 return null;
             }
+
             @Override
             protected void succeeded() {
                 enableInput();
             }
+
             @Override
-            protected void failed(){
+            protected void failed() {
                 enableInput();
                 if (itemTableView.getItems().isEmpty()) {
                     GUI.displayNoItemsWithCurrentFilters();
@@ -194,19 +196,20 @@ public class MainScreenController {
         rotateAnimation.stop();
     }
 
-    private Task<Void> attemptToRefreshItemFiles(){
+    private Task<Void> attemptToRefreshItemFiles() {
         return new Task<>() {
             @Override
             protected Void call() throws IOException, URISyntaxException {
                 disableInput();
-                if(ErrorHandler.verifyNetworkConnection().equals("Network Error")){
+                if (ErrorHandler.verifyNetworkConnection().equals("Network Error")) {
                     throw new IOException();
                 }
                 JsonFileMaker.updateAPIFiles();
                 return null;
             }
+
             @Override
-            protected void succeeded(){
+            protected void succeeded() {
                 setFilteredItemList();
                 GUI.displayRefreshDone();
                 RefreshTracker.saveCurrentTime("src/main/resources/dataFiles/lastRefreshDate.txt");
@@ -216,8 +219,9 @@ public class MainScreenController {
                 stopLoadingImage();
                 enableInput();
             }
+
             @Override
-            protected void failed(){
+            protected void failed() {
                 if (ErrorHandler.verifyNetworkConnection().equals("Network Error")) {
                     GUI.displayNetworkAlert();
                 } else {
@@ -238,7 +242,7 @@ public class MainScreenController {
         navigationMenu.setDisable(true);
     }
 
-    private void enableInput(){
+    private void enableInput() {
         userInputField.setDisable(false);
         generateButton.setDisable(false);
         refreshItemDataButton.setDisable(false);
@@ -254,12 +258,15 @@ public class MainScreenController {
         });
     }
 
-    public void switchToHomeBrew() throws IOException {
+    @FXML
+    private void goToHomeBrew() throws IOException {
         GUI.clearItems(itemTableView);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/HomebrewScreen.fxml")));
         GUI.stage.getScene().setRoot(root);
     }
-    public void switchToFilters() throws IOException {
+
+    @FXML
+    private void goToFilters() throws IOException {
         GUI.clearItems(itemTableView);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FilterScreen.fxml")));
         GUI.stage.getScene().setRoot(root);

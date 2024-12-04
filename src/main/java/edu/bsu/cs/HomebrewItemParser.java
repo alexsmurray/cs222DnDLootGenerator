@@ -2,6 +2,7 @@ package edu.bsu.cs;
 
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
+
 import java.util.Hashtable;
 
 public class HomebrewItemParser {
@@ -16,22 +17,22 @@ public class HomebrewItemParser {
         Hashtable<String, String> homebrewItemDetailsList = new Hashtable<>();
         String[] attributes = {"Item_Type", "Rarity", "Attunement", "Description"};
 
-        for(String attribute : attributes) {
-            homebrewItemDetailsList.put(attribute, parseHomebrewAttribute(attribute,counter));
+        for (String attribute : attributes) {
+            homebrewItemDetailsList.put(attribute, parseHomebrewAttribute(attribute, counter));
         }
         return homebrewItemDetailsList;
     }
 
-    protected String parseHomebrewAttribute(String attribute,int counter) {
-        return buildJsonArrayOfHomebrewItems(attribute).get(counter).toString();
+    protected String parseHomebrewAttribute(String attribute, int counter) {
+        return fetchAllHomebrewItemsAsJsonArray(attribute).get(counter).toString();
     }
 
-    protected JSONArray buildJsonArrayOfHomebrewItemsNames(){
-        return buildJsonArrayOfHomebrewItems("Name");
+    protected JSONArray buildJsonArrayOfHomebrewItemNames() {
+        return fetchAllHomebrewItemsAsJsonArray("Name");
     }
 
-    protected JSONArray buildJsonArrayOfHomebrewItems(String category){
-        return JsonPath.read(stringifiedJson,"$.." + category);
+    protected JSONArray fetchAllHomebrewItemsAsJsonArray(String category) {
+        return JsonPath.read(stringifiedJson, "$.." + category);
     }
 
 }

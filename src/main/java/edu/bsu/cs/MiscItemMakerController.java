@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 
 public class MiscItemMakerController {
+
     public Pane armorMaker;
     public TextField itemNameInput;
     public TextArea itemDescription;
@@ -18,14 +19,16 @@ public class MiscItemMakerController {
         requiresAttunementLabel.setVisible(attunementToggle.isSelected());
     }
 
-    public String collectMiscItemDetails(){
+    public String collectMiscItemDetails() {
         String[] checkedInputs = {itemNameInput.getText()};
+
         if (!ErrorHandler.verifyHomebrewInputsNotBlank(checkedInputs)) {
             GUI.displayHomebrewMiscFieldsAlert();
             return "";
         }
+
         return "{\n" +
-                "\t\"Item_Type\": \""+ itemTypeChoice.getValue() + " HB\",\n" +
+                "\t\"Item_Type\": \"" + itemTypeChoice.getValue() + " HB\",\n" +
                 "\t\"Name\": \"" + itemNameInput.getText() + "\",\n" +
                 "\t\"Rarity\": \"" + rarityChoice.getValue() + "\",\n" +
                 "\t\"Attunement\": " + attunementToggle.isSelected() + ",\n" +
@@ -36,18 +39,21 @@ public class MiscItemMakerController {
     }
 
     public void writeMiscItemToFile() throws IOException {
-        JsonFileMaker jsonFileMaker = new JsonFileMaker();
         String itemDetails = collectMiscItemDetails();
+        displayCreationConfirmationIfNotEmpty(itemDetails);
+        clearAllInput();
+    }
+
+    private void displayCreationConfirmationIfNotEmpty(String itemDetails) throws IOException {
         if (!itemDetails.isEmpty()) {
-            jsonFileMaker.writeHomebrewToFile(itemDetails);
+            new HomebrewFileMaker().writeHomebrewToFile(itemDetails);
             GUI.displayItemCreatedAlert();
         }
-        clearAllInput();
     }
 
     public void clearAllInput() {
         TextField[] textFields = {itemNameInput};
-        for (TextField field: textFields) {
+        for (TextField field : textFields) {
             field.setText("");
         }
         itemDescription.setText("");
@@ -57,4 +63,5 @@ public class MiscItemMakerController {
         requiresAttunementLabel.setVisible(false);
 
     }
+
 }

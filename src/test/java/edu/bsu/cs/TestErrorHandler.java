@@ -14,7 +14,7 @@ public class TestErrorHandler {
     }
 
     @Test
-    public void testVerifyFileExists(){
+    public void testVerifyFileExists() {
         String filePath = "src/main/resources/MainScreen.fxml";
         Assertions.assertTrue(ErrorHandler.verifyFileExists(filePath));
     }
@@ -41,7 +41,7 @@ public class TestErrorHandler {
 
     @Test
     public void testVerifyHomebrewInputIsNotBlank() {
-        String[] checkedInputs = {"   ",""};
+        String[] checkedInputs = {"   ", ""};
         Assertions.assertFalse(ErrorHandler.verifyHomebrewInputsNotBlank(checkedInputs));
     }
 

@@ -6,48 +6,48 @@ import org.junit.jupiter.api.Test;
 public class TestOutputFormatter {
 
     @Test
-    public void testForRareItem(){
+    public void testForRareItem() {
         String expected = "Rare";
         String result = OutputFormatter.formatRarity("rare");
-        Assertions.assertEquals(expected,result);
+        Assertions.assertEquals(expected, result);
     }
 
     @Test
-    public void testForVeryRareItem(){
+    public void testForVeryRareItem() {
         String expected = "Very Rare";
         String result = OutputFormatter.formatRarity("very rare");
-        Assertions.assertEquals(expected,result);
+        Assertions.assertEquals(expected, result);
     }
 
     @Test
-    public void testForItemRequiresAttunement(){
+    public void testForItemRequiresAttunement() {
         String expected = "True";
         String result = OutputFormatter.formatAttunement("requires attunement");
-        Assertions.assertEquals(expected,result);
+        Assertions.assertEquals(expected, result);
     }
 
     @Test
-    public void testForItemDoesNotRequireAttunement(){
+    public void testForItemDoesNotRequireAttunement() {
         String expected = "False";
         String result = OutputFormatter.formatAttunement("");
-        Assertions.assertEquals(expected,result);
+        Assertions.assertEquals(expected, result);
     }
 
     @Test
-    public void testFormatItemForList(){
+    public void testFormatItemForList() {
         String expectedString = "Name        Rarity        Type    *";
         String result = OutputFormatter.formatItemForList(
                 new Item("Name", "Details")
-                .setRarity("Rarity").setType("Type").setAttunement("True")
+                        .setRarity("Rarity").setType("Type").setAttunement("True")
         );
         Assertions.assertEquals(expectedString, result);
     }
 
     @Test
-    public void testFormatDateTime(){
+    public void testFormatDateTime() {
         String expected = "test at home";
         String output = OutputFormatter.formatDateTime("testThome");
-        Assertions.assertEquals(expected,output);
+        Assertions.assertEquals(expected, output);
     }
 
 }

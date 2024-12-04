@@ -18,7 +18,7 @@ public class TestRefreshTracker {
         RefreshTracker.saveCurrentTime(fileName);
         String dateTime = RefreshTracker.readTimeFile(fileName);
         String expected = LocalDateTime.now().toString();
-        Assertions.assertEquals(expected.substring(0,4),dateTime.substring(0,4));
+        Assertions.assertEquals(expected.substring(0, 4), dateTime.substring(0, 4));
     }
 
 }

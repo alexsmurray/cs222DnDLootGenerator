@@ -14,7 +14,8 @@ public class ArmorItemParser {
     public ArmorItemParser(String stringifiedJson) {
         this.stringifiedJson = stringifiedJson;
     }
-    protected JSONArray parseArmorItemName(){
+
+    protected JSONArray parseArmorItemName() {
         return JsonPath.read(stringifiedJson, "$..name");
     }
 
@@ -28,23 +29,24 @@ public class ArmorItemParser {
         return statDictionary;
     }
 
-    protected JSONArray parseArmorClassDisplay(){
+    protected JSONArray parseArmorClassDisplay() {
         return JsonPath.read(stringifiedJson, "$..ac_display");
     }
 
-    protected JSONArray parseArmorCategory(){
+    protected JSONArray parseArmorCategory() {
         return JsonPath.read(stringifiedJson, "$..category");
     }
 
-    protected JSONArray parseStealthDisadvantage(){
+    protected JSONArray parseStealthDisadvantage() {
         return JsonPath.read(stringifiedJson, "$..grants_stealth_disadvantage");
     }
 
-    protected JSONArray parseStrengthScoreRequirement(){
+    protected JSONArray parseStrengthScoreRequirement() {
         return JsonPath.read(stringifiedJson, "$..strength_score_required");
     }
 
     private Object verifyStrengthRequirement(Object parsedItem) {
         return Objects.requireNonNullElse(parsedItem, "None");
     }
+
 }

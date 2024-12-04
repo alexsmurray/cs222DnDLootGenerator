@@ -14,7 +14,7 @@
     </ImageView>
     <MenuButton layoutX="806.0" layoutY="33.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Navigate to...">
         <items>
-            <MenuItem mnemonicParsing="false" onAction="#goBackToMain" text="Main" />
+            <MenuItem mnemonicParsing="false" onAction="#goToMain" text="Main" />
             <MenuItem mnemonicParsing="false" onAction="#goToFilters" text="Filtering Options" />
         </items>
     </MenuButton>

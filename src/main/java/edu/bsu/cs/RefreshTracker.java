@@ -1,16 +1,20 @@
 package edu.bsu.cs;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class RefreshTracker {
-    protected static void saveCurrentTime(String fileName){
+
+    protected static void saveCurrentTime(String fileName) {
         try {
             FileWriter fileWriter = new FileWriter(fileName);
-            fileWriter.write(LocalDateTime.now().toString().substring(0,16));
+            fileWriter.write(LocalDateTime.now().toString().substring(0, 16));
             fileWriter.close();
-        }catch (Exception ignore){}
+        } catch (Exception ignore) {
+        }
     }
 
     public static String readTimeFile(String fileName) throws IOException {

@@ -7,7 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
@@ -18,7 +20,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 
-public class GUI extends Application implements Initializable{
+public class GUI extends Application implements Initializable {
 
     protected static Stage stage;
     protected static ObservableList<Item> itemsForList = FXCollections.observableArrayList();
@@ -41,6 +43,10 @@ public class GUI extends Application implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        attemptToInitializeMainScreen();
+    }
+
+    private void attemptToInitializeMainScreen() {
         try {
             mainScreenController.initialize();
         } catch (IOException e) {
@@ -48,14 +54,14 @@ public class GUI extends Application implements Initializable{
         }
     }
 
-    public static void displayGeneratedItems(TableView<Item> itemTableView, int numberOfItemsToGenerate){
+    protected static void displayGeneratedItems(TableView<Item> itemTableView, int numberOfItemsToGenerate) {
         ItemGenerator itemGenerator = new ItemGenerator();
         clearItems(itemTableView);
         itemsForList.addAll(itemGenerator.generateAmountOfItems(numberOfItemsToGenerate));
         itemTableView.setItems(itemsForList);
     }
 
-    protected static void clearItems(TableView<Item> itemTableView){
+    protected static void clearItems(TableView<Item> itemTableView) {
         itemsForList.removeAll();
         itemTableView.getItems().clear();
     }
@@ -82,6 +88,27 @@ public class GUI extends Application implements Initializable{
         itemTableView.setPlaceholder(new Label("Enter above how many items you would like to generate and then press the generate button! :)"));
     }
 
+    protected static void displayRefreshStarting() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Refresh In Progress");
+        alert.setHeaderText("We're updating your data from the server.\nThis may take a minute.");
+        alert.show();
+    }
+
+    protected static void displayRefreshDone() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Refresh Complete");
+        alert.setHeaderText("Your files are up to date.");
+        alert.show();
+    }
+
+    protected static void displayRefreshErrorAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Refresh Error");
+        alert.setHeaderText("Your files could not be updated.");
+        alert.show();
+    }
+
     protected static void displayLastRefreshDate(Label RefreshDate, String filePath) throws IOException {
         String output = OutputFormatter.formatDateTime(RefreshTracker.readTimeFile(filePath));
         RefreshDate.setText("Last Refresh was " + output);
@@ -105,27 +132,6 @@ public class GUI extends Application implements Initializable{
         alert.show();
     }
 
-    protected static void displayRefreshStarting() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Refresh In Progress");
-        alert.setHeaderText("We're updating your data from the server.\nThis may take a minute.");
-        alert.show();
-    }
-
-    protected static void displayRefreshDone() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Refresh Complete");
-        alert.setHeaderText("Your files are up to date.");
-        alert.show();
-    }
-
-    protected static void displayRefreshErrorAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Refresh Error");
-        alert.setHeaderText("Your files could not be updated.");
-        alert.show();
-    }
-
     protected static void displayMissingFilesAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Missing Files");
@@ -134,7 +140,7 @@ public class GUI extends Application implements Initializable{
         alert.show();
     }
 
-    protected static void displayFileWriteAlert() {
+    protected static void displayConfigurationFileWriteAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Configuration File Write Error");
         alert.setHeaderText("Directory not found.\nUnable to update configuration file.");
@@ -162,17 +168,17 @@ public class GUI extends Application implements Initializable{
         alert.show();
     }
 
-    protected static void displayNoItemsWithCurrentFilters() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Filter Issue");
-        alert.setHeaderText("No Items will be displayed with your current filters.");
-        alert.show();
-    }
-
     protected static void displayItemCreatedAlert() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Item Created");
         alert.setHeaderText("Your Item has been forged.");
+        alert.show();
+    }
+
+    protected static void displayNoItemsWithCurrentFilters() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Filter Issue");
+        alert.setHeaderText("No Items will be displayed with your current filters.");
         alert.show();
     }
 

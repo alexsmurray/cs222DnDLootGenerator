@@ -29,31 +29,31 @@ public class TestItemListBuilder {
     }
 
     @Test
-    public void testPopulateListOfItems() throws IOException{
+    public void testPopulateListOfItems() throws IOException {
         testItemList.clear();
         itemListBuilder = new ItemListBuilder(testItemList);
         createConfigFile();
 
         String firstMagicItem = testItemList.getFirst().getName();
-        String secondToLastMagicItem = testItemList.get(testItemList.size()-2).getName();
+        String secondToLastMagicItem = testItemList.get(testItemList.size() - 2).getName();
         String[] result = {firstMagicItem, secondToLastMagicItem};
         String[] expected = {"Breastplate", "Zipline Ring"};
 
         Assertions.assertArrayEquals(expected, result);
     }
 
-    private void setHomeBrewToDefault() throws IOException{
+    private void setHomeBrewToDefault() throws IOException {
         FileWriter homebrewFile = new FileWriter("src/main/resources/dataFiles/homebrew.txt");
         homebrewFile.write("""
-                    {
-                    "results": [{
-                    \t"Item_Type": "Homebrew Item",
-                    \t"Name": null,
-                    \t"Rarity": "Non-existent",
-                    \t"Attunement": false,
-                    \t"Description": "YOU SHOULD NOT BE HERE",
-                    },]
-                    }""");
+                {
+                "results": [{
+                \t"Item_Type": "Homebrew Item",
+                \t"Name": null,
+                \t"Rarity": "Non-existent",
+                \t"Attunement": false,
+                \t"Description": "YOU SHOULD NOT BE HERE",
+                },]
+                }""");
         homebrewFile.close();
     }
 
@@ -94,11 +94,12 @@ public class TestItemListBuilder {
         testItemList.clear();
         int result = itemListBuilder.fetchNumberOfMagicItemPages();
 
-        Assertions.assertEquals(33,result);
+        Assertions.assertEquals(33, result);
     }
 
     private void createConfigFile() throws IOException {
         ConfigurationFileWriter testConfigWriter = new ConfigurationFileWriter();
         testConfigWriter.initializeConfigFile(new ConfigurationTable());
     }
+
 }

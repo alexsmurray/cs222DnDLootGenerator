@@ -1,11 +1,13 @@
 package edu.bsu.cs;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
 public class ArmorMakerController {
+
     public TextField armorNameInput;
     public Pane armorMaker;
     public ChoiceBox<String> dexModChoice;
@@ -16,33 +18,39 @@ public class ArmorMakerController {
     public Label requiresAttunementLabel;
     public Label stealthDisadvantageLabel;
     public ToggleButton stealthDisadvantageToggle;
-    public HomebrewScreenController homebrewScreenController = new HomebrewScreenController();
     public TextField armorClassInput;
     public TextField strengthRequirementInput;
+
+    public HomebrewScreenController homebrewScreenController = new HomebrewScreenController();
 
     public void checkAttunement() {
         requiresAttunementLabel.setVisible(attunementToggle.isSelected());
     }
+
     public void checkStealthDisadvantage() {
         stealthDisadvantageLabel.setVisible(stealthDisadvantageToggle.isSelected());
     }
+
     public void checkArmorClassInput() {
         if (!homebrewScreenController.checkForNumber(armorClassInput.getText())) {
             armorClassInput.clear();
         }
     }
+
     public void checkStrengthRequirementInput() {
         if (!homebrewScreenController.checkForNumber(strengthRequirementInput.getText())) {
             strengthRequirementInput.clear();
         }
     }
 
-    public String collectArmorDetails(){
+    protected String collectArmorDetails() {
         String[] checkedInputs = {armorNameInput.getText(), armorClassInput.getText(), strengthRequirementInput.getText()};
+
         if (!ErrorHandler.verifyHomebrewInputsNotBlank(checkedInputs)) {
             GUI.displayHomebrewArmorFieldsAlert();
             return "";
         }
+
         return "{\n" +
                 "\t\"Item_Type\": \"Armor HB\",\n" +
                 "\t\"Name\": \"" + armorNameInput.getText() + "\",\n" +
@@ -59,19 +67,23 @@ public class ArmorMakerController {
                 "}";
     }
 
-    public void writeArmorToFile() throws IOException {
-        JsonFileMaker jsonFileMaker = new JsonFileMaker();
+    @FXML
+    protected void writeArmorToFile() throws IOException {
         String itemDetails = collectArmorDetails();
+        displayCreationConfirmationIfNotEmpty(itemDetails);
+        clearAllInput();
+    }
+
+    private void displayCreationConfirmationIfNotEmpty(String itemDetails) throws IOException {
         if (!itemDetails.isEmpty()) {
-            jsonFileMaker.writeHomebrewToFile(itemDetails);
+            new HomebrewFileMaker().writeHomebrewToFile(itemDetails);
             GUI.displayItemCreatedAlert();
         }
-        clearAllInput();
     }
 
     public void clearAllInput() {
         TextField[] textFields = {armorNameInput, armorClassInput, strengthRequirementInput};
-        for (TextField field: textFields) {
+        for (TextField field : textFields) {
             field.setText("");
         }
         armorDescription.setText("");
