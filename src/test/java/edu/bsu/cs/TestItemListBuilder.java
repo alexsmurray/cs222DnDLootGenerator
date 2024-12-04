@@ -101,4 +101,5 @@ public class TestItemListBuilder {
         ConfigurationFileWriter testConfigWriter = new ConfigurationFileWriter();
         testConfigWriter.initializeConfigFile(new ConfigurationTable());
     }
+
 }

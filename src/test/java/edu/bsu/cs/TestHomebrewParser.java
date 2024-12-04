@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.Hashtable;
 
 public class TestHomebrewParser {
+
     private final HomebrewItemParser homebrewItemParser;
 
     public TestHomebrewParser() throws IOException {

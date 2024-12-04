@@ -24,5 +24,4 @@ public class TestConfigurationFileWriter {
         Assertions.assertEquals(expected, result);
     }
 
-
 }

@@ -35,4 +35,5 @@ public class TestConfigurationFileReader {
         ConfigurationFileWriter testConfigWriter = new ConfigurationFileWriter();
         testConfigWriter.initializeConfigFile(testConfigurationTable);
     }
+
 }

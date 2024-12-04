@@ -55,4 +55,5 @@ public class TestItemFilter {
         Files.createDirectories(Paths.get("src/main/resources/dataFiles"));
         new ConfigurationFileWriter().writeConfigurationFile(new ConfigurationTable());
     }
+
 }
