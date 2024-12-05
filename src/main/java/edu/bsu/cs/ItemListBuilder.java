@@ -124,18 +124,16 @@ public class ItemListBuilder {
 
     private void populateFilteredHomebrewItems(List<Item> builderItemList) {
         nameJsonArray = homebrewItemsParser.buildJsonArrayOfHomebrewItemNames();
-        int counter = 0;
-        for (Object name : nameJsonArray) {
-            addHomebrewItemIfRarityIsPermitted(builderItemList, name, counter);
-            counter++;
-        }
 
+        for (int itemIndex = 0; itemIndex < nameJsonArray.size(); itemIndex++) {
+            addHomebrewItemIfRarityIsPermitted(builderItemList, nameJsonArray.get(itemIndex), itemIndex);
+        }
     }
 
-    private void addHomebrewItemIfRarityIsPermitted(List<Item> builderItemList, Object name, int counter) {
+    private void addHomebrewItemIfRarityIsPermitted(List<Item> builderItemList, Object name, int itemIndex) {
         if (name == null) { return; }
 
-        Hashtable<String, String> homebrewItemDetails = homebrewItemsParser.parseAllHomebrewItemDetails(counter);
+        Hashtable<String, String> homebrewItemDetails = homebrewItemsParser.parseAllHomebrewItemDetails(itemIndex);
         int rarityValue = RarityToIntegerConverter.determineRarityValue(homebrewItemDetails.get("Rarity"));
 
         if (rarityValue >= itemFilter.checkForMaxRarityPermitted()) {
