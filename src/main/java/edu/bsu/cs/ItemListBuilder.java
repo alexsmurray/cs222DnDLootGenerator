@@ -80,7 +80,7 @@ public class ItemListBuilder {
 
         for (int page = 0; page < magicItemPages; page++) {
             Hashtable<String, JSONArray> magicItemDetails = magicItemsParser.parseAllMagicItemDetails(page);
-            buildListFromPage(builderItemList, magicItemDetails);
+            buildMagicItemListFromPage(builderItemList, magicItemDetails);
         }
     }
 
@@ -90,35 +90,29 @@ public class ItemListBuilder {
         return pageLines.length;
     }
 
-    private void buildListFromPage(List<Item> builderItemList, Hashtable<String, JSONArray> magicItemDetails) {
+    private void buildMagicItemListFromPage(List<Item> builderItemList, Hashtable<String, JSONArray> magicItemDetails) {
         for (int itemIndex = 0; itemIndex < magicItemDetails.get("name").size(); itemIndex++) {
-            int rarityValue = determineRarityValue(magicItemDetails.get("rarity").get(itemIndex).toString());
-
-            if (rarityValue >= itemFilter.checkForMaxRarityPermitted()) {
-
-                String name = magicItemDetails.get("name").get(itemIndex).toString();
-                String rarity = OutputFormatter.formatRarity(magicItemDetails.get("rarity").get(itemIndex).toString());
-                String type = magicItemDetails.get("type").get(itemIndex).toString();
-                String attunement = OutputFormatter.formatAttunement(magicItemDetails.get("requires_attunement").get(itemIndex).toString());
-                String description = magicItemDetails.get("desc").get(itemIndex).toString();
-
-                Item item = new Item(name, description)
-                        .setRarity(rarity).setType(type).setAttunement(attunement);
-                builderItemList.add(item);
-            }
+            addMagicItemIfRarityIsPermitted(builderItemList, magicItemDetails, itemIndex);
         }
     }
 
-    private int determineRarityValue(String rarity) {
-        return switch (rarity.strip()) {
-            case "Legendary" -> 1;
-            case "Very Rare" -> 2;
-            case "Rare" -> 3;
-            case "Uncommon" -> 4;
-            case "Common" -> 5;
-            case "Mundane" -> 6;
-            default -> 0;
-        };
+    private void addMagicItemIfRarityIsPermitted(List<Item> builderItemList, Hashtable<String, JSONArray> magicItemDetails, int itemIndex) {
+        int rarityValue = RarityToIntegerConverter.determineRarityValue(magicItemDetails.get("rarity").get(itemIndex).toString());
+
+        if (rarityValue >= itemFilter.checkForMaxRarityPermitted()) {
+            Item magicItem = constructMagicItem(magicItemDetails, itemIndex);
+            builderItemList.add(magicItem);
+        }
+    }
+
+    private static Item constructMagicItem(Hashtable<String, JSONArray> magicItemDetails, int itemIndex) {
+
+        Item item = new Item(magicItemDetails.get("name").get(itemIndex).toString(), magicItemDetails.get("desc").get(itemIndex).toString());
+        item.setRarity(OutputFormatter.formatRarity(magicItemDetails.get("rarity").get(itemIndex).toString()));
+        item.setType(magicItemDetails.get("type").get(itemIndex).toString());
+        item.setAttunement(OutputFormatter.formatAttunement(magicItemDetails.get("requires_attunement").get(itemIndex).toString()));
+
+        return item;
     }
 
     protected void populateListWithHomebrewItems(List<Item> builderItemList) throws IOException {
@@ -132,22 +126,30 @@ public class ItemListBuilder {
         nameJsonArray = homebrewItemsParser.buildJsonArrayOfHomebrewItemNames();
         int counter = 0;
         for (Object name : nameJsonArray) {
-            if (name != null) {
-                Hashtable<String, String> homebrewItemDetails = homebrewItemsParser.parseAllHomebrewItemDetails(counter);
-
-                int rarityValue = determineRarityValue(homebrewItemDetails.get("Rarity"));
-
-                if (rarityValue >= itemFilter.checkForMaxRarityPermitted()) {
-                    Item item = new Item(name.toString(), homebrewItemDetails.get("Description").replaceAll("\t", ""));
-                    item.setType(homebrewItemDetails.get("Item_Type"));
-                    item.setRarity(homebrewItemDetails.get("Rarity"));
-                    item.setAttunement(homebrewItemDetails.get("Attunement"));
-                    builderItemList.add(item);
-                }
-            }
+            addHomebrewItemIfRarityIsPermitted(builderItemList, name, counter);
             counter++;
         }
 
+    }
+
+    private void addHomebrewItemIfRarityIsPermitted(List<Item> builderItemList, Object name, int counter) {
+        if (name == null) { return; }
+
+        Hashtable<String, String> homebrewItemDetails = homebrewItemsParser.parseAllHomebrewItemDetails(counter);
+        int rarityValue = RarityToIntegerConverter.determineRarityValue(homebrewItemDetails.get("Rarity"));
+
+        if (rarityValue >= itemFilter.checkForMaxRarityPermitted()) {
+            Item homebrewItem = constructHomebrewItem(name, homebrewItemDetails);
+            builderItemList.add(homebrewItem);
+        }
+    }
+
+    private Item constructHomebrewItem(Object name, Hashtable<String, String> homebrewItemDetails) {
+        Item item = new Item(name.toString(), homebrewItemDetails.get("Description").replaceAll("\t", ""));
+        item.setType(homebrewItemDetails.get("Item_Type"));
+        item.setRarity(homebrewItemDetails.get("Rarity"));
+        item.setAttunement(homebrewItemDetails.get("Attunement"));
+        return item;
     }
 
 }
