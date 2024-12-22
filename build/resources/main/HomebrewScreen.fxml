@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.HomebrewScreenController">
+    <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true">
+    <Image url="@images/backgroundImageBlue.png" />
+    </ImageView>
+    <ImageView fitHeight="72.0" fitWidth="180.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true">
+        <Image url="@images/dndLogo.png" />
+    </ImageView>
+    <MenuButton layoutX="806.0" layoutY="33.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Navigate to...">
+        <items>
+            <MenuItem mnemonicParsing="false" onAction="#goToMain" text="Main" />
+            <MenuItem mnemonicParsing="false" onAction="#goToFilters" text="Filtering Options" />
+        </items>
+    </MenuButton>
+    <TabPane fx:id="homebrewPane" layoutX="164.0" layoutY="99.0" prefHeight="426.0" prefWidth="631.0" style="-fx-background-color: white; -fx-border-color: black;" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1">
+        <Tab text="Weapon">
+            <fx:include source="WeaponMaker.fxml" />
+        </Tab>
+        <Tab text="Armor">
+            <fx:include source="ArmorMaker.fxml" />
+        </Tab>
+        <Tab text="Misc. Item">
+            <fx:include source="MiscItemMaker.fxml" />
+        </Tab>
+    </TabPane>
+</AnchorPane>

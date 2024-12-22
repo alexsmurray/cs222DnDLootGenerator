@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #adadad; -fx-border-color: red;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.MainScreenController">
+    <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true">
+        <Image url="@images/backgroundImage.jpg" />
+    </ImageView>
+    <ImageView fitHeight="72.0" fitWidth="229.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true">
+        <Image url="@images/wordLogo.png" />
+    </ImageView>
+   <Button fx:id="refreshItemDataButton" layoutX="777.0" layoutY="485.0" mnemonicParsing="false" onAction="#refreshItemData" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Refresh Item Data" />
+      <Button fx:id="generateButton" layoutX="434.0" layoutY="40.0" mnemonicParsing="false" onAction="#generateItems" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Generate" />
+      <TextField fx:id="userInputField" layoutX="259.0" layoutY="40.0" onKeyPressed="#executeGenerateItemsOnEnter" promptText="# of items to generate" style="-fx-border-color: #000000;" />
+   <TableView fx:id="itemTableView" layoutX="14.0" layoutY="98.0" onMouseClicked="#displayItemDetailsOnDoubleClick" prefHeight="414.0" prefWidth="701.0" style="-fx-border-color: #000000;">
+     <columns>
+       <TableColumn fx:id="nameTableColumn" prefWidth="75.0" text="Name" />
+       <TableColumn fx:id="rarityTableColumn" prefWidth="75.0" style="-fx-alignment: center;" text="Rarity" />
+         <TableColumn fx:id="typeTableColumn" prefWidth="75.0" style="-fx-alignment: center;" text="Type" />
+         <TableColumn fx:id="attunementTableColumn" prefWidth="75.0" style="-fx-alignment: center;" text="Requires Attunement" />
+     </columns>
+      <columnResizePolicy>
+         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+      </columnResizePolicy>
+   </TableView>
+   <Label layoutX="281.0" layoutY="517.0" text="Double-click an item to expand" textFill="WHITE">
+      <padding>
+         <Insets left="5.0" right="5.0" />
+      </padding></Label>
+   <Label layoutX="841.0" layoutY="81.0" />
+   <Label fx:id="refreshDate" alignment="CENTER" contentDisplay="RIGHT" layoutX="727.0" layoutY="459.0" prefHeight="18.0" prefWidth="210.0" text="No Recent Refresh" textFill="WHITE" wrapText="true" />
+   <MenuButton fx:id="navigationMenu" layoutX="806.0" layoutY="33.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #adadad; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-insets: -1.5;" text="Navigate to...">
+     <items>
+       <MenuItem mnemonicParsing="false" onAction="#goToHomeBrew" text="Homebrew" />
+       <MenuItem mnemonicParsing="false" onAction="#goToFilters" text="Filtering Options" />
+     </items>
+   </MenuButton>
+    <ImageView fx:id="loadingImage" fitHeight="150.0" fitWidth="200.0" layoutX="285.0" layoutY="240.0" opacity="0.2" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" visible="false">
+        <Image url="@images/loadingImage.png" />
+    </ImageView>
+</AnchorPane>

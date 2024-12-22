@@ -1,0 +1,105 @@
+{
+"results": [{
+	"Item_Type": "Homebrew Item",
+	"Name": null,
+	"Rarity": "Non-existent",
+	"Attunement": false,
+	"Description": "YOU SHOULD NOT BE HERE",
+},
+{
+	"Item_Type": "Armor HB",
+	"Name": "Dragonscale Shirt",
+	"Rarity": "Legendary",
+	"Attunement": true,
+	"Description":
+		"AC:  99 +  Dex Modifier Full Modifier
+		Category:  Light
+		Strength Requirement:  5
+		Stealth Disadvantage:  false
+
+		Description: 
+
+		WOAH saved me!"
+},
+{
+	"Item_Type": "Potion HB",
+	"Name": "Pot of Greed",
+	"Rarity": "Rare",
+	"Attunement": true,
+	"Description":
+
+		"Steal all the monies"
+},
+{
+	"Item_Type": "Weapon HB",
+	"Name": "Frisbee",
+	"Rarity": "Common",
+	"Attunement": false,
+	"Description":
+		"Proficiency:  Simple
+		Damage Dice:  24d6
+		Reach:  5.0 feet
+		Damage Type:  Slashing
+		Properties:  [Thrown (range 15/45)]
+
+		Description: 
+
+		throw me"
+},
+{
+	"Item_Type": "Armor HB",
+	"Name": "Ball Cap",
+	"Rarity": "Common",
+	"Attunement": false,
+	"Description":
+		"AC:  5 +  Dex Modifier Max 2
+		Category:  Light
+		Strength Requirement:  0
+		Stealth Disadvantage:  false
+
+		Description: 
+
+		take me to the game"
+},
+{
+	"Item_Type": "Scroll HB",
+	"Name": "Scroll of Dancing",
+	"Rarity": "Uncommon",
+	"Attunement": false,
+	"Description":
+
+		"make em dance"
+},
+{
+	"Item_Type": "Weapon HB",
+	"Name": "Flailing Flames",
+	"Rarity": "Rare",
+	"Attunement": false,
+	"Description":
+		"Proficiency:  Simple
+		Damage Dice:  6d8
+		Reach:  5.0 feet
+		Damage Type:  Slashing
+		Properties:  []
+
+		Description: 
+
+		whoosh"
+},
+{
+	"Item_Type": "Weapon HB",
+	"Name": "Bow of Awesomeness",
+	"Rarity": "Legendary",
+	"Attunement": false,
+	"Description":
+		"Proficiency:  Martial
+		Damage Dice:  4d12
+		Reach:  5.0 feet
+		Damage Type:  Piercing
+		Properties:  [Ammunition (range 200/800), Loading]
+
+		Description: 
+
+		This is awesome"
+},]
+}

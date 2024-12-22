@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="weaponMaker" prefWidth="631.0" style="-fx-background-color: white; -fx-border-color: black;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.WeaponMakerController">
+    <TextField fx:id="weaponNameInput" layoutX="34.0" layoutY="14.0" prefHeight="26.0" prefWidth="352.0" promptText="Enter Name" />
+    <RadioButton fx:id="simpleRadio" layoutX="108.0" layoutY="63.0" mnemonicParsing="false" selected="true" text="Simple">
+        <toggleGroup>
+            <ToggleGroup fx:id="proficiency" />
+        </toggleGroup></RadioButton>
+    <RadioButton fx:id="martialRadio" layoutX="34.0" layoutY="63.0" mnemonicParsing="false" text="Martial" toggleGroup="$proficiency" />
+    <Label layoutX="190.0" layoutY="63.0" text="Damage Dice" />
+    <ChoiceBox fx:id="damageDiceChoice" layoutX="351.0" layoutY="59.0" prefHeight="25.0" prefWidth="46.0" value="d6">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="d4" />
+                <String fx:value="d6" />
+                <String fx:value="d8" />
+                <String fx:value="d10" />
+                <String fx:value="d12" />
+                <String fx:value="d20" />
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+    <TextField fx:id="numberOfDiceInput" layoutX="268.0" layoutY="59.0" onAction="#checkNumberOfDiceInput" onKeyReleased="#checkNumberOfDiceInput" prefHeight="25.0" prefWidth="71.0" promptText="# of dice" />
+    <TextArea fx:id="weaponDescription" layoutX="18.0" layoutY="270.0" prefHeight="118.0" prefWidth="595.0" promptText="Enter item description" style="-fx-border-color: black;" />
+    <ChoiceBox fx:id="reachChoice" layoutX="101.0" layoutY="102.0" prefHeight="25.0" prefWidth="100.0" value="5.0 feet">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="0.0 feet" />
+                <String fx:value="5.0 feet" />
+                <String fx:value="10.0 feet" />
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+    <ChoiceBox fx:id="weaponRarityChoice" layoutX="101.0" layoutY="195.0" prefHeight="25.0" prefWidth="100.0" value="Common">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Mundane" />
+                <String fx:value="Common" />
+                <String fx:value="Uncommon" />
+                <String fx:value="Rare" />
+                <String fx:value="Very Rare" />
+                <String fx:value="Legendary" />
+                <String fx:value="Artifact" />
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+    <Label layoutX="39.0" layoutY="106.0" text="Reach" />
+    <ToggleButton fx:id="attunementToggle" layoutX="261.0" layoutY="195.0" mnemonicParsing="false" onAction="#checkAttunement" prefHeight="25.0" prefWidth="86.0" text="Attunement" />
+    <ChoiceBox fx:id="damageTypeChoice" layoutX="101.0" layoutY="147.0" prefHeight="25.0" prefWidth="100.0" value="Slashing">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Bludgeoning" />
+                <String fx:value="Piercing" />
+                <String fx:value="Slashing" />
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+    <TextField fx:id="weaponRangeInput" layoutX="268.0" layoutY="102.0" onKeyReleased="#setRangeSettings" prefHeight="25.0" prefWidth="71.0" promptText="Range" />
+    <Label layoutX="18.0" layoutY="151.0" text="Damage Type" />
+    <Label layoutX="39.0" layoutY="199.0" text="Rarity" />
+    <Label layoutX="225.0" layoutY="106.0" text="Range" />
+    <Label fx:id="requiresAttunementLabel" layoutX="234.0" layoutY="227.0" prefWidth="163.0" text="*Item Requires Attunement" visible="false" />
+    <Label layoutX="483.0" layoutY="53.0" text="Properties" />
+
+    <CheckBox fx:id="versatileCheckBox" layoutX="522.0" layoutY="195.0" mnemonicParsing="false" text="Versatile" />
+    <CheckBox fx:id="twoHandedCheckBox" layoutX="522.0" layoutY="173.0" mnemonicParsing="false" text="Two-Handed" />
+    <CheckBox fx:id="thrownCheckBox" disable="true" layoutX="522.0" layoutY="151.0" mnemonicParsing="false" onAction="#setLongRangeLabel" text="*Thrown" />
+    <CheckBox fx:id="specialCheckBox" layoutX="522.0" layoutY="129.0" mnemonicParsing="false" text="Special" />
+    <CheckBox fx:id="reachCheckBox" layoutX="522.0" layoutY="107.0" mnemonicParsing="false" text="Reach" />
+    <CheckBox fx:id="netCheckBox" layoutX="522.0" layoutY="85.0" mnemonicParsing="false" text="Net" />
+    <CheckBox fx:id="loadingCheckBox" layoutX="422.0" layoutY="195.0" mnemonicParsing="false" text="Loading" />
+    <CheckBox fx:id="lightCheckBox" layoutX="422.0" layoutY="173.0" mnemonicParsing="false" text="Light" />
+    <CheckBox fx:id="lanceCheckBox" layoutX="422.0" layoutY="151.0" mnemonicParsing="false" text="Lance" />
+    <CheckBox fx:id="heavyCheckBox" layoutX="422.0" layoutY="129.0" mnemonicParsing="false" text="Heavy" />
+    <CheckBox fx:id="finesseCheckBox" layoutX="422.0" layoutY="107.0" mnemonicParsing="false" text="Finesse" />
+    <CheckBox fx:id="ammunitionCheckBox" disable="true" layoutX="422.0" layoutY="85.0" mnemonicParsing="false" onAction="#setLongRangeLabel" text="*Ammunition" />
+    <Button layoutX="396.0" layoutY="8.0" prefHeight="0.0" prefWidth="227.0" text="Build Weapon" onAction="#writeWeaponToFile">
+        <font>
+            <Font name="System Bold" size="20.0" />
+        </font>
+    </Button>
+    <Label fx:id="longRangeLabel" layoutX="225.0" layoutY="151.0" text="Long Range:" />
+    <Label layoutX="437.0" layoutY="221.0" prefHeight="35.0" prefWidth="180.0" text="*Enter in a range to access" wrapText="true" />
+</Pane>
